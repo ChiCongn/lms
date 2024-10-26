@@ -4,10 +4,12 @@ module edu.lms {
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
-    
+
     requires com.google.api.client;
     requires okhttp3;
     requires com.fasterxml.jackson.databind;
+
+    requires java.dotenv;
 
     opens edu.lms to javafx.fxml;
     exports edu.lms;
