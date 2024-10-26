@@ -11,4 +11,5 @@ public class Config {
 
     public static final String DATABASE_USERNAME = dotenv.get("DATABASE_USERNAME");
     public static final String DATABASE_PASSWORD = dotenv.get("DATABASE_PASSWORD");
+    public static final String DATABASE_ENDPOINT = dotenv.get("DATABASE_ENDPOINT");
 }
