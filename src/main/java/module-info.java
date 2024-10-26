@@ -8,8 +8,11 @@ module edu.lms {
     requires com.google.api.client;
     requires okhttp3;
     requires com.fasterxml.jackson.databind;
+    requires com.google.gson;
 
     requires java.dotenv;
+
+    requires java.sql;
 
     opens edu.lms to javafx.fxml;
     exports edu.lms;
