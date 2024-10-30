@@ -1,6 +1,6 @@
 package edu.lms.services;
 
-import edu.lms.models.Book;
+import edu.lms.Models.Book;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

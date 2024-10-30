@@ -1,4 +1,4 @@
-package edu.lms.models;
+package edu.lms.Models;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package edu.lms.controllers;
+package edu.lms.Controllers;
 
 import edu.lms.LibraryManagementApplication;
 import javafx.fxml.FXMLLoader;

@@ -89,7 +89,7 @@ public class EmailService {
         initialize();
 
         System.out.println("send verification code...");
-        sendVerificationCode("23021481@vnu.edu.vn", 123456);
+        sendVerificationCode("23021517@vnu.edu.vn", 123456);
     }
 
 }

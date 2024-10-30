@@ -1,6 +1,6 @@
 package edu.lms;
 
-import edu.lms.controllers.SceneManager;
+import edu.lms.Controllers.SceneManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
