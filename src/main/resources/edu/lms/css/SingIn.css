@@ -1,0 +1,29 @@
+
+AnchorPane {
+    -fx-background-color: #FFFFFF;
+}
+
+
+.login-form {
+    -fx-padding: 20;
+    -fx-border-color: #FF6F91;
+    -fx-border-width: 2;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-alignment: center;
+}
+
+
+.header-text {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+
+.sign-in-btn {
+    -fx-background-color: #FF6F91;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 15;
+}
