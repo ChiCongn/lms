@@ -34,9 +34,18 @@ public class EmailService {
             Message message = new MimeMessage(email);
             message.setFrom(new InternetAddress(Config.FROM_EMAIL));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
-
             message.setSubject("Your Confirmation Code");
-            message.setText("Your confirmation code is: " + code);
+
+            String content = "<img src='src/main/resources/edu/lms/images/Logo.png' alt='LMS Logo' style='width:100px; height:auto;' />" +
+                    "<h2>Verify your identity</h2>" +
+                    "<p>Hello,</p>" +
+                    "<p>We identified unusual activity in a recent sign-un attempt from your lms account's user. " +
+                    "If you initiated the request to sign up into lms, please enter the following code to verify your identity and complete your sign-up.</p>" +
+                    "<h1 style='color: #ff9900;'>Verification code<br> " + code + "</h1>" +
+                    "<p><small>(This code will expire 10 minutes after it was sent.)</small></p>" +
+                    "<p>For more information, visit <a href='https://docs.lms.apple'>this link</a>.</p>";
+
+            message.setContent(content, "text/html");
 
             Transport.send(message);
             System.out.println("Confirmation email sent successfully to the recipient!");
