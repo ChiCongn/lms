@@ -1,4 +1,6 @@
-package edu.lms.services;
+package edu.lms.services.database;
+
+import edu.lms.services.Config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
