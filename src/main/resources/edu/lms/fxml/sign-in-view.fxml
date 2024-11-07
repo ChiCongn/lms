@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" stylesheets="@../css/login.css"
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="edu.lms.Controllers.SignInController">
+            fx:controller="edu.lms.controllers.SignInController">
     <VBox layoutX="305.0" layoutY="31.0" prefHeight="338.0" prefWidth="274.0" styleClass="border"/>
     <Hyperlink layoutX="392.0" layoutY="271.0" text="Have no account?" onMouseClicked="#switchSignUpController"/>
     <CheckBox layoutX="335.0" layoutY="175.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="102.0"

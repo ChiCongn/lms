@@ -1,7 +1,6 @@
 package edu.lms.controllers;
 
 import edu.lms.Constants;
-import edu.lms.Controllers.SceneManager;
 import edu.lms.services.database.DatabaseService;
 import edu.lms.services.EmailService;
 import edu.lms.services.Validator;

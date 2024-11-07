@@ -1,11 +1,10 @@
-package edu.lms.Controllers.Client;
+package edu.lms.controllers.Client;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
 
-import javax.smartcardio.Card;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;

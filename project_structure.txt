@@ -1,0 +1,223 @@
+Folder PATH listing
+Volume serial number is A655-B2C0
+D:.
+¦   .env
+¦   .gitignore
+¦   mvnw
+¦   mvnw.cmd
+¦   pom.xml
+¦   project_structure.txt
+¦   README.md
+¦   
++---.idea
+¦       .gitignore
+¦       .name
+¦       compiler.xml
+¦       encodings.xml
+¦       jarRepositories.xml
+¦       misc.xml
+¦       vcs.xml
+¦       workspace.xml
+¦       
++---.mvn
+¦   +---wrapper
+¦           maven-wrapper.jar
+¦           maven-wrapper.properties
+¦           
++---src
+¦   +---main
+¦       +---java
+¦       ¦   ¦   module-info.java
+¦       ¦   ¦   
+¦       ¦   +---edu
+¦       ¦       +---lms
+¦       ¦           ¦   Constants.java
+¦       ¦           ¦   LibraryManagementApplication.java
+¦       ¦           ¦   
+¦       ¦           +---Controllers
+¦       ¦           ¦   ¦   LoginController.java
+¦       ¦           ¦   ¦   SceneManager.java
+¦       ¦           ¦   ¦   SignInController.java
+¦       ¦           ¦   ¦   SignUpController.java
+¦       ¦           ¦   ¦   
+¦       ¦           ¦   +---Admin
+¦       ¦           ¦   ¦       AdminController.java
+¦       ¦           ¦   ¦       
+¦       ¦           ¦   +---Client
+¦       ¦           ¦           CardController.java
+¦       ¦           ¦           ClientController.java
+¦       ¦           ¦           DashBoardController.java
+¦       ¦           ¦           
+¦       ¦           +---Models
+¦       ¦           ¦   ¦   Model.java
+¦       ¦           ¦   ¦   
+¦       ¦           ¦   +---book
+¦       ¦           ¦           Book.java
+¦       ¦           ¦           BookManager.java
+¦       ¦           ¦           
+¦       ¦           +---services
+¦       ¦           ¦   ¦   Config.java
+¦       ¦           ¦   ¦   EmailService.java
+¦       ¦           ¦   ¦   GoogleBooksAPI.java
+¦       ¦           ¦   ¦   Validator.java
+¦       ¦           ¦   ¦   VerificationCode.java
+¦       ¦           ¦   ¦   
+¦       ¦           ¦   +---database
+¦       ¦           ¦           BookDataService.java
+¦       ¦           ¦           DatabaseService.java
+¦       ¦           ¦           
+¦       ¦           +---Views
+¦       ¦                   ViewFactory.java
+¦       ¦                   
+¦       +---resources
+¦           +---edu
+¦               +---lms
+¦                   +---css
+¦                   ¦       DashBoard.css
+¦                   ¦       login.css
+¦                   ¦       SignUpForm.css
+¦                   ¦       SingIn.css
+¦                   ¦       Test.css
+¦                   ¦       
+¦                   +---fxml
+¦                   ¦       card.fxml
+¦                   ¦       DashBoard.fxml
+¦                   ¦       edu - Shortcut.lnk
+¦                   ¦       sign-in-view.fxml
+¦                   ¦       sign-up-view.fxml
+¦                   ¦       SignIn.fxml
+¦                   ¦       SignUpForm.fxml
+¦                   ¦       TestingDashBoard.fxml
+¦                   ¦       
+¦                   +---images
+¦                   ¦   ¦   anhTuyendeptrai.jpg
+¦                   ¦   ¦   chart.png
+¦                   ¦   ¦   closedEyes.png
+¦                   ¦   ¦   dot.png
+¦                   ¦   ¦   five stars.jpg
+¦                   ¦   ¦   home.png
+¦                   ¦   ¦   icon.png
+¦                   ¦   ¦   Logo.png
+¦                   ¦   ¦   openEyes.png
+¦                   ¦   ¦   search.png
+¦                   ¦   ¦   successfulRegistration.png
+¦                   ¦   ¦   test1.jpg
+¦                   ¦   ¦   user.png
+¦                   ¦   ¦   
+¦                   ¦   +---Books
+¦                   ¦           80 20.jpg
+¦                   ¦           big dream.jpg
+¦                   ¦           courage secrete.jpg
+¦                   ¦           how to think.jpg
+¦                   ¦           ivanka trump.jpg
+¦                   ¦           man's searching for meaning.jpg
+¦                   ¦           money.jpg
+¦                   ¦           rich_dad_poor_dad.jpg
+¦                   ¦           second brain.jpg
+¦                   ¦           stoicism.jpg
+¦                   ¦           storyteller's secrete.jpg
+¦                   ¦           tribe of mentor.jpg
+¦                   ¦           
+¦                   +---sql
+¦                           create_authors_table.sql
+¦                           create_books_table.sql
+¦                           create_users_table.sql
+¦                           
++---target
+    +---classes
+    ¦   ¦   module-info.class
+    ¦   ¦   
+    ¦   +---edu
+    ¦       +---lms
+    ¦           ¦   Constants.class
+    ¦           ¦   LibraryManagementApplication.class
+    ¦           ¦   
+    ¦           +---Controllers
+    ¦           ¦   ¦   LoginController.class
+    ¦           ¦   ¦   SceneManager.class
+    ¦           ¦   ¦   SignInController.class
+    ¦           ¦   ¦   SignUpController.class
+    ¦           ¦   ¦   
+    ¦           ¦   +---Admin
+    ¦           ¦   ¦       AdminController.class
+    ¦           ¦   ¦       
+    ¦           ¦   +---Client
+    ¦           ¦           CardController.class
+    ¦           ¦           ClientController.class
+    ¦           ¦           DashBoardController.class
+    ¦           ¦           
+    ¦           +---css
+    ¦           ¦       DashBoard.css
+    ¦           ¦       login.css
+    ¦           ¦       SignUpForm.css
+    ¦           ¦       SingIn.css
+    ¦           ¦       Test.css
+    ¦           ¦       
+    ¦           +---fxml
+    ¦           ¦       card.fxml
+    ¦           ¦       DashBoard.fxml
+    ¦           ¦       edu - Shortcut.lnk
+    ¦           ¦       sign-in-view.fxml
+    ¦           ¦       sign-up-view.fxml
+    ¦           ¦       SignIn.fxml
+    ¦           ¦       SignUpForm.fxml
+    ¦           ¦       TestingDashBoard.fxml
+    ¦           ¦       
+    ¦           +---images
+    ¦           ¦   ¦   anhTuyendeptrai.jpg
+    ¦           ¦   ¦   chart.png
+    ¦           ¦   ¦   closedEyes.png
+    ¦           ¦   ¦   dot.png
+    ¦           ¦   ¦   five stars.jpg
+    ¦           ¦   ¦   home.png
+    ¦           ¦   ¦   icon.png
+    ¦           ¦   ¦   Logo.png
+    ¦           ¦   ¦   openEyes.png
+    ¦           ¦   ¦   search.png
+    ¦           ¦   ¦   successfulRegistration.png
+    ¦           ¦   ¦   test1.jpg
+    ¦           ¦   ¦   user.png
+    ¦           ¦   ¦   
+    ¦           ¦   +---Books
+    ¦           ¦           80 20.jpg
+    ¦           ¦           big dream.jpg
+    ¦           ¦           courage secrete.jpg
+    ¦           ¦           how to think.jpg
+    ¦           ¦           ivanka trump.jpg
+    ¦           ¦           man's searching for meaning.jpg
+    ¦           ¦           money.jpg
+    ¦           ¦           rich_dad_poor_dad.jpg
+    ¦           ¦           second brain.jpg
+    ¦           ¦           stoicism.jpg
+    ¦           ¦           storyteller's secrete.jpg
+    ¦           ¦           tribe of mentor.jpg
+    ¦           ¦           
+    ¦           +---models
+    ¦           ¦   ¦   Model.class
+    ¦           ¦   ¦   
+    ¦           ¦   +---book
+    ¦           ¦           Book.class
+    ¦           ¦           BookManager.class
+    ¦           ¦           
+    ¦           +---services
+    ¦           ¦   ¦   Config.class
+    ¦           ¦   ¦   EmailService$1.class
+    ¦           ¦   ¦   EmailService.class
+    ¦           ¦   ¦   GoogleBooksAPI.class
+    ¦           ¦   ¦   Validator.class
+    ¦           ¦   ¦   VerificationCode.class
+    ¦           ¦   ¦   
+    ¦           ¦   +---database
+    ¦           ¦           BookDataService.class
+    ¦           ¦           DatabaseService.class
+    ¦           ¦           
+    ¦           +---sql
+    ¦           ¦       create_authors_table.sql
+    ¦           ¦       create_books_table.sql
+    ¦           ¦       create_users_table.sql
+    ¦           ¦       
+    ¦           +---Views
+    ¦                   ViewFactory.class
+    ¦                   
+    +---generated-sources
+        +---annotations

@@ -1,4 +1,4 @@
-package edu.lms.Controllers.Client;
+package edu.lms.controllers.Client;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

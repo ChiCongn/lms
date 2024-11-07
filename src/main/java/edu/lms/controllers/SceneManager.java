@@ -1,4 +1,4 @@
-package edu.lms.Controllers;
+package edu.lms.controllers;
 
 import edu.lms.LibraryManagementApplication;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class SceneManager {
     private static Stage primaryStage;
+
     public SceneManager(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
