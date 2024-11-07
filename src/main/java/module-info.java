@@ -15,6 +15,7 @@ module edu.lms {
     requires java.sql;
 
     requires java.mail;
+    requires java.smartcardio;
 
     opens edu.lms to javafx.fxml;
     exports edu.lms;

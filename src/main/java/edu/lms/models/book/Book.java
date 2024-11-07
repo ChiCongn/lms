@@ -11,6 +11,9 @@ public class Book {
     private String publishedYear;
     private String coverImage;
     private int maxBorrowDays;
+    private String author;
+
+    public Book() {};
 
     public Book(int ID, String title, List<String> authors, String description, String publishedYear, String coverImage) {
         this.ID = ID;
@@ -97,6 +100,14 @@ public class Book {
 
     public void setMaxBorrowDays(int maxBorrowDays) {
         this.maxBorrowDays = maxBorrowDays;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }
 
