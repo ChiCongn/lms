@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/DashBoard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.Controllers.Client.DashBoardController">
+    <top>
+        <HBox spacing="10" styleClass="top-bar">
+            <!-- <ImageView fitWidth="30" fitHeight="30" image="edu/lms/images/icon.png" /> -->
+            <Label styleClass="dashboard-title" text="Dashboard" />
+            <TextField promptText="Search" styleClass="search-bar" />
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <Label styleClass="user-name" text="name name" />
+                <Label styleClass="user-id" text="19287894" />
+                <!-- <ImageView fitWidth="20" fitHeight="20" image="edu/lms/images/icon.png" /> -->
+            </HBox>
+        </HBox>
+    </top>
+    <left>
+        <VBox spacing="10" styleClass="side-bar">
+            <!-- <ImageView fitWidth="30" fitHeight="30" image="edu/lms/images/icon.png" /> -->
+        </VBox>
+    </left>
+    <center>
+        <VBox spacing="20" styleClass="content">
+            <HBox>
+                <Label text="Hello, " />
+                <Label styleClass="highlight" text="ChiCongn" />
+            </HBox>
+            <Label styleClass="date" text="Sunday, October 6" />
+            <HBox spacing="20">
+                <!-- Borrowed Books Box -->
+                <VBox styleClass="info-box">
+                    <Label styleClass="info-number" text="80" />
+                    <Label styleClass="info-label" text="Borrowed Books" />
+                </VBox>
+                <!-- Overdue Books Box -->
+                <VBox styleClass="info-box">
+                    <Label styleClass="info-number overdue" text="02" />
+                    <Label styleClass="info-label" text="Overdue Books" />
+                </VBox>
+                <!-- Other info box -->
+                <VBox styleClass="info-box">
+                    <Label styleClass="info-number" text="08" />
+                    <Label styleClass="info-label" text="Other Info" />
+                </VBox>
+            </HBox>
+            <Label styleClass="section-title" text="Top Choices" />
+            <HBox spacing="10">
+                <!-- Book items -->
+                <VBox styleClass="book-item">
+                    <!-- <ImageView fitWidth="60" fitHeight="80" image="edu/lms/images/icon.png" /> -->
+                    <Label styleClass="book-title" text="Apocalypse" />
+                    <Label styleClass="book-author" text="Adolf Hitler" />
+                </VBox>
+                <!-- Repeat for other book items -->
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
