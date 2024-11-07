@@ -1,7 +1,7 @@
 package edu.lms.controllers;
 
 import edu.lms.Constants;
-import edu.lms.services.DatabaseService;
+import edu.lms.services.database.DatabaseService;
 import edu.lms.services.EmailService;
 import edu.lms.services.Validator;
 import edu.lms.services.VerificationCode;
