@@ -1,19 +1,20 @@
 package edu.lms.services;
 
-import edu.lms.models.Book;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import edu.lms.models.book.Book;
+import edu.lms.services.database.BookDataService;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GoogleBooksAPI {
-    private static final String API_KEY = Config.GG_BOOKS_API_KEY;
+    private static final String API_KEY = System.getenv("GG_BOOKS_API_KEY");
     private static final String BASE_URL = "https://www.googleapis.com/books/v1/volumes";
 
     private OkHttpClient client;
@@ -72,7 +73,16 @@ public class GoogleBooksAPI {
             }
         }
 
-        return new Book(title, authors, description);
+        String publishedYear = volumeInfo.has("publishedYear") ? volumeInfo.get("publishedYear").getAsString() : "Unknown";
+        String coverImageUrl = null;
+        if (volumeInfo.has("imageLinks")) {
+            JsonObject imageLinks = volumeInfo.getAsJsonObject("imageLinks");
+            coverImageUrl = imageLinks.has("thumbnail") ? imageLinks.get("thumbnail").getAsString() : null;
+        }
+
+        Book searchedBook = new Book(title, authors, description, publishedYear, coverImageUrl);
+        BookDataService.addBook(searchedBook);
+        return searchedBook;
     }
 
 
