@@ -1,31 +1,43 @@
 package edu.lms.models.book;
 
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Book {
-    private int ID;
+    private int bookId;
     private String title;
     private List<String> authors;
-    private String description;
     private String publishedYear;
+    private int pageCount;
+    private String language;
+    private String description;
+    private BigDecimal rating;
+    private int totalCopies;
+    private int copiesAvailable;
     private String coverImage;
-    private int maxBorrowDays;
 
-    public Book(int ID, String title, List<String> authors, String description, String publishedYear, String coverImage) {
-        this.ID = ID;
+    public Book(String title, String publishedYear, int pageCount,
+                String language, String description, String coverImage) {
         this.title = title;
-        this.authors = authors;
-        this.description = description;
         this.publishedYear = publishedYear;
+        this.pageCount = pageCount;
+        this.language = language;
+        this.description = description;
         this.coverImage = coverImage;
     }
 
-    public Book(String title, List<String> authors, String description, String publishedYear, String coverImage) {
+    public Book(int bookId, String title, String publishedYear, int pageCount, String language,
+                String description, BigDecimal rating, int totalCopies, int copiesAvailable, String coverImage) {
+        this.bookId = bookId;
         this.title = title;
-        this.authors = authors;
-        this.description = description;
         this.publishedYear = publishedYear;
+        this.pageCount = pageCount;
+        this.language = language;
+        this.description = description;
+        this.rating = rating;
+        this.totalCopies = totalCopies;
+        this.copiesAvailable = copiesAvailable;
         this.coverImage = coverImage;
     }
 
@@ -41,6 +53,7 @@ public class Book {
             }
             System.out.println();
         }
+        System.out.println("published year: " + publishedYear);
     }
 
     public String getTitle() {
@@ -67,12 +80,12 @@ public class Book {
         this.description = description;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 
-    public int getID() {
-        return ID;
+    public int getBookId() {
+        return bookId;
     }
 
     public String getPublishedYear() {
@@ -91,12 +104,45 @@ public class Book {
         this.coverImage = coverImage;
     }
 
-    public int getMaxBorrowDays() {
-        return maxBorrowDays;
+    public int getPageCount() {
+        return pageCount;
     }
 
-    public void setMaxBorrowDays(int maxBorrowDays) {
-        this.maxBorrowDays = maxBorrowDays;
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
     }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public BigDecimal getRating() {
+        return rating;
+    }
+
+    public void setRating(BigDecimal rating) {
+        this.rating = rating;
+    }
+
+    public int getTotalCopies() {
+        return totalCopies;
+    }
+
+    public void setTotalCopies(int totalCopies) {
+        this.totalCopies = totalCopies;
+    }
+
+    public int getCopiesAvailable() {
+        return copiesAvailable;
+    }
+
+    public void setCopiesAvailable(int copiesAvailable) {
+        this.copiesAvailable = copiesAvailable;
+    }
+
 }
 
