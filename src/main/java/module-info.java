@@ -16,7 +16,15 @@ module edu.lms {
 
     requires java.mail;
     requires java.smartcardio;
+    requires java.desktop;
+
+//    opens edu.lms to javafx.fxml;
+//    exports edu.lms;
 
     opens edu.lms to javafx.fxml;
+    opens edu.lms.controllers to javafx.fxml; // Mở gói edu.lms.controllers cho javafx.fxml
+    opens edu.lms.controllers.Client to javafx.fxml;
     exports edu.lms;
+
+
 }
