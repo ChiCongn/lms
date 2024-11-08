@@ -33,6 +33,10 @@ public class SignInController {
         closedEyes.setVisible(!visibility);
     }
 
+    public void switchSignUpController() {
+        SignUpController signUpController = SceneManager.switchScene(Constants.SIGNUP_VIEW);
+    }
+
     private void checkCredentials() {
 
     }
