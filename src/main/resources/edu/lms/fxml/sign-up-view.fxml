@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.SignUpController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/SingIn.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.SignUpController">
     <TextField fx:id="username" layoutX="39.0" layoutY="61.0" minHeight="30.0" minWidth="30.0" prefHeight="38.0" prefWidth="250.0" promptText="user name">
         <font>
             <Font size="9.0" />
