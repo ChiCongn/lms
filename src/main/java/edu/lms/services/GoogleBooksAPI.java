@@ -48,7 +48,6 @@ public class GoogleBooksAPI {
             for (int i = 0; i < books.size(); i++) {
                 JsonObject bookJson = books.get(i).getAsJsonObject();
                 Book book = parseBook(bookJson);
-                book.displayInfo();
                 System.out.println("----------");
             }
         } else {
@@ -60,15 +59,13 @@ public class GoogleBooksAPI {
         JsonObject volumeInfo = bookJson.getAsJsonObject("volumeInfo");
 
         String title = volumeInfo.get("title").getAsString();
-        List<String> authors = new ArrayList<>();
-
+        StringBuilder authors = new StringBuilder();
         if (volumeInfo.has("authors")) {
             JsonArray authorsArray = volumeInfo.getAsJsonArray("authors");
             for (int j = 0; j < authorsArray.size(); j++) {
-                authors.add(authorsArray.get(j).getAsString());
+                authors.append(authorsArray.get(j).getAsString()).append(" ,");
             }
         }
-
         String publishedYear = volumeInfo.has("publishedDate") ? volumeInfo.get("publishedDate").getAsString() : "Unknown";
         int pageCount = volumeInfo.has("pageCount") ? volumeInfo.get("pageCount").getAsInt() : 0;
         String language = volumeInfo.has("language") ? volumeInfo.get("language").getAsString() : "Unknown";
@@ -80,16 +77,15 @@ public class GoogleBooksAPI {
         }
 
         //int bookId, String title, String publishedYear, int pageCount, String language, String description, String coverImage
-        Book searchedBook = new Book(title, publishedYear, pageCount, language, description, coverImageUrl);
+        Book searchedBook = new Book(title, authors.toString(), publishedYear, pageCount, language, description, coverImageUrl);
         BookDataService.addBook(searchedBook);
-        searchedBook.setAuthors(authors);
         return searchedBook;
     }
 
 
     public static void main(String[] args) {
         GoogleBooksAPI googleBooksAPI = new GoogleBooksAPI();
-        String searchQuery = "object oriented program";
+        String searchQuery = "data structure and algorithm";
         googleBooksAPI.searchBooks(searchQuery);
     }
 }
