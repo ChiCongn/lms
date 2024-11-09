@@ -1,23 +1,26 @@
 package edu.lms.controllers;
 
 import edu.lms.Constants;
+import edu.lms.models.user.Gender;
 import edu.lms.services.database.DatabaseService;
 import edu.lms.services.EmailService;
 import edu.lms.services.Validator;
 import edu.lms.services.VerificationCode;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class SignUpController {
+public class SignUpController implements Initializable {
     @FXML
     private TextField username;
     @FXML
@@ -49,37 +52,80 @@ public class SignUpController {
     @FXML
     public Label verificationCodeLabel;
     @FXML
-    public Label invalidUsername;
+    public Label isUsernameTaken;
     @FXML
     public Label invalidEmail;
     @FXML
     public ImageView successfulRegistration;
     @FXML
     public Button continuee;
+    @FXML
+    private ChoiceBox<Gender> genderChoiceBox;
+    private Gender gender;
     private boolean visibility;
     private boolean confirmVisibility;
     private boolean isStrongPassword;
     private boolean matchedPassword;
     private boolean isVerification;
     private boolean isSent;
+    private boolean isValidUsername;
+    private boolean isValidEmail;
     private int currentVerificationCode;
-    private DatabaseService instance = DatabaseService.getInstance();
+    private final DatabaseService instance = DatabaseService.getInstance();
 
     public void backToSignInController() {
         SignInController signInController = SceneManager.switchScene(Constants.SIGN_IN_VIEW);
         System.out.println("back to sign");
     }
 
-    @FXML
-    public void initialize() {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         visiblePassword.textProperty().bindBidirectional(password.textProperty());
         visibleConfirmPassword.textProperty().bindBidirectional(confirmPassword.textProperty());
+
+        username.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldUsername, String newUsername) {
+                if (!newUsername.isEmpty()) {
+                    //System.out.println("check is taken user name");
+                    if (checkUsernameTaken(newUsername)) {
+                        isUsernameTaken.setText("username has been taken! Pls try other username!");
+                        isUsernameTaken.setStyle("-fx-text-fill: red;");
+                    } else {
+                        isUsernameTaken.setText("username is available!");
+                        isUsernameTaken.setStyle("-fx-text-fill: green;");
+                    }
+                }
+            }
+        });
+
+        email.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String oldEmail, String newEmail) {
+                if (!newEmail.isEmpty()) {
+                    if (!Validator.checkValidEmail(newEmail)) {
+                        invalidEmail.setText("Invalid email! Pls choose other email!");
+                        invalidEmail.setStyle("-fx-text-fill: red;");
+                        return;
+                    }
+                    if (checkUniqueEmail(newEmail)) {
+                        invalidEmail.setText("this email is taken! Pls choose other email!");
+                        invalidEmail.setStyle("-fx-text-fill: red;");
+                    } else {
+                        invalidEmail.setText("this email is taken! Pls choose other email!");
+                        invalidEmail.setStyle("-fx-text-fill: red;");
+                    }
+                }
+            }
+        });
 
         password.textProperty().addListener((observable, oldValue, newValue) -> {
             checkPasswordMatch();
             checkPasswordStrength(newValue);
         });
         confirmPassword.textProperty().addListener((observable, oldValue, newValue) -> checkPasswordMatch());
+        //genderChoiceBox.getItems().addAll("Male", "Female", "Other");
+        genderChoiceBox.getItems().addAll(Gender.MALE, Gender.FEMALE, Gender.OTHER);
     }
 
     public void switchVisibility() {
@@ -105,8 +151,7 @@ public class SignUpController {
     public void sendVerificationCode() {
         currentVerificationCode = VerificationCode.generateVerificationCode();
         String toEmail = email.getText();
-        if (!Validator.checkValidEmail(toEmail)) {
-            invalidEmail.setVisible(true);
+        if (!isValidEmail) {
             return;
         }
         EmailService.sendVerificationCode(toEmail, currentVerificationCode);
@@ -128,6 +173,35 @@ public class SignUpController {
         } else {
             verificationCodeLabel.setText("Correct! Sign up now!");
             verificationCodeLabel.setStyle("-fx-text-fill: green;");
+        }
+    }
+
+    // Have not been tested!
+    @FXML
+    public void registerAccount() {
+        String user = username.getText().trim();
+        String emailInput = email.getText().trim();
+        String pass = password.getText();
+
+        if (!isStrongPassword || !matchedPassword || !isVerification) {
+            return;
+        }
+
+        try (Connection connection = instance.getConnection()) {
+            String insertQuery = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+            try (PreparedStatement statement = connection.prepareStatement(insertQuery)) {
+                statement.setString(1, user);
+                statement.setString(2, emailInput);
+                statement.setString(3, pass);
+
+                int rowsInserted = statement.executeUpdate();
+                if (rowsInserted > 0) {
+                    successfulRegistration.setVisible(true);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Database error occurred.");
         }
     }
 
@@ -158,48 +232,37 @@ public class SignUpController {
         }
     }
 
-    private boolean isUsernameTaken(String username) {
-        String query = "SELECT COUNT(*) FROM users WHERE username = ?";
+    private boolean checkUsernameTaken(String username) {
+        String query = "SELECT COUNT(*) FROM clients WHERE username = ?";
         try (Connection connection = instance.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
+
             statement.setString(1, username);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return resultSet.getInt(1) > 0;
+                //System.out.println("username is available!");
+                isValidUsername = resultSet.getInt(1) > 0;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return isValidUsername;
     }
 
-    // Have not been tested!
-    /*@FXML
-    private void registerAccount() {
-        String user = username.getText().trim();
-        String emailInput = email.getText().trim();
-        String pass = password.getText();
+    private boolean checkUniqueEmail(String email) {
+        String query = "SELECT COUNT(*) FROM clients WHERE email = ?";
+        try (Connection connection = instance.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
 
-        if (!isStrongPassword || !matchedPassword || !isVerification) {
-            return;
-        }
-
-        try (Connection connection = instance.getConnection()) {
-            String insertQuery = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
-            try (PreparedStatement statement = connection.prepareStatement(insertQuery)) {
-                statement.setString(1, user);
-                statement.setString(2, emailInput);
-                statement.setString(3, pass);
-
-                int rowsInserted = statement.executeUpdate();
-                if (rowsInserted > 0) {
-                    successfulRegistration.setVisible(true);
-                }
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                isValidEmail = resultSet.getInt(1) > 0;
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Database error occurred.");
         }
-    }*/
+        return isValidEmail;
+    }
 
 }
