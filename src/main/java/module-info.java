@@ -16,7 +16,7 @@ module edu.lms {
     requires java.base;
 
     exports edu.lms;
-
+    exports edu.lms.models.book;
     exports edu.lms.controllers;
     opens edu.lms.controllers to javafx.fxml;
 

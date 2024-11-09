@@ -2,6 +2,9 @@ package edu.lms.services.database;
 
 import edu.lms.models.user.Client;
 import edu.lms.models.user.Gender;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,8 +28,8 @@ public class ClientDataService {
      * load all list of clients form database.
      * @return list of clients
      */
-    public static List<Client> loadClientsData() {
-        List<Client> clients = new ArrayList<>();
+    public static ObservableList<Client> loadClientsData() {
+        ObservableList<Client> clients = FXCollections.observableArrayList();
         try (Connection connection = dbService.getConnection();
              PreparedStatement stmt = connection.prepareStatement(LOAD_CLIENTS_QUERY);
              ResultSet rs = stmt.executeQuery()) {
@@ -42,7 +45,6 @@ public class ClientDataService {
 
                 //int id, String username, String password, String email, String avatarPath, Gender gender
                 Client client = new Client(clientId, email, username, password, avatarPath, gender);
-                client.setBorrowedBooks(loadBorrowedBooks(clientId));
                 clients.add(client);
             }
         } catch (SQLException e) {
@@ -66,7 +68,6 @@ public class ClientDataService {
 
                 //int id, String username, String password, String email, String avatarPath, Gender gender
                 Client client = new Client(clientId, email, username, password, avatarPath, gender);
-                client.setBorrowedBooks(loadBorrowedBooks(clientId));
                 return client;
             }
         } catch (SQLException e) {
