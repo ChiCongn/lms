@@ -22,7 +22,7 @@ public class LibraryManagementApplication extends Application {
             System.out.println('1');
             FXMLLoader loader = new FXMLLoader();
             System.out.println(2);
-            loader.setLocation(LibraryManagementApplication.class.getResource("/edu/lms/fxml/test.fxml"));
+            loader.setLocation(LibraryManagementApplication.class.getResource(Constants.SIGN_IN_VIEW));
             System.out.println(3);
             AnchorPane root = loader.load();
             System.out.println("4");

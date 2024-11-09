@@ -48,7 +48,7 @@
 }
 
 .button-signin {
-    -fx-background-color: #f4546d;
+    -fx-background-color: EF5E7A;
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
     -fx-font-size: 18px;
@@ -58,7 +58,7 @@
 }
 
 .button:hover {
-    -fx-background-color: red;
+    -fx-background-color: #f4546d;
 }
 
 .image {
