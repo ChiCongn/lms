@@ -1,16 +1,34 @@
 package edu.lms.models.user;
 
 public abstract class User {
+    protected int id;
     protected String username;
     protected String password;
-    protected int ID;
-    protected String avatar;
+    protected String email;
+    protected String avatarPath;
+    protected Gender gender = Gender.OTHER;
 
-    public User(int ID, String username, String password, String avatar) {
+    public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
-        this.ID = ID;
-        this.avatar = avatar;
+        this.email = email;
+    }
+
+    public User(int id, String username, String password, String email,
+                String avatarPath, Gender gender) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.avatarPath = avatarPath;
+        this.gender = gender;
+    }
+
+    public User(String username, String password, String email, Gender gender) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.gender = gender;
     }
 
     public void changePassword(String newPassword) {
@@ -33,19 +51,35 @@ public abstract class User {
         this.password = password;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getAvatarPath() {
+        return avatarPath;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 }

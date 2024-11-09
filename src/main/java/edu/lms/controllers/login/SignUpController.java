@@ -61,7 +61,6 @@ public class SignUpController implements Initializable {
     public Button continuee;
     @FXML
     private ChoiceBox<Gender> genderChoiceBox;
-    private Gender gender;
     private boolean visibility;
     private boolean confirmVisibility;
     private boolean isStrongPassword;
@@ -109,8 +108,8 @@ public class SignUpController implements Initializable {
                         return;
                     }
                     if (checkUniqueEmail(newEmail)) {
-                        invalidEmail.setText("this email is taken! Pls choose other email!");
-                        invalidEmail.setStyle("-fx-text-fill: red;");
+                        invalidEmail.setText("Email is available!");
+                        invalidEmail.setStyle("-fx-text-fill: green;");
                     } else {
                         invalidEmail.setText("this email is taken! Pls choose other email!");
                         invalidEmail.setStyle("-fx-text-fill: red;");
@@ -168,6 +167,7 @@ public class SignUpController implements Initializable {
         if (code == null || code.isEmpty()) return;
         int currentCode = Integer.parseInt(verificationCode.getText());
         if (currentCode != currentVerificationCode) {
+            isVerification = false;
             verificationCodeLabel.setText("Incorrect code. Please try again.");
             verificationCodeLabel.setStyle("-fx-text-fill: red;");
         } else {
@@ -177,26 +177,28 @@ public class SignUpController implements Initializable {
     }
 
     // Have not been tested!
-    @FXML
     public void registerAccount() {
-        String user = username.getText().trim();
-        String emailInput = email.getText().trim();
-        String pass = password.getText();
-
-        if (!isStrongPassword || !matchedPassword || !isVerification) {
+        if (!isStrongPassword || !matchedPassword || isVerification) {
             return;
         }
 
+        String user = username.getText().trim();
+        String emailInput = email.getText().trim();
+        String pass = password.getText();
+        String gender = Gender.takeGender(genderChoiceBox.getValue());
+        System.out.println("register");
         try (Connection connection = instance.getConnection()) {
-            String insertQuery = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+            String insertQuery = "INSERT INTO clients (username, email, password, gender) VALUES (?, ?, ?, ?)";
             try (PreparedStatement statement = connection.prepareStatement(insertQuery)) {
                 statement.setString(1, user);
                 statement.setString(2, emailInput);
                 statement.setString(3, pass);
+                statement.setString(4, gender);
 
                 int rowsInserted = statement.executeUpdate();
                 if (rowsInserted > 0) {
                     successfulRegistration.setVisible(true);
+                    continuee.setVisible(true);
                 }
             }
         } catch (SQLException e) {
@@ -257,7 +259,7 @@ public class SignUpController implements Initializable {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                isValidEmail = resultSet.getInt(1) > 0;
+                isValidEmail = resultSet.getInt(1) < 1;
             }
         } catch (SQLException e) {
             e.printStackTrace();

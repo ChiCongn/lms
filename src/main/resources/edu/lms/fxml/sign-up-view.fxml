@@ -11,12 +11,16 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/SingIn.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.SignUpController">
+   <Label layoutX="366.0" layoutY="45.0" prefHeight="18.0" prefWidth="75.0" text="Gender" />
+    <ImageView fx:id="successfulRegistration" fitHeight="400.0" fitWidth="600.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+        <Image url="@../images/successfulRegistration.png" />
+    </ImageView>
     <TextField fx:id="username" layoutX="39.0" layoutY="61.0" minHeight="30.0" minWidth="30.0" prefHeight="38.0" prefWidth="250.0" promptText="user name">
         <font>
             <Font size="9.0" />
         </font>
     </TextField>
-    <Button layoutX="370.0" layoutY="293.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="142.0" styleClass="button-signin" text="Sign Up" />
+    <Button layoutX="370.0" layoutY="293.0" mnemonicParsing="false" onAction="#registerAccount" prefHeight="51.0" prefWidth="142.0" styleClass="button-signin" text="Sign Up" />
     <Button layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#backToSignInController" prefHeight="18.0" prefWidth="50.0" text="&lt;">
       <font>
          <Font name="System Bold" size="15.0" />
@@ -90,9 +94,6 @@
     </Label>
     <Label fx:id="invalidEmail" layoutX="39.0" layoutY="165.0" prefHeight="18.0" prefWidth="250.0" textFill="#f40404" />
     <Button layoutX="512.0" layoutY="189.0" mnemonicParsing="false" onMouseClicked="#checkVerificationCode" text="Check" />
-    <ImageView fx:id="successfulRegistration" fitHeight="400.0" fitWidth="600.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
-        <Image url="@../images/successfulRegistration.png" />
-    </ImageView>
     <Button fx:id="continuee" layoutX="228.0" layoutY="278.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onMouseClicked="#backToSignInController" prefHeight="45.0" prefWidth="142.0" styleClass="button-signin" text="Continue" textAlignment="CENTER" textFill="#f7f6f6" visible="false">
         <font>
             <Font size="12.0" />
