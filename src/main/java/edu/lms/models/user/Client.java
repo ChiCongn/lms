@@ -7,9 +7,18 @@ import java.util.List;
 public class Client extends User {
     List<Integer> borrowedBooks;
     List<Integer> overdueBooks;
+    private static Client currentClient;
 
-    public Client(int id, String username, String password, String avatar) {
-        super(id, username, password, avatar);
+    public Client(String username, String password, String email) {
+        super(username, password, email);
+    }
+
+    public Client(int id, String username, String password, String email, String avatarPath, Gender gender) {
+        super(id, username, password, email, avatarPath, gender);
+    }
+
+    public Client(String username, String password, String email, Gender gender) {
+        super(username, password, email, gender);
     }
 
     public void borrowBook(int bookID) {
@@ -18,12 +27,12 @@ public class Client extends User {
             return;
         }
         borrowedBooks.add(bookID);
-        ClientDataService.borrowBook(this.ID, bookID);
+        ClientDataService.borrowBook(this.id, bookID);
     }
 
     public void returnBook(int bookID) {
         borrowedBooks.remove(bookID);
-        ClientDataService.returnBook(this.ID, bookID);
+        ClientDataService.returnBook(this.id, bookID);
     }
 
     public List<Integer> getBorrowedBooks() {
