@@ -1,7 +1,10 @@
-package edu.lms.controllers;
+package edu.lms.controllers.login;
 
 import edu.lms.Constants;
+import edu.lms.controllers.SceneManager;
+import edu.lms.models.user.Client;
 import edu.lms.models.user.Gender;
+import edu.lms.services.database.ClientDataService;
 import edu.lms.services.database.DatabaseService;
 import edu.lms.services.EmailService;
 import edu.lms.services.Validator;
@@ -182,28 +185,11 @@ public class SignUpController implements Initializable {
             return;
         }
 
-        String user = username.getText().trim();
-        String emailInput = email.getText().trim();
-        String pass = password.getText();
-        String gender = Gender.takeGender(genderChoiceBox.getValue());
         System.out.println("register");
-        try (Connection connection = instance.getConnection()) {
-            String insertQuery = "INSERT INTO clients (username, email, password, gender) VALUES (?, ?, ?, ?)";
-            try (PreparedStatement statement = connection.prepareStatement(insertQuery)) {
-                statement.setString(1, user);
-                statement.setString(2, emailInput);
-                statement.setString(3, pass);
-                statement.setString(4, gender);
-
-                int rowsInserted = statement.executeUpdate();
-                if (rowsInserted > 0) {
-                    successfulRegistration.setVisible(true);
-                    continuee.setVisible(true);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Database error occurred.");
+        Client client = new Client(username.getText(), password.getText(), email.getText(), genderChoiceBox.getValue());
+        if (ClientDataService.addNewClient(client)) {
+            successfulRegistration.setVisible(true);
+            continuee.setVisible(true);
         }
     }
 
