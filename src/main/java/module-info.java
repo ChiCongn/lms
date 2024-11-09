@@ -15,8 +15,14 @@ module edu.lms {
     requires java.mail;
     requires java.base;
 
-    opens edu.lms to javafx.fxml;
     exports edu.lms;
+
     exports edu.lms.controllers;
     opens edu.lms.controllers to javafx.fxml;
+
+    exports edu.lms.controllers.login;
+    opens edu.lms.controllers.login to javafx.fxml;
+
+    exports edu.lms.controllers.dashboard;
+    opens edu.lms.controllers.dashboard to javafx.fxml;
 }
