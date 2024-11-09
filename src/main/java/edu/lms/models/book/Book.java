@@ -7,7 +7,7 @@ import java.util.List;
 public class Book {
     private int bookId;
     private String title;
-    private List<String> authors;
+    private String authors;
     private String publishedYear;
     private int pageCount;
     private String language;
@@ -17,9 +17,10 @@ public class Book {
     private int copiesAvailable;
     private String coverImage;
 
-    public Book(String title, String publishedYear, int pageCount,
+    public Book(String title, String authors, String publishedYear, int pageCount,
                 String language, String description, String coverImage) {
         this.title = title;
+        this.authors = authors;
         this.publishedYear = publishedYear;
         this.pageCount = pageCount;
         this.language = language;
@@ -27,10 +28,11 @@ public class Book {
         this.coverImage = coverImage;
     }
 
-    public Book(int bookId, String title, String publishedYear, int pageCount, String language,
+    public Book(int bookId, String title, String authors, String publishedYear, int pageCount, String language,
                 String description, BigDecimal rating, int totalCopies, int copiesAvailable, String coverImage) {
         this.bookId = bookId;
         this.title = title;
+        this.authors = authors;
         this.publishedYear = publishedYear;
         this.pageCount = pageCount;
         this.language = language;
@@ -41,21 +43,6 @@ public class Book {
         this.coverImage = coverImage;
     }
 
-    public void displayInfo() {
-        System.out.println("Title: " + title);
-        if (authors != null && !authors.isEmpty()) {
-            System.out.print("Authors: ");
-            for (int i = 0; i < authors.size(); i++) {
-                System.out.print(authors.get(i));
-                if (i < authors.size() - 1) {
-                    System.out.print(", ");
-                }
-            }
-            System.out.println();
-        }
-        System.out.println("published year: " + publishedYear);
-    }
-
     public String getTitle() {
         return title;
     }
@@ -64,11 +51,11 @@ public class Book {
         this.title = title;
     }
 
-    public List<String> getAuthors() {
+    public String getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<String> authors) {
+    public void setAuthors(String authors) {
         this.authors = authors;
     }
 

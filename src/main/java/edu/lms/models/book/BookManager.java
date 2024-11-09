@@ -1,11 +1,13 @@
 package edu.lms.models.book;
 
 import edu.lms.services.database.BookDataService;
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 
 import java.util.List;
 
 public class BookManager {
-    public static List<Book> books;
+    public static ObservableList<Book> books;
 
     // load all books in database :)
     public void initialize() {
@@ -17,7 +19,7 @@ public class BookManager {
         return books.get(bookID); // id is mark from 0 similar index ???
     }*/
 
-    public static List<Book> getBooks() {
+    public static ObservableList<Book> getBooks() {
         return books;
     }
 }
