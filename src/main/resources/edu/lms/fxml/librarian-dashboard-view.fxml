@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="700.0" prefWidth="982.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.LibrarianDashboardController">
+<AnchorPane prefHeight="700.0" prefWidth="982.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.LibrarianDashboardController">
    <children>
       <VBox layoutX="118.0" layoutY="161.0" prefHeight="78.0" prefWidth="132.0" styleClass="centered-vbox" stylesheets="@../css/dashboard.css">
          <children>
@@ -79,13 +79,13 @@
       <Button layoutX="14.0" layoutY="281.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="42.0" text="Books" />
       <Button layoutX="14.0" layoutY="202.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="52.0" text="Users" />
       <Button layoutX="14.0" layoutY="363.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="41.0" text="Log out" />
-      <TableView layoutX="69.0" layoutY="309.0" prefHeight="294.0" prefWidth="429.0">
+
+      <TableView fx:id="usersTableView" layoutX="69.0" layoutY="309.0" prefHeight="294.0" prefWidth="429.0">
          <columns>
-            <TableColumn prefWidth="39.999969482421875" text="ID" />
-            <TableColumn prefWidth="74.39999389648438" text="username" />
-            <TableColumn prefWidth="101.59999084472656" text="borrowed books" />
-            <TableColumn prefWidth="93.5999755859375" text="overdue books" />
-            <TableColumn prefWidth="119.199951171875" text="outstanding fines" />
+            <TableColumn fx:id="idUserIdColumn" prefWidth="56.800018310546875" text="ID" />
+            <TableColumn fx:id="usernameColumn" prefWidth="142.3999786376953" text="username" />
+            <TableColumn fx:id="borrowedBooksColumn" prefWidth="113.5999755859375" text="borrowed books" />
+            <TableColumn fx:id="outstandingFinesColumn" prefWidth="124.79998779296875" text="outstanding fines" />
          </columns>
       </TableView>
    </children>

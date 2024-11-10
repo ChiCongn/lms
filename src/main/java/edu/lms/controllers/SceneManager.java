@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class SceneManager {
     private static Stage primaryStage;
+
     public SceneManager(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
