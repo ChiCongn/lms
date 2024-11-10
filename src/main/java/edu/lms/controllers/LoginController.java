@@ -15,7 +15,7 @@ public class LoginController {
     private Parent root;
 
     public void switchToDashBoard(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("DashBoard.fxml"));
+        root = FXMLLoader.load(getClass().getResource("TestingDashBoard.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

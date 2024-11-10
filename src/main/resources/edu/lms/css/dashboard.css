@@ -1,0 +1,12 @@
+.centered-vbox {
+    -fx-alignment: center;
+    -fx-padding: 10px;
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+}
+
+.icon-image {
+    -fx-alignment: top-right;
+
+}

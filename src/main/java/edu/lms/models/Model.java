@@ -1,4 +1,4 @@
-package edu.lms.Models;
+package edu.lms.models;
 
 public class Model {
 }

@@ -19,6 +19,6 @@ public class BookController {
         Image image = new Image(getClass().getResourceAsStream(book.getCoverImage()));
         bookImage.setImage(image);
         bookName.setText(book.getTitle());
-        authorName.setText(book.getAuthor());
+        authorName.setText(book.getAuthors());
     }
 }
