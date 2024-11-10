@@ -13,13 +13,14 @@ import java.util.List;
 public class BookDataService {
     private static final String LOAD_BOOKS_QUERY = "SELECT * FROM books";
     private static final String SEARCH_BOOK_EXIST_IN_DATABASE_QUERY = "SELECT COUNT(*) FROM books WHERE title = ?";
-    private static final String ADD_BOOK_QUERY = "INSERT INTO books (title, published_year, page_count, language, description, total_copies, copies_available, authors) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String ADD_BOOK_QUERY = "INSERT INTO books (title, published_year, page_count, language, description, total_copies, available_copies, authors) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String DELETE_BOOK_QUERY = "DELETE FROM books WHERE book_id = ?";
+    private static final String UPDATE_AVAILABLE_COPIES_BOOK = "UPDATE booksSET available_copies = available_copies - ? WHERE book_id = ? AND available_copies >= ?;";
     public static ObservableList<Book> loadBooksData() {
         ObservableList<Book> bookList = FXCollections.observableArrayList();
 
-        try (Connection conn = DatabaseService.getInstance().getConnection();
-             PreparedStatement statement = conn.prepareStatement(LOAD_BOOKS_QUERY);
+        try (Connection connection = DatabaseService.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(LOAD_BOOKS_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
@@ -32,7 +33,7 @@ public class BookDataService {
                 String description = resultSet.getString("description");
                 BigDecimal rating = resultSet.getBigDecimal("rating");
                 int totalCopies = resultSet.getInt("total_copies");
-                int copiesAvailable = resultSet.getInt("copies_available");
+                int copiesAvailable = resultSet.getInt("available_copies");
                 String coverImageUrl = resultSet.getString("cover_image_path");
 
                 //int bookId, String title, String authors, String publishedYear, int pageCount, String language,
@@ -59,11 +60,6 @@ public class BookDataService {
 
         try (Connection connection = DatabaseService.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(ADD_BOOK_QUERY, Statement.RETURN_GENERATED_KEYS)) {
-
-            statement.setString(1, book.getTitle());
-            statement.setString(2, book.getDescription());
-            statement.setString(3, book.getPublishedYear());
-            statement.setString(4, book.getCoverImage());
 
             statement.setString(1, book.getTitle());
             statement.setString(2, book.getPublishedYear());
@@ -99,6 +95,20 @@ public class BookDataService {
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Error removing book from database: " + e.getMessage());
+        }
+    }
+
+    public static void updateAvailableCopiesOfThisBook(int bookId, int adjustment) {
+        try (Connection connection = DatabaseService.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_AVAILABLE_COPIES_BOOK)) {
+
+            statement.setInt(1, adjustment);
+            statement.setInt(2, bookId);
+            statement.setInt(3, adjustment); //ensure there are enough available copies
+
+            statement.execute();
+        } catch (SQLException e) {
+            System.err.println("Error updating available copies of this book: " + e.getMessage());
         }
     }
 
