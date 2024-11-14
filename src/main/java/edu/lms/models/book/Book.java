@@ -15,21 +15,23 @@ public class Book {
     private int totalCopies;
     private int availableCopies;
     private String coverImage;
-    public Book() {};
+    private String canonicalVolumeLink;
 
-    public Book(String title, String authors, String publishedYear, int pageCount,
-                String language, String description, String coverImage) {
+    public Book(String title, String authors, String publishedYear, int pageCount, String language,
+                String description, BigDecimal rating, String coverImage, String canonicalVolumeLink) {
         this.title = title;
         this.authors = authors;
         this.publishedYear = publishedYear;
         this.pageCount = pageCount;
         this.language = language;
         this.description = description;
+        this.rating = rating;
         this.coverImage = coverImage;
+        this.canonicalVolumeLink = canonicalVolumeLink;
     }
 
     public Book(int bookId, String title, String authors, String publishedYear, int pageCount, String language,
-                String description, BigDecimal rating, int totalCopies, int availableCopies, String coverImage) {
+                String description, BigDecimal rating, int totalCopies, int availableCopies, String coverImage, String canonicalVolumeLink) {
         this.bookId = bookId;
         this.title = title;
         this.authors = authors;
@@ -41,6 +43,7 @@ public class Book {
         this.totalCopies = totalCopies;
         this.availableCopies = availableCopies;
         this.coverImage = coverImage;
+        this.canonicalVolumeLink = canonicalVolumeLink;
     }
 
     public String getTitle() {
@@ -131,5 +134,12 @@ public class Book {
         this.availableCopies = availableCopies;
     }
 
+    public String getCanonicalVolumeLink() {
+        return canonicalVolumeLink;
+    }
+
+    public void setCanonicalVolumeLink(String canonicalVolumeLink) {
+        this.canonicalVolumeLink = canonicalVolumeLink;
+    }
 }
 
