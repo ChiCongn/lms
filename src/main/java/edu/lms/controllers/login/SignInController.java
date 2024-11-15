@@ -5,7 +5,6 @@ import edu.lms.controllers.SceneManager;
 import edu.lms.controllers.dashboard.AdminDashboardController;
 import edu.lms.controllers.dashboard.ClientDashboardController;
 import edu.lms.controllers.dashboard.LibrarianDashboardController;
-import edu.lms.models.user.Role;
 import edu.lms.services.database.DatabaseService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -18,8 +17,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static edu.lms.models.user.Role.ADMIN;
-import static edu.lms.models.user.Role.LIBRARIAN;
 
 public class SignInController {
     @FXML
@@ -37,7 +34,7 @@ public class SignInController {
     @FXML
     private Label incorrectPassword;
     private boolean visibility;
-    private Role role;
+    private String role;
     private final DatabaseService instance = DatabaseService.getInstance();
 
     @FXML
@@ -61,38 +58,22 @@ public class SignInController {
     public void checkCredentials() {
         System.out.println("check credential");
         try {
-            if (checkUserRole(usernameField.getText().trim(), password.getText().trim())) {
+            if (checkCredentials(usernameField.getText().trim(), password.getText().trim())) {
                 System.out.println("sign in :)");
                 switchToDashboard();
+            } else {
+                System.out.println("unknown");
+                incorrectUsername.setVisible(true);
+                incorrectPassword.setVisible(true);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private boolean checkUserRole(String username, String password) throws SQLException {
-        if (checkCredentialsInTable("admins", username, password)) {
-            role = Role.ADMIN;
-            System.out.println("is admin");
-            return true;
-        }
-        else if (checkCredentialsInTable("librarians", username, password)) {
-            role = Role.LIBRARIAN;
-            System.out.println("is librarian");
-            return true;
-        } else if (checkCredentialsInTable("clients", username, password)) {
-            role = Role.CLIENT;
-            System.out.println("is client");
-            return true;
-        }
-        System.out.println("unknown error");
-        incorrectUsername.setVisible(true);
-        incorrectPassword.setVisible(true);
-        return false;
-    }
 
-    private boolean checkCredentialsInTable(String tableName, String username, String password) throws SQLException {
-        String query = "SELECT COUNT(*) FROM " + tableName + " WHERE username = ? AND password = ?";
+    private boolean checkCredentials(String username, String password) throws SQLException {
+        String query = "SELECT COUNT(*) FROM users WHERE username = ? AND password = ?";
 
         try (Connection connection = instance.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -102,6 +83,7 @@ public class SignInController {
 
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
+                role = resultSet.getString("role");
                 return resultSet.getInt(1) > 0;
             }
 
@@ -113,9 +95,9 @@ public class SignInController {
 
     private void switchToDashboard() {
         if (role == null) return;
-        if (role == ADMIN) {
+        if (role.equals("admin")) {
             AdminDashboardController adminDashboardController = SceneManager.switchScene(Constants.ADMIN_DASHBOARD_VIEW);
-        } else if (role == LIBRARIAN) {
+        } else if (role.equals("librarian")) {
             LibrarianDashboardController librarianDashboardController = SceneManager.switchScene(Constants.LIBRARIAN_DASHBOARD_VIEW);
         } else {
             ClientDashboardController clientDashboardController = SceneManager.switchScene(Constants.CLIENT_DASHBOARD_VIEW);

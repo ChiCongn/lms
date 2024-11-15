@@ -221,7 +221,7 @@ public class SignUpController implements Initializable {
     }
 
     private boolean checkUsernameTaken(String username) {
-        String query = "SELECT COUNT(*) FROM clients WHERE username = ?";
+        String query = "SELECT COUNT(*) FROM users WHERE username = ?";
         try (Connection connection = instance.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
@@ -238,7 +238,7 @@ public class SignUpController implements Initializable {
     }
 
     private boolean checkUniqueEmail(String email) {
-        String query = "SELECT COUNT(*) FROM clients WHERE email = ?";
+        String query = "SELECT COUNT(*) FROM users WHERE email = ?";
         try (Connection connection = instance.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
