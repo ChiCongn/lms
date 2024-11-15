@@ -22,3 +22,34 @@
 .shadow{
     -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 10);
 }
+
+.border{
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+}
+
+.description {
+    padding: 10px 15px;
+    margin: 10px 0;
+}
+
+.description-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #333;
+}
+
+.description-box {
+    border: 1px solid #E4E4E4;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+
+.description:hover {
+    background-color: #f0f0f0;
+    text-decoration: underline;
+}
+

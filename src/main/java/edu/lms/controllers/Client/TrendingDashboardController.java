@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class DashBoardController implements Initializable {
+public class TrendingDashboardController implements Initializable {
     @FXML
     private HBox cardLayout;
     @FXML
@@ -59,44 +59,22 @@ public class DashBoardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        recentlyAdded = new ArrayList<>(recentlyAdded());
+
         recommended = new ArrayList<>(books());
         int column = 0;
         int row = 1;
 
         try {
-            for (edu.lms.models.book.Book value : recentlyAdded) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/edu/lms/fxml/card.fxml"));
-                HBox cardBox = fxmlLoader.load();
-                CardController cardController = fxmlLoader.getController();
-                cardController.setData(value);
-                cardLayout.getChildren().add(cardBox);
-
-                // Sự kiện click vào cardBox
-                cardBox.setOnMouseClicked(event -> {
-                    try {
-                        FXMLLoader detailsLoader = new FXMLLoader(getClass().getResource("/edu/lms/fxml/book-details.fxml"));
-                        BorderPane bookDetails = detailsLoader.load();
-                        BookDetailsController detailsController = detailsLoader.getController();
-                        detailsController.setData(value); // Truyền dữ liệu sách vào BookDetailsController
-
-                        // Chuyển scene
-                        cardLayout.getScene().setRoot(bookDetails);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-            }
 
             for (edu.lms.models.book.Book value : recommended) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/edu/lms/fxml/book.fxml"));
-                VBox bookBox = fxmlLoader.load();
-                BookController bookController = fxmlLoader.getController();
+                fxmlLoader.setLocation(getClass().getResource("/edu/lms/fxml/card-details.fxml"));
+                HBox bookBox = fxmlLoader.load();
+                CardDetailsController bookController = fxmlLoader.getController();
                 bookController.setData(value);
 
-                if (column == 6) {
+
+                if (column == 1) {
                     column = 0;
                     ++row;
                 }
@@ -105,19 +83,19 @@ public class DashBoardController implements Initializable {
                 GridPane.setMargin(bookBox, new Insets(10));
 
                 // Sự kiện click vào bookBox
-                bookBox.setOnMouseClicked(event -> {
-                    try {
-                        FXMLLoader detailsLoader = new FXMLLoader(getClass().getResource("/edu/lms/fxml/book-details.fxml"));
-                        BorderPane bookDetails = detailsLoader.load();
-                        BookDetailsController detailsController = detailsLoader.getController();
-                        detailsController.setData(value); // Truyền dữ liệu sách vào BookDetailsController
-
-                        // Chuyển scene
-                        cardLayout.getScene().setRoot(bookDetails);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
+//                bookBox.setOnMouseClicked(event -> {
+//                    try {
+//                        FXMLLoader detailsLoader = new FXMLLoader(getClass().getResource("/edu/lms/fxml/book-details.fxml"));
+//                        BorderPane bookDetails = detailsLoader.load();
+//                        BookDetailsController detailsController = detailsLoader.getController();
+//                        detailsController.setData(value); // Truyền dữ liệu sách vào BookDetailsController
+//
+//                        // Chuyển scene
+//                        cardLayout.getScene().setRoot(bookDetails);
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                });
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -265,7 +243,5 @@ public class DashBoardController implements Initializable {
     public void switchToGame(MouseEvent event) throws IOException {
         switchScene(Constants.GAME_DASHBOARD_VIEW, event);
     }
-
-
 
 }

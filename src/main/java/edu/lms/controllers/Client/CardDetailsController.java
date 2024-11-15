@@ -1,13 +1,21 @@
 package edu.lms.controllers.Client;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
-public class CardController {
+import java.io.IOException;
+
+public class CardDetailsController {
 
 
     @FXML
@@ -34,6 +42,5 @@ public class CardController {
                 + "-fx-background-radius: 15;"
                 + "-fx-effect: dropShadown(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 10);");
     }
-
 
 }

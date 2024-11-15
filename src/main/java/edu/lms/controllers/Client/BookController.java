@@ -15,10 +15,13 @@ public class BookController {
     @FXML
     private Label bookName;
 
+
+
     public void setData(edu.lms.models.book.Book book) {
         Image image = new Image(getClass().getResourceAsStream(book.getCoverImage()));
         bookImage.setImage(image);
         bookName.setText(book.getTitle());
         authorName.setText(book.getAuthors());
     }
+
 }
