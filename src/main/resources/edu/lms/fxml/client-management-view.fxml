@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.ClientManagementController">
+
+    <VBox layoutY="138.0" prefHeight="462.0" prefWidth="187.0">
+        <children>
+            <Button mnemonicParsing="false" prefHeight="67.0" prefWidth="195.0" text="Home">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="67.0" prefWidth="195.0" text="Clients">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="67.0" prefWidth="195.0" text="Books">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="67.0" prefWidth="195.0" text="Log out">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Button>
+        </children>
+    </VBox>
+   <TableView layoutX="199.0" layoutY="138.0" prefHeight="462.0" prefWidth="650.0">
+     <columns>
+       <TableColumn fx:id="idColumn" prefWidth="60.79998779296875" text="Client Id" />
+       <TableColumn fx:id="usernameColumn" prefWidth="200.79998779296875" text="username" />
+         <TableColumn fx:id="emailColumn" prefWidth="184.0" text="email" />
+         <TableColumn fx:id="borrowedBooksColumn" minWidth="3.20001220703125" prefWidth="97.5999755859375" text="borrowed books" />
+         <TableColumn fx:id="outstandingFinesColumn" prefWidth="110.40006103515623" text="oustanding fines" />
+     </columns>
+   </TableView>
+</AnchorPane>
