@@ -1,43 +1,40 @@
 package edu.lms.models.book;
 
-import edu.lms.models.user.Client;
-
 import java.time.LocalDate;
 
 public class BorrowedBook {
-    private int borrow_id;
+    private int borrowId;
     private Book book; // save pointer which taken from books in BookManager to save memory
-    private Client client; // save pointer which taken from clients in UserManager to save memory
+    private int clientId; // save pointer which taken from clients in UserManager to save memory
     private LocalDate borrowDate;
     private LocalDate dueDate;
     private LocalDate returnDate;
     private String status;
 
-    public BorrowedBook(Book book, Client client, LocalDate borrowDate, LocalDate dueDate, String status) {
+    public BorrowedBook(Book book, int clientId, LocalDate borrowDate, LocalDate dueDate, String status) {
         this.book = book;
-        this.client = client;
+        this.clientId = clientId;
+        this.borrowDate = borrowDate;
+        this.dueDate = dueDate;
+        this.status = status;
+    }
+
+    public BorrowedBook(int borrowId, Book book, int clientId, LocalDate borrowDate, LocalDate dueDate, LocalDate returnDate, String status) {
+        this.borrowId = borrowId;
+        this.book = book;
+        this.clientId = clientId;
         this.borrowDate = borrowDate;
         this.dueDate = dueDate;
         this.returnDate = returnDate;
         this.status = status;
     }
 
-    public BorrowedBook(int borrow_id, Book book, Client client, LocalDate borrowDate, LocalDate dueDate, LocalDate returnDate, String status) {
-        this.borrow_id = borrow_id;
-        this.book = book;
-        this.client = client;
-        this.borrowDate = borrowDate;
-        this.dueDate = dueDate;
-        this.returnDate = returnDate;
-        this.status = status;
+    public int getBorrowId() {
+        return borrowId;
     }
 
-    public int getBorrow_id() {
-        return borrow_id;
-    }
-
-    public void setBorrow_id(int borrow_id) {
-        this.borrow_id = borrow_id;
+    public void setBorrowId(int borrowId) {
+        this.borrowId = borrowId;
     }
 
     public Book getBook() {
@@ -48,12 +45,12 @@ public class BorrowedBook {
         this.book = book;
     }
 
-    public Client getClient() {
-        return client;
+    public int getClientId() {
+        return clientId;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
     }
 
     public LocalDate getBorrowDate() {

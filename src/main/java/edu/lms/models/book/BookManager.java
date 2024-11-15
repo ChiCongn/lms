@@ -10,17 +10,16 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class BookManager {
-    public static ObservableList<Book> books;
-
-    // load all books in database :)
-    public void initialize() {
-        books = BookDataService.loadBooksData();
-    }
+    public static final ObservableList<Book> books = BookDataService.loadBooksData();
 
     // Thanh Duy :)
     /*public static Book findBookInDatabase(int bookID) {
         return books.get(bookID); // id is mark from 0 similar index ???
     }*/
+
+//    public static void initialize() {
+//        books = BookDataService.loadBooksData();
+//    }
 
     public static ObservableList<Book> getBooks() {
         return books;

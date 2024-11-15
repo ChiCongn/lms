@@ -42,7 +42,7 @@ public class Client extends User {
             }
         }*/
         LocalDate borrowDate = LocalDate.now();
-        BorrowedBook newBorrowedBook = new BorrowedBook(book, this, borrowDate, borrowDate.plusMonths(2), "borrowed");
+        BorrowedBook newBorrowedBook = new BorrowedBook(book, this.id, borrowDate, borrowDate.plusMonths(2), "borrowed");
         BorrowedBookDataService.addNewBorrowedBook(newBorrowedBook);
         BookDataService.updateAvailableCopiesOfThisBook(book.getBookId(), -1);
     }
