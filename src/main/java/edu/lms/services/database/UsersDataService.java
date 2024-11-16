@@ -13,6 +13,9 @@ public class UsersDataService {
     private static final String LOAD_USER_QUERY = "SELECT * FROM users WHERE user_id = ?";
     private static final String LOAD_FINES_OF_THIS_CLIENT = "SELECT SUM(fines.fine_amount) AS outstanding_fines FROM fines WHERE user_id = ? AND paid = false";
     private static final String ADD_NEW_CLIENT_QUERY = "INSERT INTO users (username, email, password, gender) VALUES (?, ?, ?, ?)";
+    private static final String DELETE_USER_QUERY = "DELETE FROM users WHERE user_id = ?";
+    private static final String SUSPEND_USER_QUERY = "UPDATE users SET status = 'suspended' WHERE user_id = ?";
+    private static final String REACTIVATE_USER_QUERY = "UPDATE users SET status = 'active' WHERE user_id = ?";
 
     /**
      * load all list of clients form database.
@@ -102,6 +105,66 @@ public class UsersDataService {
             }
         } catch (SQLException e) {
             System.err.println("Error adding new client: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public static boolean deleteUser(int userId) {
+        try (Connection connection = DatabaseService.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(DELETE_USER_QUERY)) {
+
+            statement.setInt(1, userId);
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Delete user successfully.");
+                return true;
+            } else {
+                System.out.println("User not found.");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error deleting user: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public static boolean suspendUser(int userId) {
+        try (Connection connection = DatabaseService.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(SUSPEND_USER_QUERY)) {
+
+            statement.setInt(1, userId);
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Suspend user successfully.");
+                return true;
+            } else {
+                System.out.println("User not found.");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error suspending user: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public static boolean reactivateUser(int userId) {
+        try (Connection connection = DatabaseService.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(REACTIVATE_USER_QUERY)) {
+
+            statement.setInt(1, userId);
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Reactivate user successfully.");
+                return true;
+            } else {
+                System.out.println("User not found.");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error reactivating user: " + e.getMessage());
         }
         return false;
     }
