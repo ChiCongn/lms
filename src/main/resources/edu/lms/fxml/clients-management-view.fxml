@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.ClientsManagementController">
+<AnchorPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.ClientsManagementController">
 
     <VBox layoutY="117.0" prefHeight="395.0" prefWidth="151.0" spacing="5.0">
         <children>
@@ -143,4 +144,16 @@
          <TableColumn fx:id="statusColumn" prefWidth="63.20001220703125" text="status" />
      </columns>
    </TableView>
+   <HBox layoutX="562.0" layoutY="117.0" prefHeight="32.0" prefWidth="258.0">
+      <children>
+         <Button fx:id="activateButton" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" text="Activate" />
+         <Button fx:id="suspendButton" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" text="Suspend" />
+         <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" text="Delete" />
+      </children>
+   </HBox>
+   <Label fx:id="selectionClientWarningLabel" layoutX="399.0" layoutY="78.0" prefHeight="38.0" prefWidth="151.0" text="No client is selected!" textFill="RED" visible="false">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
 </AnchorPane>
