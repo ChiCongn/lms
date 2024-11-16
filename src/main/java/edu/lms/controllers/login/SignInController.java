@@ -3,9 +3,11 @@ package edu.lms.controllers.login;
 import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.controllers.dashboard.AdminDashboardController;
-import edu.lms.controllers.dashboard.ClientDashboardController;
+//import edu.lms.controllers.dashboard.ClientDashboardController;
 import edu.lms.controllers.dashboard.LibrarianDashboardController;
+import edu.lms.models.user.Librarian;
 import edu.lms.services.database.DatabaseService;
+import edu.lms.services.database.UsersDataService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -36,6 +38,8 @@ public class SignInController {
     private boolean visibility;
     private String role;
     private final DatabaseService instance = DatabaseService.getInstance();
+    private int userId;
+
 
     @FXML
     public void initialize() {
@@ -55,7 +59,7 @@ public class SignInController {
         SignUpController signUpController = SceneManager.switchScene(Constants.SIGNUP_VIEW);
     }
 
-    public void checkCredentials() {
+    public void signIn() {
         System.out.println("check credential");
         try {
             if (checkCredentials(usernameField.getText().trim(), password.getText().trim())) {
@@ -73,7 +77,7 @@ public class SignInController {
 
 
     private boolean checkCredentials(String username, String password) throws SQLException {
-        String query = "SELECT COUNT(*) FROM users WHERE username = ? AND password = ?";
+        String query = "SELECT user_id, role FROM users WHERE username = ? AND password = ?";
 
         try (Connection connection = instance.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -84,6 +88,7 @@ public class SignInController {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 role = resultSet.getString("role");
+                userId = resultSet.getInt("user_id");
                 return resultSet.getInt(1) > 0;
             }
 
@@ -98,9 +103,13 @@ public class SignInController {
         if (role.equals("admin")) {
             AdminDashboardController adminDashboardController = SceneManager.switchScene(Constants.ADMIN_DASHBOARD_VIEW);
         } else if (role.equals("librarian")) {
+            System.out.println("sign in with librarian role");
+            Librarian librarian = (Librarian) UsersDataService.loadUserData(userId);
             LibrarianDashboardController librarianDashboardController = SceneManager.switchScene(Constants.LIBRARIAN_DASHBOARD_VIEW);
+            assert librarianDashboardController != null;
+            librarianDashboardController.setData(librarian);
         } else {
-            ClientDashboardController clientDashboardController = SceneManager.switchScene(Constants.CLIENT_DASHBOARD_VIEW);
+            //ClientDashboardController clientDashboardController = SceneManager.switchScene(Constants.CLIENT_DASHBOARD_VIEW);
         }
     }
 }
