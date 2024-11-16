@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.ClientManagementController">
+<AnchorPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.ClientsManagementController">
 
     <VBox layoutY="138.0" prefHeight="462.0" prefWidth="187.0">
         <children>
@@ -33,7 +33,7 @@
             </Button>
         </children>
     </VBox>
-   <TableView layoutX="199.0" layoutY="138.0" prefHeight="462.0" prefWidth="650.0">
+   <TableView fx:id="clientsTableView" layoutX="199.0" layoutY="138.0" prefHeight="462.0" prefWidth="650.0">
      <columns>
        <TableColumn fx:id="idColumn" prefWidth="60.79998779296875" text="Client Id" />
        <TableColumn fx:id="usernameColumn" prefWidth="200.79998779296875" text="username" />
