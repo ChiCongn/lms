@@ -4,12 +4,10 @@ import edu.lms.models.book.Book;
 import edu.lms.models.book.BorrowedBook;
 import edu.lms.services.database.BookDataService;
 import edu.lms.services.database.BorrowedBookDataService;
-import edu.lms.services.database.ClientDataService;
 import javafx.collections.ObservableList;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 public class Client extends User {
     ObservableList<BorrowedBook> borrowedBooks;
@@ -17,9 +15,9 @@ public class Client extends User {
     private int borrowedBooksCount;
     private static Client currentClient;
 
-    public Client(int id, String username, String password, String email, String avatarPath, Gender gender,
+    public Client(int id, String username, String password, String email, String avatarPath, String status, Gender gender,
                   ObservableList<BorrowedBook> borrowedBooks, BigDecimal outstandingFines) {
-        super(id, username, password, email, avatarPath, gender);
+        super(id, username, password, email, avatarPath, status, gender);
         this.borrowedBooks = borrowedBooks;
         this.outstandingFines = outstandingFines;
         borrowedBooksCount = borrowedBooks.size();
@@ -29,8 +27,8 @@ public class Client extends User {
         super(username, password, email, gender);
     }
 
-    public Client(int clientId, String email, String username, String password, String avatarPath, Gender gender) {
-        super(clientId, username, password, email, avatarPath, gender);
+    public Client(int clientId, String email, String username, String password, String avatarPath, String status, Gender gender) {
+        super(clientId, username, password, email, avatarPath, status, gender);
     }
 
     public void borrowBook(Book book) {
