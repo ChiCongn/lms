@@ -61,8 +61,7 @@ public class BooKDetailController {
                     setGraphic(null);
                 } else {
                     reviewText.setText(review.getReview());
-                    String ratingImagePath = getClass().getResource(getRatingImagePath(review.getRating())).toString();
-                    ratingImageView.setImage(new Image(ratingImagePath));
+                    ratingImageView.setImage(new Image(getRatingImagePath(review.getRating())));
                     //avatarImageView.setImage(new Image(review.getAvatarPath(), true));
                     setGraphic(cellContainer);
                 }
@@ -70,15 +69,14 @@ public class BooKDetailController {
         });
     }
 
-    //edu/lms/images/oneFillingStar.png
     private String getRatingImagePath(int rating) {
         return switch (rating) {
-            case 1 -> "edu/lms/images/oneFillingsStar.png";
-            case 2 -> "/edu/lms/images/twoFillingStars.png";
-            case 3 -> "edu/lms/images/threeFillingsStars.png";
-            case 4 -> "edu/lms/images/fourFillingsStars.png";
-            case 5 -> "edu/lms/images/fiveFillingsStars.png";
-            default -> "edu/lms/images/zero";
+            case 1 -> "file:/E:/AllSemesters/ThirdSemester/OOP/lms/target/classes/edu/lms/images/oneFillingsStar.png";
+            case 2 -> "file:/E:/AllSemesters/ThirdSemester/OOP/lms/target/classes/edu/lms/images/twoFillingStars.png";
+            case 3 -> "file:/E:/AllSemesters/ThirdSemester/OOP/lms/target/classes/edu/lms/images/threeFillingsStars.png";
+            case 4 -> "file:/E:/AllSemesters/ThirdSemester/OOP/lms/target/classes/edu/lms/images/fourFillingsStars.png";
+            case 5 -> "file:/E:/AllSemesters/ThirdSemester/OOP/lms/target/classes/edu/lms/images/fiveFillingsStars.png";
+            default -> "file:/E:/AllSemesters/ThirdSemester/OOP/lms/target/classes/edu/lms/images/zero";
         };
     }
 

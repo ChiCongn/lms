@@ -4,6 +4,7 @@ import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.models.book.BorrowedBook;
 import edu.lms.models.user.Client;
+import edu.lms.models.user.Gender;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,11 +21,19 @@ import java.util.ResourceBundle;
 
 public class ClientDetailsController implements Initializable {
     @FXML
-    private ImageView avatar;
+    private ImageView avatarView;
+
     @FXML
-    private Label email;
+    private Label emailLabel;
+
     @FXML
-    private Label name;
+    private Label genderLabel;
+
+    @FXML
+    private Label idLabel;
+
+    @FXML
+    private Label usernameLabel;
 
     @FXML
     private TableView<BorrowedBook> borrowView;
@@ -46,12 +55,6 @@ public class ClientDetailsController implements Initializable {
 
     private Client client;
 
-    public void setClientDetails(Client client) {
-        this.client = client;
-        name.setText(client.getUsername());
-        email.setText(client.getEmail());
-        borrowView.setItems(client.getBorrowedBooks());
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -60,16 +63,33 @@ public class ClientDetailsController implements Initializable {
         borrowDateColumn.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
-        String imagePath = getClass().getResource("/edu/lms/images/quynhchi_avatar_path.png").toString();
-        avatar.setImage(new Image(imagePath));
     }
 
-    public void backToDashboard() {
-        LibrarianDashboardController librarianDashboardController = SceneManager.switchScene(Constants.LIBRARIAN_DASHBOARD_VIEW);
+    // transfer data of specific client from another scene to this scene.
+    public void setClientData(Client client) {
+        this.client = client;
+        idLabel.setText(Integer.toString(client.getId()));
+        usernameLabel.setText(client.getUsername());
+        emailLabel.setText(client.getEmail());
+        genderLabel.setText(Gender.takeGender(client.getGender()));
+        avatarView.setImage(new Image(client.getAvatarPath()));
+        borrowView.setItems(client.getBorrowedBooks());
     }
 
-    public static void main(String[] args) {
-        String imagePath = ClientDetailsController.class.getResource("/edu/lms/images/quynhchi_avatar_path.png").toString();
+    public void backToClientManagement() {
+        ClientsManagementController clientsManagementController = SceneManager.switchScene(Constants.CLIENT_MANAGEMENT_VIEW);
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    /*public static void main(String[] args) {
+        String imagePath = ClientDetailsController.class.getResource("/edu/lms/images/default_avatar.png").toString();
         System.out.println(imagePath);
-    }
+    }*/
 }

@@ -1,9 +1,9 @@
 package edu.lms.controllers.dashboard;
 
+import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.models.user.Client;
 import edu.lms.models.user.UserManager;
-import edu.lms.services.database.BorrowedBookDataService;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +21,7 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ClientManagementController implements Initializable {
+public class ClientsManagementController implements Initializable {
     @FXML
     private TableView<Client> clientsTableView;
 
@@ -39,6 +39,9 @@ public class ClientManagementController implements Initializable {
 
     @FXML
     private TableColumn<Client, BigDecimal> outstandingFinesColumn;
+
+    @FXML
+    private TableColumn<Client, String> statusColumn;
 
 
     @Override
@@ -73,22 +76,23 @@ public class ClientManagementController implements Initializable {
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         borrowedBooksColumn.setCellValueFactory(new PropertyValueFactory<>("borrowedBooksCount"));
         outstandingFinesColumn.setCellValueFactory(new PropertyValueFactory<>("outstandingFines"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
         clientsTableView.setItems(clients);
 
         clientsTableView.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getClickCount() == 1) {
                 Client selectedUser = clientsTableView.getSelectionModel().getSelectedItem();
                 if (selectedUser != null) {
-                    switchToClientDetail(selectedUser);
+                    switchToClientDetails(selectedUser);
                 }
             }
         });
     }
 
-    private void switchToClientDetail(Client client) {
-        ClientDetailsController clientDetailsController = SceneManager.switchScene("/edu/lms/fxml/user-details.fxml");
+    private void switchToClientDetails(Client client) {
+        ClientDetailsController clientDetailsController = SceneManager.switchScene(Constants.CLIENTS_DETAILS_VIEW);
         assert clientDetailsController != null;
-        clientDetailsController.setClientDetails(client);
+        clientDetailsController.setClientData(client);
     }
 
 }
