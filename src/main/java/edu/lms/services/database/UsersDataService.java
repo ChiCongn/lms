@@ -1,17 +1,16 @@
 package edu.lms.services.database;
 
 import edu.lms.models.book.BorrowedBook;
-import edu.lms.models.user.Client;
-import edu.lms.models.user.Gender;
+import edu.lms.models.user.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.math.BigDecimal;
 import java.sql.*;
 
-public class ClientDataService {
+public class UsersDataService {
     private static final String LOAD_CLIENTS_QUERY = "SELECT * FROM users WHERE role = 'client'";
-    private static final String LOAD_SINGLE_CLIENT_QUERY = "SELECT * FROM users WHERE user_id = ?";
+    private static final String LOAD_USER_QUERY = "SELECT * FROM users WHERE user_id = ?";
     private static final String LOAD_FINES_OF_THIS_CLIENT = "SELECT SUM(fines.fine_amount) AS outstanding_fines FROM fines WHERE user_id = ? AND paid = false";
     private static final String ADD_NEW_CLIENT_QUERY = "INSERT INTO users (username, email, password, gender) VALUES (?, ?, ?, ?)";
 
@@ -31,13 +30,14 @@ public class ClientDataService {
                 String username = rs.getString("username");
                 String password = rs.getString("password");
                 String avatarPath = rs.getString("avatar_path");
+                String status = rs.getString("status");
                 String genderString = rs.getString("gender");
                 Gender gender = Gender.valueOf(genderString.toUpperCase());
                 ObservableList<BorrowedBook> borrowedBooks = BorrowedBookDataService.loadBorrowedBooks(clientId);
 
                 BigDecimal outstandingFines = loadOutstandingFinesOfThisClient(clientId);
                 //int id, String username, String password, String email, String avatarPath, Gender gender
-                Client client = new Client(clientId, username, password, email, avatarPath, gender, borrowedBooks, outstandingFines);
+                Client client = new Client(clientId, username, password, email, avatarPath, status, gender, borrowedBooks, outstandingFines);
                 clients.add(client);
             }
         } catch (SQLException e) {
@@ -47,28 +47,43 @@ public class ClientDataService {
         return clients;
     }
 
-    public static Client loadClientsData(int clientId) {
+    public static User loadUserData(int userId) {
+        System.out.println("load user data");
+        User user = null;
         try (Connection connection = DatabaseService.getInstance().getConnection();
-             PreparedStatement stmt = connection.prepareStatement(LOAD_SINGLE_CLIENT_QUERY);
-             ResultSet rs = stmt.executeQuery()) {
+             PreparedStatement statement = connection.prepareStatement(LOAD_USER_QUERY)) {
+
+            statement.setInt(1, userId);
+            ResultSet rs = statement.executeQuery();
 
             if (rs.next()) {
                 String email = rs.getString("email");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
                 String avatarPath = rs.getString("avatar_path");
+                String status = rs.getString("status");
+                String role = rs.getString("role");
                 String genderString = rs.getString("gender");
                 Gender gender = Gender.valueOf(genderString.toUpperCase());
 
                 //int id, String username, String password, String email, String avatarPath, Gender gender
-                Client client = new Client(clientId, email, username, password, avatarPath, gender);
-                System.out.println("load data of specific client");
-                return client;
+                if (role.equals("admin")) {
+                    System.out.println("you are admin");
+                    user = new Admin(userId, email, username, password, avatarPath, status, gender);
+                } else if (role.equals("librarian")) {
+                    System.out.println("you are librarian");
+                    user = new Librarian(userId, email, username, password, avatarPath, status, gender);
+                } else {
+                    System.out.println("you are client");
+                    user = new Client(userId, email, username, password, avatarPath, status, gender);
+                }
+
+                System.out.println("load data of specific user");
             }
         } catch (SQLException e) {
-            System.err.println("Error loading clients: " + e.getMessage());
+            System.err.println("Error loading user: " + e.getMessage());
         }
-        return null;
+        return user;
     }
 
     public static boolean addNewClient(Client client) {
@@ -86,8 +101,7 @@ public class ClientDataService {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Database error occurred.");
+            System.err.println("Error adding new client: " + e.getMessage());
         }
         return false;
     }

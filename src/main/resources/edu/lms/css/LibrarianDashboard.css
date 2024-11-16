@@ -90,9 +90,5 @@
 .button {
     -fx-font-size: 22px;
     -fx-text-fill: black;
-    -fx-background-color: 04bfc2;
 }
 
-.button:hover {
-    -fx-background-color: 04f7fb;
-}
