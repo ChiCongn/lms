@@ -27,4 +27,10 @@ module edu.lms {
     exports edu.lms.controllers.dashboard;
     opens edu.lms.controllers.dashboard to javafx.fxml;
 
+<<<<<<< HEAD
+=======
+    exports edu.lms.controllers.Client;
+    opens edu.lms.controllers.Client to javafx.fxml;
+
+>>>>>>> 03194271ecbb34639d470a97d6177812bca1cdff
 }

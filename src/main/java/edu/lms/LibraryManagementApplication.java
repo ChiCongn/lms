@@ -6,8 +6,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
 
 import java.io.IOException;
 
@@ -22,9 +23,16 @@ public class LibraryManagementApplication extends Application {
         try {
             SceneManager sceneManager = new SceneManager(primaryStage);
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(LibraryManagementApplication.class.getResource(Constants.SIGN_IN_VIEW));
-            AnchorPane root = loader.load();
+            loader.setLocation(LibraryManagementApplication.class.getResource("/edu/lms/fxml/client-dashboard-view.fxml"));
+            Parent root = loader.load();
             Scene scene = new Scene(root);
+
+            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            primaryStage.setX(screenBounds.getMinX());
+            primaryStage.setY(screenBounds.getMinY());
+            primaryStage.setWidth(screenBounds.getWidth());
+            primaryStage.setHeight(screenBounds.getHeight());
+
             primaryStage.setScene(scene);
             primaryStage.setTitle("LMS");
             //primaryStage.setResizable(false);

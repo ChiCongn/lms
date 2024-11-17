@@ -15,10 +15,14 @@ public class Book {
     private int totalCopies;
     private int availableCopies;
     private String coverImage;
+
     private String canonicalVolumeLink;
+
+    public Book() {};
 
     public Book(String title, String authors, String publishedYear, int pageCount, String language,
                 String description, BigDecimal rating, String coverImage, String canonicalVolumeLink) {
+
         this.title = title;
         this.authors = authors;
         this.publishedYear = publishedYear;
