@@ -4,8 +4,8 @@ import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
-import edu.lms.models.user.Client;
 import edu.lms.models.user.Librarian;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,12 +13,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class BooksManagementController implements Initializable {
+public class BooksManagementController extends DashboardController implements Initializable {
 
     @FXML
     private Label usernameLabel;
@@ -42,11 +41,11 @@ public class BooksManagementController implements Initializable {
     @FXML
     private TableColumn<Book, Integer> availableCopiesColumn;
 
-    private Librarian librarian;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        usernameLabel.setText(librarian.getUsername());
+        avatar.setImage(new Image(librarian.getAvatarPath()));
         System.out.println("load all books for books management view");
         ObservableList<Book> books = BookManager.getBooks();
         idColumn.setCellValueFactory(new PropertyValueFactory<>("bookId"));
@@ -87,21 +86,6 @@ public class BooksManagementController implements Initializable {
                 }
             }
         });
-    }
-
-    //transfer librarian data from another scene to this scene.
-    public void setData(Librarian librarian) {
-        this.librarian = librarian;
-        usernameLabel.setText(librarian.getUsername());
-        avatar.setImage(new Image(librarian.getAvatarPath()));
-    }
-
-    public Librarian getLibrarian() {
-        return librarian;
-    }
-
-    public void setLibrarian(Librarian librarian) {
-        this.librarian = librarian;
     }
 
     private void switchToBookDetails(Book book) {

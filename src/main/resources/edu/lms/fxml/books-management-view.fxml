@@ -24,7 +24,7 @@
                        <Insets left="10.0" />
                    </VBox.margin>
                </Label>
-               <HBox alignment="CENTER" prefHeight="56.0" prefWidth="151.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
+               <HBox alignment="CENTER" prefHeight="56.0" prefWidth="151.0" onMouseClicked="#backToHomeView" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
                    <children>
                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -38,7 +38,7 @@
                        </Label>
                    </children>
                </HBox>
-               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="15.0" stylesheets="@../css/Test.css">
+               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" onMouseClicked="#switchToClientManagementView" spacing="15.0" stylesheets="@../css/Test.css">
                    <children>
                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -80,7 +80,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" onMouseClicked="#logout" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
                <children>
                   <ImageView fitHeight="42.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
