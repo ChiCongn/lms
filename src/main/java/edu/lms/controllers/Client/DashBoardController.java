@@ -218,52 +218,41 @@ public class DashBoardController implements Initializable {
     }
 
 
-    private void switchScene(String fxmlPath, MouseEvent event) {
-        try {
-            root = FXMLLoader.load(getClass().getResource(fxmlPath));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    Constants constants = new Constants();
 
     @FXML
     public void switchToTopChart(MouseEvent event) throws IOException {
-        switchScene(Constants.TRENDING_DASHBOARD_VIEW, event);
+        constants.switchScene(Constants.TRENDING_DASHBOARD_VIEW, event, stage, scene, root);
     }
 
     @FXML
     public void switchToBrowse(MouseEvent event) throws IOException {
-        switchScene(Constants.DASHBOARD_VIEW, event);
+        constants.switchScene(Constants.DASHBOARD_VIEW, event, stage, scene, root);
     }
 
     @FXML
     public void switchToGenre(MouseEvent event) throws IOException {
-        switchScene(Constants.CATEGORY_DASHBOARD_VIEW, event);
+        constants.switchScene(Constants.CATEGORY_DASHBOARD_VIEW, event, stage, scene, root);
     }
 
     @FXML
     public void switchToReading(MouseEvent event) throws IOException {
-        switchScene(Constants.READING_DASHBOARD_VIEW, event);
+        constants.switchScene(Constants.READING_DASHBOARD_VIEW, event, stage, scene, root);
     }
 
     @FXML
     public void switchToFavourite(MouseEvent event) throws IOException {
-        switchScene(Constants.FAVOURITE_DASHBOARD_VIEW, event);
+        constants.switchScene(Constants.FAVOURITE_DASHBOARD_VIEW, event, stage, scene, root);
     }
 
     @FXML
     public void switchToHistory(MouseEvent event) throws IOException {
-        switchScene(Constants.HISTORY_DASHBOARD_VIEW, event);
+        constants.switchScene(Constants.HISTORY_DASHBOARD_VIEW, event, stage, scene, root);
     }
 
     @FXML
     public void switchToGame(MouseEvent event) throws IOException {
-        switchScene(Constants.GAME_DASHBOARD_VIEW, event);
+        constants.switchScene(Constants.GAME_DASHBOARD_VIEW, event, stage, scene, root);
     }
 
 

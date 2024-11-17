@@ -123,7 +123,7 @@
                </children>
             </VBox>
             <Separator prefWidth="200.0" />
-            <VBox layoutX="10.0" layoutY="10.0" prefHeight="217.0" prefWidth="250.0" spacing="5.0">
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="250.0" spacing="5.0">
                <children>
                   <Label text="Your Books">
                      <font>
@@ -133,20 +133,6 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox fx:id="Reading" alignment="CENTER" onMouseClicked="#switchToReading" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/chart.png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="22.0" prefWidth="117.0" text="Reading">
-                           <font>
-                              <Font name="Berlin Sans FB" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
                   <HBox fx:id="Favorite" alignment="CENTER" onMouseClicked="#switchToFavourite" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
                      <children>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">

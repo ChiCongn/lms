@@ -1,5 +1,16 @@
 package edu.lms;
 
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
 public class Constants {
     public static final String VIEW = "fxml/view.fxml";
     public static final String WELCOME_VIEW = "/edu/lms/fxml/welcome.fxml";
@@ -10,16 +21,42 @@ public class Constants {
     public static final String CLIENT_DASHBOARD_VIEW = "/edu/lms/fxml/client-dashboard-view.fxml";
     public static final String TRENDING_DASHBOARD_VIEW = "/edu/lms/fxml/trending-dashboard.fxml";
     public static final String DASHBOARD_VIEW = "/edu/lms/fxml/TestingDashBoard.fxml";
-    public static final String CATEGORY_DASHBOARD_VIEW = "/edu/lms/fxml/TestingDashBoard.fxml";
+    public static final String CATEGORY_DASHBOARD_VIEW = "/edu/lms/fxml/category-dashboard.fxml";
     public static final String READING_DASHBOARD_VIEW = "/edu/lms/fxml/TestingDashBoard.fxml";
     public static final String FAVOURITE_DASHBOARD_VIEW = "/edu/lms/fxml/TestingDashBoard.fxml";
-    public static final String HISTORY_DASHBOARD_VIEW = "/edu/lms/fxml/TestingDashBoard.fxml";
+    public static final String HISTORY_DASHBOARD_VIEW = "/edu/lms/fxml/history-dashboard.fxml";
     public static final String GAME_DASHBOARD_VIEW = "/edu/lms/fxml/TestingDashBoard.fxml";
 
 
     public static final String DB_URL = "jdbc:mysql://localhost:3306/library";
     public static final String DB_USERNAME = "root";
     public static final String DB_PASSWORD = "password";
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    public void switchScene(String fxmlPath, MouseEvent event, Stage stage, Scene scene, Parent root ) {
+        try {
+            root = FXMLLoader.load(getClass().getResource(fxmlPath));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+
+            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            stage.setX(screenBounds.getMinX());
+            stage.setY(screenBounds.getMinY());
+            stage.setWidth(screenBounds.getWidth());
+            stage.setHeight(screenBounds.getHeight());
+
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 
 
