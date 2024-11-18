@@ -23,15 +23,15 @@ public class LibraryManagementApplication extends Application {
         try {
             SceneManager sceneManager = new SceneManager(primaryStage);
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(LibraryManagementApplication.class.getResource("/edu/lms/fxml/client-dashboard-view.fxml"));
+            loader.setLocation(LibraryManagementApplication.class.getResource(Constants.SIGN_IN_VIEW));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
-            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            /*Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
             primaryStage.setX(screenBounds.getMinX());
             primaryStage.setY(screenBounds.getMinY());
             primaryStage.setWidth(screenBounds.getWidth());
-            primaryStage.setHeight(screenBounds.getHeight());
+            primaryStage.setHeight(screenBounds.getHeight());*/
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("LMS");
@@ -48,6 +48,11 @@ public class LibraryManagementApplication extends Application {
     }
 
     public static void main(String[] args) {
+        /*Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        double screenWidth = screenBounds.getWidth();
+        double screenHeight = screenBounds.getHeight();
+        System.out.println("width = " + screenWidth);
+        System.out.println("Height = " + screenHeight);*/
         launch(args);
     }
 }

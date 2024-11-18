@@ -26,15 +26,6 @@ public class Constants {
     public static final String HISTORY_DASHBOARD_VIEW = "/edu/lms/fxml/history-dashboard.fxml";
     public static final String GAME_DASHBOARD_VIEW = "/edu/lms/fxml/client-dashboard-view.fxml";
 
-
-    public static final String TRENDING_DASHBOARD_VIEW = "/edu/lms/fxml/trending-dashboard.fxml";
-    public static final String DASHBOARD_VIEW = "/edu/lms/fxml/client-dashboard-view.fxml";
-    public static final String CATEGORY_DASHBOARD_VIEW = "/edu/lms/fxml/client-dashboard-view.fxml";
-    public static final String READING_DASHBOARD_VIEW = "/edu/lms/fxml/client-dashboard-view.fxml";
-    public static final String FAVOURITE_DASHBOARD_VIEW = "/edu/lms/fxml/client-dashboard-view.fxml";
-    public static final String HISTORY_DASHBOARD_VIEW = "/edu/lms/fxml/client-dashboard-view.fxml";
-    public static final String GAME_DASHBOARD_VIEW = "/edu/lms/fxml/client-dashboard-view.fxml";
-
     public static final String CLIENT_MANAGEMENT_VIEW = "/edu/lms/fxml/clients-management-view.fxml";
     public static final String BOOKS_MANAGEMENT_VIEW = "/edu/lms/fxml/books-management-view.fxml";
     public static final String CLIENTS_DETAILS_VIEW = "/edu/lms/fxml/user-details-view.fxml";

@@ -157,7 +157,6 @@ public class HistoryDashBoardController implements Initializable {
         book.setCoverImage("/edu/lms/images/Books/rich_dad_poor_dad.jpg");
         book.setAuthors("Robert Kiyosaki");
         book.setDescription("abcs");
-        book.setCopiesAvailable(100);
         book.setPublishedYear("111");
         ls.add(book);
 

@@ -91,6 +91,6 @@ public class BooksManagementController extends DashboardController implements In
     private void switchToBookDetails(Book book) {
         BooKDetailController booKDetailController = SceneManager.switchScene(Constants.BOOK_DETAILS_VIEW);
         assert booKDetailController != null;
-        booKDetailController.initialize(book, librarian);
+        booKDetailController.initialize(book);
     }
 }
