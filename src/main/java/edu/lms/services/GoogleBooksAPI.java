@@ -83,14 +83,20 @@ public class GoogleBooksAPI {
 
         BigDecimal rating = volumeInfo.has("averageRating") ?
                 BigDecimal.valueOf(volumeInfo.get("averageRating").getAsDouble()) : BigDecimal.ZERO;
+        BigDecimal price = volumeInfo.has("price") ?
+                BigDecimal.valueOf(volumeInfo.get("price").getAsDouble()) : BigDecimal.ZERO;
         String canonicalVolumeLink = volumeInfo.has("canonicalVolumeLink") ? volumeInfo.get("canonicalVolumeLink").getAsString() : null;
 
         //String title, String authors, String publishedYear, int pageCount, String language,
         //      String description, BigDecimal rating, String coverImage, String canonicalVolumeLink
-        Book searchedBook = new Book(title, authors.toString(), publishedYear, pageCount, language, description, rating, coverImageUrl, canonicalVolumeLink);
+        Book searchedBook = new Book(title, authors.toString(), publishedYear, pageCount, language, description, rating, price, coverImageUrl, canonicalVolumeLink);
 
         BookDataService.addBook(searchedBook);
         return searchedBook;
+    }
+
+    public static void main(String[] args) {
+        GoogleBooksAPI.searchBooks("database");
     }
 
 }

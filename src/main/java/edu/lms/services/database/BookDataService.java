@@ -1,22 +1,24 @@
 package edu.lms.services.database;
 
 import edu.lms.models.book.Book;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.math.BigDecimal;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
 public class BookDataService {
     private static final String LOAD_BOOKS_QUERY = "SELECT * FROM books";
     private static final String SEARCH_BOOK_EXIST_IN_DATABASE_QUERY = "SELECT COUNT(*) FROM books WHERE title = ?";
     private static final String ADD_BOOK_QUERY = "INSERT INTO books (title, authors, published_year, page_count, " +
-            "language, description, rating, total_copies, available_copies, cover_image_path, canonical_volume_link) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "language, description, rating, total_copies, available_copies, cover_image_path, canonical_volume_link, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String DELETE_BOOK_QUERY = "DELETE FROM books WHERE book_id = ?";
-    private static final String UPDATE_AVAILABLE_COPIES_BOOK = "UPDATE booksSET available_copies = available_copies - ? WHERE book_id = ? AND available_copies >= ?;";
+    private static final String UPDATE_AVAILABLE_COPIES_BOOK_QUERY = "UPDATE books SET available_copies = available_copies - ? WHERE book_id = ? AND available_copies >= ?;";
+    private static final String SET_AVAILABLE_COPIES_QUERY = "UPDATE books SET available_copies = ? WHERE book_id = ?";
+    private static final String SET_TOTAL_COPIES_QUERY = "UPDATE books SET total_copies = ? WHERE book_id = ?";
+    private static final String SET_PRICE_QUERY = "UPDATE books SET price = ? WHERE book_id = ?";
+
+
     public static ObservableList<Book> loadBooksData() {
         ObservableList<Book> bookList = FXCollections.observableArrayList();
 
@@ -33,6 +35,7 @@ public class BookDataService {
                 String language = resultSet.getString("language");
                 String description = resultSet.getString("description");
                 BigDecimal rating = resultSet.getBigDecimal("rating");
+                BigDecimal price = resultSet.getBigDecimal("price");
                 int totalCopies = resultSet.getInt("total_copies");
                 int copiesAvailable = resultSet.getInt("available_copies");
                 String coverImageUrl = resultSet.getString("cover_image_path");
@@ -40,7 +43,7 @@ public class BookDataService {
 
                 //int bookId, String title, String authors, String publishedYear, int pageCount, String language,
                 //String description, BigDecimal rating, int totalCopies, int availableCopies, String coverImage, String canonicalVolumeLink
-                Book book = new Book(id, title, authors, publishedYear, pageCount, language, description, rating, totalCopies, copiesAvailable,
+                Book book = new Book(id, title, authors, publishedYear, pageCount, language, description, rating, price, totalCopies, copiesAvailable,
                         coverImageUrl, canonicalVolumeLink);
                 bookList.add(book);
             }
@@ -76,6 +79,7 @@ public class BookDataService {
             statement.setInt(9, 100);
             statement.setString(10, book.getCoverImage());
             statement.setString(11, book.getCanonicalVolumeLink());
+            statement.setBigDecimal(12, book.getPrice());
 
             // Execute update and get generated keys
             statement.executeUpdate();
@@ -95,21 +99,23 @@ public class BookDataService {
      * remove a book from database.
      * @param bookId book id
      */
-    public static void removeBook(int bookId) {
+    public static boolean removeBook(int bookId) {
         try (Connection connection = DatabaseService.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_BOOK_QUERY)) {
 
             statement.setInt(1, bookId);
             statement.executeUpdate();
-            System.out.println("remove a book from database");
+            System.out.println("remove book has id: " + bookId + "from database");
+            return true;
         } catch (SQLException e) {
             System.err.println("Error removing book from database: " + e.getMessage());
         }
+        return false;
     }
 
     public static void updateAvailableCopiesOfThisBook(int bookId, int adjustment) {
         try (Connection connection = DatabaseService.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(UPDATE_AVAILABLE_COPIES_BOOK)) {
+             PreparedStatement statement = connection.prepareStatement(UPDATE_AVAILABLE_COPIES_BOOK_QUERY)) {
 
             statement.setInt(1, adjustment);
             statement.setInt(2, bookId);
@@ -122,6 +128,53 @@ public class BookDataService {
         }
     }
 
+    public static boolean setAvailableCopiesOfSpecificBook(int bookId, int newAvailableCopies) {
+        try (Connection connection = DatabaseService.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(SET_AVAILABLE_COPIES_QUERY)) {
+
+            statement.setInt(1, newAvailableCopies);
+            statement.setInt(2, bookId);
+            int rowsUpdated = statement.executeUpdate();
+            System.out.println("set available copies of this book has id: " + bookId);
+            return rowsUpdated > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Error setting available copies of this book: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public static boolean setTotalCopiesOfSpecificBook(int bookId, int newTotalCopies) {
+        try (Connection connection = DatabaseService.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(SET_TOTAL_COPIES_QUERY)) {
+
+            statement.setInt(1, newTotalCopies);
+            statement.setInt(2, bookId);
+            int rowsUpdated = statement.executeUpdate();
+            System.out.println("set total copies of this book has id: " + bookId);
+            return rowsUpdated > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Error setting total copies of this book: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public static boolean setPriceOfSpecificBook(int bookId, BigDecimal newPrice) {
+        try (Connection connection = DatabaseService.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(SET_PRICE_QUERY)) {
+
+            statement.setBigDecimal(1, newPrice);
+            statement.setInt(2, bookId);
+            int rowsUpdated = statement.executeUpdate();
+            System.out.println("set total copies of this book has id: " + bookId);
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            System.err.println("Error setting price for this book: " + bookId);
+        }
+        return false;
+    }
+
     private static boolean isExistedInDatabase(String title) {
         try (Connection connection = DatabaseService.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SEARCH_BOOK_EXIST_IN_DATABASE_QUERY)) {
@@ -129,7 +182,7 @@ public class BookDataService {
             statement.setString(1, title);
 
             ResultSet resultSet = statement.executeQuery();
-            System.out.println("check this book is existed in database");
+            System.out.println("check book with title: " + title + "is existed in database");
             if (resultSet.next()) {
                 return resultSet.getInt(1) > 0;
             }
