@@ -16,7 +16,8 @@ module edu.lms {
     requires java.base;
 
     exports edu.lms;
-
+    exports edu.lms.models.book;
+    exports edu.lms.models.user;
     exports edu.lms.controllers;
     opens edu.lms.controllers to javafx.fxml;
 
@@ -25,4 +26,8 @@ module edu.lms {
 
     exports edu.lms.controllers.dashboard;
     opens edu.lms.controllers.dashboard to javafx.fxml;
+
+    exports edu.lms.controllers.Client;
+    opens edu.lms.controllers.Client to javafx.fxml;
+
 }

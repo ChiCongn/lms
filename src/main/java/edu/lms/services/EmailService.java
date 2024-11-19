@@ -5,8 +5,15 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EmailService {
+
+    static {
+        // Set JavaMail logging level to SEVERE to suppress warnings
+        Logger.getLogger("javax.mail").setLevel(Level.SEVERE);
+    }
 
     private static Session email;
 
@@ -98,7 +105,7 @@ public class EmailService {
         initialize();
 
         System.out.println("send verification code...");
-        sendVerificationCode("23021481@vnu.edu.vn", 123456);
+        sendVerificationCode("23021517@vnu.edu.vn", 123456);
     }
 
 }

@@ -4,6 +4,7 @@ import edu.lms.services.Config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DatabaseService {
@@ -41,13 +42,30 @@ public class DatabaseService {
         }
     }
 
-    public static void main(String[] args) {
-        DatabaseService dbService = DatabaseService.getInstance();
+    /*public static void main(String[] args) {
+        String[] msv = {"23021461", "23021465", "23021469", "23021473", "23021477"};
+        String[] name = {"chauanh", "nguyenanh", "maianh", "vietanh", "vanbien"};
+        String insertQuery = "INSERT INTO clients (username, email, password, avatar_path, gender) VALUES (?, ?, ?, ?, ?)";
+        for (int i = 0; i < 5; i++) {
+            try (Connection connection = DatabaseService.getInstance().getConnection()) {
+                try (PreparedStatement statement = connection.prepareStatement(insertQuery)) {
+                    statement.setString(1, name[i]);
+                    statement.setString(2, msv[i] + "@vnu.edu.vn");
+                    statement.setString(3, name[i] + "Ca@3");
+                    //edu/lms/images/chart.png
+                    statement.setString(4, "edu/lms/images/" + name + ".png");
+                    statement.setString(5, "other");
 
-        try (Connection conn = dbService.getConnection()) {
-            System.out.println("Connected to the database!");
-        } catch (SQLException e) {
-            System.err.println("Database connection error: " + e.getMessage());
+                    int rowsInserted = statement.executeUpdate();
+                    if (rowsInserted > 0) {
+                        System.out.println("success");
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("Database error occurred.");
+            }
         }
-    }
+
+    }*/
 }

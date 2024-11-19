@@ -2,58 +2,55 @@ package edu.lms.models.book;
 
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public class Book {
     private int bookId;
     private String title;
-    private List<String> authors;
+    private String authors;
     private String publishedYear;
     private int pageCount;
     private String language;
     private String description;
     private BigDecimal rating;
+    private BigDecimal price;
     private int totalCopies;
-    private int copiesAvailable;
+    private int availableCopies;
     private String coverImage;
 
-    public Book(String title, String publishedYear, int pageCount,
-                String language, String description, String coverImage) {
-        this.title = title;
-        this.publishedYear = publishedYear;
-        this.pageCount = pageCount;
-        this.language = language;
-        this.description = description;
-        this.coverImage = coverImage;
-    }
+    private String canonicalVolumeLink;
 
-    public Book(int bookId, String title, String publishedYear, int pageCount, String language,
-                String description, BigDecimal rating, int totalCopies, int copiesAvailable, String coverImage) {
-        this.bookId = bookId;
+    public Book() {};
+
+    public Book(String title, String authors, String publishedYear, int pageCount, String language,
+                String description, BigDecimal rating, BigDecimal price, String coverImage, String canonicalVolumeLink) {
+
         this.title = title;
+        this.authors = authors;
         this.publishedYear = publishedYear;
         this.pageCount = pageCount;
         this.language = language;
         this.description = description;
         this.rating = rating;
-        this.totalCopies = totalCopies;
-        this.copiesAvailable = copiesAvailable;
+        this.price = price;
         this.coverImage = coverImage;
+        this.canonicalVolumeLink = canonicalVolumeLink;
     }
 
-    public void displayInfo() {
-        System.out.println("Title: " + title);
-        if (authors != null && !authors.isEmpty()) {
-            System.out.print("Authors: ");
-            for (int i = 0; i < authors.size(); i++) {
-                System.out.print(authors.get(i));
-                if (i < authors.size() - 1) {
-                    System.out.print(", ");
-                }
-            }
-            System.out.println();
-        }
-        System.out.println("published year: " + publishedYear);
+    public Book(int bookId, String title, String authors, String publishedYear, int pageCount, String language,
+                String description, BigDecimal rating, BigDecimal price, int totalCopies, int availableCopies, String coverImage, String canonicalVolumeLink) {
+        this.bookId = bookId;
+        this.title = title;
+        this.authors = authors;
+        this.publishedYear = publishedYear;
+        this.pageCount = pageCount;
+        this.language = language;
+        this.description = description;
+        this.rating = rating;
+        this.price = price;
+        this.totalCopies = totalCopies;
+        this.availableCopies = availableCopies;
+        this.coverImage = coverImage;
+        this.canonicalVolumeLink = canonicalVolumeLink;
     }
 
     public String getTitle() {
@@ -64,11 +61,11 @@ public class Book {
         this.title = title;
     }
 
-    public List<String> getAuthors() {
+    public String getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<String> authors) {
+    public void setAuthors(String authors) {
         this.authors = authors;
     }
 
@@ -136,13 +133,28 @@ public class Book {
         this.totalCopies = totalCopies;
     }
 
-    public int getCopiesAvailable() {
-        return copiesAvailable;
+    public int getAvailableCopies() {
+        return availableCopies;
     }
 
-    public void setCopiesAvailable(int copiesAvailable) {
-        this.copiesAvailable = copiesAvailable;
+    public void setAvailableCopies(int availableCopies) {
+        this.availableCopies = availableCopies;
     }
 
+    public String getCanonicalVolumeLink() {
+        return canonicalVolumeLink;
+    }
+
+    public void setCanonicalVolumeLink(String canonicalVolumeLink) {
+        this.canonicalVolumeLink = canonicalVolumeLink;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 }
 
