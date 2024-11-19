@@ -4,6 +4,7 @@ import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.controllers.dashboard.AdminDashboardController;
 //import edu.lms.controllers.dashboard.ClientDashboardController;
+import edu.lms.controllers.dashboard.DashboardController;
 import edu.lms.controllers.dashboard.LibrarianDashboardController;
 import edu.lms.models.user.Librarian;
 import edu.lms.services.database.DatabaseService;
@@ -105,9 +106,8 @@ public class SignInController {
         } else if (role.equals("librarian")) {
             System.out.println("sign in with librarian role");
             Librarian librarian = (Librarian) UsersDataService.loadUserData(userId);
+            DashboardController.setLibrarian(librarian);
             LibrarianDashboardController librarianDashboardController = SceneManager.switchScene(Constants.LIBRARIAN_DASHBOARD_VIEW);
-            assert librarianDashboardController != null;
-            librarianDashboardController.setData(librarian);
         } else {
             //ClientDashboardController clientDashboardController = SceneManager.switchScene(Constants.CLIENT_DASHBOARD_VIEW);
         }

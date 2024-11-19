@@ -1,12 +1,10 @@
 package edu.lms.controllers.Client;
 
 import edu.lms.Constants;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -23,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class DashBoardController implements Initializable {
+public class ClientDashboardController implements Initializable {
     @FXML
     private HBox cardLayout;
     @FXML
@@ -132,7 +130,6 @@ public class DashBoardController implements Initializable {
         book.setCoverImage("/edu/lms/images/Books/rich_dad_poor_dad.jpg");
         book.setAuthors("Robert Kiyosaki");
         book.setDescription("abcs");
-
         book.setPublishedYear("111");
         ls.add(book);
 

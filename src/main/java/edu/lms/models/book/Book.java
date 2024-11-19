@@ -12,15 +12,17 @@ public class Book {
     private String language;
     private String description;
     private BigDecimal rating;
+    private BigDecimal price;
     private int totalCopies;
     private int availableCopies;
     private String coverImage;
+
     private String canonicalVolumeLink;
 
     public Book() {};
 
     public Book(String title, String authors, String publishedYear, int pageCount, String language,
-                String description, BigDecimal rating, String coverImage, String canonicalVolumeLink) {
+                String description, BigDecimal rating, BigDecimal price, String coverImage, String canonicalVolumeLink) {
         this.title = title;
         this.authors = authors;
         this.publishedYear = publishedYear;
@@ -28,12 +30,13 @@ public class Book {
         this.language = language;
         this.description = description;
         this.rating = rating;
+        this.price = price;
         this.coverImage = coverImage;
         this.canonicalVolumeLink = canonicalVolumeLink;
     }
 
     public Book(int bookId, String title, String authors, String publishedYear, int pageCount, String language,
-                String description, BigDecimal rating, int totalCopies, int availableCopies, String coverImage, String canonicalVolumeLink) {
+                String description, BigDecimal rating, BigDecimal price, int totalCopies, int availableCopies, String coverImage, String canonicalVolumeLink) {
         this.bookId = bookId;
         this.title = title;
         this.authors = authors;
@@ -42,6 +45,7 @@ public class Book {
         this.language = language;
         this.description = description;
         this.rating = rating;
+        this.price = price;
         this.totalCopies = totalCopies;
         this.availableCopies = availableCopies;
         this.coverImage = coverImage;
@@ -142,6 +146,14 @@ public class Book {
 
     public void setCanonicalVolumeLink(String canonicalVolumeLink) {
         this.canonicalVolumeLink = canonicalVolumeLink;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }
 

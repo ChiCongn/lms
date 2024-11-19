@@ -88,13 +88,14 @@ public class Test {
         String language = resultSet.getString("language");
         String description = resultSet.getString("description");
         BigDecimal rating = resultSet.getBigDecimal("rating");
+        BigDecimal price = resultSet.getBigDecimal("price");
         int totalCopies = resultSet.getInt("total_copies");
         int copiesAvailable = resultSet.getInt("available_copies");
-        String coverImageUrl = resultSet.getString("cover_image_path");
+        String coverImage = resultSet.getString("cover_image_path");
         String canonicalVolumeLink = resultSet.getString("canonical_volume_link");
 
-        return new Book(id, title, authors, publishedYear, pageCount, language, description, rating,
-                totalCopies, copiesAvailable, coverImageUrl, canonicalVolumeLink);
+        return new Book(id, title, authors, publishedYear, pageCount, language, description, rating, price,
+                totalCopies, copiesAvailable, coverImage, canonicalVolumeLink);
     }
 
 

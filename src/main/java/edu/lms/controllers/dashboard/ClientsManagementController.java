@@ -22,7 +22,7 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ClientsManagementController implements Initializable {
+public class ClientsManagementController extends DashboardController implements Initializable {
     @FXML
     private TableView<Client> clientsTableView;
 

@@ -3,51 +3,143 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.BooKDetailController">
 
-    <ImageView fitHeight="187.0" fitWidth="137.0" layoutX="96.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/Books/how%20to%20think.jpg" />
-      </image>
-    </ImageView>
-    <HBox layoutX="306.0" layoutY="74.0" prefHeight="187.0" prefWidth="418.0">
-        <VBox prefHeight="187.0" prefWidth="99.0">
-            <Label prefHeight="47.0" prefWidth="154.0" text="Published:" />
-            <Label prefHeight="48.0" prefWidth="154.0" text="Authors:" />
-            <Label prefHeight="48.0" prefWidth="154.0" text="Published:" />
-        </VBox>
-        <VBox prefHeight="187.0" prefWidth="361.0">
-         <children>
-            <Label prefHeight="47.0" prefWidth="342.0" />
-            <Label prefHeight="47.0" prefWidth="342.0" />
-            <Label prefHeight="47.0" prefWidth="342.0" />
-         </children></VBox>
-    </HBox>
-    <VBox layoutX="96.0" layoutY="280.0" prefHeight="303.0" prefWidth="633.0">
-        <ListView fx:id="reviews" prefHeight="239.0" prefWidth="653.0" />
-        <HBox prefHeight="55.0" prefWidth="499.0">
-            <VBox prefHeight="64.0" prefWidth="522.0">
-                <HBox prefHeight="56.0" prefWidth="377.0">
-                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" />
-                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" />
-                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" />
-                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" />
-                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" />
-                </HBox>
-                <TextArea prefHeight="55.0" prefWidth="408.0" />
-            </VBox>
-            <Button mnemonicParsing="false" prefHeight="72.0" prefWidth="66.0" text="Send" />
-            <ImageView fitHeight="56.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../images/default_avatar.png" />
-            </ImageView>
-        </HBox>
-    </VBox>
-   <Button layoutX="30.0" layoutY="24.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Back" />
-</AnchorPane>
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.BooKDetailController">
+   <center>
+      <AnchorPane prefHeight="500.0" prefWidth="850.0">
+      
+          <ImageView fx:id="thumbnail" fitHeight="222.0" fitWidth="158.0" layoutX="42.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" />
+         <Button layoutX="23.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#backToBooksManagementView" prefHeight="26.0" prefWidth="50.0" text="Back" />
+         <TabPane layoutX="247.0" layoutY="92.0" prefHeight="374.0" prefWidth="554.0" tabClosingPolicy="UNAVAILABLE">
+           <tabs>
+             <Tab text="      About      ">
+                  <content>
+                     <HBox prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <VBox prefHeight="200.0" prefWidth="100.0">
+                              <children>
+                                 <Label prefHeight="34.0" prefWidth="100.0" text="Authors:">
+                                    <font>
+                                       <Font name="Berlin Sans FB" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <Label prefHeight="34.0" prefWidth="100.0" text="Page count:">
+                                    <font>
+                                       <Font name="Berlin Sans FB" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <Label prefHeight="34.0" prefWidth="100.0" text="Price:">
+                                    <font>
+                                       <Font name="Berlin Sans FB" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <Label prefHeight="34.0" prefWidth="100.0" text="Total copies:">
+                                    <font>
+                                       <Font name="Berlin Sans FB" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <Label prefHeight="34.0" prefWidth="100.0" text="Available copies:">
+                                    <font>
+                                       <Font name="Berlin Sans FB" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <Label prefHeight="34.0" prefWidth="100.0" text="Description:">
+                                    <font>
+                                       <Font name="Berlin Sans FB" size="12.0" />
+                                    </font>
+                                 </Label>
+                              </children>
+                           </VBox>
+                           <VBox prefHeight="345.0" prefWidth="417.0">
+                              <children>
+                                 <Label fx:id="authorsLabel" prefHeight="34.0" prefWidth="414.0" />
+                                 <Label fx:id="pageCountLabel" prefHeight="34.0" prefWidth="384.0" />
+                                 <Label fx:id="priceLabel" prefHeight="34.0" prefWidth="414.0" />
+                                 <Label fx:id="totalCopiesLabel" prefHeight="34.0" prefWidth="414.0" />
+                                 <Label fx:id="availableCopiesLabel" prefHeight="34.0" prefWidth="414.0" />
+                                 <TextArea fx:id="descriptionTextArea" prefHeight="112.0" prefWidth="444.0" />
+                              </children>
+                           </VBox>
+                        </children>
+                     </HBox>
+                  </content>
+             </Tab>
+             <Tab text="      Reviews      ">
+                  <content>
+                     <VBox prefHeight="200.0" prefWidth="100.0">
+                        <children>
+                           <ListView fx:id="reviewsList" prefHeight="328.0" prefWidth="554.0" />
+                           <HBox prefHeight="50.0" prefWidth="511.0">
+                              <children>
+                                 <TextArea fx:id="commentArea" minHeight="0.0" prefHeight="23.0" prefWidth="514.0" />
+                                 <ImageView fitHeight="46.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../images/send.png" />
+                                    </image>
+                                 </ImageView>
+                              </children>
+                           </HBox>
+                        </children>
+                     </VBox>
+                  </content>
+             </Tab>
+               <Tab text="      Modify      ">
+                  <content>
+                     <HBox prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <VBox prefHeight="346.0" prefWidth="419.0">
+                              <children>
+                                 <Label fx:id="invalidTotalCopiesLabel" prefHeight="18.0" prefWidth="230.0" text="is a number and greater than zero." textFill="RED" visible="false" />
+                                 <Label fx:id="invalidAvailableCopiesLabel" prefHeight="18.0" prefWidth="202.0" text="is a number and greater than before." textFill="RED" visible="false" />
+                                 <Label fx:id="invalidPriceLabel" prefHeight="18.0" prefWidth="201.0" text="is a decimal and greate than zero." textFill="RED" visible="false" />
+                                 <HBox alignment="CENTER" prefHeight="56.0" prefWidth="292.0" spacing="10.0">
+                                    <children>
+                                       <Label prefHeight="45.0" prefWidth="106.0" text="Total copies:" />
+                                       <TextField fx:id="totalCopiesField" prefHeight="34.0" prefWidth="204.0" />
+                                       <Button mnemonicParsing="false" onMouseClicked="#setTotalCopies" prefHeight="34.0" prefWidth="110.0" text="Update" />
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER" layoutX="10.0" layoutY="126.0" prefHeight="56.0" prefWidth="292.0" spacing="10.0">
+                                    <children>
+                                       <Label prefHeight="48.0" prefWidth="106.0" text="Available copies:" />
+                                       <TextField fx:id="availableCopiesField" prefHeight="34.0" prefWidth="204.0" />
+                                       <Button mnemonicParsing="false" onMouseClicked="#setTotalCopies" prefHeight="34.0" prefWidth="110.0" text="Update" />
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER" layoutX="10.0" layoutY="182.0" prefHeight="56.0" prefWidth="292.0" spacing="10.0">
+                                    <children>
+                                       <Label prefHeight="34.0" prefWidth="110.0" text="Prices:" />
+                                       <TextField fx:id="priceField" prefHeight="34.0" prefWidth="204.0" />
+                                       <Button mnemonicParsing="false" onMouseClicked="#setTotalCopies" prefHeight="34.0" prefWidth="110.0" text="Update" />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                        </children>
+                     </HBox>
+                  </content>
+               </Tab>
+           </tabs>
+         </TabPane>
+         <ImageView fx:id="ratingImage" fitHeight="40.0" fitWidth="148.0" layoutX="42.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../images/fiveStar.png" />
+            </image>
+         </ImageView>
+         <Button layoutX="709.0" layoutY="57.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" text="Update all" />
+         <Button layoutX="598.0" layoutY="57.0" mnemonicParsing="false" onMouseClicked="#deleteBook" prefHeight="26.0" prefWidth="91.0" text="Delete" />
+      </AnchorPane>
+   </center>
+</BorderPane>
