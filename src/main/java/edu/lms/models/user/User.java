@@ -5,6 +5,7 @@ public abstract class User {
     protected String username;
     protected String password;
     protected String email;
+    protected String status;
     protected String avatarPath;
     protected Gender gender = Gender.OTHER;
 
@@ -15,12 +16,13 @@ public abstract class User {
     }
 
     public User(int id, String username, String password, String email,
-                String avatarPath, Gender gender) {
+                String avatarPath, String status, Gender gender) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.avatarPath = avatarPath;
+        this.status = status;
         this.gender = gender;
     }
 
@@ -81,5 +83,13 @@ public abstract class User {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

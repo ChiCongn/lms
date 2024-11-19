@@ -4,7 +4,7 @@ import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.models.user.Client;
 import edu.lms.models.user.Gender;
-import edu.lms.services.database.ClientDataService;
+import edu.lms.services.database.UsersDataService;
 import edu.lms.services.database.DatabaseService;
 import edu.lms.services.EmailService;
 import edu.lms.services.Validator;
@@ -187,7 +187,7 @@ public class SignUpController implements Initializable {
 
         System.out.println("register");
         Client client = new Client(username.getText(), password.getText(), email.getText(), genderChoiceBox.getValue());
-        if (ClientDataService.addNewClient(client)) {
+        if (UsersDataService.addNewClient(client)) {
             successfulRegistration.setVisible(true);
             continuee.setVisible(true);
         }
@@ -221,7 +221,7 @@ public class SignUpController implements Initializable {
     }
 
     private boolean checkUsernameTaken(String username) {
-        String query = "SELECT COUNT(*) FROM clients WHERE username = ?";
+        String query = "SELECT COUNT(*) FROM users WHERE username = ?";
         try (Connection connection = instance.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
@@ -238,7 +238,7 @@ public class SignUpController implements Initializable {
     }
 
     private boolean checkUniqueEmail(String email) {
-        String query = "SELECT COUNT(*) FROM clients WHERE email = ?";
+        String query = "SELECT COUNT(*) FROM users WHERE email = ?";
         try (Connection connection = instance.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 

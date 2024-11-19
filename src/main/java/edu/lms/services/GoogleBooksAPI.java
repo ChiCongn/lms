@@ -2,6 +2,8 @@ package edu.lms.services;
 
 import edu.lms.models.book.Book;
 import edu.lms.services.database.BookDataService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -11,6 +13,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,27 +22,28 @@ import java.util.ResourceBundle;
 public class GoogleBooksAPI {
     private static final String API_KEY = Config.GG_BOOKS_API_KEY;
     private static final String BASE_URL = "https://www.googleapis.com/books/v1/volumes";
-    private OkHttpClient client;
-    public GoogleBooksAPI() {
-        client = new OkHttpClient();
-    }
+    private static final OkHttpClient client = new OkHttpClient();;
 
-    public void searchBooks(String query) {
+    public static ObservableList<Book> searchBooks(String query) {
+        System.out.println("search book by gg book");
+        ObservableList<Book> searchResult = FXCollections.observableArrayList();
         String url = BASE_URL + "?q=" + query + "&key=" + API_KEY;
         Request request = new Request.Builder().url(url).build();
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
+                assert response.body() != null;
                 String jsonResponse = response.body().string();
-                parseAndDisplayResults(jsonResponse);
+                parseAndDisplayResults(jsonResponse, searchResult);
             } else {
                 System.out.println("Error: " + response.code() + " " + response.message());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return searchResult;
     }
 
-    private void parseAndDisplayResults(String jsonResponse) {
+    private static void parseAndDisplayResults(String jsonResponse, ObservableList<Book> searchResult) {
         Gson gson = new Gson();
         JsonObject jsonObject = gson.fromJson(jsonResponse, JsonObject.class);
         JsonArray books = jsonObject.getAsJsonArray("items");
@@ -48,6 +52,7 @@ public class GoogleBooksAPI {
             for (int i = 0; i < books.size(); i++) {
                 JsonObject bookJson = books.get(i).getAsJsonObject();
                 Book book = parseBook(bookJson);
+                searchResult.add(book);
                 System.out.println("----------");
             }
         } else {
@@ -55,7 +60,7 @@ public class GoogleBooksAPI {
         }
     }
 
-    private Book parseBook(JsonObject bookJson) {
+    private static Book parseBook(JsonObject bookJson) {
         JsonObject volumeInfo = bookJson.getAsJsonObject("volumeInfo");
 
         String title = volumeInfo.get("title").getAsString();
@@ -76,16 +81,16 @@ public class GoogleBooksAPI {
             coverImageUrl = imageLinks.has("thumbnail") ? imageLinks.get("thumbnail").getAsString() : null;
         }
 
-        //int bookId, String title, String publishedYear, int pageCount, String language, String description, String coverImage
-        Book searchedBook = new Book(title, authors.toString(), publishedYear, pageCount, language, description, coverImageUrl);
+        BigDecimal rating = volumeInfo.has("averageRating") ?
+                BigDecimal.valueOf(volumeInfo.get("averageRating").getAsDouble()) : BigDecimal.ZERO;
+        String canonicalVolumeLink = volumeInfo.has("canonicalVolumeLink") ? volumeInfo.get("canonicalVolumeLink").getAsString() : null;
+
+        //String title, String authors, String publishedYear, int pageCount, String language,
+        //      String description, BigDecimal rating, String coverImage, String canonicalVolumeLink
+        Book searchedBook = new Book(title, authors.toString(), publishedYear, pageCount, language, description, rating, coverImageUrl, canonicalVolumeLink);
+
         BookDataService.addBook(searchedBook);
         return searchedBook;
     }
 
-
-    public static void main(String[] args) {
-        GoogleBooksAPI googleBooksAPI = new GoogleBooksAPI();
-        String searchQuery = "data structure and algorithm";
-        googleBooksAPI.searchBooks(searchQuery);
-    }
 }

@@ -25,11 +25,11 @@ public class LibraryManagementApplication extends Application {
             System.out.println('1');
             FXMLLoader loader = new FXMLLoader();
             System.out.println(2);
-            loader.setLocation(LibraryManagementApplication.class.getResource("/edu/lms/fxml/TestingDashBoard.fxml"));
+            loader.setLocation(LibraryManagementApplication.class.getResource(Constants.DASHBOARD_VIEW));
             System.out.println(3);
             Parent root = loader.load();
             System.out.println("4");
-            Scene scene = new Scene(root, 600, 400);
+            Scene scene = new Scene(root);
 
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
             primaryStage.setX(screenBounds.getMinX());

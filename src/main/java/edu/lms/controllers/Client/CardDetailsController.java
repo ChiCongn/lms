@@ -38,8 +38,8 @@ public class CardDetailsController {
 
         bookName.setText(book.getTitle());
         authorName.setText(book.getAuthors());
-        box.setStyle("-fx-background-color: #" + colors[(int)(Math.random()*colors.length)] + ";"
-                + "-fx-background-radius: 15;"
+        box.setStyle(
+                "-fx-background-radius: 15;"
                 + "-fx-effect: dropShadown(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 10);");
     }
 

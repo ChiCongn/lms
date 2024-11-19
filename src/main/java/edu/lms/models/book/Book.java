@@ -2,7 +2,6 @@ package edu.lms.models.book;
 
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public class Book {
     private int bookId;
@@ -14,24 +13,27 @@ public class Book {
     private String description;
     private BigDecimal rating;
     private int totalCopies;
-    private int copiesAvailable;
+    private int availableCopies;
     private String coverImage;
+    private String canonicalVolumeLink;
 
     public Book() {};
 
-    public Book(String title, String authors, String publishedYear, int pageCount,
-                String language, String description, String coverImage) {
+    public Book(String title, String authors, String publishedYear, int pageCount, String language,
+                String description, BigDecimal rating, String coverImage, String canonicalVolumeLink) {
         this.title = title;
         this.authors = authors;
         this.publishedYear = publishedYear;
         this.pageCount = pageCount;
         this.language = language;
         this.description = description;
+        this.rating = rating;
         this.coverImage = coverImage;
+        this.canonicalVolumeLink = canonicalVolumeLink;
     }
 
     public Book(int bookId, String title, String authors, String publishedYear, int pageCount, String language,
-                String description, BigDecimal rating, int totalCopies, int copiesAvailable, String coverImage) {
+                String description, BigDecimal rating, int totalCopies, int availableCopies, String coverImage, String canonicalVolumeLink) {
         this.bookId = bookId;
         this.title = title;
         this.authors = authors;
@@ -41,8 +43,9 @@ public class Book {
         this.description = description;
         this.rating = rating;
         this.totalCopies = totalCopies;
-        this.copiesAvailable = copiesAvailable;
+        this.availableCopies = availableCopies;
         this.coverImage = coverImage;
+        this.canonicalVolumeLink = canonicalVolumeLink;
     }
 
     public String getTitle() {
@@ -125,13 +128,20 @@ public class Book {
         this.totalCopies = totalCopies;
     }
 
-    public int getCopiesAvailable() {
-        return copiesAvailable;
+    public int getAvailableCopies() {
+        return availableCopies;
     }
 
-    public void setCopiesAvailable(int copiesAvailable) {
-        this.copiesAvailable = copiesAvailable;
+    public void setAvailableCopies(int availableCopies) {
+        this.availableCopies = availableCopies;
     }
 
+    public String getCanonicalVolumeLink() {
+        return canonicalVolumeLink;
+    }
+
+    public void setCanonicalVolumeLink(String canonicalVolumeLink) {
+        this.canonicalVolumeLink = canonicalVolumeLink;
+    }
 }
 
