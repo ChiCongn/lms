@@ -58,9 +58,9 @@ public class BookDataService {
      * when successful searching book, add it into database.
      * @param book book
      */
-    public static void addBook(Book book) {
+    public static boolean addBook(Book book) {
         if (isExistedInDatabase(book.getTitle())) {
-            return;
+            return false;
         }
 
         try (Connection connection = DatabaseService.getInstance().getConnection();
@@ -90,9 +90,11 @@ public class BookDataService {
                 int generatedId = generatedKeys.getInt(1);
                 book.setBookId(generatedId);
             }
+            return true;
         } catch (SQLException e) {
             System.err.println("Error adding book to database: " + e.getMessage());
         }
+        return false;
     }
 
     /**
@@ -113,7 +115,7 @@ public class BookDataService {
         return false;
     }
 
-    public static void updateAvailableCopiesOfThisBook(int bookId, int adjustment) {
+    public static boolean updateAvailableCopiesOfThisBook(int bookId, int adjustment) {
         try (Connection connection = DatabaseService.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_AVAILABLE_COPIES_BOOK_QUERY)) {
 
@@ -123,9 +125,11 @@ public class BookDataService {
 
             statement.execute();
             System.out.println("update available copies of book");
+            return true;
         } catch (SQLException e) {
             System.err.println("Error updating available copies of this book: " + e.getMessage());
         }
+        return false;
     }
 
     public static boolean setAvailableCopiesOfSpecificBook(int bookId, int newAvailableCopies) {

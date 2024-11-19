@@ -30,6 +30,7 @@ public class Constants {
     public static final String BOOKS_MANAGEMENT_VIEW = "/edu/lms/fxml/books-management-view.fxml";
     public static final String CLIENTS_DETAILS_VIEW = "/edu/lms/fxml/user-details-view.fxml";
     public static final String BOOK_DETAILS_VIEW = "/edu/lms/fxml/book-details-view.fxml";
+    public static final String ADD_BOOK_VIEW = "/edu/lms/fxml/add-book-view.fxml";
 
 
 
