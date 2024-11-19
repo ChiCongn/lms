@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.BooKDetailController">
+<AnchorPane prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.BooKDetailController">
 
     <ImageView fx:id="thumbnail" fitHeight="222.0" fitWidth="158.0" layoutX="42.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" />
    <Button layoutX="23.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#backToBooksManagementView" prefHeight="26.0" prefWidth="50.0" text="Back" />
@@ -70,23 +70,26 @@
                   <children>
                      <VBox prefHeight="286.0" prefWidth="105.0">
                         <children>
-                           <Label prefHeight="34.0" prefWidth="110.0" text="Total copies:" />
-                           <Label prefHeight="34.0" prefWidth="110.0" text="Available copies:" />
+                           <Label prefHeight="45.0" prefWidth="106.0" text="Total copies:" />
+                           <Label prefHeight="48.0" prefWidth="106.0" text="Available copies:" />
                            <Label prefHeight="34.0" prefWidth="110.0" text="Prices:" />
                         </children>
                      </VBox>
-                     <VBox prefHeight="286.0" prefWidth="166.0">
+                     <VBox prefHeight="346.0" prefWidth="201.0">
                         <children>
-                           <TextField fx:id="totalCopiesField" prefHeight="34.0" prefWidth="166.0" />
-                           <TextField fx:id="availableCopiesField" prefHeight="34.0" prefWidth="166.0" />
-                           <TextField fx:id="priceField" prefHeight="34.0" prefWidth="166.0" />
+                           <TextField fx:id="totalCopiesField" prefHeight="33.0" prefWidth="166.0" />
+                           <Label fx:id="invalidTotalCopiesLabel" prefHeight="18.0" prefWidth="230.0" text="is a number and greater than zero." textFill="RED" visible="false" />
+                           <TextField fx:id="availableCopiesField" prefHeight="30.0" prefWidth="166.0" />
+                           <Label fx:id="invalidAvailableCopiesLabel" prefHeight="18.0" prefWidth="202.0" text="is a number and greater than before." textFill="RED" visible="false" />
+                           <TextField fx:id="priceField" prefHeight="30.0" prefWidth="166.0" />
+                           <Label fx:id="invalidPriceLabel" prefHeight="18.0" prefWidth="201.0" text="is a decimal and greate than zero." textFill="RED" visible="false" />
                         </children>
                      </VBox>
                      <VBox prefHeight="286.0" prefWidth="105.0">
                         <children>
-                           <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0" text="Update" />
-                           <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0" text="Update" />
-                           <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0" text="Update" />
+                           <Button mnemonicParsing="false" onMouseClicked="#setTotalCopies" prefHeight="34.0" prefWidth="110.0" text="Update" />
+                           <Button mnemonicParsing="false" onMouseClicked="#setAvailableCopies" prefHeight="34.0" prefWidth="110.0" text="Update" />
+                           <Button mnemonicParsing="false" onMouseClicked="#setPriceBook" prefHeight="34.0" prefWidth="110.0" text="Update" />
                         </children>
                      </VBox>
                   </children>
@@ -101,5 +104,5 @@
       </image>
    </ImageView>
    <Button layoutX="709.0" layoutY="57.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" text="Update all" />
-   <Button layoutX="598.0" layoutY="57.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" text="Delete" />
+   <Button layoutX="598.0" layoutY="57.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" text="Delete" onMouseClicked="#deleteBook"/>
 </AnchorPane>

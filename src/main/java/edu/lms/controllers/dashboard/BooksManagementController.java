@@ -4,7 +4,6 @@ import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
-import edu.lms.models.user.Librarian;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -88,9 +87,15 @@ public class BooksManagementController extends DashboardController implements In
         });
     }
 
+    public void deleteBook(Book book) {
+        bookTableView.getItems().remove(book);
+        System.out.println("successfully delete book from table view");
+    }
+
     private void switchToBookDetails(Book book) {
         BooKDetailController booKDetailController = SceneManager.switchScene(Constants.BOOK_DETAILS_VIEW);
         assert booKDetailController != null;
         booKDetailController.initialize(book);
     }
+
 }
