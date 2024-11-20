@@ -91,12 +91,12 @@ public class GoogleBooksAPI {
         //      String description, BigDecimal rating, String coverImage, String canonicalVolumeLink
         Book searchedBook = new Book(title, authors.toString(), publishedYear, pageCount, language, description, rating, price, coverImageUrl, canonicalVolumeLink);
 
-        BookDataService.addBook(searchedBook);
+        //BookDataService.addBook(searchedBook);
         return searchedBook;
     }
 
     public static void main(String[] args) {
-        GoogleBooksAPI.searchBooks("database");
+        GoogleBooksAPI.searchBooks("angel");
     }
 
 }

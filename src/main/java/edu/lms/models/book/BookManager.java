@@ -29,6 +29,10 @@ public class BookManager {
         return books.get(bookId - 1); // convert the index from a 1-based to a 0-based.
     }
 
+    public static void insertBook(Book book) {
+        books.add(book);
+    }
+
     public static void deleteBook(Book book) {
         books.remove(book);
     }

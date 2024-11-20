@@ -43,52 +43,6 @@ public class LibrarianDashboardController extends DashboardController implements
         numberOfClientsLabel.setText(Integer.toString(UserManager.getNumberOfClients()));
     }
 
-    /*@FXML
-        public void searchBook(KeyEvent keyEvent) {
-            if (keyEvent.getCode() == KeyCode.ENTER) {
-                System.out.println("search :(");
-
-                String query = searchText.getText();
-                if (!query.isEmpty()) {
-                    ObservableList<Book> filteredBooks = GoogleBooksAPI.searchBooks(query);
-                    searchResult.setItems(filteredBooks);
-                    searchResult.setVisible(!filteredBooks.isEmpty());
-                }
-            }
-        }
-
-        private void configureListView() {
-            System.out.println("set config list view");
-            searchResult.setCellFactory(param -> new ListCell<>() {
-                private final ImageView imageView = new ImageView();
-                private final Text titleText = new Text();
-                private final HBox content = new HBox(imageView, titleText);
-
-                {
-                    imageView.setFitHeight(60);
-                    imageView.setFitWidth(40);
-                    content.setSpacing(5);
-                }
-
-                @Override
-                protected void updateItem(Book book, boolean empty) {
-                    super.updateItem(book, empty);
-                    if (empty || book == null) {
-                        setGraphic(null);
-                    } else {
-                        titleText.setText(book.getTitle());
-                        imageView.setImage(new Image(book.getCoverImage(), true));
-                        setGraphic(content);
-                    }
-                }
-            });
-        }
-
-        @FXML
-        private void setInvisibleSearchResult() {
-            searchResult.setVisible(false);
-        }
-    */
     @FXML
     private void showConfirmationAlert() {
         Alert confirmation = AlertDialog.makeConfirmationAlert("test", "click ok :)");
