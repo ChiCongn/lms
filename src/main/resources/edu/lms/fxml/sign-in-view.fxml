@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -41,4 +42,5 @@
          <Font size="11.0" />
       </font>
    </Label>
+   <ProgressBar fx:id="loadingBar" layoutX="56.0" layoutY="182.0" prefWidth="200.0" progress="0.0" />
 </AnchorPane>

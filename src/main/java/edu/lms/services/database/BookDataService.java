@@ -1,11 +1,14 @@
 package edu.lms.services.database;
 
 import edu.lms.models.book.Book;
+import edu.lms.models.book.BookManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.math.BigDecimal;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookDataService {
     private static final String LOAD_BOOKS_QUERY = "SELECT * FROM books";
@@ -18,11 +21,15 @@ public class BookDataService {
     private static final String SET_TOTAL_COPIES_QUERY = "UPDATE books SET total_copies = ? WHERE book_id = ?";
     private static final String SET_PRICE_QUERY = "UPDATE books SET price = ? WHERE book_id = ?";
 
+    private static final String LOAD_TOP_CHOICES_QUERY = "SELECT book_id, (total_copies - available_copies) AS times FROM books ORDER BY times DESC\n LIMIT 20";
+
 
     public static ObservableList<Book> loadBooksData() {
+        // liên kết api ?
         ObservableList<Book> bookList = FXCollections.observableArrayList();
 
         try (Connection connection = DatabaseService.getInstance().getConnection();
+             // hàm bắt buộc
              PreparedStatement statement = connection.prepareStatement(LOAD_BOOKS_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
 
@@ -75,8 +82,8 @@ public class BookDataService {
             statement.setString(5, book.getLanguage());
             statement.setString(6, book.getDescription());
             statement.setBigDecimal(7, book.getRating());
-            statement.setInt(8, 100);
-            statement.setInt(9, 100);
+            statement.setInt(8, book.getTotalCopies());
+            statement.setInt(9, book.getAvailableCopies());
             statement.setString(10, book.getCoverImage());
             statement.setString(11, book.getCanonicalVolumeLink());
             statement.setBigDecimal(12, book.getPrice());
@@ -177,6 +184,23 @@ public class BookDataService {
             System.err.println("Error setting price for this book: " + bookId);
         }
         return false;
+    }
+
+    public static List<Book> loadTopChoicesBook() {
+        List<Book> topChoiceBooks = new ArrayList<>();
+        try (Connection connection = DatabaseService.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(LOAD_TOP_CHOICES_QUERY);
+                ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int bookId = resultSet.getInt("book_id");
+                Book book = BookManager.getBook(bookId);
+                topChoiceBooks.add(book);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error loading top choices book: " + e.getMessage());
+        }
+        return topChoiceBooks;
     }
 
     private static boolean isExistedInDatabase(String title) {

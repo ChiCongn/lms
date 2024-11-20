@@ -40,7 +40,9 @@ create table books (
     cover_image_path varchar(255),
     canonical_volume_link varchar(255),
     created_at timestamp default CURRENT_TIMESTAMP,
-    updated_at timestamp default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP
+    updated_at timestamp default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+    recommended bit,
+    favorite bit,
 );
 
 create table bookcategories (
@@ -85,4 +87,14 @@ create table reviews (
     constraint fk_reviews_book foreign key (book_id) references books(book_id) on delete cascade
 );
 
+insert into users (email, username, password, role, date_of_birth, gender)
+    VALUE ('qunhchi@gmail.com', 'quynhchi', 'QuynhChi@12', 'librarian', '2007-08-08', 'female');
+ insert into reviews (user_id, book_id, review_text, rating) value (1, 2, 'test du me', 2.0);
+insert into users (email, username, password, role, date_of_birth, gender) value ('23021461@vnu.edu.vn', 'chauanh', 'ChauAnh@08', 'client', '2005-02-21', 'female');
+insert into users (email, username, password, role, date_of_birth, gender) value ('23021465@vnu.edu.vn', 'nguyenanh', 'NguyenAnh@06', 'client', '2005-08-15', 'male');
+insert into users (email, username, password, role, date_of_birth, gender) value ('23021469@vnu.edu.vn', 'maianh', 'MaiAnh@08', 'client', '2005-10-11', 'female');
+insert into users (email, username, password, role, date_of_birth, gender) value ('23021473@vnu.edu.vn', 'vietanh', 'VietAnh@06', 'client', '2005-02-01', 'male');
+insert into users (email, username, password, role, date_of_birth, gender) value ('23021477@vnu.edu.vn', 'vanbien', 'VanBien@06', 'client', '2005-10-05', 'male');
+
+insert into books (title, authors, language, description) value ('')
 

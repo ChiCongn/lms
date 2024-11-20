@@ -8,10 +8,7 @@ import javafx.animation.PauseTransition;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -24,11 +21,12 @@ import java.util.ResourceBundle;
 
 
 public class AddBookController implements Initializable {
+    private static final int DEFAULT_TOTAL_COPIES = 100;
     @FXML
     private Label authorsLabel;
 
     @FXML
-    private Label descriptionText;
+    private TextArea descriptionText;
 
     @FXML
     private Label languageLabel;
@@ -131,6 +129,9 @@ public class AddBookController implements Initializable {
             return;
         }
         noBookSelectedWarning.setVisible(false);
+        int totalCopies = getTotalCopiesOrDefault();
+        selectedBook.setTotalCopies(totalCopies);
+        selectedBook.setAvailableCopies(totalCopies);
         if (BookDataService.addBook(selectedBook)) {
             successfullyAddBook.setVisible(true);
             BookManager.insertBook(selectedBook);
@@ -142,6 +143,14 @@ public class AddBookController implements Initializable {
             PauseTransition hideLabel = new PauseTransition(Duration.seconds(2));
             hideLabel.setOnFinished(e -> addedBook.setVisible(false));
             hideLabel.play();
+        }
+    }
+
+    private int getTotalCopiesOrDefault() {
+        try {
+            return Integer.parseInt(totalCopiesField.getText());
+        } catch (NumberFormatException e) {
+            return DEFAULT_TOTAL_COPIES;
         }
     }
 

@@ -17,7 +17,6 @@ module edu.lms {
 
     exports edu.lms;
     exports edu.lms.models.book;
-    exports edu.lms.models.user;
     exports edu.lms.controllers;
     opens edu.lms.controllers to javafx.fxml;
 

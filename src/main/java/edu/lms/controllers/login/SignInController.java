@@ -3,15 +3,16 @@ package edu.lms.controllers.login;
 import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.controllers.dashboard.AdminDashboardController;
-//import edu.lms.controllers.dashboard.ClientDashboardController;
 import edu.lms.controllers.dashboard.DashboardController;
 import edu.lms.controllers.dashboard.LibrarianDashboardController;
 import edu.lms.models.user.Librarian;
 import edu.lms.services.database.DatabaseService;
 import edu.lms.services.database.UsersDataService;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
@@ -36,6 +37,8 @@ public class SignInController {
     private Label incorrectUsername;
     @FXML
     private Label incorrectPassword;
+    @FXML
+    private ProgressBar loadingBar;
     private boolean visibility;
     private String role;
     private final DatabaseService instance = DatabaseService.getInstance();
@@ -111,5 +114,38 @@ public class SignInController {
         } else {
             //ClientDashboardController clientDashboardController = SceneManager.switchScene(Constants.CLIENT_DASHBOARD_VIEW);
         }
+    }
+
+    private void loadDataAndSwitchScene() {
+        loadingBar.setVisible(true);
+        Task<Void> loadDataTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                for (int i = 0; i <= 100; i++) {
+                    Thread.sleep(50);  // Simulate a delay
+                    updateProgress(i, 100);  // Update progress bar
+                }
+                return null;
+            }
+        };
+
+        // Bind ProgressBar's progress to Task's progress
+        loadingBar.progressProperty().bind(loadDataTask.progressProperty());
+
+        // Switch to the next scene after loading
+        loadDataTask.setOnSucceeded(event -> {
+            loadingBar.setVisible(false);  // Hide progress bar
+            // Switch to the next scene (e.g., a new scene with books)
+            SceneManager.switchScene(Constants.BOOK_DETAILS_VIEW);
+        });
+
+        // Handle task failure (optional)
+        loadDataTask.setOnFailed(event -> {
+            loadingBar.setVisible(false);
+            System.err.println("Data loading failed: " + loadDataTask.getException());
+        });
+
+        // Start the background task
+        new Thread(loadDataTask).start();
     }
 }

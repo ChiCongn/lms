@@ -23,7 +23,6 @@ public class Book {
 
     public Book(String title, String authors, String publishedYear, int pageCount, String language,
                 String description, BigDecimal rating, BigDecimal price, String coverImage, String canonicalVolumeLink) {
-
         this.title = title;
         this.authors = authors;
         this.publishedYear = publishedYear;
