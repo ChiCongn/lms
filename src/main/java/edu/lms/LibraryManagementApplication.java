@@ -23,7 +23,7 @@ public class LibraryManagementApplication extends Application {
         try {
             SceneManager sceneManager = new SceneManager(primaryStage);
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(LibraryManagementApplication.class.getResource(Constants.SIGN_IN_VIEW));
+            loader.setLocation(LibraryManagementApplication.class.getResource(Constants.ADD_BOOK_VIEW));
             AnchorPane root = loader.load();
             Scene scene = new Scene(root);
 

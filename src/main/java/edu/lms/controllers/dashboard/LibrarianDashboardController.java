@@ -11,6 +11,8 @@ import edu.lms.services.database.BookDataService;
 import edu.lms.services.database.BorrowedBookDataService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,6 +22,7 @@ import javafx.scene.text.TextAlignment;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class LibrarianDashboardController extends DashboardController implements Initializable {
@@ -43,6 +46,9 @@ public class LibrarianDashboardController extends DashboardController implements
 
     @FXML
     private HBox booksContainer;
+
+    @FXML
+    private BarChart<String, Number> borrowedBooksBarChart;
 
 
     @Override
@@ -81,6 +87,17 @@ public class LibrarianDashboardController extends DashboardController implements
         bookCard.setStyle("-fx-alignment: center; -fx-border-color: lightgray; -fx-padding: 10;");
 
         return bookCard;
+    }
+
+    private void populateBarChart(Map<String, Integer> borrowedBooksByMonth) {
+        XYChart.Series<String, Number> monthlyBorrowedBooksSeries = new XYChart.Series<>();
+        monthlyBorrowedBooksSeries.setName("Borrowed Books");
+
+        borrowedBooksByMonth.forEach((month, count) ->
+                monthlyBorrowedBooksSeries.getData().add(new XYChart.Data<>(month, count))
+        );
+
+        borrowedBooksBarChart.getData().add(monthlyBorrowedBooksSeries);
     }
 
 }

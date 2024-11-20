@@ -227,20 +227,28 @@
             </HBox>
             <HBox prefHeight="290.0" prefWidth="1115.0">
                <children>
-                  <BarChart prefHeight="286.0" prefWidth="560.0">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
+                  <BarChart fx:id="borrowedBooksBarChart" prefHeight="400" prefWidth="600">
+                     <xAxis>
+                        <CategoryAxis label="Months" />
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis label="Number of Borrowed Books" />
+                     </yAxis>
+                  </BarChart>
+                  <BarChart prefHeight="290.0" prefWidth="554.0">
+                     <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis side="LEFT" />
+                     </yAxis>
                   </BarChart>
                </children>
             </HBox>
             <Label prefHeight="34.0" prefWidth="190.0" text="Top choice:" />
             <ScrollPane prefHeight="230.0" prefWidth="1115.0">
                <content>
-                  <HBox fx:id="booksContainer" prefHeight="210.0" prefWidth="1116.0" alignment="CENTER"/>
+                  <HBox fx:id="booksContainer" alignment="CENTER" prefHeight="210.0" prefWidth="1116.0" />
                </content>
             </ScrollPane>
          </children>

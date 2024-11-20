@@ -9,6 +9,7 @@ public class Book {
     private String authors;
     private String publishedYear;
     private int pageCount;
+    private String categories;
     private String language;
     private String description;
     private BigDecimal rating;
@@ -21,12 +22,13 @@ public class Book {
 
     public Book() {};
 
-    public Book(String title, String authors, String publishedYear, int pageCount, String language,
+    public Book(String title, String authors, String publishedYear, int pageCount, String categories, String language,
                 String description, BigDecimal rating, BigDecimal price, String coverImage, String canonicalVolumeLink) {
         this.title = title;
         this.authors = authors;
         this.publishedYear = publishedYear;
         this.pageCount = pageCount;
+        this.categories = categories;
         this.language = language;
         this.description = description;
         this.rating = rating;
@@ -154,6 +156,14 @@ public class Book {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getCategories() {
+        return categories;
+    }
+
+    public void setCategories(String categories) {
+        this.categories = categories;
     }
 }
 

@@ -8,7 +8,6 @@ import edu.lms.models.book.Review;
 import edu.lms.services.AlertDialog;
 import edu.lms.services.database.BookDataService;
 import edu.lms.services.database.ReviewDataService;
-import edu.lms.services.database.UsersDataService;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 
@@ -99,22 +98,8 @@ public class BooKDetailController {
         System.out.println("initialize book detail.");
         configureListReviews();
         this.book = book;
-        // set up book data for presentation.
-        authorsLabel.setText(book.getAuthors());
-        pageCountLabel.setText(Integer.toString(book.getPageCount()));
-        totalCopiesLabel.setText(Integer.toString(book.getTotalCopies()));
-        availableCopiesLabel.setText(Integer.toString(book.getAvailableCopies()));
-        priceLabel.setText(book.getPrice().toString());
-        descriptionTextArea.setWrapText(true);
-        descriptionTextArea.setText(book.getDescription());
-        descriptionTextArea.setEditable(false);
-        reviewsList.setItems(ReviewDataService.loadReviewsOfSpecificBook(book.getBookId()));
-        thumbnail.setImage(new Image(book.getCoverImage()));
-        ratingLabel.setText(loadRating());
-        ratingTooltip.setText(book.getRating().toString());
-        ratingTooltip.setStyle("-fx-font-size: 14;");
-        ratingTooltip.setShowDelay(Duration.millis(500));
-        Tooltip.install(ratingLabel, ratingTooltip);
+
+        initializeBookData(book);
 
         // set up voting area for voting and review.
         stars = new Label[5];
@@ -135,6 +120,24 @@ public class BooKDetailController {
             isValidTotalCopies();
         });
 
+    }
+
+    private void initializeBookData(Book book) {
+        authorsLabel.setText(book.getAuthors());
+        pageCountLabel.setText(Integer.toString(book.getPageCount()));
+        totalCopiesLabel.setText(Integer.toString(book.getTotalCopies()));
+        availableCopiesLabel.setText(Integer.toString(book.getAvailableCopies()));
+        priceLabel.setText(book.getPrice().toString());
+        descriptionTextArea.setWrapText(true);
+        descriptionTextArea.setText(book.getDescription());
+        descriptionTextArea.setEditable(false);
+        reviewsList.setItems(ReviewDataService.loadReviewsOfSpecificBook(book.getBookId()));
+        thumbnail.setImage(new Image(book.getCoverImage()));
+        ratingLabel.setText(loadRating());
+        ratingTooltip.setText(book.getRating().toString());
+        ratingTooltip.setStyle("-fx-font-size: 14;");
+        ratingTooltip.setShowDelay(Duration.millis(500));
+        Tooltip.install(ratingLabel, ratingTooltip);
     }
 
     @FXML
