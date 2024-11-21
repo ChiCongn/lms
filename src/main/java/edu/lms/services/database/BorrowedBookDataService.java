@@ -8,13 +8,19 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class BorrowedBookDataService {
-    private static final String LOAD_BORROWED_BOOKS_OF_A_CLIENT_QUERY = "SELECT * FROM borrowedbooks WHERE user_id = ?";
+    private static final String LOAD_BORROWED_BOOKS_OF_A_CLIENT_QUERY = "SELECT * FROM borrowed_books WHERE user_id = ?";
     private static final String ADD_BORROWED_BOOK_QUERY = "INSERT INTO books (user_id, book_id, borrow_date, due_date, return_date, status) VALUES (?, ?, ?, ?, ?, ?)";
-    private static final String CHECK_IS_BORROWED_BY_THIS_CLIENT = "SELECT COUNT(*) FROM borrowedbooks WHERE book_id = ? AND user_id = ?";
-    private static final String COUNT_BORROWED_BOOKS_QUERY = "SELECT COUNT(*) FROM borrowedbooks";
+    private static final String CHECK_IS_BORROWED_BY_THIS_CLIENT = "SELECT COUNT(*) FROM borrowed_books WHERE book_id = ? AND user_id = ?";
+    private static final String COUNT_BORROWED_BOOKS_QUERY = "SELECT COUNT(*) FROM borrowed_books";
+    private static final String LOAD_MONTHLY_BORROWED_BOOKS_QUERY = "SELECT MONTHNAME(borrow_date) AS month, COUNT(*) AS borrow_count " +
+            "FROM borrowed_books GROUP BY MONTH(borrow_date), MONTHNAME(borrow_date) ORDER BY MONTH(borrow_date)";
 
     public static int getNumberOfBorrowedBook() {
         int count = 0;
@@ -86,7 +92,7 @@ public class BorrowedBookDataService {
             statement.executeUpdate();
             ResultSet generatedKeys = statement.getGeneratedKeys();
 
-            System.out.println("add a borrowed book in borrowedbooks table");
+            System.out.println("add a borrowed book in borrowed_books table");
             if (generatedKeys.next()) {
                 int generatedId = generatedKeys.getInt(1);
                 borrowedBook.setBorrowId(generatedId);
@@ -94,6 +100,31 @@ public class BorrowedBookDataService {
         } catch (SQLException e) {
             System.err.println("Error adding borrowed book: " + e.getMessage());
         }
+    }
+
+    public static Map<String, Integer> loadBorrowedBooksByMonth() {
+        Map<String, Integer> borrowedBooksByMonth = new LinkedHashMap<>();
+
+        List<String> months = Arrays.asList("January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December");
+        for (String month : months) {
+            borrowedBooksByMonth.put(month, 0);
+        }
+
+        System.out.println("load borrowed book by month");
+        try (Connection conn = DatabaseService.getInstance().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(LOAD_MONTHLY_BORROWED_BOOKS_QUERY);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                borrowedBooksByMonth.put(rs.getString("month"), rs.getInt("borrow_count"));
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error loading borrowed books by month: " + e.getMessage());
+        }
+
+        return borrowedBooksByMonth;
     }
 
     private static boolean isBorrowedByThisClient(int bookId, int clientId) {

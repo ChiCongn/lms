@@ -132,7 +132,7 @@ public class BooKDetailController {
         descriptionTextArea.setText(book.getDescription());
         descriptionTextArea.setEditable(false);
         reviewsList.setItems(ReviewDataService.loadReviewsOfSpecificBook(book.getBookId()));
-        thumbnail.setImage(new Image(book.getCoverImage()));
+        thumbnail.setImage(book.getThumbnail());
         ratingLabel.setText(loadRating());
         ratingTooltip.setText(book.getRating().toString());
         ratingTooltip.setStyle("-fx-font-size: 14;");

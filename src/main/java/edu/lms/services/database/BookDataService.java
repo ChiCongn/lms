@@ -7,10 +7,7 @@ import javafx.collections.ObservableList;
 
 import java.math.BigDecimal;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BookDataService {
     private static final String LOAD_BOOKS_QUERY = "SELECT * FROM books";
@@ -22,14 +19,14 @@ public class BookDataService {
     private static final String SET_AVAILABLE_COPIES_QUERY = "UPDATE books SET available_copies = ? WHERE book_id = ?";
     private static final String SET_TOTAL_COPIES_QUERY = "UPDATE books SET total_copies = ? WHERE book_id = ?";
     private static final String SET_PRICE_QUERY = "UPDATE books SET price = ? WHERE book_id = ?";
-    private static final String LOAD_TOP_CHOICES_QUERY = "SELECT book_id, (total_copies - available_copies) AS times FROM books ORDER BY times DESC\n LIMIT 20";
-    private static final String LOAD_MONTHLY_BORROWED_BOOKS_QUERY = "SELECT MONTHNAME(borrow_date) AS month, COUNT(*) AS borrow_count " +
-            "FROM borrowed_books GROUP BY MONTH(borrow_date), MONTHNAME(borrow_date) ORDER BY MONTH(borrow_date)";
+    private static final String LOAD_TOP_CHOICES_QUERY = "SELECT book_id, (total_copies - available_copies) AS times FROM books ORDER BY times DESC LIMIT 10";
     private static final String INSERT_CATEGORY_QUERY = "INSERT INTO categories (name) VALUES (?)";
     private static final String INSERT_BOOK_CATEGORIES_QUERY = "INSERT INTO book_categories (book_id, category_id) VALUES (?, ?)";
     private static final String GET_CATEGORIES_FOR_BOOK_QUERY = "SELECT c.name FROM categories c "
             + "JOIN book_categories bc ON c.category_id = bc.category_id WHERE bc.book_id = ?";
     private static final String GET_CATEGORY_ID_QUERY = "SELECT category_id FROM categories WHERE name = ?";
+    private static final String LOAD_CATEGORY_DISTRIBUTION_QUERY = "SELECT bc.category_id, c.name, COUNT(bc.book_id) AS count FROM book_categories bc " +
+            "JOIN categories c on c.category_id = bc.category_id group by bc.category_id, c.name";
 
     public static ObservableList<Book> loadBooksData() {
         // liên kết api ?
@@ -131,22 +128,23 @@ public class BookDataService {
         return false;
     }
 
-    public static Map<String, Integer> loadBorrowedBooksByMonth() {
-        Map<String, Integer> borrowedBooksByMonth = new LinkedHashMap<>();
+    public static Map<String, Integer> loadCategoryDistributionData() {
+        Map<String, Integer> categoryData = new LinkedHashMap<>();
 
         try (Connection conn = DatabaseService.getInstance().getConnection();
-             PreparedStatement stmt = conn.prepareStatement(LOAD_MONTHLY_BORROWED_BOOKS_QUERY);
+             PreparedStatement stmt = conn.prepareStatement(LOAD_CATEGORY_DISTRIBUTION_QUERY);
              ResultSet rs = stmt.executeQuery()) {
 
+            System.out.println("load category distribution");
             while (rs.next()) {
-                borrowedBooksByMonth.put(rs.getString("month"), rs.getInt("borrow_count"));
+                categoryData.put(rs.getString("name"), rs.getInt("count"));
             }
 
         } catch (SQLException e) {
-            System.err.println("Error loading borrowed books by month: " + e.getMessage());
+            System.err.println("Error loading category distribution data: " + e.getMessage());
         }
 
-        return borrowedBooksByMonth;
+        return categoryData;
     }
 
     public static boolean updateAvailableCopiesOfThisBook(int bookId, int adjustment) {
@@ -222,6 +220,7 @@ public class BookDataService {
             while (resultSet.next()) {
                 int bookId = resultSet.getInt("book_id");
                 Book book = BookManager.getBook(bookId);
+                book.initializeThumbnail();
                 topChoiceBooks.add(book);
             }
         } catch (SQLException e) {
@@ -313,7 +312,7 @@ public class BookDataService {
             statement.setInt(1, bookId);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                categories.append(rs.getString("category_name"));
+                categories.append(rs.getString("name"));
             }
         } catch (SQLException e) {
             System.err.println("Error getting categories for book: " + e.getMessage());

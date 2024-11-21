@@ -113,6 +113,7 @@ public class SignInController {
             LibrarianDashboardController librarianDashboardController = SceneManager.switchScene(Constants.LIBRARIAN_DASHBOARD_VIEW);
         } else {
             //ClientDashboardController clientDashboardController = SceneManager.switchScene(Constants.CLIENT_DASHBOARD_VIEW);
+            System.out.println("nothing");
         }
     }
 

@@ -1,6 +1,8 @@
 package edu.lms.models.book;
 
 
+import javafx.scene.image.Image;
+
 import java.math.BigDecimal;
 
 public class Book {
@@ -17,8 +19,8 @@ public class Book {
     private int totalCopies;
     private int availableCopies;
     private String coverImage;
-
     private String canonicalVolumeLink;
+    private Image thumbnail;
 
     public Book() {};
 
@@ -164,6 +166,19 @@ public class Book {
 
     public void setCategories(String categories) {
         this.categories = categories;
+    }
+
+    // load several thumbnail because loading all is very slow but several is efficient for top choice books.
+    public void initializeThumbnail() {
+        this.thumbnail = new Image(coverImage);
+    }
+
+    public Image getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(Image thumbnail) {
+        this.thumbnail = thumbnail;
     }
 }
 

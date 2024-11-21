@@ -6,12 +6,14 @@ import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
 import edu.lms.models.user.UserManager;
 
-import edu.lms.services.AlertDialog;
 import edu.lms.services.database.BookDataService;
 import edu.lms.services.database.BorrowedBookDataService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -50,6 +52,9 @@ public class LibrarianDashboardController extends DashboardController implements
     @FXML
     private BarChart<String, Number> borrowedBooksBarChart;
 
+    @FXML
+    private PieChart categoriesPieChart;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,9 +63,13 @@ public class LibrarianDashboardController extends DashboardController implements
         numberOfBooksLabel.setText(Integer.toString(BookManager.getNumberOfBooks()));
         numberOfBorrowedBooksLabel.setText(Integer.toString(BorrowedBookDataService.getNumberOfBorrowedBook()));
         numberOfClientsLabel.setText(Integer.toString(UserManager.getNumberOfClients()));
-        List<Book> topChoiceBooks = BookDataService.loadTopChoicesBook();
+        List<Book> topChoiceBooks = BookManager.getTopChoiceBooks();
 
-        for (int i = 0; i < 20; i++) {
+        initializeMonthlyBorrowedChart();
+        initializeCategoriesDistributionPieChart();
+
+        System.out.println("set up top choice books");
+        for (int i = 0; i < 10; i++) {
             final int currentIndex = i;
             VBox bookCard = createBookCard(topChoiceBooks.get(currentIndex));
             bookCard.setOnMouseClicked(mouseEvent -> {
@@ -70,34 +79,53 @@ public class LibrarianDashboardController extends DashboardController implements
             });
             booksContainer.getChildren().add(bookCard);
         }
+    }
 
+    private void initializeMonthlyBorrowedChart() {
+        System.out.println("set up monthly borrowed chart");
+        Map<String, Integer> borrowedBooksData = BookManager.getBorrowedBooksDataByMonth();
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Monthly Borrowed Books");
+
+        borrowedBooksData.forEach((month, count) -> {
+            series.getData().add(new XYChart.Data<>(month, count));
+        });
+
+        borrowedBooksBarChart.getData().clear();
+        borrowedBooksBarChart.getData().add(series);
+    }
+
+    private void initializeCategoriesDistributionPieChart() {
+        System.out.println("set up category distribution chart");
+        ObservableList<PieChart.Data> categoriesDistributionData = BookManager.getCategoriesDistributionData();
+
+        categoriesPieChart.setData(categoriesDistributionData);
+
+        categoriesPieChart.setTitle("Category Distribution");
+
+        System.out.println("set up tooltip for better UX");
+        categoriesDistributionData.forEach(data -> {
+            Tooltip tooltip = new Tooltip(data.getName());
+            Tooltip.install(data.getNode(), tooltip);
+        });
     }
 
     private VBox createBookCard(Book book) {
-        ImageView bookCover = new ImageView(new Image(book.getCoverImage()));
-        bookCover.setFitWidth(100);
+        ImageView bookCover = new ImageView(book.getThumbnail());
+        if (book.getThumbnail() == null) System.out.println("thumbnail is null");
+        bookCover.setFitWidth(150);
         bookCover.setFitHeight(150);
 
         Label bookTitle = new Label(book.getTitle());
         bookTitle.setWrapText(true);
-        bookTitle.prefWidth(100);
+        bookTitle.prefWidth(150);
         bookTitle.setTextAlignment(TextAlignment.CENTER);
 
         VBox bookCard = new VBox(5, bookCover, bookTitle); // 5px spacing between image and title
-        bookCard.setStyle("-fx-alignment: center; -fx-border-color: lightgray; -fx-padding: 10;");
+        bookCard.setStyle("-fx-alignment: center; -fx-border-color: lightgray; -fx-padding: 15;");
 
         return bookCard;
-    }
-
-    private void populateBarChart(Map<String, Integer> borrowedBooksByMonth) {
-        XYChart.Series<String, Number> monthlyBorrowedBooksSeries = new XYChart.Series<>();
-        monthlyBorrowedBooksSeries.setName("Borrowed Books");
-
-        borrowedBooksByMonth.forEach((month, count) ->
-                monthlyBorrowedBooksSeries.getData().add(new XYChart.Data<>(month, count))
-        );
-
-        borrowedBooksBarChart.getData().add(monthlyBorrowedBooksSeries);
     }
 
 }

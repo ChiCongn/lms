@@ -1,30 +1,31 @@
 package edu.lms.models.book;
 
 import edu.lms.services.database.BookDataService;
+import edu.lms.services.database.BorrowedBookDataService;
 import javafx.beans.Observable;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class BookManager {
-    public static ObservableList<Book> books;
-
-    // Thanh Duy :)
-    /*public static Book findBookInDatabase(int bookID) {
-        return books.get(bookID); // id is mark from 0 similar index ???
-    }*/
-
-//    public static void initialize() {
-//        books = BookDataService.loadBooksData();
-//    }
+    private static ObservableList<Book> books;
+    private static Map<String, Integer> borrowedBooksDataByMonth;
+    private static ObservableList<PieChart.Data> categoriesDistributionData;
+    private static List<Book> topChoiceBooks;
 
     private BookManager() {}
 
-    private static void initialize() {
+    public static void initialize() {
          books = BookDataService.loadBooksData();
+         borrowedBooksDataByMonth = BorrowedBookDataService.loadBorrowedBooksByMonth();
+         calculateCategoriesDistribution();
+        topChoiceBooks = BookDataService.loadTopChoicesBook();
     }
     public static ObservableList<Book> getBooks() {
         if (books == null) initialize();
@@ -32,8 +33,18 @@ public class BookManager {
     }
 
     public static Book getBook(int bookId) {
-        if (books == null) initialize();
-        return books.get(bookId - 1); // convert the index from a 1-based to a 0-based.
+        int lo = 0, hi = books.size() - 1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            int id = books.get(mid).getBookId();
+            if (id == bookId) return books.get(mid);
+            else if (id < bookId) {
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+        return null;
     }
 
     public static void insertBook(Book book) {
@@ -51,4 +62,29 @@ public class BookManager {
         return books.size();
     }
 
+    public static ObservableList<PieChart.Data> getCategoriesDistributionData() {
+        return categoriesDistributionData;
+    }
+
+    private static void calculateCategoriesDistribution() {
+        Map<String, Integer> categoryData = BookDataService.loadCategoryDistributionData();
+        categoriesDistributionData = FXCollections.observableArrayList();
+
+        // Calculate total for percentage
+        int total = categoryData.values().stream().mapToInt(Integer::intValue).sum();
+
+        // Populate the list with data and calculate percentage
+        categoryData.forEach((category, count) -> {
+            double percentage = (count / (double) total) * 100;
+            categoriesDistributionData.add(new PieChart.Data(category + " (" + String.format("%.1f%%", percentage) + ")", count));
+        });
+    }
+
+    public static Map<String, Integer> getBorrowedBooksDataByMonth() {
+        return borrowedBooksDataByMonth;
+    }
+
+    public static List<Book> getTopChoiceBooks() {
+        return topChoiceBooks;
+    }
 }

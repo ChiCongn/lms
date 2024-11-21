@@ -5,6 +5,7 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
@@ -65,6 +66,20 @@
                      </image>
                   </ImageView>
                   <Label prefHeight="22.0" prefWidth="123.0" text="Books">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/chart.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="22.0" prefWidth="123.0" text="Issues">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -225,7 +240,7 @@
                   <Insets left="50.0" top="30.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="290.0" prefWidth="1115.0">
+            <HBox prefHeight="318.0" prefWidth="1115.0">
                <children>
                   <BarChart fx:id="borrowedBooksBarChart" prefHeight="400" prefWidth="600">
                      <xAxis>
@@ -235,14 +250,7 @@
                         <NumberAxis label="Number of Borrowed Books" />
                      </yAxis>
                   </BarChart>
-                  <BarChart prefHeight="290.0" prefWidth="554.0">
-                     <xAxis>
-                        <CategoryAxis side="BOTTOM" />
-                     </xAxis>
-                     <yAxis>
-                        <NumberAxis side="LEFT" />
-                     </yAxis>
-                  </BarChart>
+                  <PieChart fx:id="categoriesPieChart" prefHeight="313.0" prefWidth="510.0" />
                </children>
             </HBox>
             <Label prefHeight="34.0" prefWidth="190.0" text="Top choice:" />

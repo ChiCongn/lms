@@ -1,6 +1,8 @@
 package edu.lms;
 
 import edu.lms.controllers.SceneManager;
+import edu.lms.models.book.BookManager;
+import edu.lms.models.user.UserManager;
 import edu.lms.services.EmailService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,10 +22,12 @@ public class LibraryManagementApplication extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         EmailService.initialize();
+        BookManager.initialize();
+        UserManager.initialize();
         try {
             SceneManager sceneManager = new SceneManager(primaryStage);
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(LibraryManagementApplication.class.getResource(Constants.ADD_BOOK_VIEW));
+            loader.setLocation(LibraryManagementApplication.class.getResource(Constants.SIGN_IN_VIEW));
             AnchorPane root = loader.load();
             Scene scene = new Scene(root);
 
