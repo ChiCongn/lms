@@ -47,6 +47,6 @@
     </children>
    <styleClass>
       <String fx:value="shadow" />
-      <String fx:value="white-bacground" />
+      <String fx:value="white-background" />
    </styleClass>
 </HBox>

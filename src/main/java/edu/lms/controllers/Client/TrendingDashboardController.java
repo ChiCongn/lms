@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static edu.lms.Constants.recommendedBooks;
+
 public class TrendingDashboardController implements Initializable {
     @FXML
     private HBox cardLayout;
@@ -50,23 +52,26 @@ public class TrendingDashboardController implements Initializable {
     @FXML
     private HBox topChart;
 
+    Constants constants = new Constants();
+
     private Stage stage;
     private Scene scene;
     private Parent root;
 
-    private List<edu.lms.models.book.Book> recentlyAdded;
-    private List<edu.lms.models.book.Book> recommended;
+    //private List<edu.lms.models.book.Book> recentlyAdded;
+    //private List<edu.lms.models.book.Book> recommended;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        recommended = new ArrayList<>(books());
+        //recommended = new ArrayList<>(books());
+        Constants.recommended = constants.books();
         int column = 0;
         int row = 1;
 
         try {
 
-            for (edu.lms.models.book.Book value : recommended) {
+            for (edu.lms.models.book.Book value : Constants.recommended) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/edu/lms/fxml/card-details.fxml"));
                 HBox bookBox = fxmlLoader.load();
@@ -103,97 +108,7 @@ public class TrendingDashboardController implements Initializable {
     }
 
 
-    private List<edu.lms.models.book.Book> recentlyAdded() {
-        List<edu.lms.models.book.Book> ls = new ArrayList<>();
-        edu.lms.models.book.Book book = new edu.lms.models.book.Book();
-        book.setTitle("RICH DAD\nPOOR DAD");
-        book.setCoverImage("/edu/lms/images/Books/rich_dad_poor_dad.jpg");
-        book.setAuthors("Robert Kiyosaki");
-        book.setDescription("abcs");
 
-        book.setPublishedYear("111");
-        ls.add(book);
-
-        edu.lms.models.book.Book book1 = new edu.lms.models.book.Book();
-        book1.setTitle("MAN'S SEARCHING\n FOR MEANING");
-        book1.setCoverImage("/edu/lms/images/Books/man's searching for meaning.jpg");
-        book1.setAuthors("Viktor Frankl");
-        ls.add(book1);
-
-        edu.lms.models.book.Book book2 = new edu.lms.models.book.Book();
-        book2.setTitle("THE STOICISM'S\n MIND");
-        book2.setCoverImage("/edu/lms/images/Books/stoicism.jpg");
-        book2.setAuthors("Nancy Sherman");
-        ls.add(book2);
-
-        edu.lms.models.book.Book book3 = new edu.lms.models.book.Book();
-        book3.setTitle("THE STORYTELLER'S\n SECRET");
-        book3.setCoverImage("/edu/lms/images/Books/storyteller's secrete.jpg");
-        book3.setAuthors("Carmine Gallo");
-        ls.add(book3);
-
-        return ls;
-    }
-
-    private List<edu.lms.models.book.Book> books(){
-        List<edu.lms.models.book.Book> ls = new ArrayList<>();
-        edu.lms.models.book.Book book = new edu.lms.models.book.Book();
-        book.setTitle("HARRY POTTER");
-        book.setCoverImage("/edu/lms/images/Books/HarryPotter.jpg");
-        book.setAuthors("J.K.Rowling");
-        ls.add(book);
-
-        edu.lms.models.book.Book book1 = new edu.lms.models.book.Book();
-        book1.setTitle("HOME");
-        book1.setCoverImage("/edu/lms/images/Books/Home.jpg");
-        book1.setAuthors("Lisa Allen");
-        ls.add(book1);
-
-        edu.lms.models.book.Book book2 = new edu.lms.models.book.Book();
-        book2.setTitle("The Dark Side\n of The Mirror");
-        book2.setCoverImage("/edu/lms/images/Books/TheDarkSideOfMirror.jpg");
-        book2.setAuthors("Christopher Murphy");
-        ls.add(book2);
-
-        edu.lms.models.book.Book book3 = new edu.lms.models.book.Book();
-        book3.setTitle("The UnderStory");
-        book3.setCoverImage("/edu/lms/images/Books/TheUnderStory.jpg");
-        book3.setAuthors("Saner Sangsuk");
-        ls.add(book3);
-
-        edu.lms.models.book.Book book4 = new edu.lms.models.book.Book();
-        book4.setTitle("Educated");
-        book4.setCoverImage("/edu/lms/images/Books/Educated.jpg");
-        book4.setAuthors("Tara Westover");
-        ls.add(book4);
-
-        edu.lms.models.book.Book book5 = new edu.lms.models.book.Book();
-        book5.setTitle("A million to one");
-        book5.setCoverImage("/edu/lms/images/Books/a million to one.jpg");
-        book5.setAuthors("Tony Faggioli");
-        ls.add(book5);
-
-        edu.lms.models.book.Book book6 = new edu.lms.models.book.Book();
-        book6.setTitle("To Kill a Mockingbird");
-        book6.setCoverImage("/edu/lms/images/Books/toKillaMockBird.jpg");
-        book6.setAuthors("Harper Lee");
-        ls.add(book6);
-
-        edu.lms.models.book.Book book7 = new edu.lms.models.book.Book();
-        book7.setTitle("Frankenstein");
-        book7.setCoverImage("/edu/lms/images/Books/Frankenstein.jpg");
-        book7.setAuthors("Marry Shelley");
-        ls.add(book7);
-
-        edu.lms.models.book.Book book8 = new edu.lms.models.book.Book();
-        book8.setTitle("Beloved");
-        book8.setCoverImage("/edu/lms/images/Books/Beloved.jpg");
-        book8.setAuthors("Toni Morrison");
-        ls.add(book8);
-
-
-        return ls;
-    }
 
 
 //    private void switchScene(String fxmlPath, MouseEvent event) {
@@ -210,7 +125,7 @@ public class TrendingDashboardController implements Initializable {
 //    }
 
 
-    Constants constants = new Constants();
+
 
     @FXML
     public void switchToTopChart(MouseEvent event) throws IOException {

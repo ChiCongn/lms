@@ -39,7 +39,7 @@
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
    <styleClass>
-      <String fx:value="white-bacground" />
       <String fx:value="shadow" />
+      <String fx:value="white-background" />
    </styleClass>
 </VBox>

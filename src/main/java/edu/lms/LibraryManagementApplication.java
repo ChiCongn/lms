@@ -25,7 +25,7 @@ public class LibraryManagementApplication extends Application {
             System.out.println('1');
             FXMLLoader loader = new FXMLLoader();
             System.out.println(2);
-            loader.setLocation(LibraryManagementApplication.class.getResource(Constants.BOOKS_MANAGEMENT_VIEW));
+            loader.setLocation(LibraryManagementApplication.class.getResource(Constants.LIBRARIAN_DASHBOARD_VIEW));
             System.out.println(3);
             Parent root = loader.load();
             System.out.println("4");
