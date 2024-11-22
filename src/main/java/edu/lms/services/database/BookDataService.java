@@ -32,7 +32,7 @@ public class BookDataService {
         // liên kết api ?
         ObservableList<Book> bookList = FXCollections.observableArrayList();
 
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              // hàm bắt buộc
              PreparedStatement statement = connection.prepareStatement(LOAD_BOOKS_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
@@ -75,7 +75,7 @@ public class BookDataService {
             return false;
         }
 
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(ADD_BOOK_QUERY, Statement.RETURN_GENERATED_KEYS)) {
 
             //title, authors, published_year, pageCount, language, description, rating,
@@ -115,7 +115,7 @@ public class BookDataService {
      * @param bookId book id
      */
     public static boolean removeBook(int bookId) {
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_BOOK_QUERY)) {
 
             statement.setInt(1, bookId);
@@ -131,7 +131,7 @@ public class BookDataService {
     public static Map<String, Integer> loadCategoryDistributionData() {
         Map<String, Integer> categoryData = new LinkedHashMap<>();
 
-        try (Connection conn = DatabaseService.getInstance().getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(LOAD_CATEGORY_DISTRIBUTION_QUERY);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -148,7 +148,7 @@ public class BookDataService {
     }
 
     public static boolean updateAvailableCopiesOfThisBook(int bookId, int adjustment) {
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_AVAILABLE_COPIES_BOOK_QUERY)) {
 
             statement.setInt(1, adjustment);
@@ -165,7 +165,7 @@ public class BookDataService {
     }
 
     public static boolean setAvailableCopiesOfSpecificBook(int bookId, int newAvailableCopies) {
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SET_AVAILABLE_COPIES_QUERY)) {
 
             statement.setInt(1, newAvailableCopies);
@@ -181,7 +181,7 @@ public class BookDataService {
     }
 
     public static boolean setTotalCopiesOfSpecificBook(int bookId, int newTotalCopies) {
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SET_TOTAL_COPIES_QUERY)) {
 
             statement.setInt(1, newTotalCopies);
@@ -197,7 +197,7 @@ public class BookDataService {
     }
 
     public static boolean setPriceOfSpecificBook(int bookId, BigDecimal newPrice) {
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SET_PRICE_QUERY)) {
 
             statement.setBigDecimal(1, newPrice);
@@ -213,9 +213,9 @@ public class BookDataService {
 
     public static List<Book> loadTopChoicesBook() {
         List<Book> topChoiceBooks = new ArrayList<>();
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(LOAD_TOP_CHOICES_QUERY);
-                ResultSet resultSet = statement.executeQuery()) {
+             ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
                 int bookId = resultSet.getInt("book_id");
@@ -230,7 +230,7 @@ public class BookDataService {
     }
 
     private static boolean isExistedInDatabase(String title) {
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SEARCH_BOOK_EXIST_IN_DATABASE_QUERY)) {
 
             statement.setString(1, title);
@@ -265,7 +265,7 @@ public class BookDataService {
     }
 
     private static void insertBookCategoryRelation(int bookId, int categoryId) {
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement insertStmt = connection.prepareStatement(INSERT_BOOK_CATEGORIES_QUERY)) {
 
             insertStmt.setInt(1, bookId);
@@ -278,7 +278,7 @@ public class BookDataService {
     }
 
     public static int insertCategoryIfNotExists(String categoryName) {
-        try (Connection conn = DatabaseService.getInstance().getConnection()) {
+        try (Connection conn = DatabaseConnection.getInstance().getConnection()) {
             try (PreparedStatement checkStmt = conn.prepareStatement(GET_CATEGORY_ID_QUERY)) {
                 checkStmt.setString(1, categoryName);
                 ResultSet rs = checkStmt.executeQuery();
@@ -306,7 +306,7 @@ public class BookDataService {
 
     private static String getCategoriesForBook(int bookId) {
         StringBuilder categories = new StringBuilder();
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(GET_CATEGORIES_FOR_BOOK_QUERY)) {
 
             statement.setInt(1, bookId);

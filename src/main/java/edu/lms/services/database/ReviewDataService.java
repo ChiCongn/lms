@@ -16,7 +16,7 @@ public class ReviewDataService {
     private static final String ADD_REVIEW_QUERY = "INSERT INTO reviews (user_id, book_id, review_text, rating) VALUE (?, ?, ?, ?)";
 
     public static void addReview(Review review) {
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(ADD_REVIEW_QUERY)) {
 
             statement.setInt(1, review.getUserId());
@@ -32,7 +32,7 @@ public class ReviewDataService {
 
     public static ObservableList<Review> loadReviewsOfSpecificBook(int bookId) {
         ObservableList<Review> reviews = FXCollections.observableArrayList();
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(LOAD_REVIEWS_OF_SPECIFIC_BOOK_QUERY)) {
 
             statement.setInt(1, bookId);

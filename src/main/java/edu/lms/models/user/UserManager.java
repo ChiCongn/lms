@@ -21,6 +21,7 @@ public class UserManager {
     }
 
     public static Client getClient(int clientId) {
+        //if (clients == null) initialize();
         int lo = 0, hi = clients.size() - 1;
         while (lo <= hi) {
             int mid = lo + (hi - lo) / 2;

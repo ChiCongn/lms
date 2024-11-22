@@ -23,7 +23,7 @@ public class UsersDataService {
      */
     public static ObservableList<Client> loadClientsData() {
         ObservableList<Client> clients = FXCollections.observableArrayList();
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = connection.prepareStatement(LOAD_CLIENTS_QUERY);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -53,7 +53,7 @@ public class UsersDataService {
     public static User loadUserData(int userId) {
         System.out.println("load user data");
         User user = null;
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(LOAD_USER_QUERY)) {
 
             statement.setInt(1, userId);
@@ -90,7 +90,7 @@ public class UsersDataService {
     }
 
     public static boolean addNewClient(Client client) {
-        try (Connection connection = DatabaseService.getInstance().getConnection()) {
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(ADD_NEW_CLIENT_QUERY)) {
                 statement.setString(1, client.getUsername());
                 statement.setString(2, client.getEmail());
@@ -110,7 +110,7 @@ public class UsersDataService {
     }
 
     public static boolean deleteUser(int userId) {
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_USER_QUERY)) {
 
             statement.setInt(1, userId);
@@ -130,7 +130,7 @@ public class UsersDataService {
     }
 
     public static boolean suspendUser(int userId) {
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SUSPEND_USER_QUERY)) {
 
             statement.setInt(1, userId);
@@ -150,7 +150,7 @@ public class UsersDataService {
     }
 
     public static boolean reactivateUser(int userId) {
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(REACTIVATE_USER_QUERY)) {
 
             statement.setInt(1, userId);
@@ -170,7 +170,7 @@ public class UsersDataService {
     }
 
     private static BigDecimal loadOutstandingFinesOfThisClient(int clientId) {
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(LOAD_FINES_OF_THIS_CLIENT)) {
 
             statement.setInt(1, clientId);

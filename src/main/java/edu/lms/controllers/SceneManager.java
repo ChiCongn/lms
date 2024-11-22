@@ -13,8 +13,8 @@ import java.io.IOException;
 public class SceneManager {
     private static Stage primaryStage;
 
-    public SceneManager(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+    public static void setPrimaryStage(Stage primaryStage) {
+        SceneManager.primaryStage = primaryStage;
     }
 
     public static <Controller> Controller switchScene(String fxmlFileName) {

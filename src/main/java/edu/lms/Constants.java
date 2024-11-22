@@ -34,35 +34,6 @@ public class Constants {
     public static final String CLIENTS_DETAILS_VIEW = "/edu/lms/fxml/user-details-view.fxml";
     public static final String BOOK_DETAILS_VIEW = "/edu/lms/fxml/book-details-view.fxml";
     public static final String ADD_BOOK_VIEW = "/edu/lms/fxml/add-book-view.fxml";
-
-
-
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-
-    public void switchScene(String fxmlPath, MouseEvent event, Stage stage, Scene scene, Parent root ) {
-        try {
-            root = FXMLLoader.load(getClass().getResource(fxmlPath));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-
-            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-            stage.setX(screenBounds.getMinX());
-            stage.setY(screenBounds.getMinY());
-            stage.setWidth(screenBounds.getWidth());
-            stage.setHeight(screenBounds.getHeight());
-
-
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static ObservableList<Book> recommendedBooks = FXCollections.observableArrayList();
-    public static ObservableList<Book> recentlyAddedBooks = FXCollections.observableArrayList();
-    public static ObservableList<Book> booksByCategory = FXCollections.observableArrayList();
+    public static final String ISSUES_MANAGEMENT_VIEW = "/edu/lms/fxml/issues-management-view.fxml";
 
 }

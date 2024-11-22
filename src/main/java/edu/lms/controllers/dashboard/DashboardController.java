@@ -34,4 +34,8 @@ public class DashboardController {
     public void logout() {
         SignInController signInController = SceneManager.switchScene(Constants.SIGN_IN_VIEW);
     }
+
+    public void switchToIssuesManagementView() {
+        IssuesManagementController issuesManagementController = SceneManager.switchScene(Constants.ISSUES_MANAGEMENT_VIEW);
+    }
 }

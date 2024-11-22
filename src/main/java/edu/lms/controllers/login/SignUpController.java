@@ -5,7 +5,7 @@ import edu.lms.controllers.SceneManager;
 import edu.lms.models.user.Client;
 import edu.lms.models.user.Gender;
 import edu.lms.services.database.UsersDataService;
-import edu.lms.services.database.DatabaseService;
+import edu.lms.services.database.DatabaseConnection;
 import edu.lms.services.EmailService;
 import edu.lms.services.Validator;
 import edu.lms.services.VerificationCode;
@@ -73,7 +73,7 @@ public class SignUpController implements Initializable {
     private boolean isValidUsername;
     private boolean isValidEmail;
     private int currentVerificationCode;
-    private final DatabaseService instance = DatabaseService.getInstance();
+    private final DatabaseConnection instance = DatabaseConnection.getInstance();
 
     public void backToSignInController() {
         SignInController signInController = SceneManager.switchScene(Constants.SIGN_IN_VIEW);

@@ -4,16 +4,15 @@ import edu.lms.services.Config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class DatabaseService {
+public class DatabaseConnection {
     private static final String URL = Config.DATABASE_ENDPOINT;
     private static final String USER = Config.DATABASE_USERNAME;
     private static final String PASSWORD = Config.DATABASE_PASSWORD;
-    private static DatabaseService instance;
+    private static DatabaseConnection instance;
 
-    private DatabaseService() {
+    private DatabaseConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -21,9 +20,9 @@ public class DatabaseService {
         }
     }
 
-    public static synchronized DatabaseService getInstance() {
+    public static synchronized DatabaseConnection getInstance() {
         if (instance == null) {
-            instance = new DatabaseService();
+            instance = new DatabaseConnection();
         }
         return instance;
     }

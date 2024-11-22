@@ -6,7 +6,7 @@ import edu.lms.controllers.dashboard.AdminDashboardController;
 import edu.lms.controllers.dashboard.DashboardController;
 import edu.lms.controllers.dashboard.LibrarianDashboardController;
 import edu.lms.models.user.Librarian;
-import edu.lms.services.database.DatabaseService;
+import edu.lms.services.database.DatabaseConnection;
 import edu.lms.services.database.UsersDataService;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -41,7 +41,7 @@ public class SignInController {
     private ProgressBar loadingBar;
     private boolean visibility;
     private String role;
-    private final DatabaseService instance = DatabaseService.getInstance();
+    private final DatabaseConnection instance = DatabaseConnection.getInstance();
     private int userId;
 
 

@@ -1,15 +1,20 @@
 package edu.lms.models.book;
 
+import edu.lms.models.user.Client;
+
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class BorrowedBook {
     private int borrowId;
     private Book book; // save pointer which taken from books in BookManager to save memory
-    private int clientId; // save pointer which taken from clients in UserManager to save memory
+    //private Client client; // save pointer which taken from clients in UserManager to save memory
+    private int clientId;
     private LocalDate borrowDate;
     private LocalDate dueDate;
     private LocalDate returnDate;
     private String status;
+    private BigDecimal fines;
 
     public BorrowedBook(Book book, int clientId, LocalDate borrowDate, LocalDate dueDate, String status) {
         this.book = book;
@@ -22,6 +27,7 @@ public class BorrowedBook {
     public BorrowedBook(int borrowId, Book book, int clientId, LocalDate borrowDate, LocalDate dueDate, LocalDate returnDate, String status) {
         this.borrowId = borrowId;
         this.book = book;
+        //this.client = client;
         this.clientId = clientId;
         this.borrowDate = borrowDate;
         this.dueDate = dueDate;
@@ -37,6 +43,14 @@ public class BorrowedBook {
         this.borrowId = borrowId;
     }
 
+    public int getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
+
     public Book getBook() {
         return book;
     }
@@ -45,13 +59,13 @@ public class BorrowedBook {
         this.book = book;
     }
 
-    public int getClientId() {
-        return clientId;
+    /*public Client getClient() {
+        return client;
     }
 
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
+    public void setClient(Client client) {
+        this.client = client;
+    }*/
 
     public LocalDate getBorrowDate() {
         return borrowDate;
@@ -83,5 +97,13 @@ public class BorrowedBook {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public BigDecimal getFines() {
+        return fines;
+    }
+
+    public void setFines(BigDecimal fines) {
+        this.fines = fines;
     }
 }

@@ -3,6 +3,8 @@ package edu.lms.services.database;
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
 import edu.lms.models.book.BorrowedBook;
+import edu.lms.models.user.Client;
+import edu.lms.models.user.UserManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -16,6 +18,7 @@ import java.util.Map;
 
 public class BorrowedBookDataService {
     private static final String LOAD_BORROWED_BOOKS_OF_A_CLIENT_QUERY = "SELECT * FROM borrowed_books WHERE user_id = ?";
+    private static final String LOAD_ALL_BORROWED_BOOKS_QUERY = "SELECT * FROM borrowed_books";
     private static final String ADD_BORROWED_BOOK_QUERY = "INSERT INTO books (user_id, book_id, borrow_date, due_date, return_date, status) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String CHECK_IS_BORROWED_BY_THIS_CLIENT = "SELECT COUNT(*) FROM borrowed_books WHERE book_id = ? AND user_id = ?";
     private static final String COUNT_BORROWED_BOOKS_QUERY = "SELECT COUNT(*) FROM borrowed_books";
@@ -24,7 +27,7 @@ public class BorrowedBookDataService {
 
     public static int getNumberOfBorrowedBook() {
         int count = 0;
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(COUNT_BORROWED_BOOKS_QUERY)) {
 
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -39,13 +42,44 @@ public class BorrowedBookDataService {
         return count;
     }
 
+    public static ObservableList<BorrowedBook> loadAllBorrowedBooks() {
+        ObservableList<BorrowedBook> borrowedBooks = FXCollections.observableArrayList();
+
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(LOAD_ALL_BORROWED_BOOKS_QUERY);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int borrowedId = resultSet.getInt("borrow_id");
+                int clientId = resultSet.getInt("user_id");
+                int bookId = resultSet.getInt("book_id");
+                LocalDate borrowedDate = resultSet.getDate("borrow_date").toLocalDate();
+                LocalDate dueDate = resultSet.getDate("due_date").toLocalDate();
+                LocalDate returnDate = null;
+                Date dbReturnDate = resultSet.getDate("return_date");
+                if (dbReturnDate != null) {
+                    returnDate = dbReturnDate.toLocalDate();
+                }
+                String status = resultSet.getString("status");
+                Book book = BookManager.getBook(bookId);
+                Client client = UserManager.getClient(clientId);
+                BorrowedBook borrowedBook = new BorrowedBook(borrowedId, book, clientId, borrowedDate, dueDate, returnDate, status);
+                borrowedBooks.add(borrowedBook);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error loading all borrowed books : " + e.getMessage());
+        }
+
+        return borrowedBooks;
+    }
+
     /**
      * load all info of borrowed books in database.
      * @return list of borrowed books
      */
     public static ObservableList<BorrowedBook> loadBorrowedBooks(int clientId) {
         ObservableList<BorrowedBook> borrowedBooks = FXCollections.observableArrayList();
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(LOAD_BORROWED_BOOKS_OF_A_CLIENT_QUERY)) {
 
             statement.setInt(1, clientId);
@@ -63,6 +97,7 @@ public class BorrowedBookDataService {
                 }
                 String status = resultSet.getString("status");
                 Book book = BookManager.getBook(book_id);
+                //Client client = UserManager.getClient(clientId);
                 BorrowedBook borrowedBook = new BorrowedBook(borrowedId, book, clientId, borrowedDate, dueDate, returnDate, status);
                 borrowedBooks.add(borrowedBook);
             }
@@ -79,10 +114,11 @@ public class BorrowedBookDataService {
      * @param borrowedBook borrowed book
      */
     public static void addNewBorrowedBook(BorrowedBook borrowedBook) {
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(ADD_BORROWED_BOOK_QUERY, Statement.RETURN_GENERATED_KEYS)) {
 
             //client_id, book_id, borrowed_date, due_date, return_date, status
+            //statement.setInt(1, borrowedBook.getClient().getId());
             statement.setInt(1, borrowedBook.getClientId());
             statement.setInt(2, borrowedBook.getBook().getBookId());
             statement.setDate(3, Date.valueOf(borrowedBook.getBorrowDate()));
@@ -112,7 +148,7 @@ public class BorrowedBookDataService {
         }
 
         System.out.println("load borrowed book by month");
-        try (Connection conn = DatabaseService.getInstance().getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(LOAD_MONTHLY_BORROWED_BOOKS_QUERY);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -128,7 +164,7 @@ public class BorrowedBookDataService {
     }
 
     private static boolean isBorrowedByThisClient(int bookId, int clientId) {
-        try (Connection connection = DatabaseService.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(CHECK_IS_BORROWED_BY_THIS_CLIENT)) {
 
             statement.setInt(1, bookId);
