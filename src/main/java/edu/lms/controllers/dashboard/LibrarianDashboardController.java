@@ -73,7 +73,7 @@ public class LibrarianDashboardController extends DashboardController implements
             final int currentIndex = i;
             VBox bookCard = createBookCard(topChoiceBooks.get(currentIndex));
             bookCard.setOnMouseClicked(mouseEvent -> {
-                BooKDetailController booKDetailController = SceneManager.switchScene(Constants.BOOK_DETAILS_VIEW);
+                BooKDetailController booKDetailController = SceneManager.switchScene(Constants.BOOK_DETAILS_VIEW, true);
                 assert booKDetailController != null;
                 booKDetailController.initialize(topChoiceBooks.get(currentIndex));
             });

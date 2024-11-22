@@ -15,10 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane prefHeight="890.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.ClientsManagementController">
+<BorderPane prefHeight="890.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.ClientsManagementController">
    <center>
-      <VBox prefHeight="548.0" prefWidth="644.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="830.0" prefWidth="1034.0" BorderPane.alignment="CENTER">
          <children>
             <Pane prefHeight="28.0" prefWidth="100.0" />
             <HBox prefHeight="100.0" prefWidth="200.0">
@@ -54,18 +53,18 @@
                   </HBox>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="430.0" prefWidth="915.0">
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0" />
                
-                  <TableView fx:id="clientsTableView" prefHeight="386.0" prefWidth="676.0">
+                  <TableView fx:id="clientsTableView" prefHeight="430.0" prefWidth="718.0">
                     <columns>
-                      <TableColumn fx:id="idColumn" prefWidth="60.79998779296875" text="Client Id" />
-                      <TableColumn fx:id="usernameColumn" prefWidth="163.99998474121094" text="username" />
+                      <TableColumn fx:id="idColumn" prefWidth="60" text="Client Id" />
+                      <TableColumn fx:id="usernameColumn" prefWidth="164" text="username" />
                         <TableColumn fx:id="emailColumn" prefWidth="180.0" text="email" />
-                        <TableColumn fx:id="borrowedBooksColumn" minWidth="3.20001220703125" prefWidth="102.4000244140625" text="borrowed books" />
-                        <TableColumn fx:id="outstandingFinesColumn" prefWidth="103.99993896484375" text="oustanding fines" />
-                        <TableColumn fx:id="statusColumn" prefWidth="63.20001220703125" text="status" />
+                        <TableColumn fx:id="borrowedBooksColumn" minWidth="3.2" prefWidth="112.8" text="borrowed books" />
+                        <TableColumn fx:id="outstandingFinesColumn" prefWidth="108.0" text="oustanding fines" />
+                        <TableColumn fx:id="statusColumn" prefWidth="92" text="status" />
                     </columns>
                   </TableView>
                </children>
@@ -110,9 +109,6 @@
          </children>
       </HBox>
    </top>
-   <right>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </right>
    <left>
       <VBox prefHeight="478.0" prefWidth="200.0" spacing="10.0" styleClass="white-background" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
          <children>
@@ -138,7 +134,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" onMouseClicked="#switchToClientManagementView" prefHeight="50.0" prefWidth="200.0" spacing="15.0" stylesheets="@../css/Test.css">
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="15.0" stylesheets="@../css/Test.css">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -152,7 +148,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
+            <HBox alignment="CENTER" onMouseClicked="#switchToBooksManagementView" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>

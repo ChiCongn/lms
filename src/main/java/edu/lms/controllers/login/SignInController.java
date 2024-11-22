@@ -60,7 +60,7 @@ public class SignInController {
     }
 
     public void switchSignUpController() {
-        SignUpController signUpController = SceneManager.switchScene(Constants.SIGNUP_VIEW);
+        SignUpController signUpController = SceneManager.switchScene(Constants.SIGNUP_VIEW, false);
     }
 
     public void signIn() {
@@ -105,48 +105,16 @@ public class SignInController {
     private void switchToDashboard() {
         if (role == null) return;
         if (role.equals("admin")) {
-            AdminDashboardController adminDashboardController = SceneManager.switchScene(Constants.ADMIN_DASHBOARD_VIEW);
+            AdminDashboardController adminDashboardController = SceneManager.switchScene(Constants.ADMIN_DASHBOARD_VIEW, true);
         } else if (role.equals("librarian")) {
             System.out.println("sign in with librarian role");
             Librarian librarian = (Librarian) UsersDataService.loadUserData(userId);
             DashboardController.setLibrarian(librarian);
-            LibrarianDashboardController librarianDashboardController = SceneManager.switchScene(Constants.LIBRARIAN_DASHBOARD_VIEW);
+            LibrarianDashboardController librarianDashboardController = SceneManager.switchScene(Constants.LIBRARIAN_DASHBOARD_VIEW, true);
         } else {
             //ClientDashboardController clientDashboardController = SceneManager.switchScene(Constants.CLIENT_DASHBOARD_VIEW);
             System.out.println("nothing");
         }
     }
 
-    private void loadDataAndSwitchScene() {
-        loadingBar.setVisible(true);
-        Task<Void> loadDataTask = new Task<>() {
-            @Override
-            protected Void call() throws Exception {
-                for (int i = 0; i <= 100; i++) {
-                    Thread.sleep(50);  // Simulate a delay
-                    updateProgress(i, 100);  // Update progress bar
-                }
-                return null;
-            }
-        };
-
-        // Bind ProgressBar's progress to Task's progress
-        loadingBar.progressProperty().bind(loadDataTask.progressProperty());
-
-        // Switch to the next scene after loading
-        loadDataTask.setOnSucceeded(event -> {
-            loadingBar.setVisible(false);  // Hide progress bar
-            // Switch to the next scene (e.g., a new scene with books)
-            SceneManager.switchScene(Constants.BOOK_DETAILS_VIEW);
-        });
-
-        // Handle task failure (optional)
-        loadDataTask.setOnFailed(event -> {
-            loadingBar.setVisible(false);
-            System.err.println("Data loading failed: " + loadDataTask.getException());
-        });
-
-        // Start the background task
-        new Thread(loadDataTask).start();
-    }
 }

@@ -217,7 +217,7 @@ public class BooKDetailController {
                 if (!BookDataService.removeBook(book.getBookId())) {
                     System.err.println("something is wrong. Can not delete book!");
                 }
-                BooksManagementController booksManagementController = SceneManager.switchScene(Constants.BOOKS_MANAGEMENT_VIEW);
+                BooksManagementController booksManagementController = SceneManager.switchScene(Constants.BOOKS_MANAGEMENT_VIEW, true);
                 assert booksManagementController != null;
                 booksManagementController.deleteBook(book);
                 BookManager.deleteBook(book);
@@ -272,7 +272,7 @@ public class BooKDetailController {
 
     @FXML
     private void backToBooksManagementView() {
-        BooksManagementController booksManagementController = SceneManager.switchScene(Constants.BOOKS_MANAGEMENT_VIEW);
+        BooksManagementController booksManagementController = SceneManager.switchScene(Constants.BOOKS_MANAGEMENT_VIEW, true);
     }
 
     private void configureListReviews() {

@@ -77,7 +77,7 @@ public class ClientDetailsController implements Initializable {
     }
 
     public void backToClientManagement() {
-        ClientsManagementController clientsManagementController = SceneManager.switchScene(Constants.CLIENT_MANAGEMENT_VIEW);
+        ClientsManagementController clientsManagementController = SceneManager.switchScene(Constants.CLIENT_MANAGEMENT_VIEW, true);
     }
 
     public Client getClient() {

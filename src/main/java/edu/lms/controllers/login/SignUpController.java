@@ -76,7 +76,7 @@ public class SignUpController implements Initializable {
     private final DatabaseConnection instance = DatabaseConnection.getInstance();
 
     public void backToSignInController() {
-        SignInController signInController = SceneManager.switchScene(Constants.SIGN_IN_VIEW);
+        SignInController signInController = SceneManager.switchScene(Constants.SIGN_IN_VIEW, false);
         System.out.println("back to sign");
     }
 

@@ -185,7 +185,7 @@ public class ClientsManagementController extends DashboardController implements 
     }
 
     private void switchToClientDetails(Client client) {
-        ClientDetailsController clientDetailsController = SceneManager.switchScene(Constants.CLIENTS_DETAILS_VIEW);
+        ClientDetailsController clientDetailsController = SceneManager.switchScene(Constants.CLIENTS_DETAILS_VIEW, true);
         assert clientDetailsController != null;
         clientDetailsController.setClientData(client);
     }

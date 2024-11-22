@@ -20,22 +20,22 @@ public class DashboardController {
     }
 
     public void backToHomeView() {
-        LibrarianDashboardController librarianDashboardController = SceneManager.switchScene(Constants.LIBRARIAN_DASHBOARD_VIEW);
+        LibrarianDashboardController librarianDashboardController = SceneManager.switchScene(Constants.LIBRARIAN_DASHBOARD_VIEW, true);
     }
 
     public void switchToClientManagementView() {
-        ClientsManagementController clientsManagementController = SceneManager.switchScene(Constants.CLIENT_MANAGEMENT_VIEW);
+        ClientsManagementController clientsManagementController = SceneManager.switchScene(Constants.CLIENT_MANAGEMENT_VIEW, true);
     }
 
     public void switchToBooksManagementView() {
-        BooksManagementController booksManagementController = SceneManager.switchScene(Constants.BOOKS_MANAGEMENT_VIEW);
+        BooksManagementController booksManagementController = SceneManager.switchScene(Constants.BOOKS_MANAGEMENT_VIEW, true);
     }
 
     public void logout() {
-        SignInController signInController = SceneManager.switchScene(Constants.SIGN_IN_VIEW);
+        SignInController signInController = SceneManager.switchScene(Constants.SIGN_IN_VIEW, false);
     }
 
     public void switchToIssuesManagementView() {
-        IssuesManagementController issuesManagementController = SceneManager.switchScene(Constants.ISSUES_MANAGEMENT_VIEW);
+        IssuesManagementController issuesManagementController = SceneManager.switchScene(Constants.ISSUES_MANAGEMENT_VIEW, true);
     }
 }

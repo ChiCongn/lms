@@ -92,8 +92,13 @@ public class BooksManagementController extends DashboardController implements In
         System.out.println("successfully delete book from table view");
     }
 
+    @FXML
+    private void switchToAddBookView() {
+        AddBookController addBookController = SceneManager.switchScene(Constants.ADD_BOOK_VIEW, true);
+    }
+
     private void switchToBookDetails(Book book) {
-        BooKDetailController booKDetailController = SceneManager.switchScene(Constants.BOOK_DETAILS_VIEW);
+        BooKDetailController booKDetailController = SceneManager.switchScene(Constants.BOOK_DETAILS_VIEW, true);
         assert booKDetailController != null;
         booKDetailController.initialize(book);
     }
