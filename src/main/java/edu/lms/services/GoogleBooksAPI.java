@@ -14,15 +14,11 @@ import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
 
 public class GoogleBooksAPI {
     private static final String API_KEY = Config.GG_BOOKS_API_KEY;
     private static final String BASE_URL = "https://www.googleapis.com/books/v1/volumes";
-    private static final OkHttpClient client = new OkHttpClient();;
+    private static final OkHttpClient client = new OkHttpClient();
 
     public static ObservableList<Book> searchBooks(String query) {
         System.out.println("search book by gg book");
@@ -68,11 +64,25 @@ public class GoogleBooksAPI {
         if (volumeInfo.has("authors")) {
             JsonArray authorsArray = volumeInfo.getAsJsonArray("authors");
             for (int j = 0; j < authorsArray.size(); j++) {
-                authors.append(authorsArray.get(j).getAsString()).append(" ,");
+                authors.append(authorsArray.get(j).getAsString()).append(", ");
             }
+        }
+        if (!authors.isEmpty()) {
+            authors.setLength(authors.length() - 2);
         }
         String publishedYear = volumeInfo.has("publishedDate") ? volumeInfo.get("publishedDate").getAsString() : "Unknown";
         int pageCount = volumeInfo.has("pageCount") ? volumeInfo.get("pageCount").getAsInt() : 0;
+
+        StringBuilder categories = new StringBuilder();
+        if (volumeInfo.has("categories")) {
+            JsonArray categoriesArray = volumeInfo.getAsJsonArray("categories");
+            for (int j = 0; j < categoriesArray.size(); j++) {
+                categories.append(categoriesArray.get(j).getAsString()).append(", ");
+            }
+        }
+        if (!categories.isEmpty()) {
+            categories.setLength(categories.length() - 2);
+        }
         String language = volumeInfo.has("language") ? volumeInfo.get("language").getAsString() : "Unknown";
         String description = volumeInfo.has("description") ? volumeInfo.get("description").getAsString() : "No description available";
         String coverImageUrl = null;
@@ -87,16 +97,16 @@ public class GoogleBooksAPI {
                 BigDecimal.valueOf(volumeInfo.get("price").getAsDouble()) : BigDecimal.ZERO;
         String canonicalVolumeLink = volumeInfo.has("canonicalVolumeLink") ? volumeInfo.get("canonicalVolumeLink").getAsString() : null;
 
-        //String title, String authors, String publishedYear, int pageCount, String language,
+        //String title, String authors, String publishedYear, int pageCount, String categories, String language,
         //      String description, BigDecimal rating, String coverImage, String canonicalVolumeLink
-        Book searchedBook = new Book(title, authors.toString(), publishedYear, pageCount, language, description, rating, price, coverImageUrl, canonicalVolumeLink);
+        Book searchedBook = new Book(title, authors.toString(), publishedYear, pageCount, categories.toString(), language, description, rating, price, coverImageUrl, canonicalVolumeLink);
 
         BookDataService.addBook(searchedBook);
         return searchedBook;
     }
 
     public static void main(String[] args) {
-        GoogleBooksAPI.searchBooks("database");
+        GoogleBooksAPI.searchBooks("angel");
     }
 
 }

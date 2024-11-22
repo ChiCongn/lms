@@ -74,7 +74,6 @@
                                 <Insets left="10.0" />
                             </VBox.margin>
                         </Label>
-
                         <HBox fx:id="topChart" alignment="CENTER" onMouseClicked="#switchToTopChart" prefHeight="50.0" prefWidth="200.0" spacing="15.0" stylesheets="@../css/Test.css">
                             <children>
                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -88,7 +87,6 @@
                                     </font>
                                 </Label>
                             </children>
-
                      <styleClass>
                         <String fx:value="mouse-moved" />
                         <String fx:value="selected" />

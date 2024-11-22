@@ -2,8 +2,10 @@ package edu.lms.controllers;
 
 import edu.lms.LibraryManagementApplication;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,7 +20,7 @@ public class SceneManager {
     public static <Controller> Controller switchScene(String fxmlFileName) {
         try {
             FXMLLoader loader = new FXMLLoader(LibraryManagementApplication.class.getResource(fxmlFileName));
-            AnchorPane root = loader.load();
+            Parent root = loader.load();
 
             Scene newScene = new Scene(root);
             primaryStage.setScene(newScene);

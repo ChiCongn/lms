@@ -1,6 +1,8 @@
 package edu.lms.models.book;
 
 
+import javafx.scene.image.Image;
+
 import java.math.BigDecimal;
 
 public class Book {
@@ -9,6 +11,7 @@ public class Book {
     private String authors;
     private String publishedYear;
     private int pageCount;
+    private String categories;
     private String language;
     private String description;
     private BigDecimal rating;
@@ -16,18 +19,18 @@ public class Book {
     private int totalCopies;
     private int availableCopies;
     private String coverImage;
-
     private String canonicalVolumeLink;
+    private Image thumbnail;
 
     public Book() {};
 
-    public Book(String title, String authors, String publishedYear, int pageCount, String language,
+    public Book(String title, String authors, String publishedYear, int pageCount, String categories, String language,
                 String description, BigDecimal rating, BigDecimal price, String coverImage, String canonicalVolumeLink) {
-
         this.title = title;
         this.authors = authors;
         this.publishedYear = publishedYear;
         this.pageCount = pageCount;
+        this.categories = categories;
         this.language = language;
         this.description = description;
         this.rating = rating;
@@ -155,6 +158,27 @@ public class Book {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getCategories() {
+        return categories;
+    }
+
+    public void setCategories(String categories) {
+        this.categories = categories;
+    }
+
+    // load several thumbnail because loading all is very slow but several is efficient for top choice books.
+    public void initializeThumbnail() {
+        this.thumbnail = new Image(coverImage);
+    }
+
+    public Image getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(Image thumbnail) {
+        this.thumbnail = thumbnail;
     }
 }
 

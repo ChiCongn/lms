@@ -8,7 +8,6 @@ import edu.lms.models.book.Review;
 import edu.lms.services.AlertDialog;
 import edu.lms.services.database.BookDataService;
 import edu.lms.services.database.ReviewDataService;
-import edu.lms.services.database.UsersDataService;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 
@@ -17,6 +16,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
@@ -58,9 +59,6 @@ public class BooKDetailController {
     private Label priceLabel;
 
     @FXML
-    private ImageView ratingImage;
-
-    @FXML
     private ListView<Review> reviewsList;
 
     @FXML
@@ -72,6 +70,27 @@ public class BooKDetailController {
     @FXML
     private Label totalCopiesLabel;
 
+    @FXML
+    private Label successfullyUpdateLabel;
+
+    //file:/E:/AllSemesters/ThirdSemester/OOP/lms/target/classes/edu/lms/images/default_avatar.png
+
+    @FXML
+    private Label ratingLabel;
+
+    @FXML
+    private Tooltip ratingTooltip;
+
+    @FXML
+    private HBox starContainer;
+
+    @FXML
+    private Label haveToVoteBookWarning;
+
+    private Label[] stars;
+
+    private int currentRating;
+
     private Book book;
 
 
@@ -79,6 +98,31 @@ public class BooKDetailController {
         System.out.println("initialize book detail.");
         configureListReviews();
         this.book = book;
+
+        initializeBookData(book);
+
+        // set up voting area for voting and review.
+        stars = new Label[5];
+        System.out.println("set up voting area.");
+        for (int i = 0; i < 5; i++) {
+            Label star = new Label("☆");
+            star.setFont(new Font("Arial", 22));
+            star.setTextFill(Color.GRAY);
+            int starIndex = i;
+
+            star.setOnMouseClicked(event -> updateStars(starIndex + 1));
+
+            stars[i] = star;
+            starContainer.getChildren().add(star);
+        }
+
+        totalCopiesField.setOnKeyReleased(keyEvent -> {
+            isValidTotalCopies();
+        });
+
+    }
+
+    private void initializeBookData(Book book) {
         authorsLabel.setText(book.getAuthors());
         pageCountLabel.setText(Integer.toString(book.getPageCount()));
         totalCopiesLabel.setText(Integer.toString(book.getTotalCopies()));
@@ -88,11 +132,12 @@ public class BooKDetailController {
         descriptionTextArea.setText(book.getDescription());
         descriptionTextArea.setEditable(false);
         reviewsList.setItems(ReviewDataService.loadReviewsOfSpecificBook(book.getBookId()));
-        thumbnail.setImage(new Image(book.getCoverImage()));
-
-        totalCopiesField.setOnKeyReleased(keyEvent -> {
-            isValidTotalCopies();
-        });
+        thumbnail.setImage(book.getThumbnail());
+        ratingLabel.setText(loadRating());
+        ratingTooltip.setText(book.getRating().toString());
+        ratingTooltip.setStyle("-fx-font-size: 14;");
+        ratingTooltip.setShowDelay(Duration.millis(500));
+        Tooltip.install(ratingLabel, ratingTooltip);
     }
 
     @FXML
@@ -118,6 +163,8 @@ public class BooKDetailController {
         }
         int adjustmentAvailableCopies = value - book.getTotalCopies();
         BookDataService.updateAvailableCopiesOfThisBook(book.getBookId(), adjustmentAvailableCopies);
+        BookDataService.setTotalCopiesOfSpecificBook(book.getBookId(), value);
+        showSuccessfulUpdatingMessage();
         book.setTotalCopies(value);
         book.setAvailableCopies(book.getAvailableCopies() + adjustmentAvailableCopies);
     }
@@ -135,6 +182,7 @@ public class BooKDetailController {
             System.err.println("Error can not set available copies.");
             return;
         }
+        showSuccessfulUpdatingMessage();
         book.setAvailableCopies(value);
     }
 
@@ -149,7 +197,15 @@ public class BooKDetailController {
         if (!BookDataService.setPriceOfSpecificBook(book.getBookId(), value)) {
             System.err.println("Error updating book's price.");
         }
+        showSuccessfulUpdatingMessage();
         book.setPrice(value);
+    }
+
+    @FXML
+    private void updateAll() {
+        setAvailableCopies();
+        setTotalCopies();
+        setPriceBook();
     }
 
     @FXML
@@ -170,6 +226,48 @@ public class BooKDetailController {
                 System.out.println("cancel!");
             }
         });
+    }
+
+    private String loadRating() {
+        System.out.println("rating of this book is: " + book.getRating().intValue());
+        return switch (book.getRating().intValue()) {
+            case 1 -> "★☆☆☆☆";
+            case 2 -> "★★☆☆☆";
+            case 3 -> "★★★☆☆";
+            case 4 -> "★★★★☆";
+            case 5 -> "★★★★★";
+            default -> "☆☆☆☆☆";
+        };
+    }
+
+    private void showSuccessfulUpdatingMessage() {
+        successfullyUpdateLabel.setVisible(true);
+        PauseTransition hideLabel = new PauseTransition(Duration.seconds(2));
+        hideLabel.setOnFinished(e -> successfullyUpdateLabel.setVisible(false));
+        hideLabel.play();
+    }
+
+    private void updateStars(int rating) {
+        this.currentRating = rating;
+
+        for (int i = 0; i < 5; i++) {
+            if (i < rating) {
+                stars[i].setText("★");
+                stars[i].setTextFill(Color.GOLD);
+            } else {
+                stars[i].setText("☆");
+                stars[i].setTextFill(Color.GRAY);
+            }
+        }
+    }
+
+    private void insertReviewIntoDatabase() {
+        String opinion = commentArea.getText();
+        if (currentRating == 0 || opinion == null) {
+            haveToVoteBookWarning.setVisible(true);
+        }
+        haveToVoteBookWarning.setVisible(false);
+        //Review review = new Review(1, book.getBookId(), opinion);
     }
 
     @FXML

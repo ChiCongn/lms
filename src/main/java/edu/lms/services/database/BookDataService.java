@@ -1,11 +1,13 @@
 package edu.lms.services.database;
 
 import edu.lms.models.book.Book;
+import edu.lms.models.book.BookManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.math.BigDecimal;
 import java.sql.*;
+import java.util.*;
 
 public class BookDataService {
     private static final String LOAD_BOOKS_QUERY = "SELECT * FROM books";
@@ -17,12 +19,21 @@ public class BookDataService {
     private static final String SET_AVAILABLE_COPIES_QUERY = "UPDATE books SET available_copies = ? WHERE book_id = ?";
     private static final String SET_TOTAL_COPIES_QUERY = "UPDATE books SET total_copies = ? WHERE book_id = ?";
     private static final String SET_PRICE_QUERY = "UPDATE books SET price = ? WHERE book_id = ?";
-
+    private static final String LOAD_TOP_CHOICES_QUERY = "SELECT book_id, (total_copies - available_copies) AS times FROM books ORDER BY times DESC LIMIT 10";
+    private static final String INSERT_CATEGORY_QUERY = "INSERT INTO categories (name) VALUES (?)";
+    private static final String INSERT_BOOK_CATEGORIES_QUERY = "INSERT INTO book_categories (book_id, category_id) VALUES (?, ?)";
+    private static final String GET_CATEGORIES_FOR_BOOK_QUERY = "SELECT c.name FROM categories c "
+            + "JOIN book_categories bc ON c.category_id = bc.category_id WHERE bc.book_id = ?";
+    private static final String GET_CATEGORY_ID_QUERY = "SELECT category_id FROM categories WHERE name = ?";
+    private static final String LOAD_CATEGORY_DISTRIBUTION_QUERY = "SELECT bc.category_id, c.name, COUNT(bc.book_id) AS count FROM book_categories bc " +
+            "JOIN categories c on c.category_id = bc.category_id group by bc.category_id, c.name";
 
     public static ObservableList<Book> loadBooksData() {
+        // liên kết api ?
         ObservableList<Book> bookList = FXCollections.observableArrayList();
 
         try (Connection connection = DatabaseService.getInstance().getConnection();
+             // hàm bắt buộc
              PreparedStatement statement = connection.prepareStatement(LOAD_BOOKS_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
 
@@ -45,6 +56,7 @@ public class BookDataService {
                 //String description, BigDecimal rating, int totalCopies, int availableCopies, String coverImage, String canonicalVolumeLink
                 Book book = new Book(id, title, authors, publishedYear, pageCount, language, description, rating, price, totalCopies, copiesAvailable,
                         coverImageUrl, canonicalVolumeLink);
+                book.setCategories(getCategoriesForBook(id));
                 bookList.add(book);
             }
         } catch (SQLException e) {
@@ -58,9 +70,9 @@ public class BookDataService {
      * when successful searching book, add it into database.
      * @param book book
      */
-    public static void addBook(Book book) {
+    public static boolean addBook(Book book) {
         if (isExistedInDatabase(book.getTitle())) {
-            return;
+            return false;
         }
 
         try (Connection connection = DatabaseService.getInstance().getConnection();
@@ -75,8 +87,8 @@ public class BookDataService {
             statement.setString(5, book.getLanguage());
             statement.setString(6, book.getDescription());
             statement.setBigDecimal(7, book.getRating());
-            statement.setInt(8, 100);
-            statement.setInt(9, 100);
+            statement.setInt(8, book.getTotalCopies());
+            statement.setInt(9, book.getAvailableCopies());
             statement.setString(10, book.getCoverImage());
             statement.setString(11, book.getCanonicalVolumeLink());
             statement.setBigDecimal(12, book.getPrice());
@@ -89,10 +101,13 @@ public class BookDataService {
             if (generatedKeys.next()) {
                 int generatedId = generatedKeys.getInt(1);
                 book.setBookId(generatedId);
+                insertBookCategories(generatedId, book.getCategories());
             }
+            return true;
         } catch (SQLException e) {
             System.err.println("Error adding book to database: " + e.getMessage());
         }
+        return false;
     }
 
     /**
@@ -113,7 +128,26 @@ public class BookDataService {
         return false;
     }
 
-    public static void updateAvailableCopiesOfThisBook(int bookId, int adjustment) {
+    public static Map<String, Integer> loadCategoryDistributionData() {
+        Map<String, Integer> categoryData = new LinkedHashMap<>();
+
+        try (Connection conn = DatabaseService.getInstance().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(LOAD_CATEGORY_DISTRIBUTION_QUERY);
+             ResultSet rs = stmt.executeQuery()) {
+
+            System.out.println("load category distribution");
+            while (rs.next()) {
+                categoryData.put(rs.getString("name"), rs.getInt("count"));
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error loading category distribution data: " + e.getMessage());
+        }
+
+        return categoryData;
+    }
+
+    public static boolean updateAvailableCopiesOfThisBook(int bookId, int adjustment) {
         try (Connection connection = DatabaseService.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_AVAILABLE_COPIES_BOOK_QUERY)) {
 
@@ -123,9 +157,11 @@ public class BookDataService {
 
             statement.execute();
             System.out.println("update available copies of book");
+            return true;
         } catch (SQLException e) {
             System.err.println("Error updating available copies of this book: " + e.getMessage());
         }
+        return false;
     }
 
     public static boolean setAvailableCopiesOfSpecificBook(int bookId, int newAvailableCopies) {
@@ -175,6 +211,24 @@ public class BookDataService {
         return false;
     }
 
+    public static List<Book> loadTopChoicesBook() {
+        List<Book> topChoiceBooks = new ArrayList<>();
+        try (Connection connection = DatabaseService.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(LOAD_TOP_CHOICES_QUERY);
+                ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int bookId = resultSet.getInt("book_id");
+                Book book = BookManager.getBook(bookId);
+                book.initializeThumbnail();
+                topChoiceBooks.add(book);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error loading top choices book: " + e.getMessage());
+        }
+        return topChoiceBooks;
+    }
+
     private static boolean isExistedInDatabase(String title) {
         try (Connection connection = DatabaseService.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SEARCH_BOOK_EXIST_IN_DATABASE_QUERY)) {
@@ -191,4 +245,79 @@ public class BookDataService {
         }
         return false;
     }
+
+    private static void insertBookCategories(int bookId, String categories) {
+        if (categories == null) {
+            System.out.println("categories is null");
+            return;
+        }
+
+        System.out.println("insert book categories");
+        String[] categoryArray = categories.split(",\\s*");
+        for (String category : categoryArray) {
+            int categoryId = insertCategoryIfNotExists(category);
+            if (categoryId == -1) {
+                System.err.println("Error: something is wrong when insert into book_categories. Can not find or add categories_id");
+                return;
+            }
+            insertBookCategoryRelation(bookId, categoryId);
+        }
+    }
+
+    private static void insertBookCategoryRelation(int bookId, int categoryId) {
+        try (Connection connection = DatabaseService.getInstance().getConnection();
+             PreparedStatement insertStmt = connection.prepareStatement(INSERT_BOOK_CATEGORIES_QUERY)) {
+
+            insertStmt.setInt(1, bookId);
+            insertStmt.setInt(2, categoryId);
+            insertStmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static int insertCategoryIfNotExists(String categoryName) {
+        try (Connection conn = DatabaseService.getInstance().getConnection()) {
+            try (PreparedStatement checkStmt = conn.prepareStatement(GET_CATEGORY_ID_QUERY)) {
+                checkStmt.setString(1, categoryName);
+                ResultSet rs = checkStmt.executeQuery();
+                if (rs.next()) {
+                    return rs.getInt("category_id");
+                } else {
+                    try (PreparedStatement insertStmt = conn.prepareStatement(INSERT_CATEGORY_QUERY, Statement.RETURN_GENERATED_KEYS)) {
+                        insertStmt.setString(1, categoryName);
+                        insertStmt.executeUpdate();
+                        try (ResultSet generatedKeys = insertStmt.getGeneratedKeys()) {
+                            if (generatedKeys.next()) {
+                                return generatedKeys.getInt(1);
+                            }
+                        }
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error inserting category: " + e.getMessage());
+        }
+
+        return -1;
+    }
+
+    private static String getCategoriesForBook(int bookId) {
+        StringBuilder categories = new StringBuilder();
+        try (Connection connection = DatabaseService.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(GET_CATEGORIES_FOR_BOOK_QUERY)) {
+
+            statement.setInt(1, bookId);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                categories.append(rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error getting categories for book: " + e.getMessage());
+        }
+        return categories.toString();
+    }
+
 }

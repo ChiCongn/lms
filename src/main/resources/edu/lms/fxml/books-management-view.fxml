@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.BooksManagementController">
-   <children>
-       <VBox layoutY="117.0" prefHeight="362.0" prefWidth="151.0" spacing="5.0">
+
+<BorderPane prefHeight="890.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.BooksManagementController">
+   <left>
+       <VBox prefHeight="478.0" prefWidth="200.0" spacing="10.0" styleClass="white-background" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
            <children>
-               <Label text="Browse">
+               <Label prefHeight="49.0" prefWidth="82.0" text="Browse">
                    <font>
                        <Font name="Berlin Sans FB" size="18.0" />
                    </font>
@@ -26,7 +30,7 @@
                        <Insets left="10.0" />
                    </VBox.margin>
                </Label>
-               <HBox alignment="CENTER" onMouseClicked="#backToHomeView" prefHeight="56.0" prefWidth="151.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
+               <HBox alignment="CENTER" onMouseClicked="#backToHomeView" prefHeight="56.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
                    <children>
                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -98,51 +102,163 @@
             </HBox>
            </children>
        </VBox>
-      <TableView fx:id="bookTableView" layoutX="161.0" layoutY="129.0" prefHeight="352.0" prefWidth="647.0">
-        <columns>
-          <TableColumn fx:id="idColumn" prefWidth="67.20001220703125" text="book id" />
-          <TableColumn fx:id="titleColumn" prefWidth="214.4000244140625" text="title" />
-            <TableColumn fx:id="authorsColumn" prefWidth="188.79998779296875" text="authors" />
-            <TableColumn fx:id="totalCopiesColumn" minWidth="8.0" prefWidth="72.79998779296875" text="total copies" />
-            <TableColumn fx:id="availableCopiesColumn" minWidth="8.0" prefWidth="101.5999633789063" text="available copies" />
-        </columns>
-      </TableView>
-      <HBox layoutX="161.0" layoutY="85.0" prefHeight="32.0" prefWidth="342.0">
+   </left>
+   <top>
+      <HBox prefHeight="60.0" prefWidth="200.0" styleClass="white-background" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
          <children>
-            <ChoiceBox prefHeight="26.0" prefWidth="62.0" />
-            <TextField fx:id="searchFilter" prefHeight="32.0" prefWidth="234.0" />
-            <ImageView fx:id="magnifyingGlass" fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/search.png" />
-               </image>
-            </ImageView>
-         </children>
-      </HBox>
-      <HBox layoutX="19.0" layoutY="14.0" prefHeight="38.0" prefWidth="106.0">
-         <children>
-            <ImageView fitHeight="37.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/Logo.png" />
-               </image>
-            </ImageView>
-            <Label prefHeight="41.0" prefWidth="109.0" text="Alphas" />
-         </children>
-      </HBox>
-      <HBox layoutX="661.0" layoutY="14.0" prefHeight="50.0" prefWidth="151.0">
-         <children>
-            <VBox prefHeight="34.0" prefWidth="116.0">
+            <Label alignment="CENTER" prefHeight="60.0" prefWidth="200.0" text="Alphas" textFill="#ff5056">
+               <font>
+                  <Font name="Edwardian Script ITC" size="36.0" />
+               </font>
+            </Label>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <Pane prefHeight="60.0" prefWidth="264.0" />
+            <Pane prefHeight="60.0" prefWidth="631.0" />
+            <HBox prefHeight="60.0" prefWidth="178.0">
                <children>
-                  <Label fx:id="usernameLabel" prefHeight="25.0" prefWidth="158.0" textAlignment="RIGHT" />
-                  <Label prefHeight="20.0" prefWidth="116.0" text="librarian" />
+                  <VBox prefHeight="34.0" prefWidth="116.0">
+                     <children>
+                        <Label fx:id="usernameLabel" prefHeight="8.0" prefWidth="116.0" textAlignment="RIGHT">
+                           <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="116.0" text="Librarian">
+                           <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <ImageView fx:id="avatar" fitHeight="47.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/default_avatar.png" />
+                     </image>
+                  </ImageView>
                </children>
-            </VBox>
-            <ImageView fx:id="avatar" fitHeight="31.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/default_avatar.png" />
-               </image>
-            </ImageView>
+            </HBox>
          </children>
       </HBox>
-      <Button layoutX="691.0" layoutY="87.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="116.0" text="+ Add book" />
-   </children>
-</AnchorPane>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="131.0" prefWidth="1095.0" spacing="40.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="166.0" prefWidth="230.0" style="-fx-background-radius: 20;" stylesheets="@../css/Test.css">
+                     <children>
+                        <Label text="Total Books">
+                           <font>
+                              <Font name="Franklin Gothic Medium" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="20000">
+                           <font>
+                              <Font name="Rockwell Bold" size="38.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <styleClass>
+                        <String fx:value="white-background" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="166.0" prefWidth="230.0" style="-fx-background-radius: 20;" stylesheets="@../css/Test.css">
+                     <children>
+                        <Label text="Total Clients">
+                           <font>
+                              <Font name="Franklin Gothic Medium Cond" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="1000">
+                           <font>
+                              <Font name="Rockwell Bold" size="38.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <styleClass>
+                        <String fx:value="white-background" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="220.0" layoutY="10.0" prefHeight="166.0" prefWidth="230.0" style="-fx-background-radius: 20;" stylesheets="@../css/Test.css">
+                     <children>
+                        <Label text="Total BookLoans">
+                           <font>
+                              <Font name="Franklin Gothic Medium" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="1969">
+                           <font>
+                              <Font name="Rockwell Bold" size="38.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <styleClass>
+                        <String fx:value="white-background" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="572.0" layoutY="10.0" prefHeight="166.0" prefWidth="230.0" style="-fx-background-radius: 20;" stylesheets="@../css/Test.css">
+                     <children>
+                        <Label text="Total Revenues">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="10000">
+                           <font>
+                              <Font name="Rockwell Bold" size="38.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <styleClass>
+                        <String fx:value="white-background" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Pane prefHeight="602.0" prefWidth="99.0" />
+                  <VBox prefHeight="590.0" prefWidth="864.0" spacing="10.0">
+                     <children>
+                        <HBox>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="32.0" prefWidth="342.0">
+                                 <children>
+                                    <ChoiceBox prefHeight="26.0" prefWidth="62.0" />
+                                    <TextField fx:id="searchFilter" prefHeight="32.0" prefWidth="234.0" />
+                                    <ImageView fx:id="magnifyingGlass" fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/search.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                              <Pane prefHeight="0.0" prefWidth="200.0" />
+                              <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="100.0" text="+ Add book" />
+                           </children>
+                        </HBox>
+                        <TableView fx:id="bookTableView" prefHeight="543.0" prefWidth="801.0" styleClass="table-cell" stylesheets="@../css/LibrarianDashboard.css" VBox.vgrow="ALWAYS">
+                          <columns>
+                            <TableColumn fx:id="idColumn" prefWidth="107.20001220703125" text="book id" />
+                            <TableColumn fx:id="titleColumn" prefWidth="184.80001831054688" text="title" />
+                              <TableColumn fx:id="authorsColumn" prefWidth="180.00003051757812" text="authors" />
+                              <TableColumn fx:id="totalCopiesColumn" minWidth="8.0" prefWidth="131.2000732421875" text="total copies" />
+                              <TableColumn fx:id="availableCopiesColumn" minWidth="8.0" prefWidth="247.9998779296875" text="available copies" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Pane prefHeight="49.0" prefWidth="1095.0" />
+         </children>
+         <BorderPane.margin>
+            <Insets left="20.0" top="20.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>
