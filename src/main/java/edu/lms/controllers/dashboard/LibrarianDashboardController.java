@@ -61,11 +61,11 @@ public class LibrarianDashboardController extends DashboardController implements
         numberOfBooksLabel.setText(Integer.toString(BookManager.getNumberOfBooks()));
         numberOfBorrowedBooksLabel.setText(Integer.toString(IssuesManager.getTotalBorrowedBook()));
         numberOfClientsLabel.setText(Integer.toString(UserManager.getNumberOfClients()));
-        List<Book> topChoiceBooks = BookManager.getTopChoiceBooks();
 
         initializeMonthlyBorrowedChart();
         initializeCategoriesDistributionPieChart();
 
+        List<Book> topChoiceBooks = BookManager.getTopChoiceBooks();
         System.out.println("set up top choice books");
         for (int i = 0; i < 10; i++) {
             final int currentIndex = i;

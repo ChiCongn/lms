@@ -1,14 +1,130 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.lms.fxml.ClientBookDetailsView"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="890.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.client.BookDetailsController">
+   <children>
+      <Button layoutX="43.0" layoutY="39.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="64.0" text="Back" />
+      <HBox layoutX="107.0" layoutY="112.0" prefHeight="338.0" prefWidth="1062.0">
+         <children>
+            <VBox prefHeight="338.0" prefWidth="212.0">
+               <children>
+                  <ImageView fitHeight="278.0" fitWidth="226.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/TanGaiDaiCuong.png" />
+                     </image>
+                  </ImageView>
+                  <HBox prefHeight="37.0" prefWidth="212.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="338.0" prefWidth="503.0">
+               <children>
+                  <HBox prefHeight="290.0" prefWidth="426.0">
+                     <children>
+                        <VBox prefHeight="290.0" prefWidth="142.0">
+                           <children>
+                              <Label prefHeight="32.0" prefWidth="98.0" text="Authors:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="32.0" prefWidth="97.0" text="Categories:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="32.0" prefWidth="128.0" text="Published year:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="32.0" prefWidth="97.0" text="Page count:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="32.0" prefWidth="97.0" text="Language:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="290.0" prefWidth="357.0">
+                           <children>
+                              <Label prefHeight="32.0" prefWidth="357.0" text="Authors:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="32.0" prefWidth="359.0" text="Authors:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="32.0" prefWidth="358.0" text="Authors:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="32.0" prefWidth="355.0" text="Authors:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="32.0" prefWidth="362.0" text="Authors:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="36.0" prefWidth="426.0">
+                     <children>
+                        <Hyperlink prefHeight="34.0" prefWidth="106.0" text="Open book">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Hyperlink>
+                        <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="118.0" text="Borrow now">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="338.0" prefWidth="358.0">
+               <children>
+                  <Label prefHeight="32.0" prefWidth="111.0" text="Overview">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextArea prefHeight="261.0" prefWidth="355.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <ListView layoutX="107.0" layoutY="497.0" prefHeight="338.0" prefWidth="1062.0" />
+      <Button layoutX="1097.0" layoutY="54.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="71.0" text="☆">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+   </children>
 </AnchorPane>

@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class Issue {
     int issueId;
-    Client reporter;
+    int reporterId;
     Book issueBook;
     String description;
     String status;
@@ -15,25 +15,25 @@ public class Issue {
     LocalDate fixedDate;
     String remark;
 
-    public Issue(Client reporter, Book issueBook, String description, LocalDate reportedDate) {
-        this.reporter = reporter;
+    public Issue(int reporterId, Book issueBook, String description, LocalDate reportedDate) {
+        this.reporterId = reporterId;
         this.issueBook = issueBook;
         this.description = description;
         this.reportedDate = reportedDate;
     }
 
-    public Issue(int issueId, Client reporter, Book issueBook, String description, String status, LocalDate reportedDate) {
+    public Issue(int issueId, int reporterId, Book issueBook, String description, String status, LocalDate reportedDate) {
         this.issueId = issueId;
-        this.reporter = reporter;
+        this.reporterId = reporterId;
         this.issueBook = issueBook;
         this.description = description;
         this.status = status;
         this.reportedDate = reportedDate;
     }
 
-    public Issue(int issueId, Client reporter, Book issueBook, String description, String status, LocalDate reportedDate, LocalDate fixedDate, String remark) {
+    public Issue(int issueId, int reporterId, Book issueBook, String description, String status, LocalDate reportedDate, LocalDate fixedDate, String remark) {
         this.issueId = issueId;
-        this.reporter = reporter;
+        this.reporterId = reporterId;
         this.issueBook = issueBook;
         this.description = description;
         this.status = status;
@@ -50,12 +50,12 @@ public class Issue {
         this.issueId = issueId;
     }
 
-    public Client getReporter() {
-        return reporter;
+    public int getReporterId() {
+        return reporterId;
     }
 
-    public void setReporter(Client reporter) {
-        this.reporter = reporter;
+    public void setReporterId(int reporterId) {
+        this.reporterId = reporterId;
     }
 
     public Book getIssueBook() {

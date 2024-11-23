@@ -2,10 +2,13 @@ package edu.lms.controllers.login;
 
 import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
+import edu.lms.controllers.client.ClientDashboardController;
 import edu.lms.controllers.dashboard.AdminDashboardController;
 import edu.lms.controllers.dashboard.DashboardController;
 import edu.lms.controllers.dashboard.LibrarianDashboardController;
+import edu.lms.models.user.Client;
 import edu.lms.models.user.Librarian;
+import edu.lms.models.user.UserManager;
 import edu.lms.services.database.DatabaseConnection;
 import edu.lms.services.database.UsersDataService;
 import javafx.concurrent.Task;
@@ -112,8 +115,10 @@ public class SignInController {
             DashboardController.setLibrarian(librarian);
             LibrarianDashboardController librarianDashboardController = SceneManager.switchScene(Constants.LIBRARIAN_DASHBOARD_VIEW, true);
         } else {
-            //ClientDashboardController clientDashboardController = SceneManager.switchScene(Constants.CLIENT_DASHBOARD_VIEW);
-            System.out.println("nothing");
+            System.out.println("sign in with client role");
+            Client client = (Client) UsersDataService.loadUserData(userId);
+            edu.lms.controllers.client.DashboardController.setClientData(client);
+            ClientDashboardController clientDashboardController = SceneManager.switchScene(Constants.CLIENT_DASHBOARD_VIEW, true);
         }
     }
 

@@ -72,7 +72,7 @@ public class IssuesManagementController extends DashboardController implements I
 
         ObservableList<Issue> issues = IssuesManager.getIssues();
         issueIdColumn.setCellValueFactory(new PropertyValueFactory<>("issueId"));
-        reporterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getReporter().getUsername()));
+        //reporterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getReporter().getUsername()));
         issueBookColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIssueBook().getTitle()));
         overviewIssueColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         issuesTableView.setItems(issues);
