@@ -137,7 +137,10 @@
                   <VBox prefHeight="72.0" prefWidth="1014.0">
                      <children>
                         <HBox fx:id="starContainer" prefHeight="32.0" prefWidth="1014.0" />
-                        <TextArea fx:id="commentArea" prefHeight="44.0" prefWidth="1014.0" />
+                        <TextArea fx:id="commentArea" prefHeight="44.0" prefWidth="1014.0">
+                           <tooltip>
+                              <Tooltip fx:id="cannotModifyReview" text="Empty Tooltip" />
+                           </tooltip></TextArea>
                      </children>
                   </VBox>
                   <ImageView fitHeight="32.0" fitWidth="52.0" onMouseClicked="#insertReviewIntoDatabase" pickOnBounds="true" preserveRatio="true">
