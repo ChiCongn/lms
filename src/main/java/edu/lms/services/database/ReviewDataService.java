@@ -1,6 +1,6 @@
 package edu.lms.services.database;
 
-import edu.lms.models.book.Review;
+import edu.lms.models.review.Review;
 import edu.lms.models.user.UserManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

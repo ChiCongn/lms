@@ -5,6 +5,8 @@ import edu.lms.controllers.SceneManager;
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
 
+import edu.lms.models.issue.IssuesManager;
+import edu.lms.models.user.UserManager;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,12 +42,33 @@ public class BooksManagementController extends DashboardController implements In
     @FXML
     private TableColumn<Book, Integer> availableCopiesColumn;
 
+    @FXML
+    private Label totalBooksLabel;
+
+    @FXML
+    private Label totalBorrowedBooksLabel;
+
+
+    @FXML
+    private Label totalFinesLabel;
+
+    @FXML
+    private Label totalIssuesLabel;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         usernameLabel.setText(librarian.getUsername());
         avatar.setImage(new Image(librarian.getAvatarPath()));
         System.out.println("load all books for books management view");
+        initializeBooksTableView();
+        totalBooksLabel.setText(Integer.toString(BookManager.getNumberOfBooks()));
+        totalIssuesLabel.setText(Integer.toString(IssuesManager.getNumberOfIssues()));
+        totalFinesLabel.setText(IssuesManager.getTotalFines().toString());
+        totalBorrowedBooksLabel.setText(Integer.toString(IssuesManager.getNumberOfBorrowed()));
+    }
+
+    private void initializeBooksTableView() {
         ObservableList<Book> books = BookManager.getBooks();
         idColumn.setCellValueFactory(new PropertyValueFactory<>("bookId"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));

@@ -4,7 +4,7 @@ import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
-import edu.lms.models.book.Review;
+import edu.lms.models.review.Review;
 import edu.lms.services.AlertDialog;
 import edu.lms.services.database.BookDataService;
 import edu.lms.services.database.ReviewDataService;

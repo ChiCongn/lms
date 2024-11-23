@@ -30,5 +30,6 @@ module edu.lms {
 
     exports edu.lms.controllers.Client;
     opens edu.lms.controllers.Client to javafx.fxml;
+    exports edu.lms.models.review;
 
 }

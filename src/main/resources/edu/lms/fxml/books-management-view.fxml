@@ -17,8 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane prefHeight="890.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.BooksManagementController">
+<BorderPane prefHeight="890.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.BooksManagementController">
    <left>
        <VBox prefHeight="478.0" prefWidth="200.0" spacing="10.0" styleClass="white-background" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
            <children>
@@ -152,7 +151,7 @@
                               <Font name="Franklin Gothic Medium" size="18.0" />
                            </font>
                         </Label>
-                        <Label text="20000">
+                        <Label fx:id="totalBooksLabel" prefHeight="46.0" prefWidth="0.0">
                            <font>
                               <Font name="Rockwell Bold" size="38.0" />
                            </font>
@@ -165,12 +164,12 @@
                   </VBox>
                   <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="166.0" prefWidth="230.0" style="-fx-background-radius: 20;" stylesheets="@../css/Test.css">
                      <children>
-                        <Label text="Total Clients">
+                        <Label text="Total borrowed books">
                            <font>
                               <Font name="Franklin Gothic Medium Cond" size="18.0" />
                            </font>
                         </Label>
-                        <Label text="1000">
+                        <Label fx:id="totalBorrowedBooksLabel">
                            <font>
                               <Font name="Rockwell Bold" size="38.0" />
                            </font>
@@ -183,12 +182,12 @@
                   </VBox>
                   <VBox alignment="CENTER" layoutX="220.0" layoutY="10.0" prefHeight="166.0" prefWidth="230.0" style="-fx-background-radius: 20;" stylesheets="@../css/Test.css">
                      <children>
-                        <Label text="Total BookLoans">
+                        <Label text="Total Issues">
                            <font>
                               <Font name="Franklin Gothic Medium" size="18.0" />
                            </font>
                         </Label>
-                        <Label text="1969">
+                        <Label fx:id="totalIssuesLabel">
                            <font>
                               <Font name="Rockwell Bold" size="38.0" />
                            </font>
@@ -201,12 +200,12 @@
                   </VBox>
                   <VBox alignment="CENTER" layoutX="572.0" layoutY="10.0" prefHeight="166.0" prefWidth="230.0" style="-fx-background-radius: 20;" stylesheets="@../css/Test.css">
                      <children>
-                        <Label text="Total Revenues">
+                        <Label text="Total Fines">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label text="10000">
+                        <Label fx:id="totalFinesLabel">
                            <font>
                               <Font name="Rockwell Bold" size="38.0" />
                            </font>
@@ -226,9 +225,9 @@
                      <children>
                         <HBox>
                            <children>
-                              <HBox alignment="CENTER" prefHeight="32.0" prefWidth="342.0">
+                              <HBox alignment="CENTER" prefHeight="38.0" prefWidth="375.0">
                                  <children>
-                                    <ChoiceBox prefHeight="26.0" prefWidth="62.0" />
+                                    <ChoiceBox prefHeight="34.0" prefWidth="95.0" />
                                     <TextField fx:id="searchFilter" prefHeight="32.0" prefWidth="234.0" />
                                     <ImageView fx:id="magnifyingGlass" fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -237,8 +236,8 @@
                                     </ImageView>
                                  </children>
                               </HBox>
-                              <Pane prefHeight="0.0" prefWidth="200.0" />
-                              <Button mnemonicParsing="false" onMouseClicked="#switchToAddBookView" prefHeight="47.0" prefWidth="100.0" text="+ Add book" />
+                              <Pane prefHeight="27.0" prefWidth="398.0" />
+                              <Button mnemonicParsing="false" onMouseClicked="#switchToAddBookView" prefHeight="39.0" prefWidth="127.0" text="+ Add book" />
                            </children>
                         </HBox>
                         <TableView fx:id="bookTableView" prefHeight="543.0" prefWidth="801.0" styleClass="table-cell" stylesheets="@../css/LibrarianDashboard.css" VBox.vgrow="ALWAYS">

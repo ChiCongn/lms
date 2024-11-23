@@ -21,9 +21,10 @@ public class BorrowedBookDataService {
     private static final String LOAD_ALL_BORROWED_BOOKS_QUERY = "SELECT * FROM borrowed_books";
     private static final String ADD_BORROWED_BOOK_QUERY = "INSERT INTO books (user_id, book_id, borrow_date, due_date, return_date, status) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String CHECK_IS_BORROWED_BY_THIS_CLIENT = "SELECT COUNT(*) FROM borrowed_books WHERE book_id = ? AND user_id = ?";
-    private static final String COUNT_BORROWED_BOOKS_QUERY = "SELECT COUNT(*) FROM borrowed_books";
+    private static final String COUNT_BORROWED_BOOKS_QUERY = "SELECT COUNT(*) FROM borrowed_books WHERE status = 'borrowed' OR status = 'overdue'";
     private static final String LOAD_MONTHLY_BORROWED_BOOKS_QUERY = "SELECT MONTHNAME(borrow_date) AS month, COUNT(*) AS borrow_count " +
             "FROM borrowed_books GROUP BY MONTH(borrow_date), MONTHNAME(borrow_date) ORDER BY MONTH(borrow_date)";
+
 
     public static int getNumberOfBorrowedBook() {
         int count = 0;

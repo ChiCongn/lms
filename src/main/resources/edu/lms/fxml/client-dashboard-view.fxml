@@ -63,7 +63,7 @@
    <left>
       <VBox prefHeight="200.0" prefWidth="250.0" spacing="10.0" styleClass="white-bacground" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
          <children>
-            <VBox fx:id="hbox" prefHeight="217.0" prefWidth="250.0" spacing="5.0">
+            <VBox fx:id="hbox" prefHeight="178.0" prefWidth="250.0" spacing="5.0">
                <children>
                   <Label text="Browse">
                      <font>
@@ -73,20 +73,6 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox fx:id="topChart" alignment="CENTER" onMouseClicked="#switchToTopChart" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/chart.png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="22.0" prefWidth="117.0" text="Top Chart">
-                           <font>
-                              <Font name="Berlin Sans FB" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
                   <HBox fx:id="Browse" alignment="CENTER" onMouseClicked="#switchToBrowse" prefHeight="50.0" prefWidth="200.0" spacing="15.0" stylesheets="@../css/Test.css">
                      <children>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -94,7 +80,7 @@
                               <Image url="@../images/chart.png" />
                            </image>
                         </ImageView>
-                        <Label prefHeight="22.0" prefWidth="120.0" text="Browse">
+                        <Label prefHeight="22.0" prefWidth="120.0" text="Home">
                            <font>
                               <Font name="Berlin Sans FB" size="18.0" />
                            </font>
@@ -221,7 +207,7 @@
                   <HBox fx:id="recentlyAdded" alignment="CENTER_LEFT" prefHeight="270.0" prefWidth="1002.0" spacing="20.0" styleClass="transparent" stylesheets="@../css/Test.css" />
                </content>
             </ScrollPane>
-            <Label layoutX="30.0" layoutY="30.0" prefHeight="40.0" prefWidth="266.0" text="Recommend For You">
+            <Label layoutX="30.0" layoutY="30.0" prefHeight="40.0" prefWidth="266.0" text="Top choices">
                <font>
                   <Font size="24.0" />
                </font>

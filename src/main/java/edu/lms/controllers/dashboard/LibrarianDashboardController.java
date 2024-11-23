@@ -4,6 +4,7 @@ import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
+import edu.lms.models.issue.IssuesManager;
 import edu.lms.models.user.UserManager;
 
 import edu.lms.services.database.BookDataService;
@@ -38,9 +39,6 @@ public class LibrarianDashboardController extends DashboardController implements
     private Label numberOfClientsLabel;
 
     @FXML
-    private TextField searchText;
-
-    @FXML
     private Label usernameLabel;
 
     @FXML
@@ -61,7 +59,7 @@ public class LibrarianDashboardController extends DashboardController implements
         usernameLabel.setText(librarian.getUsername());
         avatarImage.setImage(new Image(librarian.getAvatarPath()));
         numberOfBooksLabel.setText(Integer.toString(BookManager.getNumberOfBooks()));
-        numberOfBorrowedBooksLabel.setText(Integer.toString(BorrowedBookDataService.getNumberOfBorrowedBook()));
+        numberOfBorrowedBooksLabel.setText(Integer.toString(IssuesManager.getTotalBorrowedBook()));
         numberOfClientsLabel.setText(Integer.toString(UserManager.getNumberOfClients()));
         List<Book> topChoiceBooks = BookManager.getTopChoiceBooks();
 

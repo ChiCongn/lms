@@ -2,20 +2,31 @@ package edu.lms.models.issue;
 
 import edu.lms.models.book.BorrowedBook;
 import edu.lms.services.database.BorrowedBookDataService;
+import edu.lms.services.database.FinesDao;
 import edu.lms.services.database.IssuesDataService;
 import javafx.collections.ObservableList;
+
+import java.math.BigDecimal;
 
 public class IssuesManager {
     private static ObservableList<Issue> issues;
     private static ObservableList<BorrowedBook> borrowedBooks;
+    private static BigDecimal totalFines;
+    private static int totalBorrowedBook;
 
     public static void initialize() {
         issues = IssuesDataService.loadAllIssues();
         borrowedBooks = BorrowedBookDataService.loadAllBorrowedBooks();
+        totalFines = FinesDao.calculateTotalFines();
+        totalBorrowedBook = BorrowedBookDataService.getNumberOfBorrowedBook();
     }
 
     public static ObservableList<Issue> getIssues() {
         return issues;
+    }
+
+    public static int getNumberOfIssues() {
+        return issues.size();
     }
 
     public static Issue getIssue(int issueId) {
@@ -38,6 +49,10 @@ public class IssuesManager {
         return borrowedBooks;
     }
 
+    public static int getNumberOfBorrowed() {
+        return borrowedBooks.size();
+    }
+
     public static BorrowedBook getBorrowedBook(int borrowedId) {
         int lo = 0, hi = borrowedBooks.size() - 1;
         while (lo <= hi) {
@@ -51,5 +66,21 @@ public class IssuesManager {
             }
         }
         return null;
+    }
+
+    public static BigDecimal getTotalFines() {
+        return totalFines;
+    }
+
+    public static void setTotalFines(BigDecimal totalFines) {
+        IssuesManager.totalFines = totalFines;
+    }
+
+    public static int getTotalBorrowedBook() {
+        return totalBorrowedBook;
+    }
+
+    public static void setTotalBorrowedBook(int totalBorrowedBook) {
+        IssuesManager.totalBorrowedBook = totalBorrowedBook;
     }
 }

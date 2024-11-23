@@ -1,4 +1,4 @@
-package edu.lms.models.book;
+package edu.lms.models.review;
 
 public class Review {
     private int userId;
