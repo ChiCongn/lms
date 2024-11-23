@@ -1,4 +1,4 @@
-package edu.lms.controllers.dashboard;
+package edu.lms.controllers.librarian;
 
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;

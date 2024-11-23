@@ -39,11 +39,9 @@ public class ReviewDataService {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int userId = resultSet.getInt("user_id");
-                String username = Objects.requireNonNull(UserManager.getClient(userId)).getUsername();
-                String avatarPath = Objects.requireNonNull(UserManager.getClient(userId)).getUsername();
                 String reviewText = resultSet.getString("review_text");
                 int rating = resultSet.getInt("rating");
-                Review loadReview = new Review(userId, username, bookId, reviewText, avatarPath, rating);
+                Review loadReview = new Review(userId, bookId, reviewText, rating);
                 reviews.add(loadReview);
             }
         } catch (SQLException e) {

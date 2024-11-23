@@ -1,10 +1,10 @@
-package edu.lms.controllers.dashboard;
+package edu.lms.controllers.librarian;
 
 import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.controllers.login.SignInController;
+import edu.lms.models.issue.IssuesManager;
 import edu.lms.models.user.Librarian;
-import javafx.fxml.FXML;
 
 
 public class DashboardController {
@@ -15,8 +15,10 @@ public class DashboardController {
         return librarian;
     }
 
-    public static void setLibrarian(Librarian librarian) {
+    public static void setData(Librarian librarian) {
         DashboardController.librarian = librarian;
+        //UserManager.initialize();
+        IssuesManager.initialize();
     }
 
     public void backToHomeView() {

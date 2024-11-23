@@ -1,10 +1,11 @@
-package edu.lms.controllers.dashboard;
+package edu.lms.controllers.librarian;
 
 import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
 import edu.lms.models.review.Review;
+import edu.lms.models.review.ReviewCell;
 import edu.lms.services.AlertDialog;
 import edu.lms.services.database.BookDataService;
 import edu.lms.services.database.ReviewDataService;
@@ -12,13 +13,10 @@ import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.math.BigDecimal;
@@ -133,7 +131,7 @@ public class BooKDetailController {
         descriptionTextArea.setEditable(false);
         reviewsList.setItems(ReviewDataService.loadReviewsOfSpecificBook(book.getBookId()));
         thumbnail.setImage(book.getThumbnail());
-        ratingLabel.setText(loadRating());
+        ratingLabel.setText(ReviewCell.loadRating(book.getRating().intValue()));
         ratingTooltip.setText(book.getRating().toString());
         ratingTooltip.setStyle("-fx-font-size: 14;");
         ratingTooltip.setShowDelay(Duration.millis(500));
@@ -228,18 +226,6 @@ public class BooKDetailController {
         });
     }
 
-    private String loadRating() {
-        System.out.println("rating of this book is: " + book.getRating().intValue());
-        return switch (book.getRating().intValue()) {
-            case 1 -> "★☆☆☆☆";
-            case 2 -> "★★☆☆☆";
-            case 3 -> "★★★☆☆";
-            case 4 -> "★★★★☆";
-            case 5 -> "★★★★★";
-            default -> "☆☆☆☆☆";
-        };
-    }
-
     private void showSuccessfulUpdatingMessage() {
         successfullyUpdateLabel.setVisible(true);
         PauseTransition hideLabel = new PauseTransition(Duration.seconds(2));
@@ -277,46 +263,7 @@ public class BooKDetailController {
 
     private void configureListReviews() {
         System.out.println("Configuring review list");
-        reviewsList.setCellFactory(param -> new ListCell<>() {
-            private final ImageView avatarImageView = new ImageView();
-            private final ImageView ratingImageView = new ImageView();
-            private final Text reviewText = new Text();
-            private final VBox contentBox = new VBox(ratingImageView, reviewText);
-            {
-                ratingImageView.setFitHeight(20);
-            }
-            private final HBox cellContainer = new HBox(avatarImageView, contentBox);
-
-            {
-                avatarImageView.setFitHeight(20);
-                avatarImageView.setFitWidth(20);
-                cellContainer.setSpacing(5);
-            }
-
-            @Override
-            protected void updateItem(Review review, boolean empty) {
-                super.updateItem(review, empty);
-                if (empty || review == null) {
-                    setGraphic(null);
-                } else {
-                    reviewText.setText(review.getReview());
-                    ratingImageView.setImage(new Image(getRatingImagePath(review.getRating())));
-                    //avatarImageView.setImage(new Image(review.getAvatarPath(), true));
-                    setGraphic(cellContainer);
-                }
-            }
-        });
-    }
-
-    private String getRatingImagePath(int rating) {
-        return switch (rating) {
-            case 1 -> "file:/E:/AllSemesters/ThirdSemester/OOP/lms/target/classes/edu/lms/images/oneFillingsStar.png";
-            case 2 -> "file:/E:/AllSemesters/ThirdSemester/OOP/lms/target/classes/edu/lms/images/twoFillingStars.png";
-            case 3 -> "file:/E:/AllSemesters/ThirdSemester/OOP/lms/target/classes/edu/lms/images/threeFillingsStars.png";
-            case 4 -> "file:/E:/AllSemesters/ThirdSemester/OOP/lms/target/classes/edu/lms/images/fourFillingsStars.png";
-            case 5 -> "file:/E:/AllSemesters/ThirdSemester/OOP/lms/target/classes/edu/lms/images/fiveFillingsStars.png";
-            default -> "file:/E:/AllSemesters/ThirdSemester/OOP/lms/target/classes/edu/lms/images/zero";
-        };
+        reviewsList.setCellFactory(param -> new ReviewCell());
     }
 
     private static int isInteger(String input) {

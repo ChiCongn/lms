@@ -25,8 +25,8 @@ module edu.lms {
     exports edu.lms.controllers.login;
     opens edu.lms.controllers.login to javafx.fxml;
 
-    exports edu.lms.controllers.dashboard;
-    opens edu.lms.controllers.dashboard to javafx.fxml;
+    exports edu.lms.controllers.librarian;
+    opens edu.lms.controllers.librarian to javafx.fxml;
 
     exports edu.lms.controllers.client;
     opens edu.lms.controllers.client to javafx.fxml;

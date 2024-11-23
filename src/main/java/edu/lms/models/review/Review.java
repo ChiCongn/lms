@@ -1,19 +1,21 @@
 package edu.lms.models.review;
 
+import edu.lms.models.user.UserManager;
+
+import java.util.Objects;
+
 public class Review {
     private int userId;
-    private String username;
     private int bookId;
     private String review;
     private String avatarPath;
     private int rating;
 
-    public Review(int userId, String username, int bookId, String review, String avatarPath, int rating) {
+    public Review(int userId, int bookId, String review, int rating) {
         this.userId = userId;
-        this.username = username;
         this.bookId = bookId;
         this.review = review;
-        this.avatarPath = avatarPath;
+        this.avatarPath = Objects.requireNonNull(UserManager.getClient(userId)).getAvatarPath();
         this.rating = rating;
     }
 
@@ -23,14 +25,6 @@ public class Review {
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public int getBookId() {

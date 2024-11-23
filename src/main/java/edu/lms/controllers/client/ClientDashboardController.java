@@ -2,7 +2,6 @@ package edu.lms.controllers.client;
 
 import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
-import edu.lms.controllers.dashboard.BooKDetailController;
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
 import edu.lms.models.user.ClientDataManager;
@@ -38,14 +37,19 @@ public class ClientDashboardController extends DashboardController implements In
         usernameLabel.setText(client.getUsername());
         avatarImage.setImage(new Image(client.getAvatarPath()));
         initializeTopChoiceBooks();
+        initializeRecentBooks();
+    }
+
+    private void initializeRecentBooks() {
         List<Book> recentBooks = ClientDataManager.getRecentBooks();
         System.out.println("set up recent books");
         for (int i = 0; i < recentBooks.size(); i++) {
             final int currentIndex = i;
             VBox bookCard = createBookCard(recentBooks.get(currentIndex));
             bookCard.setOnMouseClicked(mouseEvent -> {
-                BookDetailsController  bookDetailsController = SceneManager.switchScene(Constants.CLIENT_BOOK_DETAILS_VIEW, true);
-                //booKDetailsController.initialize(recentBooks.get(currentIndex));
+                ClientBookDetailsController clientBookDetailsController = SceneManager.switchScene(Constants.CLIENT_BOOK_DETAILS_VIEW, true);
+                assert clientBookDetailsController != null;
+                clientBookDetailsController.initialize(recentBooks.get(currentIndex));
             });
             recentBooksContainer.getChildren().add(bookCard);
         }
@@ -58,9 +62,9 @@ public class ClientDashboardController extends DashboardController implements In
             final int currentIndex = i;
             VBox bookCard = createBookCard(topChoiceBooks.get(currentIndex));
             bookCard.setOnMouseClicked(mouseEvent -> {
-                BooKDetailController booKDetailController = SceneManager.switchScene(Constants.BOOK_DETAILS_VIEW, true);
-                assert booKDetailController != null;
-                booKDetailController.initialize(topChoiceBooks.get(currentIndex));
+                ClientBookDetailsController clientBookDetailsController = SceneManager.switchScene(Constants.CLIENT_BOOK_DETAILS_VIEW, true);
+                assert clientBookDetailsController != null;
+                clientBookDetailsController.initialize(topChoiceBooks.get(currentIndex));
             });
             topChoiceBooksContainer.getChildren().add(bookCard);
         }

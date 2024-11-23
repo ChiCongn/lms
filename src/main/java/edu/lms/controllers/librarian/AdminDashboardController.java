@@ -1,4 +1,4 @@
-package edu.lms.controllers.dashboard;
+package edu.lms.controllers.librarian;
 
 public class AdminDashboardController {
 }

@@ -1,4 +1,4 @@
-package edu.lms.controllers.dashboard;
+package edu.lms.controllers.librarian;
 
 import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
@@ -6,7 +6,6 @@ import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
 
 import edu.lms.models.issue.IssuesManager;
-import edu.lms.models.user.UserManager;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

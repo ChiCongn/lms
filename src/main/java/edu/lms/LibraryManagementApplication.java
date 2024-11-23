@@ -25,7 +25,7 @@ public class LibraryManagementApplication extends Application {
         SceneManager.setPrimaryStage(primaryStage);
         EmailService.initialize();
         BookManager.initialize();
-        //UserManager.initialize();
+        UserManager.initialize();
         //IssuesManager.initialize();
         try {
             FXMLLoader loader = new FXMLLoader();

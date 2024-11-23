@@ -1,4 +1,4 @@
-package edu.lms.controllers.dashboard;
+package edu.lms.controllers.librarian;
 
 import edu.lms.models.issue.Issue;
 import edu.lms.models.book.BorrowedBook;
