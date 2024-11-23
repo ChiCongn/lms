@@ -1,0 +1,49 @@
+#searchTextField {
+    -fx-translate-z: 10px;
+    -fx-effect: dropshadow(gaussian, black, 2, 0.2, 2, 2);
+    -fx-border-width: 2px;
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+}
+
+#searchTextField:focused {
+    -fx-border-color: linear-gradient(to bottom, #E5E3D4, #9ABF80);
+    -fx-border-width: 1px;
+    -fx-effect: none;
+}
+
+.buttonAddBookView {
+    -fx-pref-height: 37;
+    -fx-pref-width: 65;
+    -fx-translate-z: -10px;
+    -fx-background-color: linear-gradient(to bottom, #4facfe, #00f2fe);
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-padding: 10px 10px;
+    -fx-effect: dropshadow(gaussian, black, 2, 0.5, 2, 2);
+}
+
+.buttonAddBookView:hover {
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.buttonAddBookView:pressed {
+    -fx-background-color: linear-gradient(to bottom, #4facfe, #00f2fe);
+    -fx-effect: none;
+    -fx-border-width: 0;
+}
+
+#BookSearch {
+    -fx-background-color: #f0f0f0;
+    -fx-spacing: 15px;
+    fx-pref-height: 37;
+}
+
+.SearchBar {
+    -fx-border-width: 2;
+    -fx-spacing: 10px;
+}
+
+.

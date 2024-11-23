@@ -52,6 +52,9 @@ public class LibraryManagementApplication extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        System.out.println("width: " + screenBounds.getWidth());
+        System.out.println("height: " + screenBounds.getHeight());
+        //launch(args);
     }
 }

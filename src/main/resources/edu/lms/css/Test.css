@@ -1,55 +1,197 @@
-.white-background {
-    -fx-background-color: #fff;
+BorderPane#root {
+    -fx-bottom : 1px;
 }
 
-.transparent {
-    -fx-background-color: rgba(0, 0, 0, 0);
+.HboxLarge {
+    -fx-spacint: 15px;
 }
 
-.round-layout{
-    -fx-border-radius: 50;
-    -fx-border-color: #070707;
-}
-
-.selected{
-    -fx-background-color: #F3F3F3;
-}
-
-.mouse-moved: hover{
-    -fx-background-color: #E4E4E4;
-}
-
-.shadow{
-    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 10);
-}
-
-.border{
-    -fx-border-color: black;
+.HboxSmall{
     -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-background-color: linear-gradient(to bottom, #2af598, #009efd);
+    -fx-opacity: 0.7;
+    -fx-translate-z: -10px;
+    -fx-effect: dropshadow(gaussian, black, 2, 0.9, 2.5, 2.5);
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
 }
 
-.description {
-    padding: 10px 15px;
-    margin: 10px 0;
+.HboxSmall:hover {
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
 }
 
-.description-text {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 1.5;
-    color: #333;
+.LabelHboxSmall{
+    -fx-font-size: 16px;
+    -fx-font-weight: normal;
+    -fx-effect: dropshadow(gaussian, black, 0.5, 0.05, 0, 0);
+}
+.LabelHboxSmallExtra{
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, black, 0.5, 0.05, 0, 0);
 }
 
-.description-box {
-    border: 1px;
-    box-shadow: 0px 4px 8px;
-    border-radius: 8px;
+.BarChart{
+    -fx-stroke-width: 2px;
+    -fx-bar-fill : red;
+    -fx-effect: dropshadow(gaussian, black, 1, 0.01, 0, 0);
+}
+
+.Axis {
+    -fx-alignment: center;
+}
+
+.HboxChart {
+    -fx-pref-width: 2000;
+    -fx-pref-height: 400;
+
+}
+
+.HboxChart .BarChart {
+    -fx-pref-width: 800;
+    -fx-effect: dropshadow(gaussian, black, 2, 0.3, 0, 0);
+}
+.LabelHboxLarge {
+    -fx-font-size: 25px;
+    -fx-translate-z: -5;
+    -fx-effect: dropshadow(gaussian, black, 1, 0.01, 0, 0);
+}
+
+.ScrollPane {
+    -fx-background-color: #f4f4f4;
+    -fx-background-radius: 8px;
+    -fx-border-color: #3498db;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-translate-z: -10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 2);
+
+}
+
+.HboxPane{
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 2);
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-translate-z: -10px;
+}
+
+.ScrollPane .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.ScrollPane:hover .scroll-bar {
+    -fx-opacity: 1;
+}
+
+.ScrollPane .scroll-bar .track {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10px;
+}
+
+.ScrollPane .scroll-bar .thumb {
+    -fx-background-color: linear-gradient(to bottom, #2af598, #009efd);
+    -fx-background-radius: 10px;
+    -fx-min-width: 10px;
+    -fx-min-height: 10px;
+}
+
+.ScrollPane .scroll-bar .thumb:hover {
+    -fx-background-color: linear-gradient(to bottom, #2af598, #009efd);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 2);
+}
+
+.imageView {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, black, 0.5, 0.2, 0, 0);
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+}
+
+.imageViewExtra {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10px;
+    -fx-translate-z: -10px;
+    -fx-effect: dropshadow(gaussian, black, 1, 0.7, 2, 2);
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+}
+
+.imageViewExtra:hover {
+    -fx-cursor: hand;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05
+}
+
+.imageViewExtra:pressed {
+    -fx-effect: none;
+}
+
+.Separator {
+    -fx-border-width: 1px;
+    -fx-border-color: yellow;
+    -fx-background-color: yellow;
+}
+
+.HBoxMenu {
+    -fx-background-color:linear-gradient(to bottom, #2af598, #009efd);
+    -fx-background-radius: 0 20 20 0;
+    -fx-border-radius: 0 20 20 0;
+    -fx-translate-z: -10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 2);
+    -fx-opacity: 0.7;
+}
+
+.Browse {
+    -fx-background-color: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    -fx-translate-z: -10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 2);
+    -fx-background-radius: 0 15 15 0;
+    -fx-border-radius: 0 15 15 0;
+    -fx-opacity: 0.7;
+    -fx-font-family: Arial;
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+}
+
+.Browse:hover {
+    -fx-opacity: 0.8;
+    -fx-scale-y: 1.05;
+    -fx-scale-x: 1.05;
+}
+
+.HBoxMenu:hover {
+    -fx-opacity: 0.8;
+    -fx-scale-y: 1.05;
+    -fx-scale-x: 1.05;
+}
+
+.LabelMenu {
+    -fx-font-size: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.2, 0, 1);
+    -fx-font-family: Arial;
+}
+
+.ImageMenu {
+    -fx-effect: dropshadow(gaussian, black, 0.5, 0.9, 0, 0.5);
+    -fx-translate-z: -10px;
+}
+
+.TopPane {
+    -fx-background-color: #1F509A;
 }
 
 
-.description:hover {
-    background-color: #f0f0f0;
-    text-decoration: underline;
+.HboxGiant {
+    -fx-border-width: 0px;
+    -fx-border-color: yellow transparent transparent transparent;
 }
 
+.LabelTitle {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 1);
+    -fx-translate-z: -10;
+}

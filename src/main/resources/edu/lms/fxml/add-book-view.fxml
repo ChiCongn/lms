@@ -12,12 +12,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.AddBookController">
+<AnchorPane prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.AddBookController">
    <children>
-      <Button layoutX="30.0" layoutY="25.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="49.0" text="Back" />
+      <Button fx:id="buttonBack" layoutX="30.0" layoutY="25.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="65.0" styleClass="buttonAddBookView" text="Back" />
       <VBox layoutX="425.0" layoutY="84.0" prefHeight="369.0" prefWidth="378.0">
          <children>
-            <ImageView fx:id="thumbnail" fitHeight="138.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="thumbnail" fitHeight="138.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/TanGaiDaiCuong.png" />
+               </image></ImageView>
             <HBox prefHeight="222.0" prefWidth="378.0">
                <children>
                   <VBox prefHeight="218.0" prefWidth="66.0">
@@ -44,13 +47,13 @@
             </HBox>
          </children>
       </VBox>
-      <VBox layoutX="30.0" layoutY="74.0" prefHeight="331.0" prefWidth="354.0">
+      <VBox fx:id="BookSearch" layoutX="30.0" layoutY="128.0" prefHeight="331.0" prefWidth="371.0">
          <children>
-            <HBox prefHeight="15.0" prefWidth="379.0">
+            <HBox prefHeight="15.0" prefWidth="379.0" styleClass="SearchBar">
                <children>
-                  <Label prefHeight="27.0" prefWidth="40.0" text="Find" />
-                  <TextField fx:id="searchTextField" onKeyReleased="#searchBook" prefHeight="32.0" prefWidth="278.0" />
-                  <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                  <Label fx:id="labelFind" alignment="CENTER" prefHeight="27.0" prefWidth="40.0" text="Find" />
+                  <TextField fx:id="searchTextField" onKeyReleased="#searchBook" prefHeight="32.0" prefWidth="278.0" styleClass="SearchBar" stylesheets="@../css/AddBookView.css" />
+                  <ImageView fx:id="glass" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" styleClass="Glass">
                      <image>
                         <Image url="@../images/search.png" />
                      </image>
@@ -60,7 +63,7 @@
             <ListView fx:id="searchResult" prefHeight="271.0" prefWidth="354.0" />
          </children>
       </VBox>
-      <Button layoutX="717.0" layoutY="51.0" mnemonicParsing="false" onMouseClicked="#addBookIntoDatabase" prefHeight="26.0" prefWidth="66.0" text="Add" />
+      <Button fx:id="buttonAdd" layoutX="737.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#addBookIntoDatabase" prefHeight="26.0" prefWidth="66.0" styleClass="buttonAddBookView" text="Add" />
       <Label fx:id="noBookSelectedWarning" layoutX="350.0" layoutY="51.0" prefHeight="26.0" prefWidth="184.0" text="Please select a book!" textFill="RED" visible="false">
          <font>
             <Font size="16.0" />
