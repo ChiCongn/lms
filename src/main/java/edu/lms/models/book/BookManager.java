@@ -1,17 +1,13 @@
 package edu.lms.models.book;
 
-import edu.lms.services.database.BookDataService;
-import edu.lms.services.database.BorrowedBookDataService;
-import javafx.beans.Observable;
+import edu.lms.services.database.BookDao;
+import edu.lms.services.database.BorrowedBookDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 
-import java.net.URL;
 import java.util.List;
 import java.util.Map;
-import java.util.ResourceBundle;
 
 public class BookManager {
     private static ObservableList<Book> books;
@@ -22,10 +18,10 @@ public class BookManager {
     private BookManager() {}
 
     public static void initialize() {
-         books = BookDataService.loadBooksData();
-         borrowedBooksDataByMonth = BorrowedBookDataService.loadBorrowedBooksByMonth();
+         books = BookDao.loadBooksData();
+         borrowedBooksDataByMonth = BorrowedBookDao.loadBorrowedBooksByMonth();
          calculateCategoriesDistribution();
-        topChoiceBooks = BookDataService.loadTopChoicesBook();
+        topChoiceBooks = BookDao.loadTopChoicesBook();
     }
     public static ObservableList<Book> getBooks() {
         if (books == null) initialize();
@@ -67,7 +63,7 @@ public class BookManager {
     }
 
     private static void calculateCategoriesDistribution() {
-        Map<String, Integer> categoryData = BookDataService.loadCategoryDistributionData();
+        Map<String, Integer> categoryData = BookDao.loadCategoryDistributionData();
         categoriesDistributionData = FXCollections.observableArrayList();
 
         // Calculate total for percentage

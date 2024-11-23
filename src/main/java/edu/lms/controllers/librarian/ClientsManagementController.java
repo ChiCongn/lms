@@ -5,7 +5,7 @@ import edu.lms.controllers.SceneManager;
 import edu.lms.models.user.Client;
 import edu.lms.models.user.UserManager;
 import edu.lms.services.AlertDialog;
-import edu.lms.services.database.UsersDataService;
+import edu.lms.services.database.UsersDao;
 import javafx.animation.PauseTransition;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -116,7 +116,7 @@ public class ClientsManagementController extends DashboardController implements 
                         "Warning: Suspending this client will revoke their access. Proceed with caution");
                 confirmation.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
-                        if (!UsersDataService.suspendUser(selectedClient.getId())) {
+                        if (!UsersDao.suspendUser(selectedClient.getId())) {
                             System.err.println("something is wrong. Can not suspend user!");
                         }
                         System.out.println("suspend");
@@ -137,7 +137,7 @@ public class ClientsManagementController extends DashboardController implements 
                         "Warning: Activating this client will restore their account. Proceed carefully");
                 confirmation.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
-                        if (!UsersDataService.reactivateUser(selectedClient.getId())) {
+                        if (!UsersDao.reactivateUser(selectedClient.getId())) {
                             System.err.println("Something is wrong. Can not reactivate user!");
                         }
                         System.out.println("active");
@@ -158,7 +158,7 @@ public class ClientsManagementController extends DashboardController implements 
                 confirmation.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
                         clientsTableView.getItems().remove(selectedClient);
-                        if (!UsersDataService.deleteUser(selectedClient.getId())) {
+                        if (!UsersDao.deleteUser(selectedClient.getId())) {
                             System.err.println("Something is wrong. Can not delete user!");
                         }
                     } else {

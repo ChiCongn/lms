@@ -1,9 +1,9 @@
 package edu.lms.models.issue;
 
 import edu.lms.models.book.BorrowedBook;
-import edu.lms.services.database.BorrowedBookDataService;
+import edu.lms.services.database.BorrowedBookDao;
 import edu.lms.services.database.FinesDao;
-import edu.lms.services.database.IssuesDataService;
+import edu.lms.services.database.IssuesDao;
 import javafx.collections.ObservableList;
 
 import java.math.BigDecimal;
@@ -15,10 +15,10 @@ public class IssuesManager {
     private static int totalBorrowedBook;
 
     public static void initialize() {
-        issues = IssuesDataService.loadAllIssues();
-        borrowedBooks = BorrowedBookDataService.loadAllBorrowedBooks();
+        issues = IssuesDao.loadAllIssues();
+        borrowedBooks = BorrowedBookDao.loadAllBorrowedBooks();
         totalFines = FinesDao.calculateTotalFines();
-        totalBorrowedBook = BorrowedBookDataService.getNumberOfBorrowedBook();
+        totalBorrowedBook = BorrowedBookDao.getNumberOfBorrowedBook();
     }
 
     public static ObservableList<Issue> getIssues() {

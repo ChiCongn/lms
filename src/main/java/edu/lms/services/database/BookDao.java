@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.sql.*;
 import java.util.*;
 
-public class BookDataService {
+public class BookDao {
     private static final String LOAD_BOOKS_QUERY = "SELECT * FROM books";
     private static final String SEARCH_BOOK_EXIST_IN_DATABASE_QUERY = "SELECT COUNT(*) FROM books WHERE title = ?";
     private static final String ADD_BOOK_QUERY = "INSERT INTO books (title, authors, published_year, page_count, " +

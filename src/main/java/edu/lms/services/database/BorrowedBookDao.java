@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class BorrowedBookDataService {
+public class BorrowedBookDao {
     private static final String LOAD_BORROWED_BOOKS_OF_A_CLIENT_QUERY = "SELECT * FROM borrowed_books WHERE user_id = ? AND status = 'borrowed' OR status = 'overdue'";
     private static final String LOAD_ALL_BORROWED_BOOKS_QUERY = "SELECT * FROM borrowed_books";
     private static final String ADD_BORROWED_BOOK_QUERY = "INSERT INTO books (user_id, book_id, borrow_date, due_date, return_date, status) VALUES (?, ?, ?, ?, ?, ?)";

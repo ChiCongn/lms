@@ -1,6 +1,6 @@
 package edu.lms.models.user;
 
-import edu.lms.services.database.UsersDataService;
+import edu.lms.services.database.UsersDao;
 import javafx.collections.ObservableList;
 
 public class UserManager {
@@ -9,7 +9,7 @@ public class UserManager {
     private UserManager() {}
 
     public static void initialize() {
-        clients = UsersDataService.loadClientsData();
+        clients = UsersDao.loadClientsData();
     }
 
     public static ObservableList<Client> getClients() {

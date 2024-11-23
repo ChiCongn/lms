@@ -3,9 +3,9 @@ package edu.lms.models.user;
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BorrowedBook;
 import edu.lms.models.issue.Issue;
-import edu.lms.services.database.BorrowedBookDataService;
+import edu.lms.services.database.BorrowedBookDao;
 import edu.lms.services.database.ClientDao;
-import edu.lms.services.database.IssuesDataService;
+import edu.lms.services.database.IssuesDao;
 import javafx.collections.ObservableList;
 
 public class ClientDataManager {
@@ -18,8 +18,8 @@ public class ClientDataManager {
     public static void initialize(int clientId) {
         favouriteBooks = ClientDao.loadFavouriteBooks(clientId);
         recentBooks = ClientDao.loadRecentBooks(clientId, LIMIT_RECENT_BOOKS);
-        borrowedBooks = BorrowedBookDataService.loadBorrowedBooks(clientId);
-        issues = IssuesDataService.loadIssues(clientId);
+        borrowedBooks = BorrowedBookDao.loadBorrowedBooks(clientId);
+        issues = IssuesDao.loadIssues(clientId);
     }
 
     public static ObservableList<Book> getFavouriteBooks() {

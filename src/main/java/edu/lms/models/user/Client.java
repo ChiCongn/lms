@@ -2,8 +2,8 @@ package edu.lms.models.user;
 
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BorrowedBook;
-import edu.lms.services.database.BookDataService;
-import edu.lms.services.database.BorrowedBookDataService;
+import edu.lms.services.database.BookDao;
+import edu.lms.services.database.BorrowedBookDao;
 import javafx.collections.ObservableList;
 
 import java.math.BigDecimal;
@@ -41,8 +41,8 @@ public class Client extends User {
         }*/
         LocalDate borrowDate = LocalDate.now();
         BorrowedBook newBorrowedBook = new BorrowedBook(book, this.id, borrowDate, borrowDate.plusMonths(2), "borrowed");
-        BorrowedBookDataService.addNewBorrowedBook(newBorrowedBook);
-        BookDataService.updateAvailableCopiesOfThisBook(book.getBookId(), -1);
+        BorrowedBookDao.addNewBorrowedBook(newBorrowedBook);
+        BookDao.updateAvailableCopiesOfThisBook(book.getBookId(), -1);
     }
 
     public void returnBook(int bookID) {

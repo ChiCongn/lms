@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import java.math.BigDecimal;
 import java.sql.*;
 
-public class UsersDataService {
+public class UsersDao {
     private static final String LOAD_CLIENTS_QUERY = "SELECT * FROM users WHERE role = 'client'";
     private static final String LOAD_USER_QUERY = "SELECT * FROM users WHERE user_id = ?";
     private static final String LOAD_FINES_OF_THIS_CLIENT = "SELECT SUM(fines.fine_amount) AS outstanding_fines FROM fines WHERE user_id = ? AND paid = false";
@@ -36,7 +36,7 @@ public class UsersDataService {
                 String status = rs.getString("status");
                 String genderString = rs.getString("gender");
                 Gender gender = Gender.valueOf(genderString.toUpperCase());
-                ObservableList<BorrowedBook> borrowedBooks = BorrowedBookDataService.loadBorrowedBooks(clientId);
+                ObservableList<BorrowedBook> borrowedBooks = BorrowedBookDao.loadBorrowedBooks(clientId);
 
                 BigDecimal outstandingFines = loadOutstandingFinesOfThisClient(clientId);
                 //int id, String username, String password, String email, String avatarPath, Gender gender

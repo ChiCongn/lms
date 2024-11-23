@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 import java.time.LocalDate;
 
-public class IssuesDataService {
+public class IssuesDao {
     private static final String LOAD_ALL_ISSUES_QUERY = "SELECT * FROM issues";
     private static final String LOAD_ISSUES_QUERY = "SELECT * FORM issues WHERE user_id = ?";
     private static final String ADD_ISSUE_QUERY = "INSERT INTO issues (user_id, book_id, description, reported_date) VALUE (?, ?, ?, ?)";

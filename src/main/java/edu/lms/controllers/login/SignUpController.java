@@ -4,7 +4,7 @@ import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.models.user.Client;
 import edu.lms.models.user.Gender;
-import edu.lms.services.database.UsersDataService;
+import edu.lms.services.database.UsersDao;
 import edu.lms.services.database.DatabaseConnection;
 import edu.lms.services.EmailService;
 import edu.lms.services.Validator;
@@ -187,7 +187,7 @@ public class SignUpController implements Initializable {
 
         System.out.println("register");
         Client client = new Client(username.getText(), password.getText(), email.getText(), genderChoiceBox.getValue());
-        if (UsersDataService.addNewClient(client)) {
+        if (UsersDao.addNewClient(client)) {
             successfulRegistration.setVisible(true);
             continuee.setVisible(true);
         }

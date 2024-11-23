@@ -1,28 +1,24 @@
 package edu.lms.controllers.librarian;
 
 import edu.lms.Constants;
+import edu.lms.controllers.common.ReviewController;
 import edu.lms.controllers.SceneManager;
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
-import edu.lms.models.review.Review;
-import edu.lms.models.review.ReviewCell;
 import edu.lms.services.AlertDialog;
-import edu.lms.services.database.BookDataService;
-import edu.lms.services.database.ReviewDataService;
+import edu.lms.services.database.BookDao;
+import edu.lms.services.database.ReviewDao;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 import java.math.BigDecimal;
 
 
-public class BooKDetailController {
+public class BooKDetailController extends ReviewController {
     @FXML
     private Label authorsLabel;
 
@@ -31,9 +27,6 @@ public class BooKDetailController {
 
     @FXML
     private Label availableCopiesLabel;
-
-    @FXML
-    private TextArea commentArea;
 
     @FXML
     private TextArea descriptionTextArea;
@@ -57,9 +50,6 @@ public class BooKDetailController {
     private Label priceLabel;
 
     @FXML
-    private ListView<Review> reviewsList;
-
-    @FXML
     private ImageView thumbnail;
 
     @FXML
@@ -73,47 +63,10 @@ public class BooKDetailController {
 
     //file:/E:/AllSemesters/ThirdSemester/OOP/lms/target/classes/edu/lms/images/default_avatar.png
 
-    @FXML
-    private Label ratingLabel;
-
-    @FXML
-    private Tooltip ratingTooltip;
-
-    @FXML
-    private HBox starContainer;
-
-    @FXML
-    private Label haveToVoteBookWarning;
-
-    private Label[] stars;
-
-    private int currentRating;
-
-    private Book book;
-
-
     public void initialize(Book book) {
+        super.initialize(book, DashboardController.librarian.getId());
         System.out.println("initialize book detail.");
-        configureListReviews();
-        this.book = book;
-
         initializeBookData(book);
-
-        // set up voting area for voting and review.
-        stars = new Label[5];
-        System.out.println("set up voting area.");
-        for (int i = 0; i < 5; i++) {
-            Label star = new Label("☆");
-            star.setFont(new Font("Arial", 22));
-            star.setTextFill(Color.GRAY);
-            int starIndex = i;
-
-            star.setOnMouseClicked(event -> updateStars(starIndex + 1));
-
-            stars[i] = star;
-            starContainer.getChildren().add(star);
-        }
-
         totalCopiesField.setOnKeyReleased(keyEvent -> {
             isValidTotalCopies();
         });
@@ -129,13 +82,8 @@ public class BooKDetailController {
         descriptionTextArea.setWrapText(true);
         descriptionTextArea.setText(book.getDescription());
         descriptionTextArea.setEditable(false);
-        reviewsList.setItems(ReviewDataService.loadReviewsOfSpecificBook(book.getBookId()));
+        reviewsList.setItems(ReviewDao.loadReviewsOfSpecificBook(book.getBookId()));
         thumbnail.setImage(book.getThumbnail());
-        ratingLabel.setText(ReviewCell.loadRating(book.getRating().intValue()));
-        ratingTooltip.setText(book.getRating().toString());
-        ratingTooltip.setStyle("-fx-font-size: 14;");
-        ratingTooltip.setShowDelay(Duration.millis(500));
-        Tooltip.install(ratingLabel, ratingTooltip);
     }
 
     @FXML
@@ -155,13 +103,13 @@ public class BooKDetailController {
     private void setTotalCopies() {
         if (!isValidTotalCopies()) return;
         int value = isInteger(totalCopiesField.getText());
-        if (!BookDataService.setTotalCopiesOfSpecificBook(book.getBookId(), value)) {
+        if (!BookDao.setTotalCopiesOfSpecificBook(book.getBookId(), value)) {
             System.err.println("Error can not set total copies.");
             return;
         }
         int adjustmentAvailableCopies = value - book.getTotalCopies();
-        BookDataService.updateAvailableCopiesOfThisBook(book.getBookId(), adjustmentAvailableCopies);
-        BookDataService.setTotalCopiesOfSpecificBook(book.getBookId(), value);
+        BookDao.updateAvailableCopiesOfThisBook(book.getBookId(), adjustmentAvailableCopies);
+        BookDao.setTotalCopiesOfSpecificBook(book.getBookId(), value);
         showSuccessfulUpdatingMessage();
         book.setTotalCopies(value);
         book.setAvailableCopies(book.getAvailableCopies() + adjustmentAvailableCopies);
@@ -176,7 +124,7 @@ public class BooKDetailController {
             return;
         }
         invalidAvailableCopiesLabel.setVisible(false);
-        if (!BookDataService.setAvailableCopiesOfSpecificBook(book.getBookId(), value)) {
+        if (!BookDao.setAvailableCopiesOfSpecificBook(book.getBookId(), value)) {
             System.err.println("Error can not set available copies.");
             return;
         }
@@ -192,7 +140,7 @@ public class BooKDetailController {
             invalidPriceLabel.setVisible(false);
             return;
         }
-        if (!BookDataService.setPriceOfSpecificBook(book.getBookId(), value)) {
+        if (!BookDao.setPriceOfSpecificBook(book.getBookId(), value)) {
             System.err.println("Error updating book's price.");
         }
         showSuccessfulUpdatingMessage();
@@ -212,7 +160,7 @@ public class BooKDetailController {
                 "Are you sure you want to delete this book?");
         confirmation.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
-                if (!BookDataService.removeBook(book.getBookId())) {
+                if (!BookDao.removeBook(book.getBookId())) {
                     System.err.println("something is wrong. Can not delete book!");
                 }
                 BooksManagementController booksManagementController = SceneManager.switchScene(Constants.BOOKS_MANAGEMENT_VIEW, true);
@@ -233,37 +181,9 @@ public class BooKDetailController {
         hideLabel.play();
     }
 
-    private void updateStars(int rating) {
-        this.currentRating = rating;
-
-        for (int i = 0; i < 5; i++) {
-            if (i < rating) {
-                stars[i].setText("★");
-                stars[i].setTextFill(Color.GOLD);
-            } else {
-                stars[i].setText("☆");
-                stars[i].setTextFill(Color.GRAY);
-            }
-        }
-    }
-
-    private void insertReviewIntoDatabase() {
-        String opinion = commentArea.getText();
-        if (currentRating == 0 || opinion == null) {
-            haveToVoteBookWarning.setVisible(true);
-        }
-        haveToVoteBookWarning.setVisible(false);
-        //Review review = new Review(1, book.getBookId(), opinion);
-    }
-
     @FXML
     private void backToBooksManagementView() {
         BooksManagementController booksManagementController = SceneManager.switchScene(Constants.BOOKS_MANAGEMENT_VIEW, true);
-    }
-
-    private void configureListReviews() {
-        System.out.println("Configuring review list");
-        reviewsList.setCellFactory(param -> new ReviewCell());
     }
 
     private static int isInteger(String input) {

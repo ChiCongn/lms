@@ -3,7 +3,7 @@ package edu.lms.controllers.librarian;
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
 import edu.lms.services.GoogleBooksAPI;
-import edu.lms.services.database.BookDataService;
+import edu.lms.services.database.BookDao;
 import javafx.animation.PauseTransition;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -132,7 +132,7 @@ public class AddBookController implements Initializable {
         int totalCopies = getTotalCopiesOrDefault();
         selectedBook.setTotalCopies(totalCopies);
         selectedBook.setAvailableCopies(totalCopies);
-        if (BookDataService.addBook(selectedBook)) {
+        if (BookDao.addBook(selectedBook)) {
             successfullyAddBook.setVisible(true);
             BookManager.insertBook(selectedBook);
             PauseTransition hideLabel = new PauseTransition(Duration.seconds(2));
