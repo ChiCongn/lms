@@ -6,10 +6,14 @@ import edu.lms.controllers.client.ClientDashboardController;
 import edu.lms.controllers.librarian.AdminDashboardController;
 import edu.lms.controllers.librarian.DashboardController;
 import edu.lms.controllers.librarian.LibrarianDashboardController;
+import edu.lms.models.book.BookManager;
+import edu.lms.models.issue.IssuesManager;
 import edu.lms.models.user.Client;
 import edu.lms.models.user.Librarian;
+import edu.lms.models.user.UserManager;
 import edu.lms.services.database.DatabaseConnection;
 import edu.lms.services.database.UsersDao;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -109,6 +113,7 @@ public class SignInController {
             AdminDashboardController adminDashboardController = SceneManager.switchScene(Constants.ADMIN_DASHBOARD_VIEW, true);
         } else if (role.equals("librarian")) {
             System.out.println("sign in with librarian role");
+            loadData();
             Librarian librarian = (Librarian) UsersDao.loadUserData(userId);
             DashboardController.setData(librarian);
             LibrarianDashboardController librarianDashboardController = SceneManager.switchScene(Constants.LIBRARIAN_DASHBOARD_VIEW, true);
@@ -118,6 +123,28 @@ public class SignInController {
             edu.lms.controllers.client.DashboardController.setClientData(client);
             ClientDashboardController clientDashboardController = SceneManager.switchScene(Constants.CLIENT_DASHBOARD_VIEW, true);
         }
+    }
+
+    private void loadData() {
+        Task<Void> loadManagementData = new Task<>() {
+            @Override
+            protected Void call() {
+                UserManager.initialize();
+                IssuesManager.initialize();
+                return null;
+            }
+        };
+
+        loadManagementData.setOnSucceeded(event -> {
+            System.out.println("Load management data completed successfully!");
+        });
+
+        loadManagementData.setOnFailed(event -> {
+            Throwable exception = loadManagementData.getException();
+            System.err.println("Initialization failed: " + exception.getMessage());
+        });
+
+        new Thread(loadManagementData).start();
     }
 
 }
