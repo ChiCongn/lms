@@ -17,8 +17,6 @@ public class DashboardController {
 
     public static void setData(Librarian librarian) {
         DashboardController.librarian = librarian;
-        //UserManager.initialize();
-        IssuesManager.initialize();
     }
 
     public void backToHomeView() {

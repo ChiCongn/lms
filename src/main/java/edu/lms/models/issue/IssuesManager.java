@@ -9,16 +9,19 @@ import javafx.collections.ObservableList;
 import java.math.BigDecimal;
 
 public class IssuesManager {
+    private static boolean isInitialize;
     private static ObservableList<Issue> issues;
     private static ObservableList<BorrowedBook> borrowedBooks;
     private static BigDecimal totalFines;
     private static int totalBorrowedBook;
 
     public static void initialize() {
+        if (isInitialize) return;
         issues = IssuesDao.loadAllIssues();
         borrowedBooks = BorrowedBookDao.loadAllBorrowedBooks();
         totalFines = FinesDao.calculateTotalFines();
         totalBorrowedBook = BorrowedBookDao.getNumberOfBorrowedBook();
+        isInitialize = true;
     }
 
     public static ObservableList<Issue> getIssues() {

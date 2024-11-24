@@ -50,12 +50,14 @@ public class BookDao {
                 int totalCopies = resultSet.getInt("total_copies");
                 int copiesAvailable = resultSet.getInt("available_copies");
                 String coverImageUrl = resultSet.getString("cover_image_path");
+                //System.out.println("thumbnail: " + coverImageUrl);
                 String canonicalVolumeLink = resultSet.getString("canonical_volume_link");
 
                 //int bookId, String title, String authors, String publishedYear, int pageCount, String language,
                 //String description, BigDecimal rating, int totalCopies, int availableCopies, String coverImage, String canonicalVolumeLink
                 Book book = new Book(id, title, authors, publishedYear, pageCount, language, description, rating, price, totalCopies, copiesAvailable,
                         coverImageUrl, canonicalVolumeLink);
+                //System.out.println("book.thumbnail: " + book.getCoverImage());
                 book.setCategories(getCategoriesForBook(id));
                 bookList.add(book);
             }

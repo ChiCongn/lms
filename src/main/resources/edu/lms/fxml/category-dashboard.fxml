@@ -10,14 +10,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.Client.CategoryDashBoardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.client.CategoriesController">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" spacing="20.0" styleClass="white-bacground" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
             <children>
@@ -32,7 +30,7 @@
                 <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="48.0" prefWidth="6.0" />
                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="35.0" prefWidth="290.0" styleClass="round-layout" stylesheets="@../css/Test.css">
                     <children>
-                        <TextField fx:id="SearchBar" prefHeight="26.0" prefWidth="234.0" styleClass="transparent" stylesheets="@../css/Test.css" text="Search" />
+                        <TextField prefHeight="26.0" prefWidth="234.0" styleClass="transparent" stylesheets="@../css/Test.css" text="Search" />
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/search.png" />
@@ -43,16 +41,12 @@
                 <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                 <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="203.0">
                     <children>
-                        <Label text="Hohamed Gaquay">
+                        <Label fx:id="usernameLabel">
                             <font>
                                 <Font name="Berlin Sans FB" size="18.0" />
                             </font>
                         </Label>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/default_avatar.png" />
-                            </image>
-                        </ImageView>
+                        <ImageView fx:id="avatarImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                     </children>
                 </HBox>
             </children>
@@ -74,7 +68,7 @@
                                 <Insets left="10.0" />
                             </VBox.margin>
                         </Label>
-                        <HBox fx:id="topChart" alignment="CENTER" onMouseClicked="#switchToTopChart" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
                             <children>
                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -88,7 +82,7 @@
                                 </Label>
                             </children>
                         </HBox>
-                        <HBox fx:id="Browse" alignment="CENTER" onMouseClicked="#switchToBrowse" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
                             <children>
                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -102,7 +96,7 @@
                                 </Label>
                             </children>
                         </HBox>
-                        <HBox fx:id="Categories" alignment="CENTER" onMouseClicked="#switchToGenre" prefHeight="50.0" prefWidth="200.0" spacing="15.0" stylesheets="@../css/Test.css">
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="15.0" stylesheets="@../css/Test.css">
                             <children>
                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -133,7 +127,7 @@
                                 <Insets left="10.0" />
                             </VBox.margin>
                         </Label>
-                        <HBox fx:id="Favorite" alignment="CENTER" onMouseClicked="#switchToFavourite" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
                             <children>
                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -147,7 +141,7 @@
                                 </Label>
                             </children>
                         </HBox>
-                        <HBox fx:id="History" alignment="CENTER" onMouseClicked="#switchToHistory" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
                             <children>
                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -174,7 +168,7 @@
                                 <Insets left="10.0" />
                             </VBox.margin>
                         </Label>
-                        <HBox alignment="CENTER" onMouseClicked="#switchToGame" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/Test.css">
                             <children>
                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -217,24 +211,7 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-            <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="1005.0" spacing="10.0">
-               <children>
-                  <Button mnemonicParsing="false" prefWidth="75.0" text="All" />
-                  <Button mnemonicParsing="false" prefWidth="75.0" text="Sci-fi" />
-                  <Button mnemonicParsing="false" prefWidth="75.0" text="Fantasy" />
-                  <Button mnemonicParsing="false" prefWidth="75.0" text="Education" />
-                  <Button mnemonicParsing="false" prefWidth="75.0" text="Drama" />
-               </children>
-            </HBox>
-                <ScrollPane prefHeight="200.0" prefWidth="200.0" styleClass="transparent" stylesheets="@../css/Test.css" VBox.vgrow="ALWAYS">
-                    <content>
-                        <GridPane fx:id="bookContainer">
-                            <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            </rowConstraints>
-                        </GridPane>
-                    </content>
-                </ScrollPane>
+                <ScrollPane fx:id="scrollPane" prefHeight="200.0" prefWidth="200.0" styleClass="transparent" VBox.vgrow="ALWAYS" />
             </children>
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

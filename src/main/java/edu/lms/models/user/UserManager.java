@@ -5,11 +5,14 @@ import javafx.collections.ObservableList;
 
 public class UserManager {
     private static ObservableList<Client> clients;
+    private static boolean isInitialize;
 
     private UserManager() {}
 
     public static void initialize() {
+        if (isInitialize) return;
         clients = UsersDao.loadClientsData();
+        isInitialize = true;
     }
 
     public static ObservableList<Client> getClients() {

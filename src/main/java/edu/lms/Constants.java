@@ -23,7 +23,7 @@ public class Constants {
     public static final String CLIENT_DASHBOARD_VIEW = "/edu/lms/fxml/client-dashboard-view.fxml";
     public static final String CLIENT_BOOK_DETAILS_VIEW = "/edu/lms/fxml/client-book-details-view.fxml";
     public static final String TRENDING_DASHBOARD_VIEW = "/edu/lms/fxml/trending-dashboard.fxml";
-    public static final String CATEGORY_DASHBOARD_VIEW = "/edu/lms/fxml/category-dashboard.fxml";
+    public static final String CATEGORIES_VIEW = "/edu/lms/fxml/category-dashboard.fxml";
     public static final String READING_DASHBOARD_VIEW = "/edu/lms/fxml/TestingDashBoard.fxml";
     public static final String FAVOURITE_DASHBOARD_VIEW = "/edu/lms/fxml/TestingDashBoard.fxml";
     public static final String HISTORY_DASHBOARD_VIEW = "/edu/lms/fxml/history-dashboard.fxml";

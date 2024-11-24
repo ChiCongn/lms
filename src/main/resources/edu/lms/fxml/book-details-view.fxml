@@ -87,7 +87,10 @@
                                  <VBox prefHeight="38.0" prefWidth="522.0">
                                     <children>
                                        <HBox fx:id="starContainer" prefHeight="22.0" prefWidth="517.0" />
-                                       <TextArea fx:id="commentArea" minHeight="0.0" prefHeight="59.0" prefWidth="517.0" />
+                                       <TextArea fx:id="commentArea" minHeight="0.0" prefHeight="59.0" prefWidth="517.0">
+                                          <tooltip>
+                                             <Tooltip fx:id="cannotModifyReview" text="Empty Tooltip" />
+                                          </tooltip></TextArea>
                                     </children>
                                  </VBox>
                                  <ImageView fitHeight="46.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">

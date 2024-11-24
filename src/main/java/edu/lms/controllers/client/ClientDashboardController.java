@@ -4,6 +4,7 @@ import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
+import edu.lms.models.book.Card;
 import edu.lms.models.user.ClientDataManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -60,12 +61,8 @@ public class ClientDashboardController extends DashboardController implements In
         System.out.println("set up top choice books");
         for (int i = 0; i < 10; i++) {
             final int currentIndex = i;
-            VBox bookCard = createBookCard(topChoiceBooks.get(currentIndex));
-            bookCard.setOnMouseClicked(mouseEvent -> {
-                ClientBookDetailsController clientBookDetailsController = SceneManager.switchScene(Constants.CLIENT_BOOK_DETAILS_VIEW, true);
-                assert clientBookDetailsController != null;
-                clientBookDetailsController.initialize(topChoiceBooks.get(currentIndex));
-            });
+
+            Card bookCard = new Card(topChoiceBooks.get(currentIndex));
             topChoiceBooksContainer.getChildren().add(bookCard);
         }
     }
