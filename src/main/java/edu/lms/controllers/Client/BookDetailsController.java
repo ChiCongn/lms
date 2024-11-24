@@ -61,6 +61,9 @@ public class BookDetailsController {
     @FXML
     private Label totalCopies;
 
+    @FXML
+    private HBox Search;
+
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -114,4 +117,5 @@ public class BookDetailsController {
     public void switchToGame(MouseEvent event) throws IOException {
         constants.switchScene(Constants.GAME_DASHBOARD_VIEW, event, stage, scene, root);
     }
+
 }

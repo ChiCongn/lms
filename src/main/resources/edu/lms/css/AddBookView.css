@@ -1,49 +1,132 @@
-#searchTextField {
-    -fx-translate-z: 10px;
-    -fx-effect: dropshadow(gaussian, black, 2, 0.2, 2, 2);
+.list-cell {
+    -fx-background-color: whitesmoke;
     -fx-border-width: 2px;
-    -fx-background-radius: 7px;
-    -fx-border-radius: 7px;
+    -fx-border-color: black;
+    -fx-border-radius : 20px;
+    -fx-background-radius: 20px;
+    -fx-font-family: sans-serif;
+    -fx-font-size: 14pt;
 }
 
-#searchTextField:focused {
-    -fx-border-color: linear-gradient(to bottom, #E5E3D4, #9ABF80);
-    -fx-border-width: 1px;
-    -fx-effect: none;
+.list-cell:empty {
+    -fx-background-color: transparent;
+    -fx-border-width: 0px;
 }
 
-.buttonAddBookView {
-    -fx-pref-height: 37;
-    -fx-pref-width: 65;
-    -fx-translate-z: -10px;
-    -fx-background-color: linear-gradient(to bottom, #4facfe, #00f2fe);
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
-    -fx-padding: 10px 10px;
-    -fx-effect: dropshadow(gaussian, black, 2, 0.5, 2, 2);
+.list-cell:hover {
+    -fx-cursor: hand;
+    -fx-scale-y: 1.05;
+    -fx-scale-x: 1.05;
 }
 
-.buttonAddBookView:hover {
+.list-cell:pressed {
+    -fx-background-color: #6D9886;
+}
+
+.buttonAddbookview {
+    -fx-background-color: #FF5056;
+    -fx-border-width: 2px;
+    -fx-text-fill: white;
+    -fx-font-size: 14pt;
+    -fx-font-family: sans-serif;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-translate-z: -20;
+    -fx-effect: dropshadow(gaussian, black, 1, 0.5, 2 ,2);
+}
+
+.buttonAddbookview:hover {
     -fx-cursor: hand;
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
 }
 
-.buttonAddBookView:pressed {
-    -fx-background-color: linear-gradient(to bottom, #4facfe, #00f2fe);
+.buttonAddbookview:pressed {
     -fx-effect: none;
-    -fx-border-width: 0;
-}
-
-#BookSearch {
-    -fx-background-color: #f0f0f0;
-    -fx-spacing: 15px;
-    fx-pref-height: 37;
 }
 
 .SearchBar {
-    -fx-border-width: 2;
-    -fx-spacing: 10px;
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-background-color: transparent;
+    -fx-translate-z: -20;
 }
 
-.
+.SearchBar:hover {
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.SearchBar:pressed {
+    -fx-effect: none;
+}
+
+.SearchTextField {
+    -fx-background-color: transparent;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-border-color: transparent;
+}
+
+.Glass {
+    -fx-effect: dropshadow(gaussian, black, 0.1, 0.5, 0.3, 0.3);
+}
+
+.Glass:hover {
+    -fx-cursor: hand;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.ListViewSearch:empty{
+    -fx-background-color: transparent;
+    -fx-border-width: 0px;
+    -fx-effect: none;
+}
+
+.ListViewSearch{
+    -fx-background-color: transparent;
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+}
+
+.LabelBookDescription {
+    -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 16pt;
+}
+
+.LabelSearchBook {
+    -fx-font-family: sans-serif;
+    -fx-font-size: 14pt;
+}
+
+.FieldLabel {
+    -fx-font-family: sans-serif;
+    -fx-font-size: 14pt;
+    -fx-background-color: transparent;
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(gaussian, black, 1, 0.5, 0.5 ,0.5);
+}
+
+.FieldLabelArea {
+    -fx-font-family: sans-serif;
+    -fx-font-size: 14pt;
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+}
+
+.FieldLabelArea .content {
+    -fx-background-color: transparent;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-padding: 2;
+}

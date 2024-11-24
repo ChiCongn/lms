@@ -138,12 +138,11 @@ BorderPane#root {
 }
 
 .HBoxMenu {
-    -fx-background-color:linear-gradient(to bottom, #2af598, #009efd);
+    -fx-background-color:#FF5056;
     -fx-background-radius: 0 20 20 0;
     -fx-border-radius: 0 20 20 0;
-    -fx-translate-z: -10px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 2);
-    -fx-opacity: 0.7;
+    -fx-translate-z: -10;
+    -fx-effect: dropshadow(gaussian, black, 1, 0.7, 2, 2);
 }
 
 .Browse {
@@ -170,10 +169,16 @@ BorderPane#root {
     -fx-scale-x: 1.05;
 }
 
+.HBoxMenu:pressed {
+    -fx-effect: none;
+}
+
 .LabelMenu {
-    -fx-font-size: 20px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.2, 0, 1);
-    -fx-font-family: Arial;
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, black, 0.01, 0.3, 0, 0);
+    -fx-font-family: sans-serif;
+    -fx-text-fill: white;
 }
 
 .ImageMenu {

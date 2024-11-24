@@ -1,0 +1,132 @@
+.Button {
+    -fx-background-color:  #FF5056;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-family: "sans-serif";
+    -fx-translate-z: -10;
+    -fx-effect: dropshadow(gaussian, black, 1, 0.7, 2, 2);
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+
+.Button:hover {
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.Button:pressed {
+    -fx-effect: none;
+}
+
+.Start {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-border-width: 0px;
+    -fx-translate-z: -15px;
+}
+
+#SearchBar {
+    -fx-background-color: transparent;
+    -fx-backround-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+.Search{
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-color: white;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+.Search:pressed {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-border-color: black;
+    -fx-effect: dropshadow(gaussian, black, 1, 0.8, 0.5, 0.5);
+}
+
+.Search:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-border-color: black;
+    -fx-effect: dropshadow(gaussian, black, 1, 0.8, 0.5, 0.5);
+}
+
+.SeparatorBook {
+    -fx-background-color: #003366;
+    -fx-border-width: 2px;
+    -fx-border-color: transparent;
+}
+
+.BookExtra {
+    -fx-translate-z: -20px;
+    -fx-border-width: 10px;
+    -fx-border-color: black;
+    -fx-effect: dropshadow(gaussian, black, 1, 0.7, 2, 2);
+}
+
+.textBookDescription {
+    -fx-font-weight: bold;
+    -fx-font-family: "sans-serif";
+    -fx-font-size: 14pt;
+}
+
+#authorName {
+    -fx-font-family: "sans-serif";
+    -fx-font-size: 14pt;
+    -fx-font-weight: bold;
+}
+
+.BookDescrip {
+    -fx-font-family: "sans-serif";
+    -fx-font-size: 14pt;
+    -fx-font-weight: bold;
+}
+
+.Descriptiontext {
+    -fx-font-family: "sans-serif";
+    -fx-font-size: 12pt;
+    -fx-effect: dropshadow(gaussian, black, 0.01, 0.3, 0, 0);
+}
+
+.HboxBuy {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+}
+
+.textMenu {
+    -fx-font-family: "sans-serif";
+    -fx-effect: dropshadow(gaussian, black, 0.01, 0.3, 0, 0);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+
+.HboxMenuBookDetail {
+    -fx-background-color: #FF5056;
+    -fx-border-width: 2px;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0 20 20 0;
+    -fx-border-radius: 0 20 20 0;
+    -fx-font-family: "sans-serif";
+    -fx-font-size: 14pt;
+    -fx-effect: dropshadow(gaussian, black, 1, 0.7, 2, 2);
+    -fx-translate-z: -10pt;
+}
+
+.HboxMenuBookDetail:hover {
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-opacity: 0.8;
+}
+
+.HboxMenuBookDetail:pressed {
+    -fx-translate-z: 0;
+    -fx-opacity: 0.8;
+    -fx-effect: none;
+}
