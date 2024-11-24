@@ -32,7 +32,7 @@ public class BookDao {
         // liên kết api ?
         ObservableList<Book> bookList = FXCollections.observableArrayList();
 
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              // hàm bắt buộc
              PreparedStatement statement = connection.prepareStatement(LOAD_BOOKS_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
@@ -77,7 +77,7 @@ public class BookDao {
             return false;
         }
 
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(ADD_BOOK_QUERY, Statement.RETURN_GENERATED_KEYS)) {
 
             //title, authors, published_year, pageCount, language, description, rating,
@@ -117,7 +117,7 @@ public class BookDao {
      * @param bookId book id
      */
     public static boolean removeBook(int bookId) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_BOOK_QUERY)) {
 
             statement.setInt(1, bookId);
@@ -133,7 +133,7 @@ public class BookDao {
     public static Map<String, Integer> loadCategoryDistributionData() {
         Map<String, Integer> categoryData = new LinkedHashMap<>();
 
-        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+        try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(LOAD_CATEGORY_DISTRIBUTION_QUERY);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -150,7 +150,7 @@ public class BookDao {
     }
 
     public static boolean updateAvailableCopiesOfThisBook(int bookId, int adjustment) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_AVAILABLE_COPIES_BOOK_QUERY)) {
 
             statement.setInt(1, adjustment);
@@ -167,7 +167,7 @@ public class BookDao {
     }
 
     public static boolean setAvailableCopiesOfSpecificBook(int bookId, int newAvailableCopies) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(SET_AVAILABLE_COPIES_QUERY)) {
 
             statement.setInt(1, newAvailableCopies);
@@ -183,7 +183,7 @@ public class BookDao {
     }
 
     public static boolean setTotalCopiesOfSpecificBook(int bookId, int newTotalCopies) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(SET_TOTAL_COPIES_QUERY)) {
 
             statement.setInt(1, newTotalCopies);
@@ -199,7 +199,7 @@ public class BookDao {
     }
 
     public static boolean setPriceOfSpecificBook(int bookId, BigDecimal newPrice) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(SET_PRICE_QUERY)) {
 
             statement.setBigDecimal(1, newPrice);
@@ -215,7 +215,7 @@ public class BookDao {
 
     public static List<Book> loadTopChoicesBook() {
         List<Book> topChoiceBooks = new ArrayList<>();
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(LOAD_TOP_CHOICES_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
 
@@ -232,7 +232,7 @@ public class BookDao {
     }
 
     private static boolean isExistedInDatabase(String title) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(SEARCH_BOOK_EXIST_IN_DATABASE_QUERY)) {
 
             statement.setString(1, title);
@@ -267,7 +267,7 @@ public class BookDao {
     }
 
     private static void insertBookCategoryRelation(int bookId, int categoryId) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement insertStmt = connection.prepareStatement(INSERT_BOOK_CATEGORIES_QUERY)) {
 
             insertStmt.setInt(1, bookId);
@@ -280,7 +280,7 @@ public class BookDao {
     }
 
     public static int insertCategoryIfNotExists(String categoryName) {
-        try (Connection conn = DatabaseConnection.getInstance().getConnection()) {
+        try (Connection conn = DatabaseConnection.getConnection()) {
             try (PreparedStatement checkStmt = conn.prepareStatement(GET_CATEGORY_ID_QUERY)) {
                 checkStmt.setString(1, categoryName);
                 ResultSet rs = checkStmt.executeQuery();
@@ -308,7 +308,7 @@ public class BookDao {
 
     private static String getCategoriesForBook(int bookId) {
         StringBuilder categories = new StringBuilder();
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(GET_CATEGORIES_FOR_BOOK_QUERY)) {
 
             statement.setInt(1, bookId);

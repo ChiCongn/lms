@@ -73,7 +73,6 @@ public class SignUpController implements Initializable {
     private boolean isValidUsername;
     private boolean isValidEmail;
     private int currentVerificationCode;
-    private final DatabaseConnection instance = DatabaseConnection.getInstance();
 
     public void backToSignInController() {
         SignInController signInController = SceneManager.switchScene(Constants.SIGN_IN_VIEW, false);
@@ -222,7 +221,7 @@ public class SignUpController implements Initializable {
 
     private boolean checkUsernameTaken(String username) {
         String query = "SELECT COUNT(*) FROM users WHERE username = ?";
-        try (Connection connection = instance.getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, username);
@@ -239,7 +238,7 @@ public class SignUpController implements Initializable {
 
     private boolean checkUniqueEmail(String email) {
         String query = "SELECT COUNT(*) FROM users WHERE email = ?";
-        try (Connection connection = instance.getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, email);

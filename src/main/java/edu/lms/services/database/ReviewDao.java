@@ -18,7 +18,7 @@ public class ReviewDao {
 
 
     public static void addReview(Review review) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(ADD_REVIEW_QUERY)) {
 
             statement.setInt(1, review.getUserId());
@@ -35,7 +35,7 @@ public class ReviewDao {
 
     public static ObservableList<Review> loadReviewsOfSpecificBook(int bookId) {
         ObservableList<Review> reviews = FXCollections.observableArrayList();
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(LOAD_REVIEWS_OF_SPECIFIC_BOOK_QUERY)) {
 
             statement.setInt(1, bookId);
@@ -55,7 +55,7 @@ public class ReviewDao {
     }
 
     public static boolean hasUserVoted(int userId, int bookId) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(CHECK_REVIEW_EXISTS_QUERY)) {
             preparedStatement.setInt(1, userId);
             preparedStatement.setInt(2, bookId);
@@ -72,7 +72,7 @@ public class ReviewDao {
     }
 
     public static boolean alertReview(Review review) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(ALERT_REVIEW_QUERY)) {
 
             statement.setString(1, review.getReview());

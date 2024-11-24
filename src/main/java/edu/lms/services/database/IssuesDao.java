@@ -19,7 +19,7 @@ public class IssuesDao {
 
     public static ObservableList<Issue> loadAllIssues() {
         ObservableList<Issue> issues = FXCollections.observableArrayList();
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(LOAD_ALL_ISSUES_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
 
@@ -51,7 +51,7 @@ public class IssuesDao {
 
     public static ObservableList<Issue> loadIssues(int userId) {
         ObservableList<Issue> issues = FXCollections.observableArrayList();
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(LOAD_ALL_ISSUES_QUERY)) {
 
             statement.setInt(1, userId);
@@ -82,7 +82,7 @@ public class IssuesDao {
     }
 
     public static boolean addIssue(Issue issue) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(ADD_ISSUE_QUERY, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
             //client_id, book_id, description, reported_date
@@ -107,7 +107,7 @@ public class IssuesDao {
     }
 
     public static boolean deleteIssue(int issueId) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_ISSUE_QUERY)) {
 
             

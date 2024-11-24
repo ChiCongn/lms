@@ -20,6 +20,6 @@ public class DashboardController {
 
     @FXML
     protected void switchToCategories() {
-        CategoriesController categoriesController = SceneManager.switchScene(Constants.CATEGORIES_VIEW, true);
+        //CategoriesController categoriesController = SceneManager.switchScene(Constants.CATEGORIES_VIEW, true);
     }
 }

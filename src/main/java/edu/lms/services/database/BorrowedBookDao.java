@@ -28,7 +28,7 @@ public class BorrowedBookDao {
 
     public static int getNumberOfBorrowedBook() {
         int count = 0;
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(COUNT_BORROWED_BOOKS_QUERY)) {
 
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -46,7 +46,7 @@ public class BorrowedBookDao {
     public static ObservableList<BorrowedBook> loadAllBorrowedBooks() {
         ObservableList<BorrowedBook> borrowedBooks = FXCollections.observableArrayList();
 
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(LOAD_ALL_BORROWED_BOOKS_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
 
@@ -80,7 +80,7 @@ public class BorrowedBookDao {
      */
     public static ObservableList<BorrowedBook> loadBorrowedBooks(int clientId) {
         ObservableList<BorrowedBook> borrowedBooks = FXCollections.observableArrayList();
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(LOAD_BORROWED_BOOKS_OF_A_CLIENT_QUERY)) {
 
             statement.setInt(1, clientId);
@@ -115,7 +115,7 @@ public class BorrowedBookDao {
      * @param borrowedBook borrowed book
      */
     public static void addNewBorrowedBook(BorrowedBook borrowedBook) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(ADD_BORROWED_BOOK_QUERY, Statement.RETURN_GENERATED_KEYS)) {
 
             //client_id, book_id, borrowed_date, due_date, return_date, status
@@ -149,7 +149,7 @@ public class BorrowedBookDao {
         }
 
         System.out.println("load borrowed book by month");
-        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+        try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(LOAD_MONTHLY_BORROWED_BOOKS_QUERY);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -165,7 +165,7 @@ public class BorrowedBookDao {
     }
 
     private static boolean isBorrowedByThisClient(int bookId, int clientId) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(CHECK_IS_BORROWED_BY_THIS_CLIENT)) {
 
             statement.setInt(1, bookId);

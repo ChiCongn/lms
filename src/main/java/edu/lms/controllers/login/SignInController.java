@@ -46,7 +46,6 @@ public class SignInController {
     private ProgressBar loadingBar;
     private boolean visibility;
     private String role;
-    private final DatabaseConnection instance = DatabaseConnection.getInstance();
     private int userId;
 
 
@@ -88,7 +87,7 @@ public class SignInController {
     private boolean checkCredentials(String username, String password) throws SQLException {
         String query = "SELECT user_id, role FROM users WHERE username = ? AND password = ?";
 
-        try (Connection connection = instance.getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, username);

@@ -16,7 +16,7 @@ public class FinesDao {
 
 
     public static BigDecimal calculateTotalFines() {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(CALCULATE_TOTAL_FINES_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
 
@@ -30,7 +30,7 @@ public class FinesDao {
     }
 
     public static boolean addFines(BorrowedBook overdueBook) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(ADD_FINES_QUERY)) {
 
             statement.setInt(1, overdueBook.getClientId());
@@ -46,7 +46,7 @@ public class FinesDao {
     }
 
     public static boolean payFines(int borrowId) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(PAY_FINES_QUERY)) {
 
             statement.setInt(1, borrowId);

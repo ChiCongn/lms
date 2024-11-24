@@ -24,7 +24,7 @@ public class ClientDao {
 
 
     public static boolean addFavouriteBook(int userId, int bookId) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(ADD_FAVOURITE_BOOK_QUERY)) {
 
             statement.setInt(1, userId);
@@ -43,7 +43,7 @@ public class ClientDao {
     public static ObservableList<Book> loadFavouriteBooks(int userId) {
         ObservableList<Book> favouriteBooks = FXCollections.observableArrayList();
 
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(LOAD_FAVOURITE_BOOKS_QUERY)) {
 
             statement.setInt(1, userId);
@@ -62,7 +62,7 @@ public class ClientDao {
     }
 
     public static boolean unfavouriteBook(int userId, int bookId) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(UNFAVOURITE_BOOK_QUERY)) {
 
             statement.setInt(1, userId);
@@ -86,7 +86,7 @@ public class ClientDao {
     public static ObservableList<Book> loadRecentBooks(int userId, int limit) {
         ObservableList<Book> recentBooks = FXCollections.observableArrayList();
 
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(LOAD_RECENT_BOOKS_QUERY)) {
 
             statement.setInt(1, userId);
@@ -106,7 +106,7 @@ public class ClientDao {
     }
 
     public static boolean addRecentBook(int userId, int bookId) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(ADD_RECENT_BOOK)) {
 
             statement.setInt(1, userId);
@@ -123,7 +123,7 @@ public class ClientDao {
     }
 
     public static boolean updateAccessTime(int userId, int bookId) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_ACCESS_TIME)) {
 
             statement.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
@@ -142,7 +142,7 @@ public class ClientDao {
 
 
     public static boolean deleteRecentBook(int userId, int bookId) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_RECENT_BOOK)) {
 
             statement.setInt(1, userId);
