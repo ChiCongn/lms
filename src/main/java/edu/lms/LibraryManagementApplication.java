@@ -3,6 +3,7 @@ package edu.lms;
 import edu.lms.controllers.SceneManager;
 import edu.lms.models.book.BookManager;
 import edu.lms.models.issue.IssuesManager;
+import edu.lms.models.search.BookSearch;
 import edu.lms.models.user.UserManager;
 import edu.lms.services.EmailService;
 import javafx.application.Application;
@@ -50,6 +51,7 @@ public class LibraryManagementApplication extends Application {
             protected Void call() {
                 BookManager.initialize();
                 //UserManager.initialize();
+                BookSearch.initialize();
                 return null;
             }
         };

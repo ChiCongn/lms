@@ -228,8 +228,8 @@
                               <HBox alignment="CENTER" prefHeight="38.0" prefWidth="375.0">
                                  <children>
                                     <ChoiceBox prefHeight="34.0" prefWidth="95.0" />
-                                    <TextField fx:id="searchFilter" prefHeight="32.0" prefWidth="234.0" />
-                                    <ImageView fx:id="magnifyingGlass" fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                    <TextField fx:id="searchFilter" onKeyReleased="#handleSearch" prefHeight="32.0" prefWidth="234.0" />
+                                    <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/search.png" />
                                        </image>

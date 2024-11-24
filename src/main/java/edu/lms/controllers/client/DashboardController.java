@@ -15,7 +15,6 @@ public class DashboardController {
 
     public static void setClientData(Client client) {
         DashboardController.client = client;
-        ClientDataManager.initialize(client.getId());
     }
 
     @FXML

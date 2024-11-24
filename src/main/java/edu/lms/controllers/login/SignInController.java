@@ -9,6 +9,7 @@ import edu.lms.controllers.librarian.LibrarianDashboardController;
 import edu.lms.models.book.BookManager;
 import edu.lms.models.issue.IssuesManager;
 import edu.lms.models.user.Client;
+import edu.lms.models.user.ClientDataManager;
 import edu.lms.models.user.Librarian;
 import edu.lms.models.user.UserManager;
 import edu.lms.services.database.DatabaseConnection;
@@ -112,7 +113,7 @@ public class SignInController {
             AdminDashboardController adminDashboardController = SceneManager.switchScene(Constants.ADMIN_DASHBOARD_VIEW, true);
         } else if (role.equals("librarian")) {
             System.out.println("sign in with librarian role");
-            loadData();
+            loadDataForLibrarian();
             Librarian librarian = (Librarian) UsersDao.loadUserData(userId);
             DashboardController.setData(librarian);
             LibrarianDashboardController librarianDashboardController = SceneManager.switchScene(Constants.LIBRARIAN_DASHBOARD_VIEW, true);
@@ -124,7 +125,7 @@ public class SignInController {
         }
     }
 
-    private void loadData() {
+    private void loadDataForLibrarian() {
         Task<Void> loadManagementData = new Task<>() {
             @Override
             protected Void call() {
@@ -144,6 +145,27 @@ public class SignInController {
         });
 
         new Thread(loadManagementData).start();
+    }
+
+    private void loadDataForClient() {
+        Task<Void> loadClientData = new Task<>() {
+            @Override
+            protected Void call() {
+                ClientDataManager.initialize(userId);
+                return null;
+            }
+        };
+
+        loadClientData.setOnSucceeded(event -> {
+            System.out.println("Load management data completed successfully!");
+        });
+
+        loadClientData.setOnFailed(event -> {
+            Throwable exception = loadClientData.getException();
+            System.err.println("Initialization failed: " + exception.getMessage());
+        });
+
+        new Thread(loadClientData).start();
     }
 
 }

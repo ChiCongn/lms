@@ -8,6 +8,7 @@ import javafx.scene.chart.PieChart;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class BookManager {
     private static ObservableList<Book> books;
@@ -62,6 +63,22 @@ public class BookManager {
         return categoriesDistributionData;
     }
 
+    public static Map<String, Integer> getBorrowedBooksDataByMonth() {
+        return borrowedBooksDataByMonth;
+    }
+
+    public static List<Book> getTopChoiceBooks() {
+        return topChoiceBooks;
+    }
+
+    public static ObservableList<Book> getFilteredBooks(Set<Integer> searchBooksByKeywords) {
+        ObservableList<Book> filteredBooks = FXCollections.observableArrayList();
+        for (int id : searchBooksByKeywords) {
+            filteredBooks.add(BookManager.getBook(id));
+        }
+        return filteredBooks;
+    }
+
     private static void calculateCategoriesDistribution() {
         Map<String, Integer> categoryData = BookDao.loadCategoryDistributionData();
         categoriesDistributionData = FXCollections.observableArrayList();
@@ -74,13 +91,5 @@ public class BookManager {
             double percentage = (count / (double) total) * 100;
             categoriesDistributionData.add(new PieChart.Data(category + " (" + String.format("%.1f%%", percentage) + ")", count));
         });
-    }
-
-    public static Map<String, Integer> getBorrowedBooksDataByMonth() {
-        return borrowedBooksDataByMonth;
-    }
-
-    public static List<Book> getTopChoiceBooks() {
-        return topChoiceBooks;
     }
 }

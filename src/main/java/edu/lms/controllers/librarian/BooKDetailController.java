@@ -12,6 +12,7 @@ import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
@@ -83,7 +84,7 @@ public class BooKDetailController extends ReviewController {
         descriptionTextArea.setText(book.getDescription());
         descriptionTextArea.setEditable(false);
         reviewsList.setItems(ReviewDao.loadReviewsOfSpecificBook(book.getBookId()));
-        thumbnail.setImage(book.getThumbnail());
+        thumbnail.setImage(new Image(book.getCoverImage()));
     }
 
     @FXML
