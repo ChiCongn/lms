@@ -1,0 +1,129 @@
+.tab-pane {
+    -fx-background-color: transparent;
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+}
+
+.tab-header-area {
+    -fx-background-color: transparent;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-spacing: 20px;
+}
+
+.tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab {
+    -fx-background-color: #FF5056;
+    -fx-background-radius: 5px;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, black, 1, 0.7, 2, 2);
+    -fx-translate-z: -10pt;
+    -fx-min-height: 30px;
+    -fx-min-width: 50px;
+}
+
+.tab:hover {
+    -fx-cursor: hand;
+    -fx-translate-y: -1px;
+    -fx-opacity: 0.8;
+}
+
+.tab:pressed {
+    -fx-effect: none;
+    -fx-opacity: 0.8;
+    -fx-border-width: 0px
+}
+
+.tab-header {
+    -fx-spacing: 20px;
+}
+
+.textBar {
+    -fx-font-family: sans-serif;
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+}
+
+.BookBar {
+    -fx-effect: dropshadow(gaussian, black, 0.5, 0.5, 2, 2);
+    -fx-translate-z: -20px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-clip-shape: "circle(50%)";
+    -fx-opacity: 0.8;
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+}
+
+.image-view {
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+}
+
+.BookBar:hover {
+    -fx-cursor: hand;
+    -fx-opacity: 1;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.BookBar:pressed {
+    -fx-opacity: 1;
+    -fx-effect: none;
+}
+
+.text-area {
+    -fx-background-color: white;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-padding: 4;
+    -fx-font-family: sans-serif;
+    -fx-font-size: 12pt;
+}
+
+.descriptionBook {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-translate-z: -10px;
+    -fx-font-family: sans-serif;
+    -fx-font-size: 20pt;
+}
+
+.list-view {
+    -fx-background-color: transparent;
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+}
+
+.text-area: hover{
+    -fx-cursor: hand;
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+.imageArrow{
+    -fx-effect: dropshadow(gaussian, black, 0.5, 0.7, 1, 1);
+    -fx-translate-z: -10pt;
+}
+
+.imageArrow:hover {
+    -fx-cursor: hand;
+    -fx-opacity: 0.8;
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+.imageArrow:pressed {
+    -fx-effect: none;
+}

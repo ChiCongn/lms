@@ -1,0 +1,36 @@
+.Book {
+    -fx-effect: dropshadow(gaussian, black, 0.5, 0.5, 2, 2);
+    -fx-translate-z: -20px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-clip-shape: "circle(50%)";
+    -fx-opacity: 0.9;
+}
+
+.Book:hover {
+    -fx-cursor: hand;
+    -fx-opacity: 1;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.Book:pressed {
+    -fx-opacity: 1;
+    -fx-effect: none;
+}
+
+.LabelName {
+    -fx-effect: dropshadow(gaussian, black, 0.5, 0.7, 0.5, 0.5);
+    -fx-border-width: 1px;
+    -fx-translate-z: -10px;
+}
+
+.LabelName:hover {
+    -fx-cursor: hand;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05
+}
+
+.labelName:pressed {
+    -fx-effect: none;
+}

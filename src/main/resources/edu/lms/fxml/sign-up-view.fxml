@@ -11,29 +11,31 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/SingIn.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.login.SignUpController">
-   <Label layoutX="366.0" layoutY="45.0" prefHeight="18.0" prefWidth="75.0" text="Gender" />
-    <TextField fx:id="username" layoutX="39.0" layoutY="61.0" minHeight="30.0" minWidth="30.0" prefHeight="38.0" prefWidth="250.0" promptText="user name">
+    <TextField fx:id="username" layoutX="39.0" layoutY="74.0" minHeight="30.0" minWidth="30.0" prefHeight="38.0" prefWidth="250.0" promptText="user name" styleClass="SignInDescription">
         <font>
             <Font size="9.0" />
         </font>
     </TextField>
-    <Button layoutX="370.0" layoutY="293.0" mnemonicParsing="false" onAction="#registerAccount" prefHeight="51.0" prefWidth="142.0" styleClass="button-signin" text="Sign Up" />
-    <Button layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#backToSignInController" prefHeight="18.0" prefWidth="50.0" text="&lt;">
+    <Button layoutX="370.0" layoutY="261.0" mnemonicParsing="false" onAction="#registerAccount" prefHeight="56.0" prefWidth="162.0" styleClass="ButtonSignup" text="Sign Up">
+      <font>
+         <Font name="SansSerif Bold" size="18.0" />
+      </font></Button>
+    <Button layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#backToSignInController" prefHeight="18.0" prefWidth="50.0" styleClass="Button" text="&lt;">
       <font>
          <Font name="System Bold" size="15.0" />
       </font></Button>
-    <TextField fx:id="email" layoutX="39.0" layoutY="127.0" minHeight="30.0" minWidth="30.0" prefHeight="38.0" prefWidth="250.0" promptText="email">
+    <TextField fx:id="email" layoutX="39.0" layoutY="136.0" minHeight="30.0" minWidth="30.0" prefHeight="38.0" prefWidth="250.0" promptText="email" styleClass="SignInDescription">
         <font>
             <Font size="9.0" />
         </font>
     </TextField>
 
-    <PasswordField fx:id="password" layoutX="37.0" layoutY="202.0" minHeight="10.0" minWidth="30.0" prefHeight="38.0" prefWidth="250.0" promptText="password">
+    <PasswordField fx:id="password" layoutX="37.0" layoutY="202.0" minHeight="10.0" minWidth="30.0" prefHeight="38.0" prefWidth="250.0" promptText="password" styleClass="SignInDescription">
         <font>
             <Font size="9.0" />
         </font>
     </PasswordField>
-    <ImageView fx:id="openEyes" fitHeight="31.0" fitWidth="34.0" layoutX="248.0" layoutY="213.0" onMouseClicked="#switchVisibility" pickOnBounds="true" preserveRatio="true">
+    <ImageView fx:id="openEyes" fitHeight="31.0" fitWidth="34.0" layoutX="248.0" layoutY="213.0" onMouseClicked="#switchVisibility" pickOnBounds="true" preserveRatio="true" styleClass="imageSignin">
         <Image url="@../images/openEyes.png" />
     </ImageView>
 
@@ -46,12 +48,12 @@
         <Image url="@../images/closedEyes.png" />
     </ImageView>
 
-    <PasswordField fx:id="confirmPassword" layoutX="37.0" layoutY="267.0" minHeight="10.0" minWidth="0.0" prefHeight="38.0" prefWidth="250.0" promptText="confirm password">
+    <PasswordField fx:id="confirmPassword" layoutX="37.0" layoutY="274.0" minHeight="10.0" minWidth="0.0" prefHeight="38.0" prefWidth="250.0" promptText="confirm password" styleClass="SignInDescription">
         <font>
             <Font size="9.0" />
         </font>
     </PasswordField>
-    <ImageView fx:id="openEyes2" fitHeight="31.0" fitWidth="34.0" layoutX="248.0" layoutY="278.0" onMouseClicked="#switchConfirmVisibility" pickOnBounds="true" preserveRatio="true">
+    <ImageView fx:id="openEyes2" fitHeight="31.0" fitWidth="34.0" layoutX="248.0" layoutY="287.0" onMouseClicked="#switchConfirmVisibility" pickOnBounds="true" preserveRatio="true" styleClass="imageSignin">
         <Image url="@../images/openEyes.png" />
     </ImageView>
 
@@ -73,12 +75,15 @@
             <Font size="10.0" />
         </font>
     </Label>
-    <TextField fx:id="verificationCode" layoutX="316.0" layoutY="127.0" minHeight="30.0" minWidth="30.0" prefHeight="38.0" prefWidth="250.0" promptText="code">
+    <TextField fx:id="verificationCode" layoutX="316.0" layoutY="136.0" minHeight="30.0" minWidth="30.0" prefHeight="38.0" prefWidth="267.0" promptText="code" styleClass="SignInDescription">
         <font>
             <Font size="9.0" />
         </font>
     </TextField>
-    <Button fx:id="sendCode" layoutX="316.0" layoutY="189.0" mnemonicParsing="false" onMouseClicked="#sendVerificationCode" text="Send" />
+    <Button fx:id="sendCode" layoutX="316.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#sendVerificationCode" styleClass="ButtonSignin" text="Send">
+      <font>
+         <Font name="SansSerif Bold" size="13.0" />
+      </font></Button>
     <Label fx:id="verificationCodeLabel" layoutX="316.0" layoutY="165.0" prefHeight="18.0" prefWidth="250.0">
         <font>
             <Font size="10.0" />
@@ -90,8 +95,11 @@
         </font>
     </Label>
     <Label fx:id="invalidEmail" layoutX="39.0" layoutY="165.0" prefHeight="18.0" prefWidth="250.0" textFill="#f40404" />
-    <Button layoutX="512.0" layoutY="189.0" mnemonicParsing="false" onMouseClicked="#checkVerificationCode" text="Check" />
-   <ChoiceBox fx:id="genderChoiceBox" layoutX="366.0" layoutY="61.0" prefWidth="150.0" />
+    <Button layoutX="513.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#checkVerificationCode" styleClass="ButtonSignin" text="Check">
+      <font>
+         <Font name="SansSerif Bold" size="13.0" />
+      </font></Button>
+   <ChoiceBox fx:id="genderChoiceBox" layoutX="316.0" layoutY="75.0" prefHeight="31.0" prefWidth="267.0" styleClass="Button" />
     <ImageView fx:id="successfulRegistration" fitHeight="400.0" fitWidth="600.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
         <Image url="@../images/successfulRegistration.png" />
     </ImageView>
@@ -100,4 +108,5 @@
             <Font size="12.0" />
         </font>
     </Button>
+   <Label layoutX="325.0" layoutY="83.0" styleClass="genderChoice" text="Gender" />
 </AnchorPane>
