@@ -1,0 +1,57 @@
+.LabelCategory {
+    -fx-text-fill: white;
+    -fx-font-family: sans-serif;
+    -fx-border-width: 2px;
+    -fx-border-color: transparent;
+    -fx-background-color: #FF5056;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-effect: dropshadow(gaussian, black, 0.5, 0.7, 2,2 );
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-font-size: 20pt;
+}
+
+.LabelCategory:hover {
+    -fx-translate-y: 3px;
+    -fx-cursor: hand;
+    -fx-opacity: 0.8;
+}
+
+.LabelCategory:pressed {
+    -fx-effect: none;
+    -fx-opacity: 0.8;
+}
+
+.HboxCategory {
+    -fx-background-color: #FF5056;
+    -fx-border-width: 2px;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0 20 20 0;
+    -fx-border-radius: 0 20 20 0;
+    -fx-font-family: "sans-serif";
+    -fx-font-size: 14pt;
+    -fx-effect: dropshadow(gaussian, black, 1, 0.7, 2, 2);
+    -fx-translate-z: -10pt;
+}
+
+.HboxCategory:hover {
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-opacity: 0.8;
+}
+
+.HboxCategory:pressed {
+    -fx-translate-z: 0;
+    -fx-opacity: 0.8;
+    -fx-effect: none;
+}
+
+.labelMenuCategory {
+    -fx-font-family: "sans-serif";
+    -fx-effect: dropshadow(gaussian, black, 0.01, 0.3, 0, 0);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14pt;
+}

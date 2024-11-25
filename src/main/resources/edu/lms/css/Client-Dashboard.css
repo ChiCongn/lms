@@ -1,0 +1,38 @@
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-width: 3px;
+    -fx-border-color: black;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+}
+
+.scroll-pane .thumb {
+    -fx-background-color: #FF5056;
+    -fx-opacity: 0.7;
+    -fx-background-radius: 10px;
+    -fx-min-width: 10px;
+    -fx-min-height: 10px;
+}
+
+.scroll-pane .thumb:hover {
+    -fx-background-color: #FF5056;
+    -fx-opacity: 0.7;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 2);
+}
+
+.scroll-pane .track {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 15px;
+}
+
+.scroll-pane .scroll-bar {
+    -fx-background-color: transparent;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+}
+
+.increment-button {
+    -fx-background-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 2);
+}

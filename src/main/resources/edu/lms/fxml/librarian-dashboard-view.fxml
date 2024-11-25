@@ -21,7 +21,7 @@
 
 <BorderPane prefHeight="912" prefWidth="1536" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.LibrarianDashboardController">
    <top>
-      <HBox prefHeight="60.0" prefWidth="151.0" styleClass="TopPane" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
+      <HBox prefHeight="67.0" prefWidth="1536.0" styleClass="TopPane" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" prefHeight="96.0" prefWidth="263.0" text="AlphasLibrary" textFill="WHITE">
                <font>

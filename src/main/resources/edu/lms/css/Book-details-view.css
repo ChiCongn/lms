@@ -127,3 +127,26 @@
 .imageArrow:pressed {
     -fx-effect: none;
 }
+
+.list-view {
+    -fx-background-color: transparent;
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 15px;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-border-width: 0.5px;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.textFieldBookDetails {
+    -fx-background-color: transparent;
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
