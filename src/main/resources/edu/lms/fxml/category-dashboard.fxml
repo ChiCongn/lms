@@ -219,11 +219,11 @@
                 </Label>
             <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="1005.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" prefWidth="75.0" text="All" />
-                  <Button mnemonicParsing="false" prefWidth="75.0" text="Sci-fi" />
-                  <Button mnemonicParsing="false" prefWidth="75.0" text="Fantasy" />
-                  <Button mnemonicParsing="false" prefWidth="75.0" text="Education" />
-                  <Button mnemonicParsing="false" prefWidth="75.0" text="Drama" />
+                  <Button fx:id="btnAll" mnemonicParsing="false" onAction="#pressCategory" prefWidth="75.0" text="All" />
+                  <Button fx:id="btnHorror" mnemonicParsing="false" onAction="#pressCategory" prefWidth="75.0" text="Horror" />
+                  <Button fx:id="btnSelfhelp" mnemonicParsing="false" onAction="#pressCategory" prefWidth="75.0" text="Self-help" />
+                  <Button fx:id="btnEducation" mnemonicParsing="false" onAction="#pressCategory" prefWidth="75.0" text="Education" />
+                  <Button fx:id="btnArt" mnemonicParsing="false" onAction="#pressCategory" prefWidth="75.0" text="Art" />
                </children>
             </HBox>
                 <ScrollPane prefHeight="200.0" prefWidth="200.0" styleClass="transparent" stylesheets="@../css/Test.css" VBox.vgrow="ALWAYS">

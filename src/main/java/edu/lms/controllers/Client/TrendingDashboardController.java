@@ -1,29 +1,21 @@
 package edu.lms.controllers.Client;
 
 import edu.lms.Constants;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-
-import static edu.lms.Constants.recommendedBooks;
 
 public class TrendingDashboardController implements Initializable {
     @FXML
@@ -65,7 +57,7 @@ public class TrendingDashboardController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         //recommended = new ArrayList<>(books());
-        Constants.recommended = constants.books();
+        Constants.recommended = constants.recommendedBook();
         int column = 0;
         int row = 1;
 
@@ -107,22 +99,6 @@ public class TrendingDashboardController implements Initializable {
         }
     }
 
-
-
-
-
-//    private void switchScene(String fxmlPath, MouseEvent event) {
-//        try {
-//            root = FXMLLoader.load(getClass().getResource(fxmlPath));
-//            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.setFullScreen(true);
-//            stage.show();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
 
 

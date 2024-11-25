@@ -1,16 +1,10 @@
 package edu.lms.controllers.dashboard;
 
 import edu.lms.Constants;
-import edu.lms.controllers.Client.CardDetailsController;
-import edu.lms.models.book.BookManager;
 
 import edu.lms.models.user.Client;
-import edu.lms.models.user.Librarian;
-import edu.lms.models.user.User;
-import edu.lms.models.user.UserManager;
 
 import edu.lms.services.AlertDialog;
-import edu.lms.services.database.BorrowedBookDataService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -63,7 +57,7 @@ public class LibrarianDashboardController extends DashboardController implements
 //        numberOfClientsLabel.setText(Integer.toString(UserManager.getNumberOfClients()));
 
 
-        Constants.recommended = constants.books();
+        Constants.recommended = constants.recommendedBook();
         Constants.users = constants.getUsers();
 
         int column = 0;
