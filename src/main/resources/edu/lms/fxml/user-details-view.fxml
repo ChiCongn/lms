@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -12,54 +13,74 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.ClientDetailsController">
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.ClientDetailsController">
    <center>
       <AnchorPane prefHeight="600.0" prefWidth="800.0">
          <children>
-            <TableView fx:id="borrowView" layoutX="104.0" layoutY="300.0" prefHeight="242.0" prefWidth="645.0" stylesheets="@../css/user-detail.css">
+            <TableView fx:id="borrowView" layoutX="112.0" layoutY="300.0" prefHeight="262.0" prefWidth="645.0" stylesheets="@../css/user-detail.css">
               <columns>
-                <TableColumn fx:id="borrowIdColumn" prefWidth="73.60003662109375" text="borrow id" />
-                <TableColumn fx:id="bookColumn" prefWidth="233.60003662109375" text="book" />
+                <TableColumn fx:id="borrowIdColumn" prefWidth="92.0" text="borrow id" />
+                <TableColumn fx:id="bookColumn" prefWidth="216.0" text="book" />
                   <TableColumn fx:id="statusColumn" prefWidth="104.0" text="status" />
                   <TableColumn fx:id="borrowDateColumn" prefWidth="112.79998779296875" text="borrow date" />
                   <TableColumn fx:id="dueDateColumn" prefWidth="111.20001220703125" text="due date" />
               </columns>
             </TableView>
-            <Button layoutX="34.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#backToClientManagement" prefHeight="31.0" prefWidth="51.0" text="Back" />
-            <ImageView fx:id="avatarView" fitHeight="176.0" fitWidth="207.0" layoutX="104.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true" />
-            <HBox layoutX="336.0" layoutY="81.0" prefHeight="176.0" prefWidth="412.0">
+            <Button layoutX="34.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#backToClientManagement" prefHeight="36.0" prefWidth="78.0" text="Back" />
+            <ImageView fx:id="avatarView" fitHeight="176.0" fitWidth="207.0" layoutX="104.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true" styleClass="imageViewExtra">
+               <image>
+                  <Image url="@../images/profile.png" />
+               </image></ImageView>
+            <HBox layoutX="336.0" layoutY="81.0" prefHeight="193.0" prefWidth="412.0">
                <children>
-                  <VBox prefHeight="176.0" prefWidth="72.0">
+                  <VBox prefHeight="193.0" prefWidth="145.0" spacing="21.0">
                      <children>
-                        <Label prefHeight="26.0" prefWidth="86.0" text="Client ID">
+                        <Label prefHeight="26.0" prefWidth="131.0" text="Client ID">
                            <font>
-                              <Font name="Berlin Sans FB" size="12.0" />
+                              <Font name="SansSerif Bold Italic" size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label prefHeight="26.0" prefWidth="122.0" text="Username">
+                           <font>
+                              <Font name="SansSerif Bold Italic" size="18.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="26.0" prefWidth="86.0" text="Username">
+                        <Label prefHeight="26.0" prefWidth="133.0" text="Email">
                            <font>
-                              <Font name="Berlin Sans FB" size="12.0" />
+                              <Font name="SansSerif Bold Italic" size="18.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="26.0" prefWidth="86.0" text="Email">
+                        <Label prefHeight="26.0" prefWidth="131.0" text="Gender">
                            <font>
-                              <Font name="Berlin Sans FB" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label prefHeight="26.0" prefWidth="86.0" text="Gender">
-                           <font>
-                              <Font name="Berlin Sans FB" size="12.0" />
+                              <Font name="SansSerif Bold Italic" size="18.0" />
                            </font>
                         </Label>
                      </children>
                   </VBox>
-                  <VBox prefHeight="176.0" prefWidth="342.0">
+                  <VBox prefHeight="176.0" prefWidth="342.0" spacing="21.0">
                      <children>
-                        <Label fx:id="idLabel" prefHeight="26.0" prefWidth="344.0" />
-                        <Label fx:id="usernameLabel" prefHeight="26.0" prefWidth="344.0" />
-                        <Label fx:id="emailLabel" prefHeight="26.0" prefWidth="344.0" />
-                        <Label fx:id="genderLabel" prefHeight="26.0" prefWidth="344.0" />
+                        <Label fx:id="idLabel" prefHeight="26.0" prefWidth="344.0">
+                           <VBox.margin>
+                              <Insets top="13.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="usernameLabel" prefHeight="26.0" prefWidth="344.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="emailLabel" prefHeight="26.0" prefWidth="344.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="genderLabel" prefHeight="26.0" prefWidth="344.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                      </children>
                   </VBox>
                </children>
