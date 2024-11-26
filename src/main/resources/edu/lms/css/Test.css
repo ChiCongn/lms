@@ -29,12 +29,12 @@ BorderPane#root {
 }
 
 .LabelHboxSmall{
-    -fx-font-size: 16px;
+    -fx-font-size: 20pt;
     -fx-font-weight: normal;
     -fx-effect: dropshadow(gaussian, black, 0.5, 0.05, 0, 0);
 }
 .LabelHboxSmallExtra{
-    -fx-font-size: 14;
+    -fx-font-size: 16pt;
     -fx-font-weight: bold;
     -fx-effect: dropshadow(gaussian, black, 0.5, 0.05, 0, 0);
 }

@@ -294,7 +294,7 @@
                <effect>
                   <Shadow blurType="GAUSSIAN" height="1.0" radius="0.0" width="1.0">
                      <color>
-                        <Color red="0.75" green="0.75" blue="0.75" />
+                        <Color red="0.7490196228027344" green="0.7490196228027344" blue="0.7490196228027344" />
                      </color>
                   </Shadow>
                </effect>

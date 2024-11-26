@@ -203,12 +203,12 @@
                   <Insets />
                </opaqueInsets>
                <HBox.margin>
-                  <Insets left="9.0" />
+                  <Insets left="12.0" />
                </HBox.margin>
             </Separator>
             <VBox prefHeight="852.0" prefWidth="1318.0" spacing="20.0" styleClass="VBoxLarge">
                <children>
-                  <HBox prefHeight="77.0" prefWidth="1065.0" spacing="156.0" styleClass="HboxLarge">
+                  <HBox prefHeight="92.0" prefWidth="1268.0" spacing="156.0" styleClass="HboxLarge">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -216,20 +216,22 @@
                         <Insets left="50.0" top="30.0" />
                      </VBox.margin>
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" styleClass="HboxSmall">
+                        <HBox prefHeight="100.0" prefWidth="256.0" styleClass="HboxSmall">
                            <children>
                               <VBox alignment="CENTER" prefHeight="110.0" prefWidth="213.0">
                                  <children>
-                                    <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="114.0">
-                                       <children>
-                                          <Label styleClass="LabelHboxSmall" text="Label" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" prefHeight="107.0" prefWidth="128.0">
-                                       <children>
-                                          <Label styleClass="LabelHboxSmallExtra" text="User" />
-                                       </children>
-                                    </HBox>
+                                    <Label styleClass="LabelHboxSmall" text="Label">
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label alignment="CENTER" prefHeight="31.0" prefWidth="202.0" styleClass="LabelHboxSmallExtra" text="User">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="114.0" />
+                                    <HBox alignment="CENTER" prefHeight="107.0" prefWidth="128.0" />
                                  </children>
                               </VBox>
                               <ImageView fitHeight="75.0" fitWidth="60.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="imageView">
@@ -237,7 +239,7 @@
                                     <Image url="@../images/profile.png" />
                                  </image>
                                  <HBox.margin>
-                                    <Insets right="10.0" top="7.0" />
+                                    <Insets right="10.0" top="15.0" />
                                  </HBox.margin>
                               </ImageView>
                            </children>
@@ -245,20 +247,23 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </HBox>
-                        <HBox layoutX="60.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" styleClass="HboxSmall">
+                        <HBox layoutX="60.0" layoutY="10.0" minHeight="100.0" prefHeight="79.0" prefWidth="256.0" styleClass="HboxSmall">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="110.0" prefWidth="213.0">
+                              <VBox alignment="CENTER" prefHeight="77.0" prefWidth="176.0">
                                  <children>
-                                    <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="128.0">
-                                       <children>
-                                          <Label alignment="BOTTOM_CENTER" prefWidth="38.0" styleClass="LabelHboxSmall" text="Label" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="107.0" prefWidth="128.0">
-                                       <children>
-                                          <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="117.0" styleClass="LabelHboxSmallExtra" text="Borrowed Books" />
-                                       </children>
-                                    </HBox>
+                                    <Label alignment="BOTTOM_CENTER" prefHeight="31.0" prefWidth="179.0" styleClass="LabelHboxSmall" text="Label">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="41.0" prefWidth="187.0" styleClass="LabelHboxSmallExtra" text="Borrowed Books">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin>
+                                    </Label>
                                  </children>
                               </VBox>
                               <ImageView fitHeight="75.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="imageView">
@@ -266,28 +271,25 @@
                                     <Image url="@../images/books.png" />
                                  </image>
                                  <HBox.margin>
-                                    <Insets right="10.0" top="7.0" />
+                                    <Insets left="10.0" top="15.0" />
                                  </HBox.margin>
                               </ImageView>
                            </children>
                         </HBox>
-                        <HBox layoutX="310.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" styleClass="HboxSmall">
+                        <HBox layoutX="310.0" layoutY="10.0" prefHeight="100.0" prefWidth="256.0" styleClass="HboxSmall">
                            <children>
                               <VBox alignment="CENTER" prefHeight="110.0" prefWidth="213.0">
                                  <children>
-                                    <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="114.0">
-                                       <children>
-                                          <Label styleClass="LabelHboxSmall" text="Label">
-                                             <font>
-                                                <Font size="30.0" />
-                                             </font></Label>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" prefHeight="107.0" prefWidth="128.0">
-                                       <children>
-                                          <Label styleClass="LabelHboxSmallExtra" text="Books" />
-                                       </children>
-                                    </HBox>
+                                    <Label styleClass="LabelHboxSmall" text="Label">
+                                       <font>
+                                          <Font size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <Label styleClass="LabelHboxSmallExtra" text="Books">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </VBox>
                               <ImageView fitHeight="75.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="imageView">
@@ -295,7 +297,7 @@
                                     <Image url="@../images/book.png" />
                                  </image>
                                  <HBox.margin>
-                                    <Insets right="10.0" top="7.0" />
+                                    <Insets top="15.0" />
                                  </HBox.margin>
                               </ImageView>
                            </children>
