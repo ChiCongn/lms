@@ -22,6 +22,8 @@ public class Constants {
     public static final String LIBRARIAN_DASHBOARD_VIEW = "/edu/lms/fxml/librarian-dashboard-view.fxml";
     public static final String CLIENT_DASHBOARD_VIEW = "/edu/lms/fxml/client-dashboard-view.fxml";
     public static final String CLIENT_BOOK_DETAILS_VIEW = "/edu/lms/fxml/client-book-details-view.fxml";
+
+    public static final String FORGOT_PASSWORD_VIEW = "/edu/lms/fxml/forgot-password-view.fxml";
     public static final String TRENDING_DASHBOARD_VIEW = "/edu/lms/fxml/trending-dashboard.fxml";
     public static final String CATEGORIES_VIEW = "/edu/lms/fxml/category-dashboard.fxml";
     public static final String READING_DASHBOARD_VIEW = "/edu/lms/fxml/TestingDashBoard.fxml";

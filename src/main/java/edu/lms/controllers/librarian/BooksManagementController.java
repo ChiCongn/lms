@@ -7,6 +7,7 @@ import edu.lms.models.book.BookManager;
 
 import edu.lms.models.issue.IssuesManager;
 import edu.lms.models.search.BookSearch;
+import edu.lms.models.search.Trie;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +18,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -138,7 +141,11 @@ public class BooksManagementController extends DashboardController implements In
             // Filter the books based on the search query
             // wow surprised! O(k logN) k is constant
             String[] keywords = filter.split("\\s+");
-            Set<Integer> filteredBookId = BookSearch.searchBooksByKeywords(keywords, true);
+            List<String> guessedKeywords = new ArrayList<>();
+            for (String keyword : keywords) {
+                Trie.autocomplete(guessedKeywords, keyword);
+            }
+            Set<Integer> filteredBookId = BookSearch.searchBooksByKeywords(guessedKeywords, true);
             ObservableList<Book> filteredBooks = BookManager.getFilteredBooks(filteredBookId);
 
             // O(n*m)

@@ -26,7 +26,7 @@ public class InvertedIndexDao {
             while (rs.next()) {
                 int bookId = rs.getInt("book_id");
                 String keyword = rs.getString("keyword");
-
+                Trie.insert(keyword);
                 invertedIndex.computeIfAbsent(keyword, k -> new HashSet<>()).add(bookId);
             }
         } catch (SQLException e) {

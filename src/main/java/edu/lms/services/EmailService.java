@@ -10,10 +10,10 @@ import java.util.logging.Logger;
 
 public class EmailService {
 
-    static {
+    /*static {
         // Set JavaMail logging level to SEVERE to suppress warnings
         Logger.getLogger("javax.mail").setLevel(Level.SEVERE);
-    }
+    }*/
 
     private static Session email;
 

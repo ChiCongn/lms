@@ -222,7 +222,7 @@ public class BookDao {
             while (resultSet.next()) {
                 int bookId = resultSet.getInt("book_id");
                 Book book = BookManager.getBook(bookId);
-                book.initializeThumbnail();
+                //book.initializeThumbnail();
                 topChoiceBooks.add(book);
             }
         } catch (SQLException e) {

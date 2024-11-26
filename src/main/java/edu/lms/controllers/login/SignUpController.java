@@ -107,7 +107,6 @@ public class SignUpController implements Initializable {
                     if (!Validator.checkValidEmail(newEmail)) {
                         invalidEmail.setText("Invalid email! Pls choose other email!");
                         invalidEmail.setStyle("-fx-text-fill: red;");
-                        return;
                     }
                     if (checkUniqueEmail(newEmail)) {
                         invalidEmail.setText("Email is available!");

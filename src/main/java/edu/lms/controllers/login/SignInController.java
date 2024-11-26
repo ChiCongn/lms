@@ -3,10 +3,10 @@ package edu.lms.controllers.login;
 import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.controllers.client.ClientDashboardController;
+import edu.lms.controllers.common.SoundManager;
 import edu.lms.controllers.librarian.AdminDashboardController;
 import edu.lms.controllers.librarian.DashboardController;
 import edu.lms.controllers.librarian.LibrarianDashboardController;
-import edu.lms.models.book.BookManager;
 import edu.lms.models.issue.IssuesManager;
 import edu.lms.models.user.Client;
 import edu.lms.models.user.ClientDataManager;
@@ -87,7 +87,7 @@ public class SignInController {
 
     private boolean checkCredentials(String username, String password) throws SQLException {
         String query = "SELECT user_id, role FROM users WHERE username = ? AND password = ?";
-
+        SoundManager.playSound("mouse-click.wav");
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 

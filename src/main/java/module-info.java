@@ -1,6 +1,7 @@
 module edu.lms {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
 
     requires java.dotenv;
 

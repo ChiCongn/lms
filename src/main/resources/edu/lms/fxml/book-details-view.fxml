@@ -229,7 +229,7 @@
                      <Tooltip fx:id="ratingTooltip" text="Empty Tooltip" />
                   </tooltip>
                   <font>
-                     <Font size="30.0" />
+                     <Font size="39.0" />
                   </font>
                   <padding>
                      <Insets top="50.0" />
