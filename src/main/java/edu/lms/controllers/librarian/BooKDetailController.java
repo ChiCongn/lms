@@ -24,6 +24,12 @@ public class BooKDetailController extends ReviewController {
     private Label authorsLabel;
 
     @FXML
+    private Label languageLabel;
+
+    @FXML
+    private Label publishedYearLabel;
+
+    @FXML
     private TextField availableCopiesField;
 
     @FXML
@@ -77,10 +83,11 @@ public class BooKDetailController extends ReviewController {
     private void initializeBookData(Book book) {
         authorsLabel.setText(book.getAuthors());
         pageCountLabel.setText(Integer.toString(book.getPageCount()));
+        languageLabel.setText(book.getLanguage());
+        publishedYearLabel.setText(book.getPublishedYear());
         totalCopiesLabel.setText(Integer.toString(book.getTotalCopies()));
         availableCopiesLabel.setText(Integer.toString(book.getAvailableCopies()));
         priceLabel.setText(book.getPrice().toString());
-        descriptionTextArea.setWrapText(true);
         descriptionTextArea.setText(book.getDescription());
         descriptionTextArea.setEditable(false);
         reviewsList.setItems(ReviewDao.loadReviewsOfSpecificBook(book.getBookId()));

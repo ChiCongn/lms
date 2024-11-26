@@ -100,7 +100,7 @@ public class GoogleBooksAPI {
         //      String description, BigDecimal rating, String coverImage, String canonicalVolumeLink
         Book searchedBook = new Book(title, authors.toString(), publishedYear, pageCount, categories.toString(), language, description, rating, price, coverImageUrl, canonicalVolumeLink);
 
-        BookDao.addBook(searchedBook);
+        //BookDao.addBook(searchedBook);
         return searchedBook;
     }
 

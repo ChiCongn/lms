@@ -68,7 +68,7 @@ public class BooksManagementController extends DashboardController implements In
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         usernameLabel.setText(librarian.getUsername());
-        avatar.setImage(new Image(librarian.getAvatarPath()));
+        avatarImage.setImage(new Image(librarian.getAvatarPath()));
         System.out.println("load all books for books management view");
         initializeBooksTableView();
         totalBooksLabel.setText(Integer.toString(BookManager.getNumberOfBooks()));

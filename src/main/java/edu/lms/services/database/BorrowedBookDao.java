@@ -17,6 +17,7 @@ import java.util.Map;
 
 
 public class BorrowedBookDao {
+    private static final LocalDate present = LocalDate.now();
     private static final String LOAD_BORROWED_BOOKS_OF_A_CLIENT_QUERY = "SELECT * FROM borrowed_books WHERE user_id = ? AND status = 'borrowed' OR status = 'overdue'";
     private static final String LOAD_ALL_BORROWED_BOOKS_QUERY = "SELECT * FROM borrowed_books";
     private static final String ADD_BORROWED_BOOK_QUERY = "INSERT INTO books (user_id, book_id, borrow_date, due_date, return_date, status) VALUES (?, ?, ?, ?, ?, ?)";
@@ -24,6 +25,8 @@ public class BorrowedBookDao {
     private static final String COUNT_BORROWED_BOOKS_QUERY = "SELECT COUNT(*) FROM borrowed_books WHERE status = 'borrowed' OR status = 'overdue'";
     private static final String LOAD_MONTHLY_BORROWED_BOOKS_QUERY = "SELECT MONTHNAME(borrow_date) AS month, COUNT(*) AS borrow_count " +
             "FROM borrowed_books GROUP BY MONTH(borrow_date), MONTHNAME(borrow_date) ORDER BY MONTH(borrow_date)";
+    private static final String MARK_BOOK_AS_OVERDUE = "UPDATE borrowed_books SET status = 'overdue' WHERE borrow_id = ?";
+    private static final String MARK_BOOK_AS_RETURNED = "UPDATE borrowed_books SET status = 'returned' WHERE user_id = ? AND book_id = ?";
 
 
     public static int getNumberOfBorrowedBook() {
@@ -62,8 +65,10 @@ public class BorrowedBookDao {
                     returnDate = dbReturnDate.toLocalDate();
                 }
                 String status = resultSet.getString("status");
+                if (checkOverdue(borrowedId, status, dueDate)) {
+                    status = "overdue";
+                }
                 Book book = BookManager.getBook(bookId);
-                Client client = UserManager.getClient(clientId);
                 BorrowedBook borrowedBook = new BorrowedBook(borrowedId, book, clientId, borrowedDate, dueDate, returnDate, status);
                 borrowedBooks.add(borrowedBook);
             }
@@ -164,6 +169,20 @@ public class BorrowedBookDao {
         return borrowedBooksByMonth;
     }
 
+    public static boolean markBookAsReturned(int userId, int bookId) {
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(MARK_BOOK_AS_RETURNED)) {
+
+            statement.setInt(1, userId);
+            statement.setInt(2, bookId);
+            System.out.println("mark book as returned");
+            return statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error marking book as returned: " + e.getMessage());
+        }
+        return false;
+    }
+
     private static boolean isBorrowedByThisClient(int bookId, int clientId) {
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(CHECK_IS_BORROWED_BY_THIS_CLIENT)) {
@@ -176,6 +195,22 @@ public class BorrowedBookDao {
             }
         } catch (SQLException e) {
             System.err.println("Error checking is borrowed by this client: " + e.getMessage());
+        }
+        return false;
+    }
+
+    private static boolean checkOverdue(int borrowedId, String status, LocalDate dueDate) {
+        if (!status.equals("returned") && dueDate.isBefore(present)) {
+            try (Connection connection = DatabaseConnection.getConnection();
+                 PreparedStatement statement = connection.prepareStatement(MARK_BOOK_AS_OVERDUE)) {
+
+                statement.setInt(1, borrowedId);
+                statement.executeUpdate();
+                System.out.println("mark book as overdue");
+            } catch (SQLException e) {
+                System.err.println("Error marking book as overdue: " + e.getMessage());
+            }
+            return true;
         }
         return false;
     }

@@ -36,12 +36,6 @@ public class LibrarianDashboardController extends DashboardController implements
     private Label numberOfClientsLabel;
 
     @FXML
-    private Label usernameLabel;
-
-    @FXML
-    private ImageView avatarImage;
-
-    @FXML
     private HBox booksContainer;
 
     @FXML

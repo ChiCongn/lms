@@ -59,6 +59,8 @@ public class ClientsManagementController extends DashboardController implements 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        usernameLabel.setText(librarian.getUsername());
+        avatarImage.setImage(new Image(librarian.getAvatarPath()));
         System.out.println("load data for clients table view in client management scene");
         ObservableList<Client> clients = UserManager.getClients();
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -119,7 +121,8 @@ public class ClientsManagementController extends DashboardController implements 
                         if (!UsersDao.suspendUser(selectedClient.getId())) {
                             System.err.println("something is wrong. Can not suspend user!");
                         }
-                        System.out.println("suspend");
+                        selectedClient.setStatus("suspended");
+                        System.out.println("suspend client");
                     } else {
                         System.out.println("cancel");
                     }
@@ -140,7 +143,8 @@ public class ClientsManagementController extends DashboardController implements 
                         if (!UsersDao.reactivateUser(selectedClient.getId())) {
                             System.err.println("Something is wrong. Can not reactivate user!");
                         }
-                        System.out.println("active");
+                        selectedClient.setStatus("active");
+                        System.out.println("reactivate client");
                     } else {
                         System.out.println("cancel");
                     }
@@ -161,6 +165,8 @@ public class ClientsManagementController extends DashboardController implements 
                         if (!UsersDao.deleteUser(selectedClient.getId())) {
                             System.err.println("Something is wrong. Can not delete user!");
                         }
+                        UserManager.deleteClient(selectedClient);
+                        System.out.println("delete client");
                     } else {
                         System.out.println("cancel");
                     }

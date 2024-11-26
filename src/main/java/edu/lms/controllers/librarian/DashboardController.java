@@ -5,11 +5,20 @@ import edu.lms.controllers.SceneManager;
 import edu.lms.controllers.login.SignInController;
 import edu.lms.models.issue.IssuesManager;
 import edu.lms.models.user.Librarian;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 
 public class DashboardController {
 
     protected static Librarian librarian;
+
+    @FXML
+    protected Label usernameLabel;
+
+    @FXML
+    protected ImageView avatarImage;
 
     public static Librarian getLibrarian() {
         return librarian;

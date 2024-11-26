@@ -38,4 +38,13 @@ public class UserManager {
         }
         return null;
     }
+
+    public static void deleteClient(Client client) {
+        clients.remove(client);
+    }
+
+    public static void deleteClient(int clientId) {
+        Client target = getClient(clientId);
+        clients.remove(target);
+    }
 }
