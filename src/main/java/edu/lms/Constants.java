@@ -72,6 +72,7 @@ public class Constants {
     public static List<Book> educationBooks = new ArrayList<>();
     public static List<Book> artBooks = new ArrayList<>();
 
+
     public static List<Book> books = new ArrayList<>();
     public static List<Client> users = new ArrayList<>();
 
