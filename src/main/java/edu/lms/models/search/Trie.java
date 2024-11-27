@@ -61,24 +61,10 @@ public class Trie {
         collectWords(guesses, current, prefix);
     }
 
-    public static List<String> autocomplete(String prefix) {
-        TrieNode current = root;
-        List<String> guesses = new ArrayList<>();
-        for (char ch : prefix.toCharArray()) {
-            current = current.children.get(ch);
-            if (current == null) {
-                System.out.println("No words found with prefix: " + prefix);
-                return null;
-            }
-        }
-        collectWords(guesses, current, prefix);
-        return guesses;
-    }
-
     // Helper method to collect all words starting from the given node
     private static void collectWords(List<String> guesses, TrieNode node, String prefix) {
         if (node.isEndOfWord) {
-            //System.out.println(prefix);
+            System.out.println(prefix);
             guesses.add(prefix);
         }
 

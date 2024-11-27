@@ -2,6 +2,8 @@ package edu.lms.controllers.librarian;
 
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
+import edu.lms.models.review.Review;
+import edu.lms.models.review.ReviewCell;
 import edu.lms.services.GoogleBooksAPI;
 import edu.lms.services.database.BookDao;
 import javafx.animation.PauseTransition;
@@ -14,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -44,6 +47,12 @@ public class AddBookController implements Initializable {
     private ImageView thumbnail;
 
     @FXML
+    private Label ratingLabel;
+
+    @FXML
+    private Tooltip ratingTooltip;
+
+    @FXML
     private TextField searchTextField;
 
     @FXML
@@ -63,6 +72,9 @@ public class AddBookController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configureListView();
+        ratingTooltip.setStyle("-fx-font-size: 14;");
+        ratingTooltip.setShowDelay(Duration.millis(500));
+        Tooltip.install(ratingLabel, ratingTooltip);
     }
 
     @FXML
@@ -120,6 +132,9 @@ public class AddBookController implements Initializable {
         languageLabel.setText(selectedBook.getLanguage());
         descriptionText.setText(selectedBook.getDescription());
         thumbnail.setImage(new Image(selectedBook.getCoverImage()));
+        ratingLabel.setText(ReviewCell.loadRating(selectedBook.getRating().intValue()));
+        ratingLabel.setTextFill(Color.GOLD);
+        ratingTooltip.setText(selectedBook.getRating().toString());
     }
 
     @FXML

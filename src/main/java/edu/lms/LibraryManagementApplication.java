@@ -26,10 +26,10 @@ public class LibraryManagementApplication extends Application {
         this.primaryStage = primaryStage;
         SceneManager.setPrimaryStage(primaryStage);
         EmailService.initialize();
-        //loadData();
+        loadData();
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(LibraryManagementApplication.class.getResource(Constants.FORGOT_PASSWORD_VIEW));
+            loader.setLocation(LibraryManagementApplication.class.getResource(Constants.SIGN_IN_VIEW));
             AnchorPane root = loader.load();
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);

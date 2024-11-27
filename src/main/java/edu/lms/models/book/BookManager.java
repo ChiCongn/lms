@@ -2,6 +2,7 @@ package edu.lms.models.book;
 
 import edu.lms.services.database.BookDao;
 import edu.lms.services.database.BorrowedBookDao;
+import edu.lms.services.database.IssuesDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
@@ -13,6 +14,7 @@ import java.util.Set;
 public class BookManager {
     private static ObservableList<Book> books;
     private static Map<String, Integer> borrowedBooksDataByMonth;
+    private static Map<String, Integer> issuesDataByMonth;
     private static ObservableList<PieChart.Data> categoriesDistributionData;
     private static List<Book> topChoiceBooks;
 
@@ -21,8 +23,9 @@ public class BookManager {
     public static void initialize() {
          books = BookDao.loadBooksData();
          borrowedBooksDataByMonth = BorrowedBookDao.loadBorrowedBooksByMonth();
+         issuesDataByMonth = IssuesDao.loadIssueByMonth();
          calculateCategoriesDistribution();
-        topChoiceBooks = BookDao.loadTopChoicesBook();
+         topChoiceBooks = BookDao.loadTopChoicesBook();
     }
     public static ObservableList<Book> getBooks() {
         if (books == null) initialize();
@@ -65,6 +68,10 @@ public class BookManager {
 
     public static Map<String, Integer> getBorrowedBooksDataByMonth() {
         return borrowedBooksDataByMonth;
+    }
+
+    public static Map<String, Integer> getIssuesDataByMonth() {
+        return issuesDataByMonth;
     }
 
     public static List<Book> getTopChoiceBooks() {

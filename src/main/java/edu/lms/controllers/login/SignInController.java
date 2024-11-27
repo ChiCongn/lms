@@ -84,6 +84,10 @@ public class SignInController {
         }
     }
 
+    @FXML
+    private void switchToForgotPasswordView() {
+        ForgotPasswordController forgotPasswordController = SceneManager.switchScene(Constants.FORGOT_PASSWORD_VIEW, false);
+    }
 
     private boolean checkCredentials(String username, String password) throws SQLException {
         String query = "SELECT user_id, role FROM users WHERE username = ? AND password = ?";

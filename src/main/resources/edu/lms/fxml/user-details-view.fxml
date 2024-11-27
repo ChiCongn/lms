@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -12,23 +13,26 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.librarian.ClientDetailsController">
+<BorderPane prefHeight="912" prefWidth="1536" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.librarian.ClientDetailsController">
    <center>
-      <AnchorPane prefHeight="600.0" prefWidth="800.0">
+      <AnchorPane prefHeight="912.0" prefWidth="1536.0">
          <children>
-            <TableView fx:id="borrowView" layoutX="104.0" layoutY="300.0" prefHeight="242.0" prefWidth="645.0" stylesheets="@../css/user-detail.css">
+            <TableView fx:id="borrowView" layoutX="218.0" layoutY="350.0" prefHeight="395.0" prefWidth="1010.0" stylesheets="@../css/user-detail.css">
               <columns>
-                <TableColumn fx:id="borrowIdColumn" prefWidth="73.60003662109375" text="borrow id" />
-                <TableColumn fx:id="bookColumn" prefWidth="233.60003662109375" text="book" />
-                  <TableColumn fx:id="statusColumn" prefWidth="104.0" text="status" />
-                  <TableColumn fx:id="borrowDateColumn" prefWidth="112.79998779296875" text="borrow date" />
-                  <TableColumn fx:id="dueDateColumn" prefWidth="111.20001220703125" text="due date" />
+                <TableColumn fx:id="borrowIdColumn" prefWidth="90.0" text="borrow id" />
+                <TableColumn fx:id="bookColumn" prefWidth="310.0" text="book" />
+                  <TableColumn fx:id="statusColumn" prefWidth="160.0" text="status" />
+                  <TableColumn fx:id="borrowDateColumn" prefWidth="160.0" text="borrow date" />
+                  <TableColumn fx:id="dueDateColumn" prefWidth="160.0" text="due date" />
+                  <TableColumn fx:id="dueDateColumn1" prefWidth="120.0" text="fines" />
               </columns>
             </TableView>
             <Button layoutX="34.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#backToClientManagement" prefHeight="31.0" prefWidth="51.0" text="Back" />
-            <ImageView fx:id="avatarView" fitHeight="176.0" fitWidth="207.0" layoutX="104.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true" />
-            <HBox layoutX="336.0" layoutY="81.0" prefHeight="176.0" prefWidth="412.0">
+            <ImageView fx:id="avatarView" fitHeight="226.0" fitWidth="256.0" layoutX="218.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/default_avatar.png" />
+               </image></ImageView>
+            <HBox layoutX="515.0" layoutY="79.0" prefHeight="226.0" prefWidth="547.0">
                <children>
                   <VBox prefHeight="176.0" prefWidth="72.0">
                      <children>
@@ -67,4 +71,21 @@
          </children>
       </AnchorPane>
    </center>
+   <top>
+      <HBox prefHeight="67.0" prefWidth="1536.0" styleClass="TopPane" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="96.0" prefWidth="263.0" text="AlphasLibrary" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="38.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="650.0" />
+               </HBox.margin>
+               <effect>
+                  <Glow level="0.21" />
+               </effect>
+            </Label>
+         </children>
+      </HBox>
+   </top>
 </BorderPane>

@@ -1,0 +1,66 @@
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+}
+
+.text-field:hover{
+    -fx-background-color: transparent;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-translate-y: 1px;
+}
+
+.image-view {
+    -fx-background-color: transparent;
+    -fx-effect: dropshadow(gaussian, black, 0.3, 0.3, 1, 1);
+    -fx-translate-z: -10px;
+}
+
+.image-view:hover {
+    -fx-background-color: transparent;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-cursor: hand;
+}
+
+.image-view:pressed {
+    -fx-effect: none;
+}
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+}
+
+.table-column-header {
+    -fx-background-color: transparent;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-border-color: black;
+}
+
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-width: 1px;
+    -fx-border-color: black;
+}
+
+.table-header{
+    -fx-background-color: transparent;
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+}
+
+.LabelClientManagement {
+    -fx-background-color: transparent;
+    -fx-font-family: sans-serif;
+    -fx-font-size: 14pt;
+    -fx-text-fill: white;
+}

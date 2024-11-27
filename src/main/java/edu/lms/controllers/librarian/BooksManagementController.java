@@ -113,7 +113,7 @@ public class BooksManagementController extends DashboardController implements In
         authorsColumn.setCellValueFactory(new PropertyValueFactory<>("authors"));
         bookTableView.setItems(books);
         bookTableView.setOnMouseClicked(mouseEvent -> {
-            if (mouseEvent.getClickCount() == 1) {
+            if (mouseEvent.getClickCount() == 2) {
                 Book selectedBook = bookTableView.getSelectionModel().getSelectedItem();
                 if (selectedBook != null) {
                     switchToBookDetails(selectedBook);
@@ -145,7 +145,7 @@ public class BooksManagementController extends DashboardController implements In
             for (String keyword : keywords) {
                 Trie.autocomplete(guessedKeywords, keyword);
             }
-            Set<Integer> filteredBookId = BookSearch.searchBooksByKeywords(guessedKeywords, true);
+            Set<Integer> filteredBookId = BookSearch.searchBooksByKeywords(guessedKeywords, false);
             ObservableList<Book> filteredBooks = BookManager.getFilteredBooks(filteredBookId);
 
             // O(n*m)

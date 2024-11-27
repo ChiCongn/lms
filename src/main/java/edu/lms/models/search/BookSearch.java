@@ -90,7 +90,7 @@ public class BookSearch {
         invertedIndex = InvertedIndexDao.loadInvertedIndex();
     }
 
-    public static ObservableList<Book> handleFilterChange(String filter) {
+    /*public static ObservableList<Book> handleFilterChange(String filter) {
         // Split the current filter into keywords
         String[] keywords = filter.trim().split("\\s+");
         List<String> newGuessedKeywords = new ArrayList<>();
@@ -122,7 +122,7 @@ public class BookSearch {
         previousFilter = filter;
 
         return filteredBooks;
-    }
+    }*/
 
     /*public static void main(String[] args) {
         //invertedIndex = new HashMap<>();

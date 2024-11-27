@@ -4,8 +4,6 @@ import edu.lms.Constants;
 import edu.lms.controllers.common.ReviewController;
 import edu.lms.controllers.SceneManager;
 import edu.lms.models.book.Book;
-import edu.lms.models.review.Review;
-import edu.lms.services.database.ReviewDao;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;

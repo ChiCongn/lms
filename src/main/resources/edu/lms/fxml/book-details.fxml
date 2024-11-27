@@ -5,91 +5,40 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="912.0" prefWidth="1516.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.Client.BookDetailsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="912.0" prefWidth="1516.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.Client.BookDetailsController">
     <top>
-        <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="1927.0" spacing="20.0" styleClass="TopPane" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="1530.0" spacing="20.0" styleClass="TopPane" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
             <children>
-            <HBox prefHeight="61.0" prefWidth="1536.0" styleClass="TopPane" HBox.hgrow="ALWAYS">
-               <children>
-                      <Pane maxWidth="1560.0" minHeight="70.0" minWidth="1560.0" prefHeight="120.0" prefWidth="1560.0" styleClass="TopPane">
-                     <children>
-                            <HBox fx:id="Search" alignment="CENTER_LEFT" layoutX="530.0" layoutY="15.0" maxHeight="-Infinity" prefHeight="40.0" prefWidth="522.0" styleClass="Search" stylesheets="@../css/Test.css">
-                                <children>
-                                    <TextField fx:id="SearchBar" minWidth="133.0" prefHeight="29.0" prefWidth="463.0" promptText="Search" styleClass="transparent" stylesheets="@../css/Test.css">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </TextField>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                        <image>
-                                            <Image url="@../images/search.png" />
-                                        </image>
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                                    </ImageView>
-                                </children>
-                            </HBox>
-                        <Label alignment="CENTER" layoutX="50.0" layoutY="10.0" prefHeight="42.0" prefWidth="170.0" text="Alphas" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Bold Italic" size="36.0" />
-                           </font>
-                           <effect>
-                              <Shadow height="1.0" radius="0.0" width="1.0">
-                                 <color>
-                                    <Color red="1.0" green="1.0" blue="1.0" />
-                                 </color>
-                              </Shadow>
-                           </effect>
-                           <padding>
-                              <Insets top="5.0" />
-                           </padding>
-                        </Label>
-                        <HBox layoutX="1181.0" layoutY="14.0" maxHeight="40.0" minHeight="40.0" prefHeight="66.0" prefWidth="379.0">
-                           <children>
-                              <Label alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="293.0" styleClass="LabelTitle" text="Username" textFill="WHITE">
-                                 <effect>
-                                    <Shadow blurType="GAUSSIAN" height="0.5" radius="0.0" width="0.5">
-                                       <color>
-                                          <Color red="1.0" green="1.0" blue="1.0" />
-                                       </color>
-                                    </Shadow>
-                                 </effect>
-                                 <font>
-                                    <Font name="SansSerif Regular" size="38.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fitHeight="40.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="imageViewExtra">
-                                 <image>
-                                    <Image url="@../images/profile.png" />
-                                 </image>
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="3.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                     </children>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Pane>
-               </children>
-            </HBox>
+            <Label alignment="CENTER" prefHeight="42.0" prefWidth="170.0" text="Alphas" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold Italic" size="36.0" />
+               </font>
+               <effect>
+                  <Shadow height="1.0" radius="0.0" width="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Shadow>
+               </effect>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets left="700.0" />
+               </HBox.margin>
+            </Label>
             </children>
             <BorderPane.margin>
                 <Insets />
@@ -100,7 +49,7 @@
         <Insets right="20.0" />
     </padding>
    <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="802.0" prefWidth="1462.0" BorderPane.alignment="CENTER">
          <children>
               <VBox prefHeight="842.0" prefWidth="202.0" spacing="10.0" styleClass="white-bacground" stylesheets="@../css/Test.css">
                   <children>
@@ -245,7 +194,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                       </VBox>
-                      <VBox layoutX="10.0" layoutY="231.0" prefHeight="188.0" prefWidth="250.0" spacing="10.0">
+                      <VBox layoutX="10.0" layoutY="231.0" prefHeight="144.0" prefWidth="202.0" spacing="10.0">
                           <children>
                               <Label alignment="CENTER" minHeight="50.0" minWidth="50.0" prefHeight="50.0" prefWidth="120.0" styleClass="Browse" text="Memorize">
                                   <font>
@@ -275,16 +224,16 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                               </HBox>
-                                <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="129.0" styleClass="Button" text="Some Function" textFill="WHITE">
-                                    <font>
-                                        <Font name="Berlin Sans FB" size="16.0" />
-                                    </font>
-                           <VBox.margin>
-                              <Insets left="50.0" top="20.0" />
-                           </VBox.margin>
-                                </Button>
                           </children>
                       </VBox>
+                          <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="129.0" styleClass="Button" text="Some Function" textFill="WHITE">
+                              <font>
+                                  <Font name="Berlin Sans FB" size="16.0" />
+                              </font>
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                          </Button>
                   </children>
                <padding>
                   <Insets top="10.0" />
@@ -294,7 +243,7 @@
                <effect>
                   <Shadow blurType="GAUSSIAN" height="1.0" radius="0.0" width="1.0">
                      <color>
-                        <Color red="0.75" green="0.75" blue="0.75" />
+                        <Color red="0.7490196228027344" green="0.7490196228027344" blue="0.7490196228027344" />
                      </color>
                   </Shadow>
                </effect>
@@ -302,156 +251,133 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </Separator>
-            <HBox prefHeight="735.0" prefWidth="1005.0" spacing="10.0">
+            <HBox prefHeight="848.0" prefWidth="1134.0" spacing="10.0">
                <children>
-                  <VBox prefHeight="735.0" prefWidth="242.0" spacing="20.0">
+                  <VBox prefHeight="602.0" prefWidth="250.0" spacing="20.0">
                      <children>
-                        <ImageView fx:id="bookImage" fitHeight="383.0" fitWidth="286.0" pickOnBounds="true" preserveRatio="true" styleClass="Book" VBox.vgrow="ALWAYS">
+                        <ImageView fx:id="bookImage" fitHeight="383.0" fitWidth="273.0" pickOnBounds="true" preserveRatio="true" styleClass="Book" VBox.vgrow="ALWAYS">
                            <image>
                               <Image url="@../images/Books/money.jpg" />
                            </image>
                            <VBox.margin>
-                              <Insets left="10.0" />
+                              <Insets />
                            </VBox.margin>
                         </ImageView>
-                        <ImageView fitHeight="64.0" fitWidth="249.0" pickOnBounds="true" preserveRatio="true" styleClass="Start">
-                           <image>
-                              <Image url="@../images/five%20stars.jpg" />
-                           </image>
-                           <VBox.margin>
-                              <Insets left="10.0" />
-                           </VBox.margin>
-                        </ImageView>
-                        <HBox prefHeight="44.0" prefWidth="251.0" styleClass="HboxBuy">
-                           <children>
-                              <Label prefHeight="31.0" prefWidth="207.0" styleClass="textBookDescription" text="6371">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets top="3.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <ImageView fitHeight="29.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" styleClass="imageViewExtra">
-                                 <image>
-                                    <Image url="@../images/buy-now.png" />
-                                 </image>
-                                 <HBox.margin>
-                                    <Insets top="3.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                           </children>
-                           <VBox.margin>
-                              <Insets left="10.0" />
-                           </VBox.margin>
-                        </HBox>
+                        <Label fx:id="ratingLabel" prefHeight="46.0" prefWidth="268.0">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Label>
                      </children>
                      <HBox.margin>
                         <Insets top="120.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefHeight="735.0" prefWidth="582.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <VBox prefHeight="817.0" prefWidth="695.0" style="-fx-background-radius: 10; -fx-background-radius: 10;" styleClass="white-bacground" stylesheets="@../css/Test.css">
-                           <children>
-                              <HBox maxHeight="100.0" prefHeight="159.0" prefWidth="891.0" spacing="50.0" styleClass="white-bacground" stylesheets="@../css/Test.css">
+                  <TabPane prefHeight="604.0" prefWidth="803.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="80.0" tabMinHeight="20.0" tabMinWidth="80.0">
+                    <tabs>
+                      <Tab text="Info">
+                           <content>
+                              <VBox prefHeight="735.0" prefWidth="582.0">
                                  <children>
-                                    <VBox prefHeight="92.0" prefWidth="209.0" spacing="10.0">
+                                    <HBox maxHeight="176.0" prefHeight="176.0" prefWidth="803.0" spacing="10.0" styleClass="white-bacground" stylesheets="@../css/Test.css">
                                        <children>
-                                          <HBox prefHeight="34.0" prefWidth="154.0">
+                                          <VBox prefHeight="118.0" prefWidth="144.0" spacing="10.0">
                                              <children>
-                                                <Label prefHeight="34.0" prefWidth="107.0" styleClass="textBookDescription" text="Author -" HBox.hgrow="ALWAYS">
-                                                   <HBox.margin>
-                                                      <Insets right="5.0" />
-                                                   </HBox.margin></Label>
-                                                <Label fx:id="authorName" alignment="TOP_LEFT" prefHeight="27.0" prefWidth="154.0" text="Abc" textFill="#00459f">
-                                                   <HBox.margin>
-                                                      <Insets left="-5.0" top="7.0" />
-                                                   </HBox.margin></Label>
+                                                <Label prefHeight="40.0" prefWidth="144.0" styleClass="textBookDescription" text="Author">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB" size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="40.0" prefWidth="188.0" styleClass="textBookDescription" text="Published Year">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB" size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label maxWidth="188.0" prefHeight="40.0" prefWidth="110.0" styleClass="textBookDescription" text="Language">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB" size="20.0" />
+                                                   </font>
+                                                </Label>
                                              </children>
-                                             <opaqueInsets>
-                                                <Insets />
-                                             </opaqueInsets>
-                                          </HBox>
-                                          <HBox layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="154.0">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <VBox prefHeight="100.0" prefWidth="293.0">
                                              <children>
-                                                <Label prefHeight="34.0" prefWidth="188.0" styleClass="textBookDescription" text="Published Year -">
-                                                   <HBox.margin>
-                                                      <Insets right="5.0" />
-                                                   </HBox.margin></Label>
-                                                <Label fx:id="publishedYear" prefHeight="34.0" prefWidth="94.0" styleClass="BookDescrip" text="2023" />
+                                                <Label fx:id="authorName" alignment="TOP_LEFT" prefHeight="40.0" prefWidth="314.0" textFill="#00459f">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="publishedYear" prefHeight="40.0" prefWidth="301.0" styleClass="BookDescrip">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Label fx:id="language" prefHeight="40.0" prefWidth="407.0" styleClass="BookDescrip">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin>
+                                                </Label>
                                              </children>
-                                             <opaqueInsets>
-                                                <Insets />
-                                             </opaqueInsets>
-                                          </HBox>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="124.0" prefWidth="158.0" spacing="10.0">
+                                             <children>
+                                                <Label prefHeight="40.0" prefWidth="188.0" styleClass="textBookDescription" text="Page count">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB" size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="40.0" prefWidth="188.0" styleClass="textBookDescription" text="Available Copies">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB" size="20.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox prefHeight="138.0" prefWidth="230.0">
+                                             <children>
+                                                <Label fx:id="pageCount" prefHeight="40.0" prefWidth="226.0" styleClass="BookDescrip">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="availableCopies" prefHeight="40.0" prefWidth="228.0" styleClass="BookDescrip">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                             </children>
+                                          </VBox>
                                        </children>
-                                       <HBox.margin>
-                                          <Insets left="10.0" />
-                                       </HBox.margin>
-                                    </VBox>
-                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="101.0" prefWidth="235.0" spacing="10.0">
+                                       <opaqueInsets>
+                                          <Insets top="20.0" />
+                                       </opaqueInsets>
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox prefHeight="43.0" prefWidth="803.0" spacing="20.0">
                                        <children>
-                                          <HBox prefHeight="34.0" prefWidth="154.0">
-                                             <children>
-                                                <Label prefHeight="34.0" prefWidth="188.0" styleClass="textBookDescription" text="Total Copies -">
-                                                   <HBox.margin>
-                                                      <Insets right="5.0" />
-                                                   </HBox.margin></Label>
-                                                <Label fx:id="totalCopies" prefHeight="34.0" prefWidth="169.0" styleClass="BookDescrip" text="12" />
-                                             </children>
-                                             <opaqueInsets>
-                                                <Insets />
-                                             </opaqueInsets>
-                                          </HBox>
-                                          <HBox prefHeight="34.0" prefWidth="154.0">
-                                             <children>
-                                                <Label prefHeight="34.0" prefWidth="188.0" styleClass="textBookDescription" text="Book Name -">
-                                                   <HBox.margin>
-                                                      <Insets right="5.0" />
-                                                   </HBox.margin></Label>
-                                                <Label fx:id="bookName" prefHeight="34.0" prefWidth="173.0" styleClass="BookDescrip" text="Một đời" />
-                                             </children>
-                                             <opaqueInsets>
-                                                <Insets />
-                                             </opaqueInsets>
-                                          </HBox>
+                                          <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="131.0" styleClass="Button" text="Preview Book" />
+                                          <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="125.0" styleClass="Button" text="Open Book" />
+                                          <Button layoutX="115.0" layoutY="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="127.0" styleClass="Button" text="Borrow Now" />
                                        </children>
-                                    </VBox>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets top="20.0" />
-                                 </opaqueInsets>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox prefHeight="34.0" prefWidth="154.0">
-                                 <children>
-                                    <Label maxWidth="188.0" prefHeight="34.0" prefWidth="110.0" styleClass="textBookDescription" text="Language -">
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </Label>
-                                    <Label fx:id="language" prefHeight="34.0" prefWidth="407.0" styleClass="BookDescrip" text="Vietnamese">
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </Label>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <VBox maxHeight="600.0" prefHeight="600.0" prefWidth="695.0" styleClass="white-bacground" stylesheets="@../css/Test.css">
-                                 <children>
-                                    <Label prefHeight="36.0" prefWidth="701.0" styleClass="textBookDescription" text="Description">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Label prefHeight="36.0" prefWidth="145.0" styleClass="textBookDescription" text="Description">
                                        <font>
                                           <Font name="Berlin Sans FB" size="25.0" />
                                        </font>
@@ -459,33 +385,17 @@
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
-                                    <Label fx:id="description" alignment="TOP_LEFT" prefHeight="291.0" prefWidth="491.0" styleClass="Descriptiontext" text="Hơn 40 năm kinh nghiệm trong nghề và cả nghiệp thương thuyết, Giáo sư Phan Văn Trường, Cố vấn thương mại quốc tế của chính phủ Pháp, có lẽ đã cố gắng thể hiện gần trọn vẹn trong cuốn sách này. Được viết từ trải nghiệm của một người thường xuyên “xông pha trận mạc” đàm phán, thật khó có thể tìm được cuốn sách nào khác về đề tài này mang tính thực tế cao hơn Một đời thương thuyết. Trong đó không có những bài lý thuyết theo lớp lang chuẩn mực, nhưng độc giả sẽ được “sống” thực sự trong từng bối cảnh đàm phán như đang diễn ra trước mắt. Và độc giả sẽ đọc cuốn sách này chẳng khác gì đang đọc một tập truyện ngắn đầy những tình tiết thú vị." wrapText="true">
-                                       <padding>
-                                          <Insets left="12.0" />
-                                       </padding>
-                                       <VBox.margin>
-                                          <Insets top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <HBox prefHeight="48.0" prefWidth="695.0" spacing="20.0">
-                                       <children>
-                                          <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="188.0" styleClass="Button" text="Preview Book" />
-                                          <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="125.0" styleClass="Button" text="Open Book" />
-                                          <Button layoutX="115.0" layoutY="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="127.0" styleClass="Button" text="Borrow Now" />
-                                       </children>
-                                    </HBox>
+                                    <TextArea fx:id="descriptionArea" prefHeight="278.0" prefWidth="803.0" />
                                  </children>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
                               </VBox>
-                           </children>
-                        </VBox>
-                     </children>
+                           </content>
+                      </Tab>
+                      <Tab text="Review" />
+                    </tabs>
                      <HBox.margin>
-                        <Insets left="20.0" top="100.0" />
+                        <Insets bottom="100.0" left="50.0" top="50.0" />
                      </HBox.margin>
-                  </VBox>
+                  </TabPane>
                </children>
                <padding>
                   <Insets left="20.0" />

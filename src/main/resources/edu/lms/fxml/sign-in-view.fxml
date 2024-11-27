@@ -24,7 +24,7 @@
         </font>
     </TextField>
     <PasswordField fx:id="password" layoutX="335.0" layoutY="135.0" minHeight="30.0" prefHeight="38.0" prefWidth="218.0" promptText="password" />
-    <Hyperlink layoutX="451.0" layoutY="188.0" text="Forgot password?" />
+    <Hyperlink layoutX="451.0" layoutY="188.0" text="Forgot password?" onMouseClicked="#switchToForgotPasswordView"/>
     <ImageView fx:id="openEyes" fitHeight="17.0" fitWidth="28.0" layoutX="523.0" layoutY="147.0" onMouseClicked="#switchVisibility" pickOnBounds="true" preserveRatio="true">
         <Image url="@../images/openEyes.png" />
     </ImageView>
