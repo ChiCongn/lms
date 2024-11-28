@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <BorderPane prefHeight="912" prefWidth="1536" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.librarian.ClientDetailsController">
    <center>
       <AnchorPane prefHeight="912.0" prefWidth="1536.0">
@@ -34,43 +35,83 @@
                   <Image url="@../images/default_avatar.png" />
                </image></ImageView>
             <HBox layoutX="515.0" layoutY="79.0" prefHeight="226.0" prefWidth="547.0">
+=======
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.ClientDetailsController">
+   <bottom>
+      <AnchorPane prefHeight="922.0" prefWidth="1516.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="borrowView" layoutX="160.0" layoutY="284.0" prefHeight="553.0" prefWidth="1196.0" stylesheets="@../css/user-detail.css">
+              <columns>
+                <TableColumn fx:id="borrowIdColumn" prefWidth="96.5" text="borrow id" />
+                <TableColumn fx:id="bookColumn" prefWidth="498.5" text="book" />
+                  <TableColumn fx:id="statusColumn" prefWidth="214.0" text="status" />
+                  <TableColumn fx:id="borrowDateColumn" prefWidth="286.0" text="borrow date" />
+                  <TableColumn fx:id="dueDateColumn" prefWidth="243.5" text="due date" />
+              </columns>
+            </TableView>
+            <Button layoutX="34.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#backToClientManagement" prefHeight="36.0" prefWidth="78.0" text="Back" />
+            <ImageView fx:id="avatarView" fitHeight="176.0" fitWidth="207.0" layoutX="337.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" styleClass="imageViewExtra">
+               <image>
+                  <Image url="@../images/profile.png" />
+               </image></ImageView>
+            <HBox layoutX="582.0" layoutY="74.0" prefHeight="193.0" prefWidth="412.0">
+>>>>>>> b66fadc14c733dba349232ae0e9c88c1b600f1f3
                <children>
-                  <VBox prefHeight="176.0" prefWidth="72.0">
+                  <VBox prefHeight="193.0" prefWidth="145.0" spacing="21.0">
                      <children>
-                        <Label prefHeight="26.0" prefWidth="86.0" text="Client ID">
+                        <Label prefHeight="26.0" prefWidth="131.0" text="Client ID">
                            <font>
-                              <Font name="Berlin Sans FB" size="12.0" />
+                              <Font name="SansSerif Bold Italic" size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label prefHeight="26.0" prefWidth="122.0" text="Username">
+                           <font>
+                              <Font name="SansSerif Bold Italic" size="18.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="26.0" prefWidth="86.0" text="Username">
+                        <Label prefHeight="26.0" prefWidth="133.0" text="Email">
                            <font>
-                              <Font name="Berlin Sans FB" size="12.0" />
+                              <Font name="SansSerif Bold Italic" size="18.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="26.0" prefWidth="86.0" text="Email">
+                        <Label prefHeight="26.0" prefWidth="131.0" text="Gender">
                            <font>
-                              <Font name="Berlin Sans FB" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label prefHeight="26.0" prefWidth="86.0" text="Gender">
-                           <font>
-                              <Font name="Berlin Sans FB" size="12.0" />
+                              <Font name="SansSerif Bold Italic" size="18.0" />
                            </font>
                         </Label>
                      </children>
                   </VBox>
-                  <VBox prefHeight="176.0" prefWidth="342.0">
+                  <VBox prefHeight="176.0" prefWidth="342.0" spacing="21.0">
                      <children>
-                        <Label fx:id="idLabel" prefHeight="26.0" prefWidth="344.0" />
-                        <Label fx:id="usernameLabel" prefHeight="26.0" prefWidth="344.0" />
-                        <Label fx:id="emailLabel" prefHeight="26.0" prefWidth="344.0" />
-                        <Label fx:id="genderLabel" prefHeight="26.0" prefWidth="344.0" />
+                        <Label fx:id="idLabel" prefHeight="26.0" prefWidth="344.0">
+                           <VBox.margin>
+                              <Insets top="13.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="usernameLabel" prefHeight="26.0" prefWidth="344.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="emailLabel" prefHeight="26.0" prefWidth="344.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="genderLabel" prefHeight="26.0" prefWidth="344.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                      </children>
                   </VBox>
                </children>
             </HBox>
          </children>
       </AnchorPane>
+<<<<<<< HEAD
    </center>
    <top>
       <HBox prefHeight="67.0" prefWidth="1536.0" styleClass="TopPane" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
@@ -89,4 +130,7 @@
          </children>
       </HBox>
    </top>
+=======
+   </bottom>
+>>>>>>> b66fadc14c733dba349232ae0e9c88c1b600f1f3
 </BorderPane>

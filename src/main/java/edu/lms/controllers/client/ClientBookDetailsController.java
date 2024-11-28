@@ -61,7 +61,7 @@ public class ClientBookDetailsController extends ReviewController {
         this.clientId = clientId;
         initializeBookData(book);
         favourite.setText(isFavouriteBook(book.getBookId()));
-        super.initialize(book, DashboardController.client.getId());
+        super.initialize(book, clientId);
         isBorrowed = BorrowedBookDao.isBorrowedByThisClient(book.getBookId(), clientId);
         borrow.setText(isBorrowedBook());
         borrow.setOnMouseClicked(mouseEvent -> {

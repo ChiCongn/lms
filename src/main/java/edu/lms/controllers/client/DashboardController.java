@@ -6,9 +6,15 @@ import edu.lms.models.book.Book;
 import edu.lms.models.book.BorrowedBook;
 import edu.lms.models.user.Client;
 import edu.lms.models.user.ClientDataManager;
+import edu.lms.services.GoogleBooksAPI;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class DashboardController {
 
@@ -17,6 +23,12 @@ public class DashboardController {
 
     @FXML
     protected ImageView avatarImage;
+
+    @FXML
+    protected TextField searchBar;
+
+    @FXML
+    protected ListView<Book> searchResults;
 
     protected static Client client;
 
@@ -55,5 +67,25 @@ public class DashboardController {
         ClientBookDetailsController controller = SceneManager.switchScene(Constants.CLIENT_BOOK_DETAILS_VIEW, true);
         assert controller != null;
         controller.initialize(book, client.getId());
+    }
+
+    @FXML
+    protected void searchBook(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            System.out.println("search :(");
+
+            searchResults.setVisible(true);
+            String query = searchBar.getText();
+            if (!query.isEmpty()) {
+                ObservableList<Book> filteredBooks = GoogleBooksAPI.searchBooks(query);
+                searchResults.setItems(filteredBooks);
+                searchResults.setVisible(!filteredBooks.isEmpty());
+            }
+        }
+    }
+
+    @FXML
+    protected void setInvisibleSearchResult() {
+
     }
 }

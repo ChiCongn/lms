@@ -47,7 +47,7 @@
             </ListView>
          </children>
       </VBox>
-      <Button fx:id="buttonAdd" layoutX="1306.0" layoutY="43.0" minHeight="36.0" minWidth="100.0" mnemonicParsing="false" onMouseClicked="#addBookIntoDatabase" prefHeight="36.0" prefWidth="122.0" styleClass="buttonAddbookview" text="Add">
+      <Button layoutX="1306.0" layoutY="43.0" minHeight="36.0" minWidth="100.0" mnemonicParsing="false" onMouseClicked="#addBookIntoDatabase" prefHeight="36.0" prefWidth="122.0" styleClass="buttonAddbookview" text="Add">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font></Button>

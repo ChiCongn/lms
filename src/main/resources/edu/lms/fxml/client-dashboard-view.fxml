@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,21 +20,37 @@
    <top>
       <HBox alignment="CENTER_LEFT" minWidth="1499.0" prefHeight="67.0" prefWidth="1530.0" styleClass="TopPane" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="60.0" prefWidth="146.0" text="Alphas" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="60.0" prefWidth="255.0" text="Alphas" textFill="WHITE">
                <font>
-                  <Font name="SansSerif Bold Italic" size="40.0" />
+                  <Font name="SansSerif Bold Italic" size="46.0" />
                </font>
                <HBox.margin>
-                  <Insets left="650.0" />
+                  <Insets left="40.0" />
                </HBox.margin>
                <effect>
-                  <Shadow height="1.0" radius="0.0" width="1.0">
+                  <DropShadow height="1.0" radius="0.0" width="1.0">
                      <color>
                         <Color red="1.0" green="1.0" blue="1.0" />
                      </color>
-                  </Shadow>
+                  </DropShadow>
                </effect>
             </Label>
+            <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="39.0" prefWidth="500.0" styleClass="Search" stylesheets="@../css/Test.css">
+               <children>
+                  <TextField fx:id="searchBar" prefHeight="26.0" prefWidth="399.0" promptText="Search" styleClass="transparent" stylesheets="@../css/Test.css" />
+                  <ImageView fitHeight="20.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" styleClass="imageView">
+                     <image>
+                        <Image url="@../images/search.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+               <HBox.margin>
+                  <Insets left="200.0" />
+               </HBox.margin>
+            </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="259.0">
                <children>
                   <VBox prefHeight="84.0" prefWidth="159.0">
