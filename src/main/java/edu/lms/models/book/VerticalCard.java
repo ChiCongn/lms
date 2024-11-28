@@ -1,5 +1,8 @@
 package edu.lms.models.book;
 
+import edu.lms.Constants;
+import edu.lms.controllers.SceneManager;
+import edu.lms.controllers.librarian.BooKDetailController;
 import edu.lms.models.review.ReviewCell;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
@@ -9,14 +12,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 
-public class Card extends VBox {
+public class VerticalCard extends VBox {
     ImageView thumbnail;
     Label title;
     Label author;
     Label rating;
 
-    public Card(Book book) {
+    public VerticalCard(Book book) {
         System.out.println("create card");
+        this.setPrefWidth(250);
         //thumbnail = new ImageView(new Image("file:/E:/AllSemesters/ThirdSemester/OOP/lms/target/classes/edu/lms/images/placeholder.png"));
         thumbnail = new ImageView(new Image(book.getCoverImage()));
         thumbnail.setFitWidth(100);

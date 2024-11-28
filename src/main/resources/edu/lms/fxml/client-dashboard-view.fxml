@@ -41,7 +41,7 @@
                            <font>
                               <Font name="System Bold Italic" size="20.0" />
                            </font></Label>
-                        <Label fx:id="usernameLabel1" minWidth="199.0" prefHeight="18.0" prefWidth="199.0" text="Client" textFill="WHITE">
+                        <Label minWidth="199.0" prefHeight="18.0" prefWidth="199.0" text="Client" textFill="WHITE">
                            <font>
                               <Font name="System Bold Italic" size="20.0" />
                            </font>
@@ -72,7 +72,7 @@
          <children>
             <VBox prefHeight="852.0" prefWidth="253.0" spacing="10.0" styleClass="white-bacground" stylesheets="@../css/Test.css">
                <children>
-                  <VBox fx:id="hbox" prefHeight="217.0" prefWidth="250.0" spacing="12.0">
+                  <VBox prefHeight="217.0" prefWidth="250.0" spacing="12.0">
                      <children>
                         <Label alignment="CENTER" minHeight="50.0" prefHeight="50.0" prefWidth="120.0" styleClass="Browse" text="Browse">
                            <font>
@@ -82,21 +82,7 @@
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
-                        <HBox fx:id="topChart" alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#switchToTopChart" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
-                           <children>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/pie-chart.png" />
-                                 </image>
-                              </ImageView>
-                              <Label prefHeight="22.0" prefWidth="117.0" text="Top Chart">
-                                 <font>
-                                    <Font name="Berlin Sans FB" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox fx:id="Browse" alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#switchToBrowse" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
+                        <HBox alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#backToBrowse" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
                            <children>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -110,7 +96,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox fx:id="Categories" alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#switchToGenre" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
+                        <HBox alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#switchToCategories" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
                            <children>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -139,7 +125,7 @@
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
-                        <HBox fx:id="Favorite" alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#switchToFavourite" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
+                        <HBox alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#switchToFavouriteBookView" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
                            <children>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -153,14 +139,14 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox fx:id="History" alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#switchToHistory" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
+                        <HBox alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#switchToBorrowedBooks" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
                            <children>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/history.png" />
                                  </image>
                               </ImageView>
-                              <Label prefHeight="22.0" prefWidth="123.0" text="History">
+                              <Label prefHeight="22.0" prefWidth="123.0" text="Borrowed Books">
                                  <font>
                                     <Font name="Berlin Sans FB" size="18.0" />
                                  </font>
@@ -226,34 +212,40 @@
                   </Shadow>
                </effect>
             </Separator>
-            <VBox prefHeight="792.0" prefWidth="1104.0" spacing="10.0">
+            <VBox prefHeight="725.0" prefWidth="1104.0" spacing="10.0">
                <children>
                   <Label prefHeight="40.0" prefWidth="266.0" text="Recently Added">
                      <font>
                         <Font name="SansSerif Regular" size="27.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets top="20.0" />
                      </VBox.margin>
                   </Label>
-                  <ScrollPane prefHeight="280.0" prefWidth="1005.0" styleClass="transparent" stylesheets="@../css/Test.css">
+                  <ScrollPane prefHeight="260.0" prefWidth="1005.0" styleClass="transparent" stylesheets="@../css/Test.css">
                      <content>
-                        <HBox fx:id="recentlyAdded" alignment="CENTER_LEFT" prefHeight="270.0" prefWidth="1094.0" spacing="20.0" stylesheets="@../css/Test.css" />
+                        <HBox fx:id="recentBooksContainer" alignment="CENTER_LEFT" prefHeight="250.0" prefWidth="1094.0" spacing="20.0" stylesheets="@../css/Test.css" />
                      </content>
                   </ScrollPane>
-                  <Label layoutX="30.0" layoutY="30.0" prefHeight="40.0" prefWidth="266.0" text="Recommend For You">
+                  <Label layoutX="30.0" layoutY="30.0" prefHeight="40.0" prefWidth="266.0" text="Top Choices">
                      <font>
                         <Font name="SansSerif Regular" size="27.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
                   </Label>
-                  <ScrollPane prefHeight="280.0" prefWidth="1005.0">
+                  <ScrollPane prefHeight="280.0" prefWidth="1000.0">
                      <content>
-                        <HBox fx:id="recommended" prefHeight="270.0" prefWidth="997.0" />
+                        <HBox fx:id="topChoiceBooksContainer" prefHeight="268.0" prefWidth="1083.0">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding></HBox>
                      </content>
                   </ScrollPane>
                </children>
                <HBox.margin>
-                  <Insets bottom="100.0" left="50.0" top="20.0" />
+                  <Insets bottom="80.0" left="50.0" top="20.0" />
                </HBox.margin>
             </VBox>
          </children>

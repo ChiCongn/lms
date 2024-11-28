@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Constants {
+    public static final int DEFAULT_BORROW_DURATION_DAYS = 60;
     public static final String SIGN_IN_VIEW = "/edu/lms/fxml/sign-in-view.fxml";
     public static final String SIGNUP_VIEW = "/edu/lms/fxml/sign-up-view.fxml";
 
@@ -26,8 +27,9 @@ public class Constants {
     public static final String FORGOT_PASSWORD_VIEW = "/edu/lms/fxml/forgot-password-view.fxml";
     public static final String TRENDING_DASHBOARD_VIEW = "/edu/lms/fxml/trending-dashboard.fxml";
     public static final String CATEGORIES_VIEW = "/edu/lms/fxml/category-dashboard.fxml";
+    public static final String CLIENT_BORROWED_BOOKS_VIEW = "/edu/lms/fxml/client-borrowed-books-view.fxml";
     public static final String READING_DASHBOARD_VIEW = "/edu/lms/fxml/TestingDashBoard.fxml";
-    public static final String FAVOURITE_DASHBOARD_VIEW = "/edu/lms/fxml/TestingDashBoard.fxml";
+    public static final String FAVOURITE_DASHBOARD_VIEW = "/edu/lms/fxml/favourite-books-view.fxml";
     public static final String HISTORY_DASHBOARD_VIEW = "/edu/lms/fxml/history-dashboard.fxml";
     public static final String GAME_DASHBOARD_VIEW = "/edu/lms/fxml/TestingDashBoard.fxml";
 
@@ -37,5 +39,8 @@ public class Constants {
     public static final String BOOK_DETAILS_VIEW = "/edu/lms/fxml/book-details-view.fxml";
     public static final String ADD_BOOK_VIEW = "/edu/lms/fxml/add-book-view.fxml";
     public static final String ISSUES_MANAGEMENT_VIEW = "/edu/lms/fxml/issues-management-view.fxml";
+
+    public static final String VERTICAL_CARD_VIEW = "/edu/lms/fxml/vertical-card.fxml";
+    public static final String HORIZONTAL_CARD_VIEW = "/edu/lms/fxml/horizontal-card.fxml";
 
 }

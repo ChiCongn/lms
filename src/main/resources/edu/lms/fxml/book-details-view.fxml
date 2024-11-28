@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.librarian.BooKDetailController">
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.librarian.BooKDetailController">
    <center>
       <AnchorPane minHeight="912.0" minWidth="1516.0" prefHeight="500.0" prefWidth="850.0">
          <Button layoutX="41.0" layoutY="55.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onMouseClicked="#backToBooksManagementView" prefHeight="31.0" prefWidth="86.0" styleClass="Button" text="Back" />
@@ -158,7 +158,7 @@
                                              <Font name="Berlin Sans FB" size="20.0" />
                                           </font>
                                        </Label>
-                                       <Hyperlink prefHeight="24.0" prefWidth="106.0" text="Open link">
+                                       <Hyperlink onMouseClicked="#openBook" prefHeight="24.0" prefWidth="106.0" text="Open link">
                                           <font>
                                              <Font name="Berlin Sans FB" size="18.0" />
                                           </font>

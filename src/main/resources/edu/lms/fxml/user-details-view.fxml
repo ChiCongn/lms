@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,7 +25,7 @@
                   <TableColumn fx:id="statusColumn" prefWidth="160.0" text="status" />
                   <TableColumn fx:id="borrowDateColumn" prefWidth="160.0" text="borrow date" />
                   <TableColumn fx:id="dueDateColumn" prefWidth="160.0" text="due date" />
-                  <TableColumn fx:id="dueDateColumn1" prefWidth="120.0" text="fines" />
+                  <TableColumn fx:id="finesColumn" prefWidth="120.0" text="fines" />
               </columns>
             </TableView>
             <Button layoutX="34.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#backToClientManagement" prefHeight="31.0" prefWidth="51.0" text="Back" />

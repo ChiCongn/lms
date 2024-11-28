@@ -2,30 +2,30 @@ package edu.lms.controllers.client;
 
 import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
+import edu.lms.controllers.librarian.BooKDetailController;
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
-import edu.lms.models.book.Card;
+import edu.lms.controllers.book.HorizontalCard;
+import edu.lms.models.book.VerticalCard;
 import edu.lms.models.user.ClientDataManager;
+
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.TextAlignment;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class ClientDashboardController extends DashboardController implements Initializable {
-
-    @FXML
-    private Label usernameLabel;
-
-    @FXML
-    private ImageView avatarImage;
 
     @FXML
     private HBox topChoiceBooksContainer;
@@ -37,50 +37,83 @@ public class ClientDashboardController extends DashboardController implements In
     public void initialize(URL url, ResourceBundle resourceBundle) {
         usernameLabel.setText(client.getUsername());
         avatarImage.setImage(new Image(client.getAvatarPath()));
-        initializeTopChoiceBooks();
         initializeRecentBooks();
+        initializeTopChoiceBooks();
     }
 
     private void initializeRecentBooks() {
         List<Book> recentBooks = ClientDataManager.getRecentBooks();
-        System.out.println("set up recent books");
-        for (int i = 0; i < recentBooks.size(); i++) {
-            final int currentIndex = i;
-            VBox bookCard = createBookCard(recentBooks.get(currentIndex));
-            bookCard.setOnMouseClicked(mouseEvent -> {
-                ClientBookDetailsController clientBookDetailsController = SceneManager.switchScene(Constants.CLIENT_BOOK_DETAILS_VIEW, true);
-                assert clientBookDetailsController != null;
-                clientBookDetailsController.initialize(recentBooks.get(currentIndex));
-            });
-            recentBooksContainer.getChildren().add(bookCard);
+        for (Book book : recentBooks) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource(Constants.HORIZONTAL_CARD_VIEW));
+                HBox cardBox = fxmlLoader.load();
+                HorizontalCard cardController = fxmlLoader.getController();
+                cardController.setData(book);
+                recentBooksContainer.getChildren().add(cardBox);
+                cardBox.setOnMouseClicked(mouseEvent -> {
+                    if (mouseEvent.getClickCount() == 2) {
+                        switchToClientBookDetail(book);
+                    }
+                });
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
     private void initializeTopChoiceBooks() {
         List<Book> topChoiceBooks = BookManager.getTopChoiceBooks();
         System.out.println("set up top choice books");
-        for (int i = 0; i < 10; i++) {
-            final int currentIndex = i;
+        setUpTopChoiceBooksData(topChoiceBooks);
 
-            Card bookCard = new Card(topChoiceBooks.get(currentIndex));
-            topChoiceBooksContainer.getChildren().add(bookCard);
-        }
+        topChoiceBooksContainer.setPrefWidth(2000);
+        /*for (Book book : topChoiceBooks) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource(Constants.VERTICAL_CARD_VIEW));
+                VBox cardBox = fxmlLoader.load();
+                VerticalCard cardController = fxmlLoader.getController();
+                cardController.setData(book);
+                cardBox.setOnMouseClicked(mouseEvent -> {
+                    if (mouseEvent.getClickCount() == 2) {
+                        switchToClientBookDetail(book);
+                    }
+                });
+                topChoiceBooksContainer.getChildren().add(cardBox);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }*/
     }
 
-    private VBox createBookCard(Book book) {
-        ImageView bookCover = new ImageView(book.getThumbnail());
-        if (book.getThumbnail() == null) System.out.println("thumbnail is null");
-        bookCover.setFitWidth(150);
-        bookCover.setFitHeight(150);
+    private void setUpTopChoiceBooksData(List<Book> topChoiceBooks) {
+        Task<Void> loadTopChoiceBooksTask = new Task<>() {
+            @Override
+            protected Void call() {
+                for (Book book : topChoiceBooks) {
 
-        Label bookTitle = new Label(book.getTitle());
-        bookTitle.setWrapText(true);
-        bookTitle.prefWidth(150);
-        bookTitle.setTextAlignment(TextAlignment.CENTER);
+                    VBox bookCard = new VerticalCard(book);
+                    bookCard.setOnMouseClicked(mouseEvent -> {
+                        if (mouseEvent.getClickCount() == 2) {
+                            switchToClientBookDetail(book);
+                        }
+                    });
 
-        VBox bookCard = new VBox(5, bookCover, bookTitle); // 5px spacing between image and title
-        bookCard.setStyle("-fx-alignment: center; -fx-border-color: lightgray; -fx-padding: 15;");
+                    // Updating the UI safely on the JavaFX Application Thread
+                    Platform.runLater(() -> topChoiceBooksContainer.getChildren().add(bookCard));
+                }
+                return null;
+            }
+        };
 
-        return bookCard;
+        loadTopChoiceBooksTask.setOnSucceeded(e -> System.out.println("Books loaded successfully!"));
+        loadTopChoiceBooksTask.setOnFailed(e -> System.err.println("Error loading books: " + loadTopChoiceBooksTask.getException().getMessage()));
+
+        new Thread(loadTopChoiceBooksTask).start();
     }
+
 }

@@ -18,6 +18,7 @@ module edu.lms {
 
     requires java.mail;
     requires java.base;
+    requires java.desktop;
 
     exports edu.lms;
     exports edu.lms.models.book;
@@ -37,6 +38,9 @@ module edu.lms {
 
     exports edu.lms.controllers.client;
     opens edu.lms.controllers.client to javafx.fxml;
+
+    exports edu.lms.controllers.book;
+    opens edu.lms.controllers.book to javafx.fxml;
     exports edu.lms.models.review;
 
 }

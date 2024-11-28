@@ -21,11 +21,11 @@ public class BookManager {
     private BookManager() {}
 
     public static void initialize() {
-         books = BookDao.loadBooksData();
-         borrowedBooksDataByMonth = BorrowedBookDao.loadBorrowedBooksByMonth();
-         issuesDataByMonth = IssuesDao.loadIssueByMonth();
-         calculateCategoriesDistribution();
-         topChoiceBooks = BookDao.loadTopChoicesBook();
+        books = BookDao.loadBooksData();
+        borrowedBooksDataByMonth = BorrowedBookDao.loadBorrowedBooksByMonth();
+        issuesDataByMonth = IssuesDao.loadIssueByMonth();
+        calculateCategoriesDistribution();
+        topChoiceBooks = BookDao.loadTopChoicesBook();
     }
     public static ObservableList<Book> getBooks() {
         if (books == null) initialize();

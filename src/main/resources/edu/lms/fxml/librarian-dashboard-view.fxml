@@ -335,9 +335,9 @@
                               <Insets left="100.0" />
                            </VBox.margin>
                         </Label>
-                        <ScrollPane maxHeight="211.0" maxWidth="1024.0" prefHeight="180.0" prefWidth="1024.0" styleClass="ScrollPane">
+                        <ScrollPane maxHeight="211.0" maxWidth="1058.0" prefHeight="180.0" prefWidth="1058.0" styleClass="ScrollPane">
                            <content>
-                              <HBox fx:id="booksContainer" alignment="CENTER" prefHeight="180.0" prefWidth="1041.0" styleClass="HboxPane">
+                              <HBox fx:id="topChoiceBooksContainer" alignment="CENTER" prefHeight="180.0" prefWidth="1040.0" styleClass="HboxPane">
                                  <padding>
                                     <Insets left="50.0" top="50.0" />
                                  </padding>

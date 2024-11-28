@@ -97,12 +97,12 @@
                   </HBox>
                   <HBox prefHeight="36.0" prefWidth="426.0">
                      <children>
-                        <Hyperlink prefHeight="34.0" prefWidth="106.0" text="Open book">
+                        <Hyperlink onMouseClicked="#openBook" prefHeight="34.0" prefWidth="106.0" text="Open book">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Hyperlink>
-                        <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="118.0" text="Borrow now">
+                        <Button fx:id="borrow" mnemonicParsing="false" prefHeight="37.0" prefWidth="118.0" text="Borrow now">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -124,11 +124,6 @@
             </VBox>
          </children>
       </HBox>
-      <Button layoutX="1098.0" layoutY="18.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="71.0" text="☆">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Button>
       <VBox layoutX="104.0" layoutY="413.0" prefHeight="338.0" prefWidth="1066.0">
          <children>
             <ListView fx:id="reviewsList" prefHeight="304.0" prefWidth="1066.0" />
@@ -152,5 +147,10 @@
             </HBox>
          </children>
       </VBox>
+      <Label fx:id="favourite" onMouseClicked="#toggleFavourite" layoutX="1118.0" layoutY="31.0" prefHeight="74.0" prefWidth="50.0" textFill="#f6ff00">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

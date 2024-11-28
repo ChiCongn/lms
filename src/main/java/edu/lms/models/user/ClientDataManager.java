@@ -53,4 +53,38 @@ public class ClientDataManager {
     public static void setBorrowedBooks(ObservableList<BorrowedBook> borrowedBooks) {
         ClientDataManager.borrowedBooks = borrowedBooks;
     }
+
+    public static boolean isFavouriteBook(int bookId) {
+        for (Book book : favouriteBooks) {
+            if (book.getBookId() == bookId) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void addFavouriteBook(Book book) {
+        favouriteBooks.add(book);
+    }
+
+    public static void unfavouriteBook(Book book) {
+        favouriteBooks.remove(book);
+    }
+
+    public static boolean isBorrowed(int bookId) {
+        for (BorrowedBook borrowedBook : borrowedBooks) {
+            if (borrowedBook.getBook().getBookId() == bookId) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void addBorrowedBook(BorrowedBook borrowedBook) {
+        borrowedBooks.add(borrowedBook);
+    }
+
+    public static void returnBook(BorrowedBook book) {
+        borrowedBooks.remove(book);
+    }
 }

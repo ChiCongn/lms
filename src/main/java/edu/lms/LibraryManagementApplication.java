@@ -2,6 +2,7 @@ package edu.lms;
 
 import edu.lms.controllers.SceneManager;
 import edu.lms.models.book.BookManager;
+import edu.lms.models.book.CategoriesManager;
 import edu.lms.models.issue.IssuesManager;
 import edu.lms.models.search.BookSearch;
 import edu.lms.models.user.UserManager;
@@ -50,8 +51,9 @@ public class LibraryManagementApplication extends Application {
             @Override
             protected Void call() {
                 BookManager.initialize();
-                //UserManager.initialize();
+                UserManager.initialize();
                 BookSearch.initialize();
+                CategoriesManager.initialize();
                 return null;
             }
         };

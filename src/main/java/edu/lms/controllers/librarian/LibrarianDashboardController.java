@@ -4,10 +4,13 @@ import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
+import edu.lms.models.book.VerticalCard;
 import edu.lms.models.issue.IssuesManager;
 import edu.lms.models.user.UserManager;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
@@ -36,7 +39,7 @@ public class LibrarianDashboardController extends DashboardController implements
     private Label numberOfClientsLabel;
 
     @FXML
-    private HBox booksContainer;
+    private HBox topChoiceBooksContainer;
 
     @FXML
     private BarChart<String, Number> borrowedBooksBarChart;
@@ -58,16 +61,14 @@ public class LibrarianDashboardController extends DashboardController implements
 
         List<Book> topChoiceBooks = BookManager.getTopChoiceBooks();
         System.out.println("set up top choice books");
-        for (int i = 0; i < 10; i++) {
-            final int currentIndex = i;
-            VBox bookCard = createBookCard(topChoiceBooks.get(currentIndex));
-            bookCard.setOnMouseClicked(mouseEvent -> {
-                BooKDetailController booKDetailController = SceneManager.switchScene(Constants.BOOK_DETAILS_VIEW, true);
-                assert booKDetailController != null;
-                booKDetailController.initialize(topChoiceBooks.get(currentIndex));
-            });
-            booksContainer.getChildren().add(bookCard);
-        }
+        setUpTopChoiceBooksData(topChoiceBooks);
+        topChoiceBooksContainer.setPrefWidth(1040);
+    }
+
+    private void switchToBookDetails(Book book) {
+        BooKDetailController booKDetailController = SceneManager.switchScene(Constants.BOOK_DETAILS_VIEW, true);
+        assert booKDetailController != null;
+        booKDetailController.initialize(book);
     }
 
     private void initializeMonthlyBorrowedChart() {
@@ -98,6 +99,32 @@ public class LibrarianDashboardController extends DashboardController implements
             Tooltip tooltip = new Tooltip(data.getName());
             Tooltip.install(data.getNode(), tooltip);
         });
+    }
+
+    private void setUpTopChoiceBooksData(List<Book> topChoiceBooks) {
+        Task<Void> loadTopChoiceBooksTask = new Task<>() {
+            @Override
+            protected Void call() {
+                for (Book book : topChoiceBooks) {
+
+                    VBox bookCard = new VerticalCard(book);
+                    bookCard.setOnMouseClicked(mouseEvent -> {
+                        if (mouseEvent.getClickCount() == 2) {
+                            switchToBookDetails(book);
+                        }
+                    });
+
+                    // Updating the UI safely on the JavaFX Application Thread
+                    Platform.runLater(() -> topChoiceBooksContainer.getChildren().add(bookCard));
+                }
+                return null;
+            }
+        };
+
+        loadTopChoiceBooksTask.setOnSucceeded(e -> System.out.println("Books loaded successfully!"));
+        loadTopChoiceBooksTask.setOnFailed(e -> System.err.println("Error loading books: " + loadTopChoiceBooksTask.getException().getMessage()));
+
+        new Thread(loadTopChoiceBooksTask).start();
     }
 
     private VBox createBookCard(Book book) {

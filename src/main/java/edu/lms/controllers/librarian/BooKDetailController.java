@@ -194,6 +194,18 @@ public class BooKDetailController extends ReviewController {
         BooksManagementController booksManagementController = SceneManager.switchScene(Constants.BOOKS_MANAGEMENT_VIEW, true);
     }
 
+    @FXML
+    private void openBook() {
+        String url = book.getCanonicalVolumeLink();
+        if (java.awt.Desktop.isDesktopSupported()) {
+            try {
+                java.awt.Desktop.getDesktop().browse(new java.net.URI(url));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private static int isInteger(String input) {
         if (input == null) return -1;
         try {
