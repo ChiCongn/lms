@@ -14,24 +14,24 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.ClientDetailsController">
-   <center>
-      <AnchorPane prefHeight="600.0" prefWidth="800.0">
+   <bottom>
+      <AnchorPane prefHeight="922.0" prefWidth="1516.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="borrowView" layoutX="112.0" layoutY="300.0" prefHeight="262.0" prefWidth="645.0" stylesheets="@../css/user-detail.css">
+            <TableView fx:id="borrowView" layoutX="160.0" layoutY="284.0" prefHeight="553.0" prefWidth="1196.0" stylesheets="@../css/user-detail.css">
               <columns>
-                <TableColumn fx:id="borrowIdColumn" prefWidth="92.0" text="borrow id" />
-                <TableColumn fx:id="bookColumn" prefWidth="216.0" text="book" />
-                  <TableColumn fx:id="statusColumn" prefWidth="104.0" text="status" />
-                  <TableColumn fx:id="borrowDateColumn" prefWidth="112.79998779296875" text="borrow date" />
-                  <TableColumn fx:id="dueDateColumn" prefWidth="111.20001220703125" text="due date" />
+                <TableColumn fx:id="borrowIdColumn" prefWidth="96.5" text="borrow id" />
+                <TableColumn fx:id="bookColumn" prefWidth="498.5" text="book" />
+                  <TableColumn fx:id="statusColumn" prefWidth="214.0" text="status" />
+                  <TableColumn fx:id="borrowDateColumn" prefWidth="286.0" text="borrow date" />
+                  <TableColumn fx:id="dueDateColumn" prefWidth="243.5" text="due date" />
               </columns>
             </TableView>
             <Button layoutX="34.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#backToClientManagement" prefHeight="36.0" prefWidth="78.0" text="Back" />
-            <ImageView fx:id="avatarView" fitHeight="176.0" fitWidth="207.0" layoutX="104.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true" styleClass="imageViewExtra">
+            <ImageView fx:id="avatarView" fitHeight="176.0" fitWidth="207.0" layoutX="337.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" styleClass="imageViewExtra">
                <image>
                   <Image url="@../images/profile.png" />
                </image></ImageView>
-            <HBox layoutX="336.0" layoutY="81.0" prefHeight="193.0" prefWidth="412.0">
+            <HBox layoutX="582.0" layoutY="74.0" prefHeight="193.0" prefWidth="412.0">
                <children>
                   <VBox prefHeight="193.0" prefWidth="145.0" spacing="21.0">
                      <children>
@@ -87,5 +87,5 @@
             </HBox>
          </children>
       </AnchorPane>
-   </center>
+   </bottom>
 </BorderPane>
