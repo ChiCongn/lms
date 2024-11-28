@@ -53,3 +53,25 @@
     text-decoration: underline;
 }
 
+.anchor-pane {
+    -fx-background-image: url("../images/background.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.anchor-pane2 {
+    -fx-background-image: url("../images/gamerule.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.anchor-pane3 {
+    -fx-background-image: url("../images/main.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+

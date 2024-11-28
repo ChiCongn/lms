@@ -38,7 +38,7 @@ public class QuizGame {
 //            System.out.println(question);
             questions.add(new Question(question, choices, answer));
 
-            if (count >= 25) break;
+            if (count >= 45) break;
         }
     }
 
