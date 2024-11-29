@@ -31,8 +31,8 @@ public class SceneManager {
                 primaryStage.setWidth(screenBounds.getWidth());
                 primaryStage.setHeight(screenBounds.getHeight());
             } else {
-                primaryStage.setWidth(800);
-                primaryStage.setHeight(600);
+                primaryStage.setWidth(600);
+                primaryStage.setHeight(400);
             }
             Scene newScene = new Scene(root);
             primaryStage.setScene(newScene);

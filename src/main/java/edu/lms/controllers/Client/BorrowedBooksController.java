@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
@@ -37,7 +38,10 @@ public class BorrowedBooksController extends DashboardController implements Init
                     });
 
                     // Updating the UI safely on the JavaFX Application Thread
-                    Platform.runLater(() -> flowPane.getChildren().add(bookCard));
+                    Platform.runLater(() -> {
+                        FlowPane.setMargin(bookCard, new Insets(10, 20, 10, 15));
+                        flowPane.getChildren().add(bookCard);
+                    });
                 }
                 return null;
             }

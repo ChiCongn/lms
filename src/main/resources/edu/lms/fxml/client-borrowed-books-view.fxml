@@ -137,7 +137,7 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </Label>
-                        <HBox alignment="CENTER" onMouseClicked="#switchToFavouriteBookView" maxWidth="200.0" minHeight="50.0" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
+                        <HBox alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#switchToFavouriteBookView" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
                             <children>
                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -194,6 +194,20 @@
                                 </Label>
                             </children>
                         </HBox>
+                        <HBox alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#logout" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
+                            <children>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/logout.png" />
+                                    </image>
+                                </ImageView>
+                                <Label prefHeight="22.0" prefWidth="117.0" text="Log out">
+                                    <font>
+                                        <Font name="Berlin Sans FB" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
                     </children>
                     <VBox.margin>
                         <Insets top="20.0" />
@@ -227,9 +241,9 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <ScrollPane prefHeight="578.0" prefWidth="1002.0">
+                <ScrollPane prefHeight="578.0" prefWidth="882.0">
                     <content>
-                        <FlowPane fx:id="flowPane" prefHeight="570.0" prefWidth="946.0" />
+                        <FlowPane fx:id="flowPane" prefHeight="574.0" prefWidth="946.0" />
                     </content>
                     <VBox.margin>
                         <Insets right="50.0" top="10.0" />

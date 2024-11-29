@@ -193,6 +193,20 @@
                                 </Label>
                             </children>
                         </HBox>
+                        <HBox alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#logout" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
+                            <children>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/logout.png" />
+                                    </image>
+                                </ImageView>
+                                <Label prefHeight="22.0" prefWidth="117.0" text="Log out">
+                                    <font>
+                                        <Font name="Berlin Sans FB" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
                     </children>
                     <VBox.margin>
                         <Insets top="20.0" />
