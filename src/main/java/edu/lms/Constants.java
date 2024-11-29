@@ -22,6 +22,7 @@ public class Constants {
     public static final String SIGN_IN_VIEW = "/edu/lms/fxml/sign-in-view.fxml";
     public static final String SIGNUP_VIEW = "/edu/lms/fxml/sign-up-view.fxml";
 
+
     public static final String ADMIN_DASHBOARD_VIEW = "/edu/lms/fxml/dashboard-view.fxml";
     public static final String LIBRARIAN_DASHBOARD_VIEW = "/edu/lms/fxml/librarian-dashboard-view.fxml";
     public static final String CLIENT_DASHBOARD_VIEW = "/edu/lms/fxml/client-dashboard-view.fxml";
@@ -36,6 +37,8 @@ public class Constants {
     public static final String HISTORY_DASHBOARD_VIEW = "/edu/lms/fxml/history-dashboard.fxml";
     public static final String CLIENT_SEARCH_BOOK_VIEW = "/edu/lms/fxml/client-search-book-view.fxml";
     public static final String GAME_DASHBOARD_VIEW = "/edu/lms/fxml/quiz-game.fxml";
+    public static final String GAME_PLAY = "/edu/lms/fxml/quiz-start.fxml";
+    public static final String GAME_END = "/edu/lms/fxml/quiz-rule.fxml";
 
     public static final String CLIENT_MANAGEMENT_VIEW = "/edu/lms/fxml/clients-management-view.fxml";
     public static final String BOOKS_MANAGEMENT_VIEW = "/edu/lms/fxml/books-management-view.fxml";

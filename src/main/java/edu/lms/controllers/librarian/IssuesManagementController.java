@@ -85,14 +85,14 @@ public class IssuesManagementController extends DashboardController implements I
         issueBookColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIssueBook().getTitle()));
         overviewIssueColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         issuesTableView.setItems(issues);
-        issuesTableView.setOnMouseClicked(mouseEvent -> {
+        /*issuesTableView.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getClickCount() == 2) {
                 Issue selectedIssue = issuesTableView.getSelectionModel().getSelectedItem();
                 if (selectedIssue != null) {
-                    switchToIssueDetail(selectedIssue);
+                    //switchToIssueDetail(selectedIssue);
                 }
             }
-        });
+        });*/
     }
 
     private void initializeBorrowedBooksTable() {

@@ -19,7 +19,6 @@ public class SceneManager {
         SceneManager.primaryStage = primaryStage;
     }
 
-
     public static <Controller> Controller switchScene(String fxmlFileName, boolean isFullScreen) {
         try {
             FXMLLoader loader = new FXMLLoader(LibraryManagementApplication.class.getResource(fxmlFileName));
@@ -31,8 +30,10 @@ public class SceneManager {
                 primaryStage.setY(screenBounds.getMinY());
                 primaryStage.setWidth(screenBounds.getWidth());
                 primaryStage.setHeight(screenBounds.getHeight());
+            } else {
+                primaryStage.setWidth(800);
+                primaryStage.setHeight(600);
             }
-
             Scene newScene = new Scene(root);
             primaryStage.setScene(newScene);
             primaryStage.show();

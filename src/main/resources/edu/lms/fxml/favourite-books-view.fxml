@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.client.FavouriteBooksController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="816.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.client.FavouriteBooksController">
     <top>
         <HBox alignment="CENTER_LEFT" minWidth="1499.0" prefHeight="67.0" prefWidth="1530.0" styleClass="TopPane" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
             <children>
@@ -151,7 +151,7 @@
                                 </Label>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" maxWidth="200.0" minHeight="50.0" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
+                        <HBox alignment="CENTER" maxWidth="200.0" onMouseClicked="#switchToBorrowedBooks" minHeight="50.0" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
                             <children>
                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                     <image>

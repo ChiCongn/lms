@@ -40,7 +40,6 @@ public class CategoriesController extends DashboardController implements Initial
             categoryLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
 
             HBox containerHBox = new HBox(5);
-            containerHBox.setPrefHeight(200);
 
             int booksToShow = Math.min(10, booksInCategory.size());
             /*for (int i = 0; i < booksToShow; i++) {
@@ -108,11 +107,11 @@ public class CategoriesController extends DashboardController implements Initial
 
 
             ScrollPane categoryScrollPane = new ScrollPane(containerHBox);
-            categoryScrollPane.setPrefHeight(220);
+            categoryScrollPane.setPrefHeight(300);
             categoryScrollPane.setPrefWidth(1000);
             container.getChildren().addAll(categoryLabel, categoryScrollPane);
         }
-        container.setPrefHeight(groupedBooks.size() * 250);
+        container.setPrefHeight(groupedBooks.size() * 350);
     }
 
 

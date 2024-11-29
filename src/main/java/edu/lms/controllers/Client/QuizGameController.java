@@ -2,6 +2,7 @@ package edu.lms.controllers.client;
 
 import edu.lms.Constants;
 import edu.lms.LibraryManagementApplication;
+import edu.lms.controllers.SceneManager;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -14,9 +15,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,17 +29,6 @@ import java.util.ResourceBundle;
 public class QuizGameController implements Initializable {
     QuizGame gameData;
 
-    @FXML
-    private HBox Browse;
-
-    @FXML
-    private HBox Categories;
-
-    @FXML
-    private HBox Favorite;
-
-    @FXML
-    private HBox History;
 
     @FXML
     private Button QuizNextBtn;
@@ -60,6 +53,7 @@ public class QuizGameController implements Initializable {
 
     @FXML
     private HBox topChart;
+
 
     public void LoadGames(Event event) throws IOException {
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -86,6 +80,7 @@ public class QuizGameController implements Initializable {
 
     private int questionCounter = 0;
     public static int score = 0;
+    public static int wrong = 0;
     private static final int questionMax = 10;
 
     public void initGame() {
@@ -119,6 +114,13 @@ public class QuizGameController implements Initializable {
         choiceB.setDisable(false);
         choiceC.setDisable(false);
         choiceD.setDisable(false);
+
+        if (wrong == 3) {
+            wrong = 0;
+            QuizMenuController quizMenuController = SceneManager.switchScene(Constants.GAME_END,true);
+            assert quizMenuController != null;
+            quizMenuController.setPoint(score);
+        }
     }
 
     @FXML
@@ -128,6 +130,7 @@ public class QuizGameController implements Initializable {
             score ++;
         } else {
             System.out.println("Wrong answer");
+            wrong++;
         }
         showRes();
     }
@@ -139,6 +142,7 @@ public class QuizGameController implements Initializable {
             score ++;
         } else {
             System.out.println("Wrong answer");
+            wrong++;
         }
         showRes();
     }
@@ -150,6 +154,7 @@ public class QuizGameController implements Initializable {
             score ++;
         } else {
             System.out.println("Wrong answer");
+            wrong++;
         }
         showRes();
     }
@@ -161,6 +166,7 @@ public class QuizGameController implements Initializable {
             score ++;
         } else {
             System.out.println("Wrong answer");
+            wrong++;
         }
         showRes();
     }

@@ -40,26 +40,30 @@ public class ClientDashboardController extends DashboardController implements In
 
     private void initializeRecentBooks() {
         List<Book> recentBooks = ClientDataManager.getRecentBooks();
-        for (int i = recentBooks.size() - 1; i >= 0; i--) {
-            Book book = recentBooks.get(i);
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource(Constants.HORIZONTAL_CARD_VIEW));
-                HBox cardBox = fxmlLoader.load();
-                HorizontalCard cardController = fxmlLoader.getController();
-                cardController.setData(book);
-                recentBooksContainer.getChildren().add(cardBox);
-                cardBox.setOnMouseClicked(mouseEvent -> {
-                    if (mouseEvent.getClickCount() == 2) {
-                        switchToClientBookDetail(book, "dashboard");
-                    }
-                });
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
+        if (recentBooks == null || recentBooks.isEmpty()) {
+            return;
         }
+
+        Platform.runLater(() -> {
+            for (int i = recentBooks.size() - 1; i >= 0; i--) {
+                Book book = recentBooks.get(i);
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource(Constants.HORIZONTAL_CARD_VIEW));
+                    HBox cardBox = fxmlLoader.load();
+                    HorizontalCard cardController = fxmlLoader.getController();
+                    cardController.setData(book);
+                    recentBooksContainer.getChildren().add(cardBox);
+                    cardBox.setOnMouseClicked(mouseEvent -> {
+                        if (mouseEvent.getClickCount() == 2) {
+                            switchToClientBookDetail(book, "dashboard");
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void initializeTopChoiceBooks() {
