@@ -1,64 +1,67 @@
-# Library Management System (LMS)
-## ? Gi?i thi?u
+### Library Management System (LMS)  
+#### ğŸ“š Introduction  
 
-**LMS (Library Management System)** là m?t ?ng d?ng qu?n lı th? vi?n ???c xây d?ng b?i nhóm Alphas - UET - VNU. D? án cung c?p các tính n?ng giúp ng??i dùng qu?n lı sách, danh m?c, ng??i dùng, và l?ch s? m??n tr? m?t cách hi?u qu?. M?c tiêu chính c?a LMS là t?o ra m?t công c? qu?n lı th? vi?n ??n gi?n, tr?c quan, và d? s? d?ng.
-
-**Thành viên**
-- *Nguy?n Chí Công - 23021481*
-- *?? Thành ??t - 23021517*
-- *Phan Thanh Duy - 23021505*
-
+**LMS (Library Management System)** is a library management application developed by the Alphas - UET - VNU team. The project provides features to help users manage books, categories, users, and borrowing/return history efficiently. The main goal of LMS is to create a simple, intuitive, and easy-to-use library management tool.
 
 ---
 
-## ? Tính n?ng chính
+#### **Team Members**  
 
-- **Qu?n lı sách**: Thêm, s?a, xóa sách và hi?n th? thông tin sách.
-- **Danh m?c sách**: Phân lo?i và s?p x?p sách theo danh m?c.
-- **Ng??i dùng**: Qu?n lı thông tin ng??i dùng th? vi?n.
-- **L?ch s? m??n tr?**: Theo dõi và ghi nh?n l?ch s? m??n tr? sách.
-- **Yêu thích và ?? xu?t**: L?u tr? danh sách sách yêu thích và ?? xu?t sách m?i.
-- **Gi?i trí và ghi nh?**: Ch?i trò ch?i theo n?i dung sách giúp ghi nh? thông tin t?t h?n
+- *Nguyá»…n ChÃ­ CÃ´ng - 23021481*  
+- *Äá»— ThÃ nh Äáº¡t - 23021517*  
+- *Phan Thanh Duy - 23021505*  
 
----
+---  
 
-## ?? Công ngh? s? d?ng
+#### ğŸ¯ Key Features  
 
-- **Ngôn ng? l?p trình**: Java (JavaFX cho giao di?n)
-- **Công c? xây d?ng**: Maven
-- **Qu?n lı c? s? d? li?u**: MySQL, CSV
-- **Thi?t k? giao di?n**: CSS
-
----
-
-## **Cài ??t**
-
-1. **Clone d? án t? repository.**
-2. **M? project trên IDE (IntelliJ ho?c Eclipse).**
-3. **C?u hình MySQL:** Import c? s? d? li?u ?i kèm d? án vào MySQL Server/Workbench.
-4. **C?p nh?t API Key:** Thay th? Google Books API Key trong t?p c?u hình.
-5. **Ch?y ?ng d?ng.**
+- **Book Management**: Add, edit, delete books and display book information.  
+- **Book Categories**: Classify and organize books by category.  
+- **User Management**: Manage library user information.  
+- **Borrow/Return History**: Track and record the borrowing/return history of books.  
+- **Favorites & Recommendations**: Save a list of favorite books and suggest new books.  
+- **Entertainment & Memory**: Play games related to the content of books to improve memory retention.
 
 ---
 
-### **L?u ı:**
-- ??m b?o h? th?ng c?a b?n h? tr? JavaFX và Java 11 tr? lên.
-- Ki?m tra k?t n?i c? s? d? li?u tr??c khi s? d?ng.
+#### ğŸ› ï¸ Technologies Used  
 
-## ? UML Diagram
-vào ?ây mà ch?p
-https://lucid.app/users/login#/login
+- **Programming Language**: Java (JavaFX for the user interface)  
+- **Build Tool**: Maven  
+- **Database Management**: MySQL, CSV  
+- **User Interface Design**: CSS  
+
+---
+
+#### **Installation**  
+
+1. **Clone the project from the repository.**  
+2. **Open the project in an IDE (IntelliJ or Eclipse).**  
+3. **Configure MySQL**: Import the provided database into MySQL Server/Workbench.  
+4. **Update API Key**: Replace the Google Books API Key in the configuration file.  
+5. **Run the application.**  
+
+---
+
+##### **Note:**  
+- Ensure that your system supports JavaFX and Java 11 or above.  
+- Check the database connection before using the application.
+
+#### ğŸ“Š UML Diagram  
+
+![uml](https://hackmd.io/_uploads/rkPeBp8Qye.jpg)
+
+More details:  
+https://lucid.app/users/login#/login  
 https://plantuml.com/
 
---- 
+---  
 
-##  ?nh ch?p t? h? th?ng
+#### Screenshots  
 
-D??i ?ây là m?t s? hình ?nh minh h?a giao di?n và các tính n?ng c?a ?ng d?ng:
-![Screenshot 2024-11-29 105226](https://hackmd.io/_uploads/rJoyeaIQke.png)
-![Screenshot 2024-11-29 111646](https://hackmd.io/_uploads/ByHHeaL7kl.png)
-![Screenshot 2024-11-29 111803](https://hackmd.io/_uploads/By6Kg68Xyl.png)
+Below are some screenshots illustrating the user interface and features of the application:  
+
+![Screenshot 2024-11-29 105226](https://hackmd.io/_uploads/rJoyeaIQke.png)  
+![Screenshot 2024-11-29 111646](https://hackmd.io/_uploads/ByHHeaL7kl.png)  
+![Screenshot 2024-11-29 111803](https://hackmd.io/_uploads/By6Kg68Xyl.png)  
 ![Screenshot 2024-11-29 111900](https://hackmd.io/_uploads/rJ86lT8XJl.png)
-
-
-
