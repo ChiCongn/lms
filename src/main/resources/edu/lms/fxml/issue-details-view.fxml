@@ -186,7 +186,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="remark" prefHeight="78.0" prefWidth="854.0" />
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="124.0" text="Mark">
+                  <Button mnemonicParsing="false" onMouseClicked="#remarkIssue" prefHeight="90.0" prefWidth="124.0" text="Mark">
                      <font>
                         <Font size="28.0" />
                      </font>

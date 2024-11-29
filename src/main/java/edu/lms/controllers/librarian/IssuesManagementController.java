@@ -1,5 +1,6 @@
 package edu.lms.controllers.librarian;
 
+import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
@@ -123,6 +124,8 @@ public class IssuesManagementController extends DashboardController implements I
     }
 
     private void switchToIssueDetail(Issue selectedIssue) {
-        //IssueDetailsController issueDetailsController = SceneManager.switchScene()
+        IssueDetailsController issueDetailsController = SceneManager.switchScene(Constants.ISSUE_DETAIL_VIEW, true);
+        assert issueDetailsController != null;
+        issueDetailsController.initialize(selectedIssue);
     }
 }

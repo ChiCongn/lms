@@ -20,7 +20,7 @@ public class BorrowedBookDao {
     private static final LocalDate present = LocalDate.now();
     private static final String LOAD_BORROWED_BOOKS_OF_A_CLIENT_QUERY = "SELECT * FROM borrowed_books WHERE user_id = ? AND status = 'borrowed' OR status = 'overdue'";
     private static final String LOAD_ALL_BORROWED_BOOKS_QUERY = "SELECT * FROM borrowed_books";
-    private static final String ADD_BORROWED_BOOK_QUERY = "INSERT INTO books (user_id, book_id, borrow_date, due_date) VALUES (?, ?, ?, ?)";
+    private static final String ADD_BORROWED_BOOK_QUERY = "INSERT INTO borrowed_books (user_id, book_id, borrow_date, due_date) VALUES (?, ?, ?, ?)";
     private static final String CHECK_IS_BORROWED_BY_THIS_CLIENT = "SELECT COUNT(*) FROM borrowed_books WHERE book_id = ? AND user_id = ?";
     private static final String COUNT_BORROWED_BOOKS_QUERY = "SELECT COUNT(*) FROM borrowed_books WHERE status = 'borrowed' OR status = 'overdue'";
     private static final String LOAD_MONTHLY_BORROWED_BOOKS_QUERY = "SELECT MONTHNAME(borrow_date) AS month, COUNT(*) AS borrow_count " +
@@ -120,6 +120,7 @@ public class BorrowedBookDao {
      * @param borrowedBook borrowed book
      */
     public static void addNewBorrowedBook(BorrowedBook borrowedBook) {
+        if (isBorrowedByThisClient(borrowedBook.getBook().getBookId(), borrowedBook.getClientId())) return;
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(ADD_BORROWED_BOOK_QUERY, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -204,9 +205,9 @@ public class BorrowedBookDao {
 
                 statement.setInt(1, borrowedId);
                 statement.executeUpdate();
-                System.out.println("mark book as overdue");
+                System.out.println("check overdue");
             } catch (SQLException e) {
-                System.err.println("Error marking book as overdue: " + e.getMessage());
+                System.err.println("Error checking overdue: " + e.getMessage());
             }
             return true;
         }

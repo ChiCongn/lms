@@ -24,11 +24,6 @@ public class DashboardController {
     @FXML
     protected ImageView avatarImage;
 
-    @FXML
-    protected TextField searchBar;
-
-    @FXML
-    protected ListView<Book> searchResults;
 
     protected static Client client;
 
@@ -59,33 +54,18 @@ public class DashboardController {
 
     @FXML
     protected void switchToGame() {
-
+        QuizGameController controller = SceneManager.switchScene(Constants.GAME_DASHBOARD_VIEW, true);
     }
 
     @FXML
-    protected void switchToClientBookDetail(Book book) {
+    protected void switchToClientBookDetail(Book book, String previousScene) {
         ClientBookDetailsController controller = SceneManager.switchScene(Constants.CLIENT_BOOK_DETAILS_VIEW, true);
         assert controller != null;
-        controller.initialize(book, client.getId());
+        controller.initialize(book, client.getId(), previousScene);
     }
 
     @FXML
-    protected void searchBook(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.ENTER) {
-            System.out.println("search :(");
-
-            searchResults.setVisible(true);
-            String query = searchBar.getText();
-            if (!query.isEmpty()) {
-                ObservableList<Book> filteredBooks = GoogleBooksAPI.searchBooks(query);
-                searchResults.setItems(filteredBooks);
-                searchResults.setVisible(!filteredBooks.isEmpty());
-            }
-        }
-    }
-
-    @FXML
-    protected void setInvisibleSearchResult() {
-
+    protected void switchToSearchBook() {
+        ClientSearchBookController controller = SceneManager.switchScene(Constants.CLIENT_SEARCH_BOOK_VIEW, true);
     }
 }

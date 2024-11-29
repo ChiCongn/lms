@@ -62,7 +62,6 @@ public class IssueDetailsController {
 
     private Issue issue;
 
-
     @FXML
     public void initialize(Issue issue) {
         this.issue = issue;
@@ -81,8 +80,9 @@ public class IssueDetailsController {
         issueInfo.setText(issue.getDescription());
         issueInfo.setEditable(false);
         reportedDate.setText(issue.getReportedDate().toString());
-        assert issue.getReportedDate() != null;
-        fixedDate.setText(issue.getFixedDate().toString());
+        if (issue.getReportedDate() != null) {
+            fixedDate.setText(issue.getFixedDate().toString());
+        }
     }
 
     @FXML

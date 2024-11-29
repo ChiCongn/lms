@@ -15,6 +15,9 @@ public class Client extends User {
     private int borrowedBooksCount;
     private static Client currentClient;
 
+    public Client(String username) {
+        super(username);
+    }
     public Client(int id, String username, String password, String email, String avatarPath, String status, Gender gender,
                   ObservableList<BorrowedBook> borrowedBooks, BigDecimal outstandingFines) {
         super(id, username, password, email, avatarPath, status, gender);

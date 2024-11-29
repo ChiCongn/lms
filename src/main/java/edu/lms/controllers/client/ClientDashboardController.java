@@ -1,8 +1,7 @@
 package edu.lms.controllers.client;
 
 import edu.lms.Constants;
-import edu.lms.controllers.SceneManager;
-import edu.lms.controllers.librarian.BooKDetailController;
+
 import edu.lms.models.book.Book;
 import edu.lms.models.book.BookManager;
 import edu.lms.controllers.book.HorizontalCard;
@@ -14,9 +13,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -43,7 +40,8 @@ public class ClientDashboardController extends DashboardController implements In
 
     private void initializeRecentBooks() {
         List<Book> recentBooks = ClientDataManager.getRecentBooks();
-        for (Book book : recentBooks) {
+        for (int i = recentBooks.size() - 1; i >= 0; i--) {
+            Book book = recentBooks.get(i);
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource(Constants.HORIZONTAL_CARD_VIEW));
@@ -53,7 +51,7 @@ public class ClientDashboardController extends DashboardController implements In
                 recentBooksContainer.getChildren().add(cardBox);
                 cardBox.setOnMouseClicked(mouseEvent -> {
                     if (mouseEvent.getClickCount() == 2) {
-                        switchToClientBookDetail(book);
+                        switchToClientBookDetail(book, "dashboard");
                     }
                 });
 
@@ -99,7 +97,7 @@ public class ClientDashboardController extends DashboardController implements In
                     VBox bookCard = new VerticalCard(book);
                     bookCard.setOnMouseClicked(mouseEvent -> {
                         if (mouseEvent.getClickCount() == 2) {
-                            switchToClientBookDetail(book);
+                            switchToClientBookDetail(book, "dashboard");
                         }
                     });
 

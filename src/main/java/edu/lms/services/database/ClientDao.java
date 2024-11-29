@@ -14,16 +14,22 @@ public class ClientDao {
 
     private static final String UNFAVOURITE_BOOK_QUERY = "DELETE FROM favourite_book WHERE user_id = ? AND book_id = ?";
 
+    private static final String IS_FAVOURITE_BY_THIS_USER_QUERY = "SELECT COUNT(*) FROM favourite_book WHERE user_id = ? AND book_id = ?";
+
     private static final String LOAD_RECENT_BOOKS_QUERY = "SELECT * FROM recent_book WHERE user_id = ? ORDER BY accessed_at DESC LIMIT ?";
 
     private static final String ADD_RECENT_BOOK = "INSERT INTO recent_book (user_id, book_id, accessed_at) VALUES (?, ?, ?)";
 
     private static final String UPDATE_ACCESS_TIME = "UPDATE recent_books SET accessed_at = ? WHERE user_id = ? AND book_id = ?";
 
+    private static final String IS_RECENT_BOOK_QUERY = "SELECT COUNT(*) FROM recent_books WHERE user_id = ? AND book_id = ?";
+
     private static final String DELETE_RECENT_BOOK = "DELETE FROM recent_book WHERE user_id = ? AND book_id = ?";
 
 
-    public static boolean addFavouriteBook(int userId, int bookId) {
+
+    public static void addFavouriteBook(int userId, int bookId) {
+        if (isFavouriteByThisUser(userId, bookId)) return;
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(ADD_FAVOURITE_BOOK_QUERY)) {
 
@@ -31,13 +37,11 @@ public class ClientDao {
             statement.setInt(2, bookId);
 
             System.out.println("add favourite book");
-            int rowsAffected = statement.executeUpdate();
-            return rowsAffected > 0;
+            statement.executeUpdate();
 
         } catch (SQLException e) {
             System.err.println("Error while adding book to favorites: " + e.getMessage());
         }
-        return false;
     }
 
     public static ObservableList<Book> loadFavouriteBooks(int userId) {
@@ -74,6 +78,22 @@ public class ClientDao {
 
         } catch (SQLException e) {
             System.err.println("Error while removing book from favorites: " + e.getMessage());
+        }
+        return false;
+    }
+
+    private static boolean isFavouriteByThisUser(int userId, int bookId) {
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(IS_FAVOURITE_BY_THIS_USER_QUERY)) {
+
+            statement.setInt(1, userId);
+            statement.setInt(2, bookId);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error checking is borrowed by this client: " + e.getMessage());
         }
         return false;
     }
@@ -153,6 +173,22 @@ public class ClientDao {
 
         } catch (SQLException e) {
             System.err.println("Error deleting recent book: " + e.getMessage());
+        }
+        return false;
+    }
+
+    private static boolean isRecentBook(int userId, int bookId) {
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(IS_RECENT_BOOK_QUERY)) {
+
+            statement.setInt(1, userId);
+            statement.setInt(2, bookId);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error checking is recent book: " + e.getMessage());
         }
         return false;
     }

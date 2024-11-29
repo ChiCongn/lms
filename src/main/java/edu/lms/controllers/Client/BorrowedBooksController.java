@@ -1,8 +1,5 @@
 package edu.lms.controllers.client;
 
-import edu.lms.Constants;
-import edu.lms.controllers.SceneManager;
-import edu.lms.models.book.Book;
 import edu.lms.models.book.BorrowedBook;
 import edu.lms.models.book.VerticalCard;
 import edu.lms.models.user.ClientDataManager;
@@ -35,7 +32,7 @@ public class BorrowedBooksController extends DashboardController implements Init
                     VBox bookCard = new VerticalCard(borrowedBook.getBook());
                     bookCard.setOnMouseClicked(mouseEvent -> {
                         if (mouseEvent.getClickCount() == 2) {
-                            switchToClientBookDetail(borrowedBook.getBook());
+                            switchToClientBookDetail(borrowedBook.getBook(), "borrowed books");
                         }
                     });
 

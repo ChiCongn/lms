@@ -108,6 +108,20 @@
                                 </Label>
                             </children>
                         </HBox>
+                  <HBox alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#backToBrowse" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
+                     <children>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/search-engine.png" />
+                           </image>
+                        </ImageView>
+                        <Label prefHeight="22.0" prefWidth="120.0" text="Search">
+                           <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                     </children>
                     <VBox.margin>
                         <Insets top="20.0" />
@@ -144,7 +158,7 @@
                                         <Image url="@../images/history.png" />
                                     </image>
                                 </ImageView>
-                                <Label prefHeight="22.0" prefWidth="123.0" text="History">
+                                <Label prefHeight="22.0" prefWidth="123.0" text="Borrowed Books">
                                     <font>
                                         <Font name="Berlin Sans FB" size="18.0" />
                                     </font>

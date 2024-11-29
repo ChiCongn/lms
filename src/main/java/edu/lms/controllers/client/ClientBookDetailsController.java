@@ -13,6 +13,7 @@ import edu.lms.services.database.ClientDao;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.time.LocalDate;
 
@@ -52,13 +53,16 @@ public class ClientBookDetailsController extends ReviewController {
 
     private int clientId;
 
+    private String previousScene;
+
     private Book book;
 
 
-    public void initialize(Book book, int clientId) {
+    public void initialize(Book book, int clientId, String previousScene) {
         System.out.println("initialize book detail.");
         this.book = book;
         this.clientId = clientId;
+        this.previousScene = previousScene;
         initializeBookData(book);
         favourite.setText(isFavouriteBook(book.getBookId()));
         super.initialize(book, clientId);
@@ -66,11 +70,7 @@ public class ClientBookDetailsController extends ReviewController {
         borrow.setText(isBorrowedBook());
         borrow.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getClickCount() == 1) {
-                if (isBorrowed) {
-                    returnBook();
-                } else {
-                    borrowBook();
-                }
+                toggleBorrow();
             }
         });
     }
@@ -84,20 +84,42 @@ public class ClientBookDetailsController extends ReviewController {
         descriptionTextArea.setWrapText(true);
         descriptionTextArea.setText(book.getDescription());
         descriptionTextArea.setEditable(false);
-        thumbnail.setImage(book.getThumbnail());
+        thumbnail.setImage(new Image(book.getCoverImage()));
     }
 
     @FXML
-    private void backToClientDashboardViewView() {
+    private void backToPreviousView() {
+        updateDataBeforeLeaving();
+        if (previousScene.equals("search books")) {
+            ClientSearchBookController controller = SceneManager.switchScene(Constants.CLIENT_SEARCH_BOOK_VIEW, true);
+        } else if (previousScene.equals("categories")) {
+            CategoriesController categoriesController = SceneManager.switchScene(Constants.CATEGORIES_VIEW, true);
+        } else if (previousScene.equals("borrowed books")) {
+            BorrowedBooksController borrowedBooksController = SceneManager.switchScene(Constants.CLIENT_BORROWED_BOOKS_VIEW, true);
+        } else if (previousScene.equals("favourite books")) {
+            FavouriteBooksController favouriteBooksController = SceneManager.switchScene(Constants.FAVOURITE_DASHBOARD_VIEW, true);
+        } else {
+            ClientDashboardController clientDashboardController = SceneManager.switchScene(Constants.CLIENT_DASHBOARD_VIEW, true);
+        }
+    }
+
+    private void updateDataBeforeLeaving() {
         if (isFavouriteBook) {
-            ClientDao.addFavouriteBook(clientId, book.getBookId());
-            ClientDataManager.addFavouriteBook(book);
+            if (ClientDataManager.addFavouriteBook(book)) {
+                ClientDao.addFavouriteBook(clientId, book.getBookId());
+            }
         } else {
             ClientDao.unfavouriteBook(clientId, book.getBookId());
             ClientDataManager.unfavouriteBook(book);
         }
-        ClientDao.addRecentBook(clientId, book.getBookId());
-        ClientDashboardController clientDashboardController = SceneManager.switchScene(Constants.CLIENT_DASHBOARD_VIEW, true);
+        if (ClientDataManager.addRecentBook(book)) {
+            ClientDao.addRecentBook(clientId, book.getBookId());
+        }
+        if (isBorrowed) {
+            borrowBook();
+        } else {
+            BorrowedBookDao.markBookAsReturned(clientId, book.getBookId());
+        }
     }
 
     @FXML
@@ -113,44 +135,47 @@ public class ClientBookDetailsController extends ReviewController {
     }
 
     @FXML
-    private void borrowBook() {
-        Alert confirmation = AlertDialog.makeConfirmationAlert("confirmation",
-                "Warning: Are you want to borrow this book?");
-        confirmation.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                LocalDate borrowDate = LocalDate.now();
-                LocalDate dueDate = borrowDate.plusDays(Constants.DEFAULT_BORROW_DURATION_DAYS);
+    private void toggleBorrow() {
+        isBorrowed = !isBorrowed;
+        if (isBorrowed) {
+            Alert confirmation = AlertDialog.makeConfirmationAlert("confirmation",
+                    "Warning: Are you want to borrow this book?");
+            confirmation.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    borrow.setText("Return now");
+                } else {
+                    System.out.println("cancel");
+                }
+            });
+        } else {
 
-                //Book book, int clientId, LocalDate borrowDate, LocalDate dueDate, String status
-                BorrowedBook borrowedBook = new BorrowedBook(book, clientId, borrowDate,dueDate, "borrowed");
-                BorrowedBookDao.addNewBorrowedBook(borrowedBook);
-                isBorrowed = true;
-                borrow.setText("Return now");
-                System.out.println("borrow book");
-            } else {
-                System.out.println("cancel");
-            }
-        });
+            Alert confirmation = AlertDialog.makeConfirmationAlert("confirmation",
+                    "Warning: Are you want to return this book?");
+            confirmation.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    isBorrowed = false;
+                    borrow.setText("Borrow now");
+                    System.out.println("return book");
+                } else {
+                    System.out.println("cancel");
+                }
+            });
+        }
     }
 
-    @FXML
+    private void borrowBook() {
+        LocalDate borrowDate = LocalDate.now();
+        LocalDate dueDate = borrowDate.plusDays(Constants.DEFAULT_BORROW_DURATION_DAYS);
+
+        //Book book, int clientId, LocalDate borrowDate, LocalDate dueDate, String status
+        BorrowedBook borrowedBook = new BorrowedBook(book, clientId, borrowDate,dueDate, "borrowed");
+        BorrowedBookDao.addNewBorrowedBook(borrowedBook);
+        isBorrowed = true;
+        System.out.println("borrow book");
+    }
+
     private void returnBook() {
-        Alert confirmation = AlertDialog.makeConfirmationAlert("confirmation",
-                "Warning: Are you want to return this book?");
-        confirmation.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                if (BorrowedBookDao.markBookAsReturned(clientId, book.getBookId())) {
-                    System.out.println("successfully return book");
-                } else {
-                    System.out.println("St is wrong, can not return book but not error");
-                }
-                isBorrowed = false;
-                borrow.setText("Borrow now");
-                System.out.println("return book");
-            } else {
-                System.out.println("cancel");
-            }
-        });
+
     }
 
     @FXML
@@ -175,7 +200,7 @@ public class ClientBookDetailsController extends ReviewController {
     }
 
     private String isBorrowedBook() {
-        if (isBorrowed) return "Borrow now";
-        else return "Return now";
+        if (isBorrowed) return "Return now";
+        else return "Borrow now";
     }
 }

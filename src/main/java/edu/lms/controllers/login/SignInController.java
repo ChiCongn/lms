@@ -14,6 +14,7 @@ import edu.lms.models.user.Librarian;
 import edu.lms.models.user.UserManager;
 import edu.lms.services.database.DatabaseConnection;
 import edu.lms.services.database.UsersDao;
+import javafx.animation.PauseTransition;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -21,6 +22,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,8 +45,11 @@ public class SignInController {
     private Label incorrectUsername;
     @FXML
     private Label incorrectPassword;
+
     @FXML
-    private ProgressBar loadingBar;
+    private Label suspendedAcc;
+
+    private boolean isSuspended;
     private boolean visibility;
     private String role;
     private int userId;
@@ -90,7 +95,7 @@ public class SignInController {
     }
 
     private boolean checkCredentials(String username, String password) throws SQLException {
-        String query = "SELECT user_id, role FROM users WHERE username = ? AND password = ?";
+        String query = "SELECT user_id, role, status FROM users WHERE username = ? AND password = ?";
         SoundManager.playSound("mouse-click.wav");
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -102,6 +107,8 @@ public class SignInController {
             if (resultSet.next()) {
                 role = resultSet.getString("role");
                 userId = resultSet.getInt("user_id");
+                String status = resultSet.getString("status");
+                isSuspended = status.equals("suspended");
                 return resultSet.getInt(1) > 0;
             }
 
@@ -112,6 +119,13 @@ public class SignInController {
     }
 
     private void switchToDashboard() {
+        if (isSuspended) {
+            suspendedAcc.setVisible(true);
+            PauseTransition hideLabel = new PauseTransition(Duration.seconds(2));
+            hideLabel.setOnFinished(e -> suspendedAcc.setVisible(false));
+            hideLabel.play();
+            return;
+        }
         if (role == null) return;
         if (role.equals("admin")) {
             AdminDashboardController adminDashboardController = SceneManager.switchScene(Constants.ADMIN_DASHBOARD_VIEW, true);
@@ -124,6 +138,7 @@ public class SignInController {
         } else {
             System.out.println("sign in with client role");
             Client client = (Client) UsersDao.loadUserData(userId);
+            loadDataForClient();
             edu.lms.controllers.client.DashboardController.setClientData(client);
             ClientDashboardController clientDashboardController = SceneManager.switchScene(Constants.CLIENT_DASHBOARD_VIEW, true);
         }

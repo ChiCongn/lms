@@ -35,7 +35,7 @@ public class FavouriteBooksController extends DashboardController implements Ini
                     VBox bookCard = new VerticalCard(book);
                     bookCard.setOnMouseClicked(mouseEvent -> {
                         if (mouseEvent.getClickCount() == 2) {
-                            switchToClientBookDetail(book);
+                            switchToClientBookDetail(book, "favourite books");
                         }
                     });
 

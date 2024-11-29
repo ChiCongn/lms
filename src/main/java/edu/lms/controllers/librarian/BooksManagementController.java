@@ -28,8 +28,6 @@ public class BooksManagementController extends DashboardController implements In
     @FXML
     private Label usernameLabel;
 
-    @FXML
-    private ImageView avatar;
 
     @FXML
     private TextField searchFilter;

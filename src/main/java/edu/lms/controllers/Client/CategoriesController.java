@@ -85,7 +85,7 @@ public class CategoriesController extends DashboardController implements Initial
                         VerticalCard bookCard = new VerticalCard(book);
                         bookCard.setOnMouseClicked(mouseEvent -> {
                             if (mouseEvent.getClickCount() == 2) {
-                                switchToClientBookDetail(book);
+                                switchToClientBookDetail(book, "categories");
                             }
                         });
 

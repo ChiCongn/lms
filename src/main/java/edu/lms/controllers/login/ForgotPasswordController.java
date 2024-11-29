@@ -115,7 +115,8 @@ public class ForgotPasswordController implements Initializable {
         confirmPassword.textProperty().addListener((observable, oldValue, newValue) -> checkPasswordMatch());
     }
 
-    public void backToSignInController() {
+    @FXML
+    private void backToSignInController() {
         SignInController signInController = SceneManager.switchScene(Constants.SIGN_IN_VIEW, false);
         System.out.println("back to sign");
     }

@@ -63,12 +63,20 @@ public class ClientDataManager {
         return false;
     }
 
-    public static void addFavouriteBook(Book book) {
+    public static boolean addFavouriteBook(Book book) {
+        if (favouriteBooks.contains(book)) return false;
         favouriteBooks.add(book);
+        return true;
     }
 
     public static void unfavouriteBook(Book book) {
         favouriteBooks.remove(book);
+    }
+
+    public static boolean addRecentBook(Book book) {
+        if (recentBooks.contains(book)) return false;
+        recentBooks.add(book);
+        return true;
     }
 
     public static boolean isBorrowed(int bookId) {
@@ -80,8 +88,10 @@ public class ClientDataManager {
         return false;
     }
 
-    public static void addBorrowedBook(BorrowedBook borrowedBook) {
+    public static boolean addBorrowedBook(BorrowedBook borrowedBook) {
+        if (borrowedBooks.contains(borrowedBook)) return false;
         borrowedBooks.add(borrowedBook);
+        return true;
     }
 
     public static void returnBook(BorrowedBook book) {
