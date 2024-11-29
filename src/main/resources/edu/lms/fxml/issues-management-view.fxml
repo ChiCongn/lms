@@ -17,7 +17,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="922.0" prefWidth="1536.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.librarian.IssuesManagementController">
+
+<BorderPane prefHeight="890.0" prefWidth="1536.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.librarian.IssuesManagementController">
     <top>
         <HBox prefHeight="67.0" prefWidth="1536.0" styleClass="TopPane" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
             <children>
@@ -230,7 +231,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Label>
-             <TableView fx:id="borrowedBooksTableView" layoutX="325.0" layoutY="502.0" prefHeight="391.0" prefWidth="1156.0">
+             <TableView fx:id="borrowedBooksTableView" layoutX="325.0" layoutY="502.0" prefHeight="352.0" prefWidth="1155.0">
                  <columns>
                      <TableColumn fx:id="borrowIdColumn" text="borrow id" />
                      <TableColumn fx:id="borrowerColumn" prefWidth="188.0" text="client " />
@@ -241,7 +242,7 @@
                      <TableColumn fx:id="finesColumn" prefWidth="130.0" text="fines" />
                  </columns>
                <VBox.margin>
-                  <Insets right="50.0" top="10.0" />
+                  <Insets right="50.0" />
                </VBox.margin>
              </TableView>
          </children>

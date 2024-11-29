@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="330.0" prefWidth="180.0" spacing="5.0" style="-fx-background-radius: 10;" stylesheets="@../css/Book.css"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.book.VerticalCard">
+   <children>
+      <ImageView fx:id="thumbnail" fitHeight="240.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true" styleClass="Book">
+         <VBox.margin>
+            <Insets left="5.0" />
+         </VBox.margin>
+      </ImageView>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label fx:id="title" alignment="CENTER" prefHeight="39.0" prefWidth="159.0" styleClass="LabelName">
+               <font>
+                  <Font name="Arial" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="authors" alignment="CENTER" prefHeight="26.0" prefWidth="166.0" styleClass="LabelAuthor">
+               <font>
+                  <Font name="Arial" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="rating" alignment="CENTER" prefHeight="26.0" prefWidth="166.0" styleClass="LabelAuthor" textFill="#f8ff00">
+               <font>
+                  <Font name="Arial" size="17.0" />
+               </font>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

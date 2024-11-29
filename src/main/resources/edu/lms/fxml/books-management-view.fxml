@@ -10,6 +10,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,145 +20,168 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="912.0" minWidth="1516.0" prefHeight="890.0" prefWidth="1516.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.BooksManagementController">
+<BorderPane minHeight="912.0" minWidth="1516.0" prefHeight="890.0" prefWidth="1516.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.librarian.BooksManagementController">
    <top>
-      <HBox prefHeight="65.0" prefWidth="1516.0" styleClass="TopPane" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
-         <children>
-            <Label alignment="CENTER" prefHeight="60.0" prefWidth="200.0" text="Alphas" textFill="WHITE">
-               <font>
-                  <Font name="SansSerif Bold Italic" size="45.0" />
-               </font>
-               <effect>
-                  <Shadow height="1.0" radius="0.0" width="1.0">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Shadow>
-               </effect>
-            </Label>
-            <HBox prefHeight="60.0" prefWidth="178.0">
-               <children>
-                  <VBox prefHeight="34.0" prefWidth="116.0">
-                     <children>
-                        <Label fx:id="usernameLabel" alignment="CENTER" prefHeight="53.0" prefWidth="186.0" styleClass="LabelTitle" text="Username" textAlignment="RIGHT" textFill="WHITE">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="2.0" />
-                           </VBox.margin>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <ImageView fx:id="avatar" fitHeight="47.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="imageViewExtra">
-                     <image>
-                        <Image url="@../images/profile.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="10.0" top="4.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
-               <HBox.margin>
-                  <Insets left="1130.0" top="5.0" />
-               </HBox.margin>
-            </HBox>
-         </children>
-      </HBox>
+       <HBox prefHeight="60.0" prefWidth="151.0" styleClass="TopPane" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
+           <children>
+               <Label alignment="CENTER" prefHeight="60.0" prefWidth="295.0" text="AlphasLibrary" textFill="WHITE">
+                   <font>
+                       <Font name="System Bold Italic" size="38.0" />
+                   </font>
+                   <HBox.margin>
+                       <Insets left="650.0" />
+                   </HBox.margin>
+                   <effect>
+                       <Glow level="0.21" />
+                   </effect>
+               </Label>
+               <HBox alignment="CENTER" prefHeight="60.0" prefWidth="218.0">
+                   <children>
+                       <VBox prefHeight="60.0" prefWidth="128.0">
+                           <children>
+                               <Label fx:id="usernameLabel" prefHeight="31.0" prefWidth="135.0" />
+                               <Label prefHeight="31.0" prefWidth="135.0" text="Librarian">
+                                   <font>
+                                       <Font name="System Bold Italic" size="17.0" />
+                                   </font>
+                               </Label>
+                           </children>
+                       </VBox>
+                       <ImageView fx:id="avatarImage" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" styleClass="imageViewExtra">
+                           <effect>
+                               <Shadow />
+                           </effect>
+                       </ImageView>
+                   </children>
+                   <HBox.margin>
+                       <Insets left="430.0" />
+                   </HBox.margin>
+               </HBox>
+           </children>
+       </HBox>
    </top>
    <center>
       <HBox prefHeight="139.0" prefWidth="1296.0" BorderPane.alignment="CENTER">
          <children>
-             <VBox prefHeight="478.0" prefWidth="200.0" spacing="30.0" styleClass="white-background" stylesheets="@../css/Test.css">
+             <VBox prefHeight="824.0" prefWidth="200.0" spacing="25.0" styleClass="VboxMenu" stylesheets="@../css/Test.css">
                  <children>
-                     <Label alignment="CENTER" prefHeight="49.0" prefWidth="155.0" styleClass="Browse" text="Browse">
+                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="61.0" prefWidth="106.0" styleClass="Browse" text="Browse">
                          <font>
                              <Font name="Berlin Sans FB" size="18.0" />
                          </font>
                          <VBox.margin>
-                             <Insets />
+                             <Insets top="60.0" />
                          </VBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
+                         <cursor>
+                             <Cursor fx:constant="HAND" />
+                         </cursor>
                      </Label>
-                     <HBox alignment="CENTER" minHeight="75.0" onMouseClicked="#backToHomeView" prefHeight="60.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenuManegement" stylesheets="@../css/Test.css">
+                     <HBox alignment="CENTER" onMouseClicked="#backToHomeView" prefHeight="88.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenu" stylesheets="@../css/Test.css">
                          <children>
-                             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                             <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageMenu">
                                  <image>
-                                     <Image url="@../images/house.png" />
+                                     <Image url="@../images/home.png" />
                                  </image>
                              </ImageView>
-                             <Label prefHeight="22.0" prefWidth="117.0" styleClass="LabelMenu" text="Home">
+                             <Label alignment="CENTER" prefHeight="22.0" prefWidth="117.0" styleClass="LabelMenu" text="Home">
                                  <font>
                                      <Font name="Berlin Sans FB" size="18.0" />
                                  </font>
                              </Label>
                          </children>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
+                         <cursor>
+                             <Cursor fx:constant="HAND" />
+                         </cursor>
                      </HBox>
-                     <HBox alignment="CENTER" minHeight="75.0" onMouseClicked="#switchToClientManagementView" prefHeight="60.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenuManegement" stylesheets="@../css/Test.css">
+                     <HBox alignment="CENTER" onMouseClicked="#switchToClientManagementView" prefHeight="88.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenu" stylesheets="@../css/Test.css">
                          <children>
-                             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                             <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageMenu">
                                  <image>
                                      <Image url="@../images/client.png" />
                                  </image>
                              </ImageView>
-                             <Label prefHeight="22.0" prefWidth="120.0" styleClass="LabelMenu" text="Clients">
+                             <Label alignment="CENTER" prefHeight="22.0" prefWidth="120.0" styleClass="LabelMenu" text="Clients">
                                  <font>
                                      <Font name="Berlin Sans FB" size="18.0" />
                                  </font>
                              </Label>
                          </children>
+                         <cursor>
+                             <Cursor fx:constant="HAND" />
+                         </cursor>
                      </HBox>
-                     <HBox alignment="CENTER" minHeight="75.0" prefHeight="60.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenuManegement" stylesheets="@../css/Test.css">
+                     <HBox alignment="CENTER" prefHeight="88.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenu" stylesheets="@../css/Test.css">
                          <children>
-                             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                             <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageMenu">
                                  <image>
                                      <Image url="@../images/book%20(1).png" />
                                  </image>
                              </ImageView>
-                             <Label prefHeight="22.0" prefWidth="123.0" styleClass="LabelMenu" text="Books">
+                             <Label alignment="CENTER" prefHeight="22.0" prefWidth="123.0" styleClass="LabelMenu" text="Books">
                                  <font>
                                      <Font name="Berlin Sans FB" size="18.0" />
                                  </font>
                              </Label>
                          </children>
+                         <cursor>
+                             <Cursor fx:constant="HAND" />
+                         </cursor>
                      </HBox>
-                  <HBox alignment="CENTER" minHeight="75.0" prefHeight="60.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenuManegement" stylesheets="@../css/Test.css">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/menu.png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="22.0" prefWidth="123.0" styleClass="LabelMenu" text="Others">
-                           <font>
-                              <Font name="Berlin Sans FB" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" minHeight="75.0" onMouseClicked="#logout" prefHeight="60.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenuManegement" stylesheets="@../css/Test.css">
-                     <children>
-                        <ImageView fitHeight="42.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/logout.png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="22.0" prefWidth="123.0" styleClass="LabelMenu" text="Log out">
-                           <font>
-                              <Font name="Berlin Sans FB" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
+                     <HBox alignment="CENTER" onMouseClicked="#switchToIssuesManagementView" prefHeight="88.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenu" stylesheets="@../css/Test.css">
+                         <children>
+                             <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageMenu">
+                                 <image>
+                                     <Image url="@../images/occupation.png" />
+                                 </image>
+                             </ImageView>
+                             <Label alignment="CENTER" prefHeight="22.0" prefWidth="123.0" styleClass="LabelMenu" text="Issues">
+                                 <font>
+                                     <Font name="Berlin Sans FB" size="18.0" />
+                                 </font>
+                             </Label>
+                         </children>
+                         <cursor>
+                             <Cursor fx:constant="HAND" />
+                         </cursor>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="88.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenu" stylesheets="@../css/Test.css">
+                         <children>
+                             <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageMenu">
+                                 <image>
+                                     <Image url="@../images/menu.png" />
+                                 </image>
+                             </ImageView>
+                             <Label alignment="CENTER" prefHeight="22.0" prefWidth="123.0" styleClass="LabelMenu" text="Others">
+                                 <font>
+                                     <Font name="Berlin Sans FB" size="18.0" />
+                                 </font>
+                             </Label>
+                         </children>
+                         <cursor>
+                             <Cursor fx:constant="HAND" />
+                         </cursor>
+                     </HBox>
+                     <HBox alignment="CENTER" onMouseClicked="#logout" prefHeight="88.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenu" stylesheets="@../css/Test.css">
+                         <children>
+                             <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageMenu">
+                                 <image>
+                                     <Image url="@../images/logout.png" />
+                                 </image>
+                             </ImageView>
+                             <Label alignment="CENTER" prefHeight="22.0" prefWidth="123.0" styleClass="LabelMenu" text="Log out">
+                                 <font>
+                                     <Font name="Berlin Sans FB" size="18.0" />
+                                 </font>
+                             </Label>
+                         </children>
+                         <cursor>
+                             <Cursor fx:constant="HAND" />
+                         </cursor>
+                     </HBox>
                  </children>
-               <HBox.margin>
-                  <Insets top="50.0" />
-               </HBox.margin>
+                 <HBox.margin>
+                     <Insets />
+                 </HBox.margin>
              </VBox>
             <Separator orientation="VERTICAL" prefHeight="847.0" prefWidth="25.0" styleClass="SeparatorBook">
                <effect>
@@ -182,7 +206,7 @@
                                     <Font name="Franklin Gothic Medium" size="18.0" />
                                  </font>
                               </Label>
-                              <Label styleClass="NumberButton" text="20000">
+                              <Label fx:id="totalBooksLabel" styleClass="NumberButton">
                                  <font>
                                     <Font name="Rockwell Bold" size="38.0" />
                                  </font>
@@ -194,12 +218,12 @@
                         </VBox>
                         <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="166.0" prefWidth="200.0" style="-fx-background-radius: 20;" styleClass="Button" stylesheets="@../css/Test.css">
                            <children>
-                              <Label styleClass="TitleButton" text="Total Clients">
+                              <Label styleClass="TitleButton" text="Borrowed books">
                                  <font>
                                     <Font name="Franklin Gothic Medium Cond" size="18.0" />
                                  </font>
                               </Label>
-                              <Label styleClass="NumberButton" text="1000">
+                              <Label fx:id="totalBorrowedBooksLabel" styleClass="NumberButton">
                                  <font>
                                     <Font name="Rockwell Bold" size="38.0" />
                                  </font>
@@ -211,12 +235,12 @@
                         </VBox>
                         <VBox alignment="CENTER" layoutX="220.0" layoutY="10.0" prefHeight="166.0" prefWidth="200.0" style="-fx-background-radius: 20;" styleClass="Button" stylesheets="@../css/Test.css">
                            <children>
-                              <Label styleClass="TitleButton" text="Total BookLoans">
+                              <Label styleClass="TitleButton" text="Total Issues">
                                  <font>
                                     <Font name="Franklin Gothic Medium" size="18.0" />
                                  </font>
                               </Label>
-                              <Label styleClass="NumberButton" text="1969">
+                              <Label fx:id="totalIssuesLabel" styleClass="NumberButton">
                                  <font>
                                     <Font name="Rockwell Bold" size="38.0" />
                                  </font>
@@ -228,12 +252,12 @@
                         </VBox>
                         <VBox alignment="CENTER" layoutX="572.0" layoutY="10.0" prefHeight="166.0" prefWidth="200.0" style="-fx-background-radius: 20;" styleClass="Button" stylesheets="@../css/Test.css">
                            <children>
-                              <Label styleClass="TitleButton" text="Total Revenues">
+                              <Label styleClass="TitleButton" text="Total fines">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label styleClass="NumberButton" text="10000">
+                              <Label fx:id="totalFinesLabel" styleClass="NumberButton">
                                  <font>
                                     <Font name="Rockwell Bold" size="38.0" />
                                  </font>
@@ -259,12 +283,12 @@
                                           <Insets top="-1.0" />
                                        </HBox.margin>
                                     </ChoiceBox>
-                                    <TextField fx:id="searchFilter" prefHeight="32.0" prefWidth="237.0" styleClass="tk">
+                                    <TextField fx:id="searchFilter" onKeyReleased="#handleSearch" prefHeight="32.0" prefWidth="237.0" styleClass="tk">
                                        <HBox.margin>
                                           <Insets left="5.0" />
                                        </HBox.margin>
                                     </TextField>
-                                    <ImageView fx:id="magnifyingGlass" fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="Glass">
+                                    <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="Glass">
                                        <image>
                                           <Image url="@../images/search.png" />
                                        </image>
@@ -274,7 +298,7 @@
                                     </ImageView>
                                  </children>
                               </HBox>
-                              <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="128.0" styleClass="Button" text="+ Add book">
+                              <Button mnemonicParsing="false" onMouseClicked="#switchToAddBookView" prefHeight="47.0" prefWidth="128.0" styleClass="Button" text="+ Add book">
                                  <HBox.margin>
                                     <Insets left="700.0" />
                                  </HBox.margin>

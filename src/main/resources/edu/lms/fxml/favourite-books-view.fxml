@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="816.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.client.FavouriteBooksController">
+    <top>
+        <HBox alignment="CENTER_LEFT" minWidth="1499.0" prefHeight="67.0" prefWidth="1530.0" styleClass="TopPane" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
+            <children>
+                <Label prefHeight="60.0" prefWidth="146.0" text="Alphas" textFill="WHITE">
+                    <font>
+                        <Font name="SansSerif Bold Italic" size="40.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="650.0" />
+                    </HBox.margin>
+                    <effect>
+                        <Shadow height="1.0" radius="0.0" width="1.0">
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" />
+                            </color>
+                        </Shadow>
+                    </effect>
+                </Label>
+                <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="259.0">
+                    <children>
+                        <VBox prefHeight="84.0" prefWidth="159.0">
+                            <children>
+                                <Label fx:id="usernameLabel" minWidth="199.0" prefHeight="18.0" prefWidth="199.0" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold Italic" size="20.0" />
+                                    </font></Label>
+                                <Label minWidth="199.0" prefHeight="18.0" prefWidth="199.0" text="Client" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold Italic" size="20.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <ImageView fx:id="avatarImage" fitHeight="50.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" styleClass="imageViewExtra">
+                            <image>
+                                <Image url="@../images/profile.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets left="10.0" top="-3.0" />
+                            </HBox.margin>
+                        </ImageView>
+                    </children>
+                    <HBox.margin>
+                        <Insets left="400.0" top="4.0" />
+                    </HBox.margin>
+                </HBox>
+            </children>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+        </HBox>
+    </top>
+    <left>
+        <VBox prefHeight="852.0" prefWidth="253.0" spacing="10.0" styleClass="white-bacground" stylesheets="@../css/Test.css">
+            <children>
+                <VBox prefHeight="217.0" prefWidth="250.0" spacing="12.0">
+                    <children>
+                        <Label alignment="CENTER" minHeight="50.0" prefHeight="50.0" prefWidth="120.0" styleClass="Browse" text="Browse">
+                            <font>
+                                <Font name="Berlin Sans FB" size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <HBox alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#backToBrowse" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
+                            <children>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/search-engine.png" />
+                                    </image>
+                                </ImageView>
+                                <Label prefHeight="22.0" prefWidth="120.0" text="Browse">
+                                    <font>
+                                        <Font name="Berlin Sans FB" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#switchToCategories" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
+                            <children>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/category.png" />
+                                    </image>
+                                </ImageView>
+                                <Label prefHeight="22.0" prefWidth="123.0" text="Categories">
+                                    <font>
+                                        <Font name="Berlin Sans FB" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                  <HBox alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#backToBrowse" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
+                     <children>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/search-engine.png" />
+                           </image>
+                        </ImageView>
+                        <Label prefHeight="22.0" prefWidth="120.0" text="Search">
+                           <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </VBox>
+                <VBox layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="250.0" spacing="12.0">
+                    <children>
+                        <Label alignment="CENTER" minHeight="50.0" prefHeight="50.0" prefWidth="120.0" styleClass="Browse" text="Your Books">
+                            <font>
+                                <Font name="Berlin Sans FB" size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <HBox alignment="CENTER" maxWidth="200.0" minHeight="50.0" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
+                            <children>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/favourite.png" />
+                                    </image>
+                                </ImageView>
+                                <Label prefHeight="22.0" prefWidth="120.0" text="Favourite">
+                                    <font>
+                                        <Font name="Berlin Sans FB" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#switchToBorrowedBooks" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
+                            <children>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/history.png" />
+                                    </image>
+                                </ImageView>
+                                <Label prefHeight="22.0" prefWidth="123.0" text="Borrowed Books">
+                                    <font>
+                                        <Font name="Berlin Sans FB" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </VBox>
+                <VBox layoutX="10.0" layoutY="231.0" prefHeight="120.0" prefWidth="250.0" spacing="12.0">
+                    <children>
+                        <Label alignment="CENTER" minHeight="50.0" prefHeight="50.0" prefWidth="120.0" styleClass="Browse" text="Memorize">
+                            <font>
+                                <Font name="Berlin Sans FB" size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <HBox alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#switchToGame" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
+                            <children>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/game-control.png" />
+                                    </image>
+                                </ImageView>
+                                <Label prefHeight="22.0" prefWidth="117.0" text="Game">
+                                    <font>
+                                        <Font name="Berlin Sans FB" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxWidth="200.0" minHeight="50.0" onMouseClicked="#logout" prefHeight="50.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
+                            <children>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/logout.png" />
+                                    </image>
+                                </ImageView>
+                                <Label prefHeight="22.0" prefWidth="117.0" text="Log out">
+                                    <font>
+                                        <Font name="Berlin Sans FB" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </VBox>
+                <Button minHeight="48.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="129.0" style="-fx-background-color: #FF5056;" styleClass="Button" stylesheets="@../css/Test.css" text="Some Function" textFill="WHITE">
+                    <font>
+                        <Font name="Berlin Sans FB" size="16.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets left="50.0" top="20.0" />
+                    </VBox.margin>
+                </Button>
+            </children>
+            <padding>
+                <Insets top="20.0" />
+            </padding>
+            <HBox.margin>
+                <Insets top="20.0" />
+            </HBox.margin>
+        </VBox>
+    </left>
+    <padding>
+        <Insets right="20.0" />
+    </padding>
+    <center>
+        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" stylesheets="@../css/Category-dashboard.css" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="30.0" layoutY="30.0" prefHeight="40.0" prefWidth="266.0" text="Favourite Books">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+            <ScrollPane prefHeight="578.0" prefWidth="1002.0">
+               <content>
+                  <FlowPane fx:id="flowPane" hgap="15.0" prefHeight="570.0" prefWidth="946.0" vgap="15.0">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding></FlowPane>
+               </content>
+               <VBox.margin>
+                  <Insets right="50.0" top="10.0" />
+               </VBox.margin>
+            </ScrollPane>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </VBox>
+    </center>
+</BorderPane>

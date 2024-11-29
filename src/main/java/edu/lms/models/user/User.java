@@ -9,6 +9,12 @@ public abstract class User {
     protected String avatarPath;
     protected Gender gender = Gender.OTHER;
 
+    public User() {}
+
+    public User(String username) {
+        this.username = username;
+    }
+
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;

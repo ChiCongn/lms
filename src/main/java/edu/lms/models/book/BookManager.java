@@ -1,31 +1,31 @@
 package edu.lms.models.book;
 
-import edu.lms.services.database.BookDataService;
-import edu.lms.services.database.BorrowedBookDataService;
-import javafx.beans.Observable;
+import edu.lms.services.database.BookDao;
+import edu.lms.services.database.BorrowedBookDao;
+import edu.lms.services.database.IssuesDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 
-import java.net.URL;
 import java.util.List;
 import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.Set;
 
 public class BookManager {
     private static ObservableList<Book> books;
     private static Map<String, Integer> borrowedBooksDataByMonth;
+    private static Map<String, Integer> issuesDataByMonth;
     private static ObservableList<PieChart.Data> categoriesDistributionData;
     private static List<Book> topChoiceBooks;
 
     private BookManager() {}
 
     public static void initialize() {
-         books = BookDataService.loadBooksData();
-         borrowedBooksDataByMonth = BorrowedBookDataService.loadBorrowedBooksByMonth();
-         calculateCategoriesDistribution();
-        topChoiceBooks = BookDataService.loadTopChoicesBook();
+        books = BookDao.loadBooksData();
+        borrowedBooksDataByMonth = BorrowedBookDao.loadBorrowedBooksByMonth();
+        issuesDataByMonth = IssuesDao.loadIssueByMonth();
+        calculateCategoriesDistribution();
+        topChoiceBooks = BookDao.loadTopChoicesBook();
     }
     public static ObservableList<Book> getBooks() {
         if (books == null) initialize();
@@ -66,8 +66,28 @@ public class BookManager {
         return categoriesDistributionData;
     }
 
+    public static Map<String, Integer> getBorrowedBooksDataByMonth() {
+        return borrowedBooksDataByMonth;
+    }
+
+    public static Map<String, Integer> getIssuesDataByMonth() {
+        return issuesDataByMonth;
+    }
+
+    public static List<Book> getTopChoiceBooks() {
+        return topChoiceBooks;
+    }
+
+    public static ObservableList<Book> getFilteredBooks(Set<Integer> searchBooksByKeywords) {
+        ObservableList<Book> filteredBooks = FXCollections.observableArrayList();
+        for (int id : searchBooksByKeywords) {
+            filteredBooks.add(BookManager.getBook(id));
+        }
+        return filteredBooks;
+    }
+
     private static void calculateCategoriesDistribution() {
-        Map<String, Integer> categoryData = BookDataService.loadCategoryDistributionData();
+        Map<String, Integer> categoryData = BookDao.loadCategoryDistributionData();
         categoriesDistributionData = FXCollections.observableArrayList();
 
         // Calculate total for percentage
@@ -78,13 +98,5 @@ public class BookManager {
             double percentage = (count / (double) total) * 100;
             categoriesDistributionData.add(new PieChart.Data(category + " (" + String.format("%.1f%%", percentage) + ")", count));
         });
-    }
-
-    public static Map<String, Integer> getBorrowedBooksDataByMonth() {
-        return borrowedBooksDataByMonth;
-    }
-
-    public static List<Book> getTopChoiceBooks() {
-        return topChoiceBooks;
     }
 }

@@ -1,10 +1,9 @@
 package edu.lms.services;
 
 import edu.lms.models.book.Book;
-import edu.lms.services.database.BookDataService;
+import edu.lms.services.database.BookDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.Initializable;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -101,7 +100,7 @@ public class GoogleBooksAPI {
         //      String description, BigDecimal rating, String coverImage, String canonicalVolumeLink
         Book searchedBook = new Book(title, authors.toString(), publishedYear, pageCount, categories.toString(), language, description, rating, price, coverImageUrl, canonicalVolumeLink);
 
-        BookDataService.addBook(searchedBook);
+        //BookDao.addBook(searchedBook);
         return searchedBook;
     }
 

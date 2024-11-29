@@ -203,7 +203,32 @@ BorderPane#root {
     -fx-border-color: yellow transparent transparent transparent;
 }
 
+<<<<<<< HEAD
 .LabelTitle {
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 1);
     -fx-translate-z: -10;
 }
+=======
+.anchor-pane {
+    -fx-background-image: url("../images/background.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.anchor-pane2 {
+    -fx-background-image: url("../images/gamerule.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.anchor-pane3 {
+    -fx-background-image: url("../images/main.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+
+>>>>>>> be32bf03ce4951242bb3f2780e38fc2266eb02bb

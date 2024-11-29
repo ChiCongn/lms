@@ -10,12 +10,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="922.0" prefWidth="1516.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.librarian.IssueDetailsController">
+
+<AnchorPane prefHeight="890.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.librarian.IssueDetailsController">
    <children>
-      <Button layoutX="31.0" layoutY="28.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="73.0" styleClass="Button" text="Back" />
+      <Button layoutX="31.0" layoutY="28.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="73.0" text="Back" />
       <Label layoutX="125.0" layoutY="90.0" prefHeight="46.0" prefWidth="157.0" text="Issue book">
          <font>
-            <Font name="SansSerif Bold Italic" size="30.0" />
+            <Font size="30.0" />
          </font>
       </Label>
       <VBox layoutX="91.0" layoutY="136.0" prefHeight="668.0" prefWidth="1140.0">
@@ -24,21 +25,21 @@
             <HBox prefHeight="528.0" prefWidth="1095.0">
                <children>
                   <ImageView fx:id="avatar" fitHeight="208.0" fitWidth="191.0" pickOnBounds="true" preserveRatio="true" />
-                  <VBox prefHeight="511.0" prefWidth="124.0">
+                  <VBox prefHeight="510.0" prefWidth="107.0">
                      <children>
                         <Label prefHeight="30.0" prefWidth="419.0" text="id">
                            <font>
-                              <Font name="System Bold Italic" size="18.0" />
+                              <Font size="14.0" />
                            </font>
                         </Label>
                         <Label prefHeight="30.0" prefWidth="419.0" text="username">
                            <font>
-                              <Font name="System Bold Italic" size="18.0" />
+                              <Font size="14.0" />
                            </font>
                         </Label>
                         <Label prefHeight="30.0" prefWidth="419.0" text="email">
                            <font>
-                              <Font name="System Bold Italic" size="18.0" />
+                              <Font size="14.0" />
                            </font>
                         </Label>
                      </children>
@@ -87,22 +88,22 @@
                                  <children>
                                     <Label prefHeight="35.0" prefWidth="419.0" text="Title">
                                        <font>
-                                          <Font name="SansSerif Bold Italic" size="20.0" />
+                                          <Font size="20.0" />
                                        </font>
                                     </Label>
                                     <Label prefHeight="40.0" prefWidth="419.0" text="Authors">
                                        <font>
-                                          <Font name="SansSerif Bold Italic" size="20.0" />
+                                          <Font size="20.0" />
                                        </font>
                                     </Label>
                                     <Label prefHeight="35.0" prefWidth="419.0" text="Page count">
                                        <font>
-                                          <Font name="SansSerif Bold Italic" size="20.0" />
+                                          <Font size="20.0" />
                                        </font>
                                     </Label>
                                     <Label prefHeight="35.0" prefWidth="419.0" text="Language">
                                        <font>
-                                          <Font name="SansSerif Bold Italic" size="20.0" />
+                                          <Font size="20.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -136,9 +137,9 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <Label prefHeight="36.0" prefWidth="94.0" text="Detail">
+                        <Label prefHeight="31.0" prefWidth="81.0" text="Detail">
                            <font>
-                              <Font name="SansSerif Bold Italic" size="30.0" />
+                              <Font size="22.0" />
                            </font>
                            <VBox.margin>
                               <Insets top="20.0" />
@@ -151,19 +152,19 @@
             </HBox>
             <HBox prefHeight="45.0" prefWidth="1095.0">
                <children>
-                  <Label prefHeight="36.0" prefWidth="218.0" text="Reported date:">
-                     <font>
-                        <Font name="SansSerif Bold Italic" size="30.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="reportedDate" prefHeight="36.0" prefWidth="350.0">
+                  <Label prefHeight="42.0" prefWidth="168.0" text="Reported date:">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="36.0" prefWidth="132.0" text="Fix date:">
+                  <Label fx:id="reportedDate" prefHeight="42.0" prefWidth="355.0">
                      <font>
-                        <Font name="SansSerif Bold Italic" size="30.0" />
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="42.0" prefWidth="117.0" text="Fix date:">
+                     <font>
+                        <Font size="24.0" />
                      </font>
                   </Label>
                   <Label fx:id="fixedDate" prefHeight="42.0" prefWidth="374.0">
@@ -171,29 +172,29 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
+                  <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="122.0" text="Delete">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
                </children>
             </HBox>
             <HBox prefHeight="95.0" prefWidth="1095.0">
                <children>
                   <Label prefHeight="92.0" prefWidth="165.0" text="Remark">
                      <font>
-                        <Font name="SansSerif Bold Italic" size="30.0" />
+                        <Font size="35.0" />
                      </font>
                   </Label>
                   <TextArea fx:id="remark" prefHeight="78.0" prefWidth="854.0" />
+                  <Button mnemonicParsing="false" onMouseClicked="#remarkIssue" prefHeight="90.0" prefWidth="124.0" text="Mark">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Button>
                </children>
             </HBox>
          </children>
       </VBox>
-      <Button layoutX="1258.0" layoutY="683.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="122.0" styleClass="Button" text="Delete">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="1257.0" layoutY="739.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="122.0" styleClass="Button" text="Mark">
-         <font>
-            <Font size="40.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

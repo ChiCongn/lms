@@ -4,8 +4,8 @@ import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
 import edu.lms.models.user.Client;
 import edu.lms.models.user.Gender;
-import edu.lms.services.database.UsersDataService;
-import edu.lms.services.database.DatabaseService;
+import edu.lms.services.database.UsersDao;
+import edu.lms.services.database.DatabaseConnection;
 import edu.lms.services.EmailService;
 import edu.lms.services.Validator;
 import edu.lms.services.VerificationCode;
@@ -73,10 +73,9 @@ public class SignUpController implements Initializable {
     private boolean isValidUsername;
     private boolean isValidEmail;
     private int currentVerificationCode;
-    private final DatabaseService instance = DatabaseService.getInstance();
 
     public void backToSignInController() {
-        SignInController signInController = SceneManager.switchScene(Constants.SIGN_IN_VIEW);
+        SignInController signInController = SceneManager.switchScene(Constants.SIGN_IN_VIEW, false);
         System.out.println("back to sign");
     }
 
@@ -108,7 +107,6 @@ public class SignUpController implements Initializable {
                     if (!Validator.checkValidEmail(newEmail)) {
                         invalidEmail.setText("Invalid email! Pls choose other email!");
                         invalidEmail.setStyle("-fx-text-fill: red;");
-                        return;
                     }
                     if (checkUniqueEmail(newEmail)) {
                         invalidEmail.setText("Email is available!");
@@ -187,7 +185,7 @@ public class SignUpController implements Initializable {
 
         System.out.println("register");
         Client client = new Client(username.getText(), password.getText(), email.getText(), genderChoiceBox.getValue());
-        if (UsersDataService.addNewClient(client)) {
+        if (UsersDao.addNewClient(client)) {
             successfulRegistration.setVisible(true);
             continuee.setVisible(true);
         }
@@ -222,7 +220,7 @@ public class SignUpController implements Initializable {
 
     private boolean checkUsernameTaken(String username) {
         String query = "SELECT COUNT(*) FROM users WHERE username = ?";
-        try (Connection connection = instance.getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, username);
@@ -239,7 +237,7 @@ public class SignUpController implements Initializable {
 
     private boolean checkUniqueEmail(String email) {
         String query = "SELECT COUNT(*) FROM users WHERE email = ?";
-        try (Connection connection = instance.getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, email);

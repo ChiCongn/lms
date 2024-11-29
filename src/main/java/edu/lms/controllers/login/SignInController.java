@@ -2,12 +2,19 @@ package edu.lms.controllers.login;
 
 import edu.lms.Constants;
 import edu.lms.controllers.SceneManager;
-import edu.lms.controllers.dashboard.AdminDashboardController;
-import edu.lms.controllers.dashboard.DashboardController;
-import edu.lms.controllers.dashboard.LibrarianDashboardController;
+import edu.lms.controllers.client.ClientDashboardController;
+import edu.lms.controllers.common.SoundManager;
+import edu.lms.controllers.librarian.AdminDashboardController;
+import edu.lms.controllers.librarian.DashboardController;
+import edu.lms.controllers.librarian.LibrarianDashboardController;
+import edu.lms.models.issue.IssuesManager;
+import edu.lms.models.user.Client;
+import edu.lms.models.user.ClientDataManager;
 import edu.lms.models.user.Librarian;
-import edu.lms.services.database.DatabaseService;
-import edu.lms.services.database.UsersDataService;
+import edu.lms.models.user.UserManager;
+import edu.lms.services.database.DatabaseConnection;
+import edu.lms.services.database.UsersDao;
+import javafx.animation.PauseTransition;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,6 +22,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,11 +45,13 @@ public class SignInController {
     private Label incorrectUsername;
     @FXML
     private Label incorrectPassword;
+
     @FXML
-    private ProgressBar loadingBar;
+    private Label suspendedAcc;
+
+    private boolean isSuspended;
     private boolean visibility;
     private String role;
-    private final DatabaseService instance = DatabaseService.getInstance();
     private int userId;
 
 
@@ -60,7 +70,7 @@ public class SignInController {
     }
 
     public void switchSignUpController() {
-        SignUpController signUpController = SceneManager.switchScene(Constants.SIGNUP_VIEW);
+        SignUpController signUpController = SceneManager.switchScene(Constants.SIGNUP_VIEW, false);
     }
 
     public void signIn() {
@@ -79,11 +89,15 @@ public class SignInController {
         }
     }
 
+    @FXML
+    private void switchToForgotPasswordView() {
+        ForgotPasswordController forgotPasswordController = SceneManager.switchScene(Constants.FORGOT_PASSWORD_VIEW, false);
+    }
 
     private boolean checkCredentials(String username, String password) throws SQLException {
-        String query = "SELECT user_id, role FROM users WHERE username = ? AND password = ?";
-
-        try (Connection connection = instance.getConnection();
+        String query = "SELECT user_id, role, status FROM users WHERE username = ? AND password = ?";
+        SoundManager.playSound("mouse-click.wav");
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, username);
@@ -93,6 +107,8 @@ public class SignInController {
             if (resultSet.next()) {
                 role = resultSet.getString("role");
                 userId = resultSet.getInt("user_id");
+                String status = resultSet.getString("status");
+                isSuspended = status.equals("suspended");
                 return resultSet.getInt(1) > 0;
             }
 
@@ -103,50 +119,72 @@ public class SignInController {
     }
 
     private void switchToDashboard() {
+        if (isSuspended) {
+            suspendedAcc.setVisible(true);
+            PauseTransition hideLabel = new PauseTransition(Duration.seconds(2));
+            hideLabel.setOnFinished(e -> suspendedAcc.setVisible(false));
+            hideLabel.play();
+            return;
+        }
         if (role == null) return;
         if (role.equals("admin")) {
-            AdminDashboardController adminDashboardController = SceneManager.switchScene(Constants.ADMIN_DASHBOARD_VIEW);
+            AdminDashboardController adminDashboardController = SceneManager.switchScene(Constants.ADMIN_DASHBOARD_VIEW, true);
         } else if (role.equals("librarian")) {
             System.out.println("sign in with librarian role");
-            Librarian librarian = (Librarian) UsersDataService.loadUserData(userId);
-            DashboardController.setLibrarian(librarian);
-            LibrarianDashboardController librarianDashboardController = SceneManager.switchScene(Constants.LIBRARIAN_DASHBOARD_VIEW);
+            loadDataForLibrarian();
+            Librarian librarian = (Librarian) UsersDao.loadUserData(userId);
+            DashboardController.setData(librarian);
+            LibrarianDashboardController librarianDashboardController = SceneManager.switchScene(Constants.LIBRARIAN_DASHBOARD_VIEW, true);
         } else {
-            //ClientDashboardController clientDashboardController = SceneManager.switchScene(Constants.CLIENT_DASHBOARD_VIEW);
-            System.out.println("nothing");
+            System.out.println("sign in with client role");
+            Client client = (Client) UsersDao.loadUserData(userId);
+            loadDataForClient();
+            edu.lms.controllers.client.DashboardController.setClientData(client);
+            ClientDashboardController clientDashboardController = SceneManager.switchScene(Constants.CLIENT_DASHBOARD_VIEW, true);
         }
     }
 
-    private void loadDataAndSwitchScene() {
-        loadingBar.setVisible(true);
-        Task<Void> loadDataTask = new Task<>() {
+    private void loadDataForLibrarian() {
+        Task<Void> loadManagementData = new Task<>() {
             @Override
-            protected Void call() throws Exception {
-                for (int i = 0; i <= 100; i++) {
-                    Thread.sleep(50);  // Simulate a delay
-                    updateProgress(i, 100);  // Update progress bar
-                }
+            protected Void call() {
+                UserManager.initialize();
+                IssuesManager.initialize();
                 return null;
             }
         };
 
-        // Bind ProgressBar's progress to Task's progress
-        loadingBar.progressProperty().bind(loadDataTask.progressProperty());
-
-        // Switch to the next scene after loading
-        loadDataTask.setOnSucceeded(event -> {
-            loadingBar.setVisible(false);  // Hide progress bar
-            // Switch to the next scene (e.g., a new scene with books)
-            SceneManager.switchScene(Constants.BOOK_DETAILS_VIEW);
+        loadManagementData.setOnSucceeded(event -> {
+            System.out.println("Load management data completed successfully!");
         });
 
-        // Handle task failure (optional)
-        loadDataTask.setOnFailed(event -> {
-            loadingBar.setVisible(false);
-            System.err.println("Data loading failed: " + loadDataTask.getException());
+        loadManagementData.setOnFailed(event -> {
+            Throwable exception = loadManagementData.getException();
+            System.err.println("Initialization failed: " + exception.getMessage());
         });
 
-        // Start the background task
-        new Thread(loadDataTask).start();
+        new Thread(loadManagementData).start();
     }
+
+    private void loadDataForClient() {
+        Task<Void> loadClientData = new Task<>() {
+            @Override
+            protected Void call() {
+                ClientDataManager.initialize(userId);
+                return null;
+            }
+        };
+
+        loadClientData.setOnSucceeded(event -> {
+            System.out.println("Load management data completed successfully!");
+        });
+
+        loadClientData.setOnFailed(event -> {
+            Throwable exception = loadClientData.getException();
+            System.err.println("Initialization failed: " + exception.getMessage());
+        });
+
+        new Thread(loadClientData).start();
+    }
+
 }

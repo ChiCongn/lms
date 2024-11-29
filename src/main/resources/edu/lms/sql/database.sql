@@ -10,7 +10,7 @@ create table users (
     password varchar(50) not null ,
     role enum('admin', 'librarian', 'client'),
     date_of_birth date,
-    avatar_path varchar(255),
+    avatar_path varchar(255) default 'edu/lms/images/default_avatar.png',
     status enum('active', 'suspended') default 'active',
     last_login timestamp,
     gender enum('male', 'female', 'other'),

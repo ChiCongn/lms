@@ -19,7 +19,8 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="912" prefWidth="1536" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.LibrarianDashboardController">
+
+<BorderPane prefHeight="912" prefWidth="1536" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.librarian.LibrarianDashboardController">
    <top>
       <HBox prefHeight="67.0" prefWidth="1536.0" styleClass="TopPane" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
          <children>
@@ -34,28 +35,19 @@
                   <Glow level="0.21" />
                </effect>
             </Label>
-            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="181.0">
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="206.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <VBox prefHeight="67.0" prefWidth="155.0">
                      <children>
-                        <Label contentDisplay="CENTER" styleClass="LabelTitle" text="Label" textFill="WHITE">
+                        <Label fx:id="usernameLabel" prefHeight="31.0" prefWidth="158.0" />
+                        <Label prefHeight="31.0" prefWidth="156.0" text="Librarian">
                            <font>
-                              <Font name="System Bold Italic" size="38.0" />
+                              <Font name="System Bold Italic" size="17.0" />
                            </font>
-                           <effect>
-                              <Shadow blurType="GAUSSIAN" height="1.0" radius="0.0" width="1.0">
-                                 <color>
-                                    <Color red="1.0" green="1.0" blue="1.0" />
-                                 </color>
-                              </Shadow>
-                           </effect>
                         </Label>
                      </children>
-                  </HBox>
+                  </VBox>
                   <ImageView fx:id="avatarImage" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" styleClass="imageViewExtra">
-                     <image>
-                        <Image url="@../images/profile.png" />
-                     </image>
                      <effect>
                         <Shadow />
                      </effect>
@@ -135,7 +127,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="88.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenu" stylesheets="@../css/Test.css">
+                  <HBox alignment="CENTER" onMouseClicked="#switchToIssuesManagementView" prefHeight="88.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenu" stylesheets="@../css/Test.css">
                      <children>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageMenu">
                            <image>
@@ -195,7 +187,7 @@
                <effect>
                   <Shadow blurType="GAUSSIAN" height="2.0" radius="0.5" width="2.0">
                      <color>
-                        <Color opacity="0.4399999976158142" />
+                        <Color opacity="0.44" />
                      </color>
                   </Shadow>
                </effect>
@@ -220,18 +212,22 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="110.0" prefWidth="213.0">
                                  <children>
-                                    <Label styleClass="LabelHboxSmall" text="Label">
+                                    <Label fx:id="numberOfClientsLabel" styleClass="LabelHboxSmall">
                                        <VBox.margin>
                                           <Insets top="15.0" />
                                        </VBox.margin>
+                                       <font>
+                                          <Font size="30.0" />
+                                       </font>
                                     </Label>
                                     <Label alignment="CENTER" prefHeight="31.0" prefWidth="202.0" styleClass="LabelHboxSmallExtra" text="User">
                                        <VBox.margin>
                                           <Insets top="5.0" />
                                        </VBox.margin>
+                                       <font>
+                                          <Font name="System Bold Italic" size="24.0" />
+                                       </font>
                                     </Label>
-                                    <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="114.0" />
-                                    <HBox alignment="CENTER" prefHeight="107.0" prefWidth="128.0" />
                                  </children>
                               </VBox>
                               <ImageView fitHeight="75.0" fitWidth="60.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="imageView">
@@ -247,18 +243,21 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </HBox>
-                        <HBox layoutX="60.0" layoutY="10.0" minHeight="100.0" prefHeight="79.0" prefWidth="256.0" styleClass="HboxSmall">
+                        <HBox layoutX="60.0" layoutY="10.0" minHeight="100.0" prefHeight="100.0" prefWidth="269.0" styleClass="HboxSmall">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="77.0" prefWidth="176.0">
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="198.0">
                                  <children>
-                                    <Label alignment="BOTTOM_CENTER" prefHeight="31.0" prefWidth="179.0" styleClass="LabelHboxSmall" text="Label">
+                                    <Label fx:id="numberOfBorrowedBooksLabel" alignment="BOTTOM_CENTER" prefHeight="31.0" prefWidth="179.0" styleClass="LabelHboxSmall">
                                        <VBox.margin>
                                           <Insets top="5.0" />
                                        </VBox.margin>
-                                    </Label>
-                                    <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="41.0" prefWidth="187.0" styleClass="LabelHboxSmallExtra" text="Borrowed Books">
                                        <font>
-                                          <Font size="24.0" />
+                                          <Font size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="42.0" prefWidth="201.0" styleClass="LabelHboxSmallExtra" text="Borrowed Books">
+                                       <font>
+                                          <Font name="System Bold Italic" size="24.0" />
                                        </font>
                                        <VBox.margin>
                                           <Insets left="7.0" />
@@ -280,14 +279,14 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="110.0" prefWidth="213.0">
                                  <children>
-                                    <Label styleClass="LabelHboxSmall" text="Label">
+                                    <Label fx:id="numberOfBooksLabel" styleClass="LabelHboxSmall">
                                        <font>
                                           <Font size="30.0" />
                                        </font>
                                     </Label>
                                     <Label styleClass="LabelHboxSmallExtra" text="Books">
                                        <font>
-                                          <Font size="14.0" />
+                                          <Font name="System Bold Italic" size="24.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -304,15 +303,15 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <VBox prefHeight="600.0" prefWidth="1100.0">
+                  <VBox prefHeight="631.0" prefWidth="1318.0">
                      <children>
                         <HBox prefWidth="996.0" spacing="10.0" styleClass="HboxChart">
                            <children>
-                              <BarChart fx:id="borrowedBooksBarChart" prefHeight="327.0" prefWidth="690.0" styleClass="BarChart">
+                              <BarChart fx:id="borrowedBooksBarChart" prefHeight="384.0" prefWidth="611.0" title="Number borrowed books by month">
                                  <xAxis>
                                     <CategoryAxis label="Months" prefHeight="22.0" prefWidth="471.0" styleClass="Axis">
                                        <tickLabelFont>
-                                          <Font size="28.0" />
+                                          <Font size="14.0" />
                                        </tickLabelFont>
                                     </CategoryAxis>
                                  </xAxis>
@@ -323,30 +322,23 @@
                                     <Insets left="50.0" />
                                  </HBox.margin>
                               </BarChart>
-                              <PieChart fx:id="categoriesPieChart" prefHeight="390.0" prefWidth="431.0" />
+                              <PieChart fx:id="categoriesPieChart" prefHeight="379.0" prefWidth="582.0" />
                            </children>
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="55.0" prefWidth="1115.0" spacing="10.0">
-                           <children>
-                              <Label alignment="CENTER" styleClass="LabelHboxLarge" text="Label">
-                                 <padding>
-                                    <Insets left="100.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="30.0" />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
+                        <Label prefHeight="43.0" prefWidth="130.0" text="Top choices">
+                           <font>
+                              <Font name="System Bold Italic" size="20.0" />
+                           </font>
                            <VBox.margin>
-                              <Insets />
+                              <Insets left="100.0" />
                            </VBox.margin>
-                        </HBox>
-                        <ScrollPane maxHeight="211.0" maxWidth="1024.0" prefHeight="174.0" prefWidth="1024.0" styleClass="ScrollPane">
+                        </Label>
+                        <ScrollPane maxHeight="211.0" maxWidth="1058.0" prefHeight="180.0" prefWidth="1058.0" styleClass="ScrollPane">
                            <content>
-                              <HBox fx:id="booksContainer" alignment="CENTER" prefHeight="166.0" prefWidth="1066.0" styleClass="HboxPane">
+                              <HBox fx:id="topChoiceBooksContainer" alignment="CENTER" prefHeight="180.0" prefWidth="1040.0" styleClass="HboxPane">
                                  <padding>
                                     <Insets left="50.0" top="50.0" />
                                  </padding>

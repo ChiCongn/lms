@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -16,7 +15,10 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="922.0" prefWidth="1516.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.dashboard.ClientsManagementController">
+
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.Cursor?>
+<BorderPane prefHeight="922.0" prefWidth="1516.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lms.controllers.librarian.ClientsManagementController">
    <top>
       <HBox prefHeight="69.0" prefWidth="1516.0" styleClass="TopPane" stylesheets="@../css/Test.css" BorderPane.alignment="CENTER">
          <children>
@@ -59,7 +61,7 @@
                         <Insets left="1000.0" top="2.0" />
                      </HBox.margin>
                   </VBox>
-                  <ImageView fx:id="avatar" fitHeight="47.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="imageViewExtra">
+                  <ImageView fx:id="avatarImage" fitHeight="47.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="imageViewExtra">
                      <image>
                         <Image url="@../images/profile.png" />
                      </image>
@@ -75,96 +77,136 @@
          </children>
       </HBox>
    </top>
-   <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+   <left>
+      <VBox prefHeight="824.0" prefWidth="200.0" spacing="25.0" styleClass="VboxMenu" stylesheets="@../css/Test.css">
          <children>
-            <VBox minWidth="250.0" prefHeight="853.0" prefWidth="113.0" spacing="20.0" styleClass="white-background" stylesheets="@../css/Test.css">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="61.0" prefWidth="106.0" styleClass="Browse" text="Browse">
+               <font>
+                  <Font name="Berlin Sans FB" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="60.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="88.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenu" stylesheets="@../css/Test.css">
                <children>
-                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="120.0" styleClass="Browse" text="Browse">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageMenu">
+                     <image>
+                        <Image url="@../images/home.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="22.0" prefWidth="117.0" styleClass="LabelMenu" text="Home">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
                   </Label>
-                  <HBox alignment="CENTER" maxWidth="200.0" onMouseClicked="#backToHomeView" prefHeight="60.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/house.png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="22.0" prefWidth="117.0" styleClass="LabelClientManagement" text="Home">
-                           <font>
-                              <Font name="Berlin Sans FB" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" maxWidth="200.0" onMouseClicked="#switchToClientManagementView" prefHeight="60.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/client.png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="22.0" prefWidth="120.0" styleClass="LabelClientManagement" text="Clients">
-                           <font>
-                              <Font name="Berlin Sans FB" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" maxWidth="200.0" prefHeight="60.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/book%20(1).png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="22.0" prefWidth="123.0" styleClass="LabelClientManagement" text="Books">
-                           <font>
-                              <Font name="Berlin Sans FB" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" maxWidth="200.0" prefHeight="60.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/menu.png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="22.0" prefWidth="123.0" styleClass="LabelClientManagement" text="Others">
-                           <font>
-                              <Font name="Berlin Sans FB" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" maxWidth="200.0" onMouseClicked="#logout" prefHeight="60.0" prefWidth="200.0" spacing="15.0" styleClass="HboxCategory" stylesheets="@../css/Test.css">
-                     <children>
-                        <ImageView fitHeight="42.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/logout.png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="22.0" prefWidth="123.0" styleClass="LabelClientManagement" text="Log out">
-                           <font>
-                              <Font name="Berlin Sans FB" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
                </children>
-            </VBox>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <HBox alignment="CENTER" onMouseClicked="#switchToClientManagementView" prefHeight="88.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenu" stylesheets="@../css/Test.css">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageMenu">
+                     <image>
+                        <Image url="@../images/client.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="22.0" prefWidth="120.0" styleClass="LabelMenu" text="Clients">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <HBox alignment="CENTER" onMouseClicked="#switchToBooksManagementView" prefHeight="88.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenu" stylesheets="@../css/Test.css">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageMenu">
+                     <image>
+                        <Image url="@../images/book%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="22.0" prefWidth="123.0" styleClass="LabelMenu" text="Books">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <HBox alignment="CENTER" onMouseClicked="#switchToIssuesManagementView" prefHeight="88.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenu" stylesheets="@../css/Test.css">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageMenu">
+                     <image>
+                        <Image url="@../images/occupation.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="22.0" prefWidth="123.0" styleClass="LabelMenu" text="Issues">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="88.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenu" stylesheets="@../css/Test.css">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageMenu">
+                     <image>
+                        <Image url="@../images/menu.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="22.0" prefWidth="123.0" styleClass="LabelMenu" text="Others">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <HBox alignment="CENTER" onMouseClicked="#logout" prefHeight="88.0" prefWidth="200.0" spacing="15.0" styleClass="HBoxMenu" stylesheets="@../css/Test.css">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageMenu">
+                     <image>
+                        <Image url="@../images/logout.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="22.0" prefWidth="123.0" styleClass="LabelMenu" text="Log out">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+         </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+      </VBox>
+   </left>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
             <Separator opacity="0.7" orientation="VERTICAL" prefHeight="853.0" prefWidth="29.0" styleClass="SeparatorBook">
                <effect>
                   <Shadow blurType="GAUSSIAN" height="1.0" radius="0.0" width="1.0">
                      <color>
-                        <Color red="0.7490196228027344" green="0.7490196228027344" blue="0.7490196228027344" />
+                        <Color red="0.7490196228027344" green="0.7490196228027344" blue="0.75" />
                      </color>
                   </Shadow>
                </effect>
@@ -181,15 +223,14 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                           <TextField fx:id="searchFilter" prefHeight="32.0" prefWidth="435.0" promptText="Search">
+                           <TextField prefHeight="32.0" prefWidth="435.0" promptText="Search">
                            <HBox.margin>
                               <Insets top="3.0" />
                            </HBox.margin>
                         </TextField>
-                     
-                                              <HBox maxHeight="50.0" prefHeight="37.0" prefWidth="331.0">
+                        <HBox maxHeight="50.0" prefHeight="37.0" prefWidth="331.0">
                              <children>
-                                 <ImageView fx:id="magnifyingGlass" fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                      <image>
                                          <Image url="@../images/search.png" />
                                      </image>
@@ -224,7 +265,7 @@
                             <TableColumn fx:id="usernameColumn" prefWidth="242.0" text="username" />
                               <TableColumn fx:id="emailColumn" prefWidth="189.0" text="email" />
                               <TableColumn fx:id="borrowedBooksColumn" minWidth="3.20001220703125" prefWidth="204.0" text="borrowed books" />
-                              <TableColumn fx:id="outstandingFinesColumn" prefWidth="238.0" text="oustanding fines" />
+                              <TableColumn fx:id="outstandingFinesColumn" prefWidth="238.0" text="outstanding fines" />
                               <TableColumn fx:id="statusColumn" prefWidth="186.5" text="status" />
                           </columns>
                            <HBox.margin>
